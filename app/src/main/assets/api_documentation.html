@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panduan & Dokumentasi API PrinterJTM</title>
+    <style>
+        :root {
+            --primary: #004D40;
+            --primary-light: #00796B;
+            --primary-surface: #E0F2F1;
+            --accent: #26A69A;
+            --text-main: #212121;
+            --text-secondary: #546E7A;
+            --bg-page: #F8F9FA;
+            --bg-card: #FFFFFF;
+            --border-color: #E2E8F0;
+            --code-bg: #1E293B;
+            --code-text: #E2E8F0;
+            --badge-green: #2E7D32;
+            --badge-blue: #1565C0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-page);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding: 16px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* Header Banner */
+        .doc-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: #FFFFFF;
+            padding: 24px 20px;
+            border-radius: 12px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(0, 77, 64, 0.15);
+        }
+
+        .doc-header h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .doc-header p {
+            font-size: 14px;
+            opacity: 0.9;
+            line-height: 1.5;
+        }
+
+        .badge-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background-color: rgba(255, 255, 255, 0.2);
+            color: #FFFFFF;
+        }
+
+        /* Card Section */
+        .section-card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+        }
+
+        .section-card h2 {
+            color: var(--primary);
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 14px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--primary-surface);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .section-card h3 {
+            color: var(--primary-light);
+            font-size: 15px;
+            font-weight: 600;
+            margin-top: 16px;
+            margin-bottom: 8px;
+        }
+
+        p, li {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+            margin-bottom: 12px;
+        }
+
+        li {
+            margin-bottom: 6px;
+        }
+
+        strong {
+            color: var(--text-main);
+        }
+
+        /* Callout Box */
+        .callout {
+            background-color: var(--primary-surface);
+            border-left: 4px solid var(--primary);
+            padding: 14px 16px;
+            border-radius: 0 8px 8px 0;
+            margin: 16px 0;
+        }
+
+        .callout-title {
+            font-weight: 700;
+            color: var(--primary);
+            font-size: 13px;
+            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .callout-body {
+            font-size: 13px;
+            color: #004D40;
+        }
+
+        /* Responsive Table */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 14px 0;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #ECEFF1;
+            color: #37474F;
+            font-weight: 700;
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        td {
+            padding: 10px 12px;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-main);
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background-color: #F8FAFC;
+        }
+
+        /* Code Blocks */
+        pre {
+            background-color: var(--code-bg);
+            color: var(--code-text);
+            padding: 14px 16px;
+            border-radius: 8px;
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-size: 12px;
+            line-height: 1.5;
+            overflow-x: auto;
+            margin: 12px 0 16px 0;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.3);
+        }
+
+        code {
+            font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+            font-size: 12px;
+            background-color: #ECEFF1;
+            color: #D81B60;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        pre code {
+            background-color: transparent;
+            color: var(--code-text);
+            padding: 0;
+        }
+
+        .method-badge {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: bold;
+            padding: 2px 8px;
+            border-radius: 4px;
+            color: #FFFFFF;
+        }
+
+        .method-get { background-color: var(--badge-blue); }
+        .method-post { background-color: var(--badge-green); }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #90A4AE;
+            margin-top: 32px;
+            padding-bottom: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="doc-header">
+            <h1>📖 Manual Book &amp; Dokumentasi API</h1>
+            <p>Panduan Resmi Integrasi REST API, Webhook, dan Cetak Thermal Otomatis PrinterJTM (v2.5+)</p>
+            <div class="badge-bar">
+                <span class="badge">ESC/POS 58mm / 80mm / 100mm</span>
+                <span class="badge">Bluetooth &amp; Wi-Fi TCP Port 9100</span>
+                <span class="badge">Keamanan AES-256 GCM</span>
+                <span class="badge">Android Native</span>
+            </div>
+        </div>
+
+        <!-- 1. Pengenalan -->
+        <div class="section-card">
+            <h2>1. Pengenalan Integrasi API &amp; Webhook</h2>
+            <p>
+                Aplikasi <strong>PrinterJTM</strong> dirancang bukan hanya sebagai aplikasi kasir dan cetak resi manual, 
+                namun juga berfungsi sebagai <strong>Thermal Print Bridge Engine</strong> canggih untuk ekosistem bisnis Anda. 
+                Dengan fitur Integrasi API, aplikasi Anda (Website Kasir POS, ERP, E-commerce, Backend Laravel, NodeJS, Python, Go) 
+                dapat langsung memerintahkan printer thermal Bluetooth dan Wi-Fi untuk mencetak struk secara otomatis tanpa perantara komputer PC.
+            </p>
+
+            <div class="callout">
+                <div class="callout-title">💡 Mengapa Menggunakan Integrasi API PrinterJTM?</div>
+                <div class="callout-body">
+                    Printer thermal Bluetooth dan Wi-Fi dihubungkan langsung ke tablet/HP Android Anda. Aplikasi PrinterJTM akan mengambil antrean cetak dari server Anda secara instan dan mengeksekusi perintah cetak dalam hitungan milidetik.
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Pengaturan di Aplikasi -->
+        <div class="section-card">
+            <h2>2. Cara Mengisi Pengaturan API di PrinterJTM</h2>
+            <p>Buka menu <strong>Pengaturan (Settings) &rarr; INTEGRASI API &amp; WEBHOOK</strong> dan sesuaikan kolom berikut:</p>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width: 25%;">Kolom Pengaturan</th>
+                            <th style="width: 25%;">Pilihan / Contoh</th>
+                            <th>Penjelasan Fungsional</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Mode Integrasi</strong></td>
+                            <td>
+                                <code>REST API / POS</code><br>
+                                <code>Resi Marketplace</code><br>
+                                <code>Web Print Bridge</code>
+                            </td>
+                            <td>
+                                <strong>REST API / POS:</strong> Untuk cetak struk kasir retail/resto.<br>
+                                <strong>Resi Marketplace:</strong> Format label pengiriman paket e-commerce.<br>
+                                <strong>Web Print Bridge:</strong> Menerima trigger cetak dari browser web via URL scheme.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>URL Endpoint API</strong></td>
+                            <td><code>https://api.tokoanda.com/v1/print/jobs</code></td>
+                            <td>Alamat endpoint server Anda yang menyediakan data antrean cetak (wajib mendukung protokol <code>https://</code> atau <code>http://</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>API Key / Secret Token</strong></td>
+                            <td><code>jtm_sec_99a8b7c6d5e4...</code></td>
+                            <td>Kunci rahasia untuk autentikasi server. Disimpan dengan enkripsi hardware <strong>AES-256 GCM</strong> di Android Keystore demi mencegah kebocoran data.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Auto-Print Antrean API</strong></td>
+                            <td><code>Switch (Aktif / Non-Aktif)</code></td>
+                            <td>Jika diaktifkan, aplikasi akan langsung mencetak dokumen yang baru masuk tanpa membutuhkan konfirmasi klik dari kasir.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tes Koneksi API</strong></td>
+                            <td><code>Tombol Klik</code></td>
+                            <td>Melakukan *ping* HTTP GET ke endpoint untuk memvalidasi status respons server (HTTP 200 OK) dan mengecek kesiapan autentikasi token.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 3. Panduan Teknis Developer -->
+        <div class="section-card">
+            <h2>3. Panduan Teknis untuk Developer &amp; Server Backend</h2>
+            <p>Aplikasi PrinterJTM akan melakukan request HTTP ke endpoint Anda dengan header standar industri berikut:</p>
+
+            <h3>HTTP Headers yang Dikirimkan</h3>
+            <pre><code>GET /v1/print/jobs HTTP/1.1
+Host: api.tokoanda.com
+Authorization: Bearer &lt;API_KEY_ANDA&gt;
+Accept: application/json
+User-Agent: PrinterJTM-Android-Client/2.5</code></pre>
+
+            <h3>Struktur Response JSON Standar</h3>
+            <p>Server Anda harus mengembalikan response JSON dengan kode status <code>200 OK</code> dengan struktur sebagai berikut:</p>
+            <pre><code>{
+  "status": "success",
+  "has_pending_job": true,
+  "job": {
+    "job_id": "JOB-20261015-001",
+    "print_type": "pos_receipt",
+    "paper_width_mm": 58,
+    "auto_cut": true,
+    "data": { ... }
+  }
+}</code></pre>
+
+            <h3>Status Callback (Opsional)</h3>
+            <p>Setelah pencetakan selesai, aplikasi dapat mengirimkan konfirmasi kembali ke endpoint webhook server Anda:</p>
+            <pre><code><span class="method-badge method-post">POST</span> /v1/print/jobs/JOB-20261015-001/status
+Content-Type: application/json
+
+{
+  "job_id": "JOB-20261015-001",
+  "status": "PRINTED_SUCCESS",
+  "printed_at": "2026-10-15T10:45:00Z",
+  "printer_type": "WIFI",
+  "printer_address": "192.168.1.200:9100"
+}</code></pre>
+        </div>
+
+        <!-- 4. Contoh Format JSON -->
+        <div class="section-card">
+            <h2>4. Contoh Format JSON Implementasi</h2>
+
+            <h3>A. Format JSON Struk Kasir (POS Receipt)</h3>
+            <pre><code>{
+  "job_id": "POS-889102",
+  "print_type": "pos_receipt",
+  "paper_width_mm": 58,
+  "auto_cut": true,
+  "store": {
+    "name": "TOKO BERKAH JAYA",
+    "address": "Jl. Merdeka No. 45, Jakarta",
+    "phone": "0812-3456-7890",
+    "footer_note": "Terima kasih atas kunjungan Anda!"
+  },
+  "transaction": {
+    "invoice_no": "INV/2026/10/0042",
+    "cashier": "Budi Santoso",
+    "date": "15/10/2026 14:30",
+    "items": [
+      {
+        "name": "Kertas Thermal 58mm",
+        "qty": 2,
+        "price": 15000,
+        "subtotal": 30000
+      },
+      {
+        "name": "Tinta Stempel Otomatis",
+        "qty": 1,
+        "price": 25000,
+        "subtotal": 25000
+      }
+    ],
+    "subtotal": 55000,
+    "discount": 5000,
+    "tax": 0,
+    "total": 50000,
+    "payment_method": "QRIS",
+    "payment_status": "LUNAS"
+  }
+}</code></pre>
+
+            <h3>B. Format JSON Label Resi Marketplace / Ekspedisi</h3>
+            <pre><code>{
+  "job_id": "RESI-JTM-7712",
+  "print_type": "shipping_label",
+  "paper_width_mm": 80,
+  "auto_cut": true,
+  "shipping": {
+    "courier": "J&T EXPRESS",
+    "service": "EZ (Reguler)",
+    "tracking_number": "JT98231029102",
+    "barcode_text": "JT98231029102",
+    "cod_amount": 0,
+    "weight_kg": 0.65,
+    "goods_description": "2x Kaos Polos Katun Combed Hitam L",
+    "sender": {
+      "name": "Fashion Grosir ID",
+      "phone": "081399887766",
+      "city": "Kota Bandung"
+    },
+    "recipient": {
+      "name": "David Prasetyo",
+      "phone": "085211223344",
+      "address": "Jl. Gatot Subroto No. 12, Kel. Petisah Tengah, Medan",
+      "city": "Kota Medan",
+      "postal_code": "20112"
+    },
+    "notes": "Barang mudah rusak. Mohon jangan ditindih."
+  }
+}</code></pre>
+
+            <h3>C. Format Raw ESC/POS Text (Custom Free Text)</h3>
+            <pre><code>{
+  "job_id": "RAW-009",
+  "print_type": "raw_text",
+  "paper_width_mm": 58,
+  "auto_cut": true,
+  "content": "================================\n   ANTREAN PELAYANAN BANK JTM   \n================================\nNOMOR ANTREAN: A-042\nLAYANAN      : CUSTOMER SERVICE\nWAKTU        : 15/10/2026 09:15\n================================\nSilakan menunggu panggilan Anda.\n"
+}</code></pre>
+        </div>
+
+        <!-- 5. Contoh Kode Backend -->
+        <div class="section-card">
+            <h2>5. Contoh Implementasi Endpoint Backend (Node.js &amp; PHP)</h2>
+
+            <h3>Node.js / Express Example:</h3>
+            <pre><code>// server.js
+const express = require('express');
+const app = express();
+app.use(express.json());
+
+const API_KEY = "jtm_sec_secret_key_anda";
+
+// Middleware verifikasi Bearer Token
+function authMiddleware(req, res, next) {
+    const auth = req.headers['authorization'];
+    if (!auth || auth !== `Bearer ${API_KEY}`) {
+        return res.status(401).json({ error: "Unauthorized access" });
+    }
+    next();
+}
+
+// Endpoint antrean cetak yang diakses PrinterJTM
+app.get('/v1/print/jobs', authMiddleware, (req, res) => {
+    // Ambil order pertama dari database antrean
+    const pendingJob = getNextPendingPrintJob();
+    if (!pendingJob) {
+        return res.json({ status: "success", has_pending_job: false });
+    }
+    res.json({
+        status: "success",
+        has_pending_job: true,
+        job: pendingJob
+    });
+});
+
+app.listen(3000, () => console.log('Print server running on port 3000'));</code></pre>
+
+            <h3>PHP / Laravel Example:</h3>
+            <pre><code>&lt;?php
+// routes/api.php
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/v1/print/jobs', function (Request $request) {
+    $token = $request-&gt;bearerToken();
+    if ($token !== config('services.printerjtm.key')) {
+        return response()-&gt;json(['error' =&gt; 'Unauthorized'], 401);
+    }
+
+    $job = PrintQueue::where('status', 'PENDING')-&gt;first();
+    if (!$job) {
+        return response()-&gt;json(['status' =&gt; 'success', 'has_pending_job' =&gt; false]);
+    }
+
+    return response()-&gt;json([
+        'status' =&gt; 'success',
+        'has_pending_job' =&gt; true,
+        'job' =&gt; $job-&gt;payload
+    ]);
+});
+</code></pre>
+        </div>
+
+        <!-- 6. Troubleshooting -->
+        <div class="section-card">
+            <h2>6. Pemecahan Masalah (Troubleshooting)</h2>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Gejala / Kode</th>
+                            <th>Kemungkinan Penyebab</th>
+                            <th>Solusi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>HTTP 401 Unauthorized</code></td>
+                            <td>API Key pada pengaturan PrinterJTM tidak cocok dengan yang diharapkan server.</td>
+                            <td>Periksa kembali teks token di menu pengaturan. Pastikan tidak ada spasi tersembunyi di awal atau akhir.</td>
+                        </tr>
+                        <tr>
+                            <td><code>HTTP 404 Not Found</code></td>
+                            <td>URL endpoint API salah atau path routing belum didaftarkan di server.</td>
+                            <td>Uji URL endpoint menggunakan aplikasi Postman atau browser untuk memastikan path sudah benar.</td>
+                        </tr>
+                        <tr>
+                            <td><code>Koneksi Timeout / EHOSTUNREACH</code></td>
+                            <td>Tablet Android dan Server berada pada jaringan berbeda atau firewall memblokir port.</td>
+                            <td>Pastikan tablet terhubung ke Wi-Fi yang sama (jika server lokal) atau gunakan domain publik dengan HTTPS aktif.</td>
+                        </tr>
+                        <tr>
+                            <td><code>Teks Cetak Terpotong</code></td>
+                            <td>Pengaturan lebar kertas di PrinterJTM (58mm) tidak sesuai dengan fisik printer (80mm) atau sebaliknya.</td>
+                            <td>Sesuaikan pilihan ukuran kertas di menu Pengaturan Printer (58mm, 80mm, atau 100mm).</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            Dokumentasi Resmi PrinterJTM &bull; Versi 2.5 &bull; Tim Pengembang PT JTM Digital Solusi
+        </div>
+    </div>
+</body>
+</html>

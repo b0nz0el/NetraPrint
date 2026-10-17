@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical">
+
+    <!-- AppBar & Toolbar Modern M3 -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutQr"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarQr"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#004D40"
+            app:navigationIcon="@drawable/ic_arrow_back_m3"
+            app:navigationIconTint="#FFFFFF"
+            app:title="@string/studio_qr_code"
+            app:titleTextColor="#FFFFFF" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="720dp">
+
+                <!-- 1. Kartu Pratinjau QR (Preview Showcase Card) -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#E0E0E0"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_horizontal"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="14dp"
+                            android:letterSpacing="0.08"
+                            android:text="@string/pratinjau_qr_code"
+                            android:textColor="#004D40"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textStyle="bold" />
+
+                        <!-- Bingkai Dalam Berlatar #F8FAF9 -->
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_qr_preview_frame"
+                            android:gravity="center"
+                            android:padding="16dp">
+
+                            <ImageView
+                                android:id="@+id/ivQrPreview"
+                                android:layout_width="220dp"
+                                android:layout_height="220dp"
+                                android:contentDescription="@string/pratinjau_qr_code_2"
+                                android:scaleType="fitCenter" />
+                        </LinearLayout>
+
+                        <!-- Badge Status Kapsul Hijau Lembut -->
+                        <TextView
+                            android:id="@+id/tvQrHint"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="14dp"
+                            android:background="@drawable/bg_pill_hint"
+                            android:gravity="center"
+                            android:paddingHorizontal="16dp"
+                            android:paddingVertical="8dp"
+                            android:text="@string/ketik_konten_di_bawah_untuk_memperbarui_qr_code"
+                            android:textColor="#004D40"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
+                            android:textStyle="bold" />
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- 2. Kartu Input & Kontrol Cetak -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#E0E0E0"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.08"
+                            android:text="@string/konten_pengaturan_teks"
+                            android:textColor="#004D40"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textStyle="bold" />
+
+                        <!-- Input dengan OutlinedBox 14dp & clear_text -->
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            app:boxCornerRadiusBottomEnd="14dp"
+                            app:boxCornerRadiusBottomStart="14dp"
+                            app:boxCornerRadiusTopEnd="14dp"
+                            app:boxCornerRadiusTopStart="14dp"
+                            app:boxStrokeColor="#004D40"
+                            app:endIconMode="clear_text"
+                            app:hintTextColor="#004D40">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etQrContent"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="top|start"
+                                android:hint="@string/teks_url_nomor_resi_atau_kode_promo"
+                                android:minLines="2"
+                                android:textColor="#212121"
+                                android:textSize="14sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <!-- Tombol Buat / Perbarui QR Code -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btnGenerateQr"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="12dp"
+                            android:letterSpacing="0.01"
+                            android:text="@string/perbarui_qr_code"
+                            android:textAllCaps="false"
+                            android:textColor="#004D40"
+                            android:textStyle="bold"
+                            app:cornerRadius="12dp"
+                            app:strokeColor="#004D40" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="16dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- Baris Tombol Aksi Utama -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnSaveQr"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="6dp"
+                                android:layout_weight="1"
+                                android:letterSpacing="0.01"
+                                android:text="@string/simpan_galeri"
+                                android:textAllCaps="false"
+                                android:textColor="#004D40"
+                                android:textStyle="bold"
+                                app:cornerRadius="12dp"
+                                app:strokeColor="#004D40" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnPrintQr"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="6dp"
+                                android:layout_weight="1"
+                                android:backgroundTint="#004D40"
+                                android:letterSpacing="0.01"
+                                android:text="@string/cetak_qr_code"
+                                android:textAllCaps="false"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                app:cornerRadius="12dp" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_nav_header_gradient"
+    android:gravity="bottom"
+    android:minHeight="190dp"
+    android:orientation="vertical"
+    android:padding="20dp"
+    android:theme="@style/ThemeOverlay.AppCompat.Dark">
+
+    <!-- Container Logo & Versi Badge -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="14dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- Logo Asli Aplikasi (Tanpa Tint!) -->
+        <ImageView
+            android:id="@+id/ivNavHeaderLogo"
+            android:layout_width="68dp"
+            android:layout_height="68dp"
+            android:contentDescription="@string/logo_printerjtm"
+            android:scaleType="fitCenter"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="1" />
+
+        <!-- Badge Versi Modern -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_badge_version"
+            android:letterSpacing="0.04"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:text="@string/v1_1_7_pro"
+            android:textColor="#FFFFFF"
+            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <!-- Judul & Subjudul -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="#FFFFFF"
+        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:letterSpacing="0.02"
+        android:text="@string/enterprise_thermal_suite_lisensi_pro_aktif"
+        android:textColor="#B2DFDB"
+        android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+
+</LinearLayout>

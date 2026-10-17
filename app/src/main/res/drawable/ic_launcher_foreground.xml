@@ -1,0 +1,74 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Paper Receipt feeding out of printer (Top) -->
+    <!-- Receipt Paper Background -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M37,24 L71,24 A2,2 0,0,1 73,26 L73,50 L35,50 L35,26 A2,2 0,0,1 37,24 Z" />
+
+    <!-- Receipt Header Line -->
+    <path
+        android:fillColor="#004D40"
+        android:pathData="M43,30 L65,30 A1.5,1.5 0,0,1 66.5,31.5 A1.5,1.5 0,0,1 65,33 L43,33 A1.5,1.5 0,0,1 41.5,31.5 A1.5,1.5 0,0,1 43,30 Z" />
+
+    <!-- Receipt Text Lines -->
+    <path
+        android:fillColor="#80CBC4"
+        android:pathData="M41,36 L67,36 A1,1 0,0,1 68,37 A1,1 0,0,1 67,38 L41,38 A1,1 0,0,1 40,37 A1,1 0,0,1 41,36 Z" />
+
+    <path
+        android:fillColor="#80CBC4"
+        android:pathData="M41,41 L61,41 A1,1 0,0,1 62,42 A1,1 0,0,1 61,43 L41,43 A1,1 0,0,1 40,42 A1,1 0,0,1 41,41 Z" />
+
+    <!-- Barcode lines on receipt -->
+    <path
+        android:fillColor="#004D40"
+        android:pathData="M42,45h2v3h-2z M45,45h1v3h-1z M47,45h3v3h-3z M51,45h1v3h-1z M53,45h2v3h-2z M56,45h1v3h-1z M58,45h3v3h-3z M62,45h2v3h-2z M65,45h1v3h-1z" />
+
+    <!-- Printer Shadow / Base Trim -->
+    <path
+        android:fillColor="#00251A"
+        android:pathData="M29,78 L79,78 A5,5 0,0,1 84,83 L84,85 A2,2 0,0,1 82,87 L26,87 A2,2 0,0,1 24,85 L24,83 A5,5 0,0,1 29,78 Z" />
+
+    <!-- Main Thermal Printer Body (Crisp White with subtle depth) -->
+    <path
+        android:fillColor="#F5F5F5"
+        android:pathData="M31,48 L77,48 A6,6 0,0,1 83,54 L83,78 A3,3 0,0,1 80,81 L28,81 A3,3 0,0,1 25,78 L25,54 A6,6 0,0,1 31,48 Z" />
+
+    <!-- Printer Paper Exit Slot -->
+    <path
+        android:fillColor="#263238"
+        android:pathData="M33,48 L75,48 A2,2 0,0,1 77,50 L77,52 A1,1 0,0,1 76,53 L32,53 A1,1 0,0,1 31,52 L31,50 A2,2 0,0,1 33,48 Z" />
+
+    <!-- Power / Status LED (Teal Glow) -->
+    <path
+        android:fillColor="#00BFA5"
+        android:pathData="M34,65 A3,3 0,1,1 34,71 A3,3 0,1,1 34,65 Z" />
+
+    <!-- Paper Feed Button (Round) -->
+    <path
+        android:fillColor="#CFD8DC"
+        android:pathData="M74,65 A3,3 0,1,1 74,71 A3,3 0,1,1 74,65 Z" />
+
+    <!-- Center Brand Badge: PRINTER JTM -->
+    <!-- JTM Letters in Dark Green on Printer Front -->
+    <!-- J -->
+    <path
+        android:fillColor="#004D40"
+        android:pathData="M45,62 L45,68 A2.5,2.5 0,0,1 42.5,70.5 A2.5,2.5 0,0,1 40,68 L41.5,68 A1,1 0,0,0 42.5,69.2 A1,1 0,0,0 43.5,68 L43.5,62 Z" />
+
+    <!-- T -->
+    <path
+        android:fillColor="#004D40"
+        android:pathData="M48,62 L57,62 L57,63.5 L53.5,63.5 L53.5,71 L51.5,71 L51.5,63.5 L48,63.5 Z" />
+
+    <!-- M -->
+    <path
+        android:fillColor="#004D40"
+        android:pathData="M59,62 L61,62 L62.5,67 L64,62 L66,62 L66,71 L64.5,71 L64.5,64.5 L63.2,68.5 L61.8,68.5 L60.5,64.5 L60.5,71 L59,71 Z" />
+
+</vector>

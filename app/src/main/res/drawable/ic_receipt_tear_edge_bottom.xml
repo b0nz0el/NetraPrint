@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="360dp"
+    android:height="8dp"
+    android:viewportWidth="360"
+    android:viewportHeight="8">
+    <!-- Bottom serrated paper roll tear-off teeth -->
+    <path
+        android:fillColor="#E2E8E4"
+        android:pathData="M0,8 L10,2 L20,8 L30,2 L40,8 L50,2 L60,8 L70,2 L80,8 L90,2 L100,8 L110,2 L120,8 L130,2 L140,8 L150,2 L160,8 L170,2 L180,8 L190,2 L200,8 L210,2 L220,8 L230,2 L240,8 L250,2 L260,8 L270,2 L280,8 L290,2 L300,8 L310,2 L320,8 L330,2 L340,8 L350,2 L360,8 L360,0 L0,0 Z" />
+</vector>

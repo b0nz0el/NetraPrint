@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet_surface"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingStart="24dp"
+    android:paddingTop="12dp"
+    android:paddingEnd="24dp"
+    android:paddingBottom="28dp">
+
+    <!-- Material 3 Drag Handle -->
+    <View
+        android:id="@+id/dragHandle"
+        android:layout_width="32dp"
+        android:layout_height="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_action_chip"
+        android:backgroundTint="#CAC4D0" />
+
+    <!-- Lottie Animation View without colored circle background -->
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottieAnimationView"
+        android:layout_width="112dp"
+        android:layout_height="112dp"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true" />
+
+    <!-- Title: Headline Small Material 3 -->
+    <TextView
+        android:id="@+id/tvStatusTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:gravity="center"
+        android:text="@string/memproses_dokumen"
+        android:textColor="#191C1B"
+        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+        android:fontFamily="sans-serif-medium" />
+
+    <!-- Message: Body Medium Material 3 -->
+    <TextView
+        android:id="@+id/tvStatusMessage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:lineSpacingExtra="3dp"
+        android:text="@string/sedang_menyiapkan_halaman_cetak"
+        android:textColor="#49454F"
+        android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+
+    <!-- Progress Indicator -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressIndicator"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:indeterminate="true"
+        android:visibility="gone"
+        app:indicatorColor="#004D40"
+        app:trackColor="#E0F2F1"
+        app:trackCornerRadius="4dp"
+        app:trackThickness="6dp" />
+
+    <!-- Primary Action Button: Widget.Material3.Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStatusAction"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="#004D40"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/mengerti"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:visibility="gone"
+        app:cornerRadius="16dp"
+        app:elevation="2dp" />
+
+    <!-- Secondary Action Button: Widget.Material3.Button.TextButton -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnStatusSecondary"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="@string/tutup"
+        android:textColor="#004D40"
+        android:textSize="14sp"
+        android:visibility="gone"
+        app:cornerRadius="16dp" />
+
+</LinearLayout>

@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- Crossed Wrench and Screwdriver for Setting matching benchmark -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M21.71,19.29l-3.41,-3.41c0.91,-1.56 0.81,-3.57 -0.42,-4.8 -1.49,-1.49 -3.81,-1.67 -5.49,-0.57l2.84,2.84 -1.41,1.41 -2.84,-2.84c-1.1,1.68 -0.92,4 0.57,5.49 1.23,1.23 3.24,1.33 4.8,0.42l3.41,3.41c0.39,0.39 1.02,0.39 1.41,0l0.54,-0.54c0.39,-0.39 0.39,-1.02 0,-1.41z M14.37,7.29c-0.39,-0.39 -1.02,-0.39 -1.41,0L2.29,17.96c-0.39,0.39 -0.39,1.02 0,1.41l0.34,0.34c0.39,0.39 1.02,0.39 1.41,0l10.67,-10.67c0.39,-0.39 0.39,-1.02 0,-1.41l-0.34,-0.34z M17.66,3.34c-0.39,-0.39 -1.02,-0.39 -1.41,0l-1.83,1.83 2.83,2.83 1.83,-1.83c0.39,-0.39 0.39,-1.02 0,-1.41l-1.42,-1.42z"/>
+</vector>

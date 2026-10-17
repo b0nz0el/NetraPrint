@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical">
+
+    <!-- AppBar & Toolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutWeb"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#004D40">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarWeb"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_arrow_back_m3"
+            app:navigationIconTint="#FFFFFF"
+            app:title="@string/cetak_halaman_web"
+            app:titleTextColor="#FFFFFF">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnPrintWebContent"
+                style="@style/Widget.MaterialComponents.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="8dp"
+                android:text="@string/cetak_web"
+                android:textColor="#80CBC4"
+                android:textStyle="bold" />
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Address Bar and Navigation Controls -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#FFFFFF"
+        android:elevation="2dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="8dp"
+        android:paddingVertical="6dp">
+
+        <ImageButton
+            android:id="@+id/btnWebBack"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_media_previous"
+            app:tint="#37474F" 
+            android:contentDescription="@string/kembali"/>
+
+        <ImageButton
+            android:id="@+id/btnWebForward"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_media_next"
+            app:tint="#37474F" 
+            android:contentDescription="@string/maju"/>
+
+        <ImageButton
+            android:id="@+id/btnWebRefresh"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:padding="6dp"
+            android:scaleType="fitCenter"
+            android:src="@android:drawable/ic_popup_sync"
+            app:tint="#37474F" 
+            android:contentDescription="@string/muat_ulang"/>
+
+        <!-- URL Input -->
+        <EditText
+            android:id="@+id/etWebUrl"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginHorizontal="6dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_url_input"
+            android:hint="@string/masukkan_url_misal_google_com"
+            android:imeOptions="actionGo"
+            android:inputType="textUri"
+            android:paddingHorizontal="10dp"
+            android:textColor="#000000"
+            android:textColorHint="#90A4AE"
+            android:textSize="13sp" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnWebGo"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:backgroundTint="#004D40"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
+            android:minWidth="50dp"
+            android:paddingHorizontal="12dp"
+            android:text="@string/buka"
+            android:textColor="#FFFFFF"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <!-- Modern Material 3 Loading Progress Indicator -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/webProgressBar"
+        android:layout_width="match_parent"
+        android:layout_height="4dp"
+        android:max="100"
+        android:visibility="gone"
+        app:indicatorColor="#00BFA5"
+        app:trackColor="#E0F2F1"
+        app:trackCornerRadius="2dp" />
+
+    <!-- Modern WebView Container -->
+    <WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+</LinearLayout>

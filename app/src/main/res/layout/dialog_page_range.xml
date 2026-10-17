@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="#FFFFFF">
+
+    <TextView
+        android:id="@+id/tvDialogTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/pilih_halaman_cetak"
+        android:textColor="#004D40"
+        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tvTotalPagesSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="16dp"
+        android:text="@string/total_dokumen_10_halaman"
+        android:textColor="#546E7A"
+        android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+
+    <RadioGroup
+        android:id="@+id/rgPageSelection"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp">
+
+        <RadioButton
+            android:id="@+id/rbAllPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:paddingVertical="8dp"
+            android:text="@string/semua_halaman"
+            android:textColor="#263238"
+            android:textSize="15sp" />
+
+        <RadioButton
+            android:id="@+id/rbOddPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:text="@string/halaman_ganjil_saja_1_3_5"
+            android:textColor="#263238"
+            android:textSize="15sp" />
+
+        <RadioButton
+            android:id="@+id/rbEvenPages"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:text="@string/halaman_genap_saja_2_4_6"
+            android:textColor="#263238"
+            android:textSize="15sp" />
+
+        <RadioButton
+            android:id="@+id/rbCustomRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingVertical="8dp"
+            android:text="@string/halaman_tertentu_rentang_kustom"
+            android:textColor="#263238"
+            android:textSize="15sp" />
+    </RadioGroup>
+
+    <!-- Custom Range Input Layout -->
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/layoutCustomRange"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="6dp"
+        android:hint="@string/rentang_halaman_contoh_1_5_8_10_12"
+        android:textColorHint="#607D8B"
+        android:visibility="gone"
+        app:boxStrokeColor="#004D40"
+        app:hintTextColor="#004D40">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etCustomRange"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="text"
+            android:textColor="#000000"
+            android:textSize="14sp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <!-- Inline Error Message -->
+    <TextView
+        android:id="@+id/tvRangeError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textColor="#D32F2F"
+        android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
+        android:visibility="gone" />
+
+    <!-- Buttons -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCancelPageRange"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:text="@string/batal"
+            android:textColor="#546E7A" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnPrintSelectedPages"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#004D40"
+            android:text="@string/lanjutkan_cetak"
+            android:textColor="#FFFFFF" />
+    </LinearLayout>
+
+</LinearLayout>

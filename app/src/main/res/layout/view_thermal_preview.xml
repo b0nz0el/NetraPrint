@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardThermalPreview"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeColor="#DCE3E0"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <!-- Header: Title and Settings Chips -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:src="@drawable/ic_print"
+                app:tint="#004D40" 
+                android:importantForAccessibility="no"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/pratinjau_roll_wysiwyg"
+                android:textColor="#004D40"
+                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+
+            <!-- Paper Width Chip -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPaperWidth"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/txt_58mm_32_cpl"
+                android:textColor="#004D40"
+                android:textSize="11sp"
+                app:chipBackgroundColor="#E8F5E9"
+                app:chipCornerRadius="10dp"
+                app:chipStrokeColor="#A5D6A7"
+                app:chipStrokeWidth="1dp" />
+
+            <!-- Dithering Mode Chip -->
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDitherMode"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/floyd_steinberg"
+                android:textColor="#004D40"
+                android:textSize="11sp"
+                app:chipBackgroundColor="#E0F2F1"
+                app:chipCornerRadius="10dp"
+                app:chipStrokeColor="#80CBC4"
+                app:chipStrokeWidth="1dp" />
+
+        </LinearLayout>
+
+        <!-- Thermal Paper Roll Representation -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:background="#EFF3F1"
+            android:padding="6dp">
+
+            <LinearLayout
+                android:id="@+id/thermalPaperRollContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_receipt_paper"
+                android:elevation="2dp"
+                android:orientation="vertical">
+
+                <!-- Top Serrated Tear Edge -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_receipt_tear_edge" 
+                    android:importantForAccessibility="no"/>
+
+                <!-- Paper Body: Text & Graphic Content -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="8dp">
+
+                    <!-- Monochrome Graphic / Dithered Image Preview -->
+                    <ImageView
+                        android:id="@+id/ivThermalPreviewImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:scaleType="fitCenter"
+                        android:visibility="gone"
+                        tools:src="@tools/sample/avatars"
+                        tools:visibility="visible" 
+                        android:contentDescription="@string/pratinjau_cetak_thermal"/>
+
+                    <!-- Monospace Formatted Thermal Receipt Text -->
+                    <TextView
+                        android:id="@+id/tvThermalPreviewText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="monospace"
+                        android:letterSpacing="0.02"
+                        android:lineSpacingExtra="1.5dp"
+                        android:maxLines="7"
+                        android:ellipsize="end"
+                        android:text="@string/resi_pengiriman_paket_kurir_j_t_express_no_resi_jnt8829103847_penerima_budi_santoso_alamat_jl_sudirman_no_45_jakarta_selatan_terima_kasih_atas_pesanan_anda"
+                        android:textColor="#1A1C1B"
+                        android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall" />
+
+                </LinearLayout>
+
+                <!-- Bottom Serrated Tear Edge -->
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_receipt_tear_edge_bottom" 
+                    android:importantForAccessibility="no"/>
+
+            </LinearLayout>
+
+        </FrameLayout>
+
+        <!-- Footer Caption & Status -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvThermalPreviewInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="sans-serif"
+                android:text="@string/pratinjau_fisik_nyata_384_dots_203_dpi"
+                android:textColor="#6F7976"
+                android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall" />
+
+            <TextView
+                android:id="@+id/tvThermalPreviewZoomHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-medium"
+                android:text="@string/monokrom_1_bit_esc_pos"
+                android:textColor="#004D40"
+                android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

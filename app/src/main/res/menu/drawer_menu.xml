@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Group 1: Address, Free Text, Web Page -->
+    <group
+        android:id="@+id/group_basic"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_address"
+            android:icon="@drawable/ic_nav_address"
+            android:title="@string/alamat" />
+        <item
+            android:id="@+id/nav_free_text"
+            android:icon="@drawable/ic_nav_free_text"
+            android:title="@string/teks_bebas" />
+        <item
+            android:id="@+id/nav_web_page"
+            android:icon="@drawable/ic_nav_web"
+            android:title="@string/halaman_web" />
+    </group>
+
+    <!-- Group 2: Document & Media Files -->
+    <group
+        android:id="@+id/group_files"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_pdf_file"
+            android:icon="@drawable/ic_nav_pdf"
+            android:title="@string/berkas_pdf" />
+        <item
+            android:id="@+id/nav_image_file"
+            android:icon="@drawable/ic_nav_image"
+            android:title="@string/berkas_gambar" />
+        <item
+            android:id="@+id/nav_word_file"
+            android:icon="@drawable/ic_nav_word"
+            android:title="@string/berkas_word" />
+    </group>
+
+    <!-- Group 3: Barcodes & Labels -->
+    <group
+        android:id="@+id/group_barcode_labels"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_qr_code"
+            android:icon="@drawable/ic_nav_qrcode"
+            android:title="@string/kode_qr" />
+        <item
+            android:id="@+id/nav_label"
+            android:icon="@drawable/ic_nav_label"
+            android:title="@string/label" />
+    </group>
+
+    <!-- Group 4: Settings & Utilities -->
+    <group
+        android:id="@+id/group_settings"
+        android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_setting"
+            android:icon="@drawable/ic_nav_setting"
+            android:title="@string/pengaturan" />
+        <item
+            android:id="@+id/nav_subscription"
+            android:icon="@drawable/ic_nav_subscription"
+            android:title="@string/langganan" />
+        <item
+            android:id="@+id/nav_rating"
+            android:icon="@drawable/ic_nav_rating"
+            android:title="@string/penilaian_ulasan" />
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/ic_nav_contact_us"
+            android:title="@string/hubungi_kami" />
+        <item
+            android:id="@+id/nav_exit"
+            android:icon="@drawable/ic_nav_exit"
+            android:title="@string/keluar" />
+    </group>
+</menu>

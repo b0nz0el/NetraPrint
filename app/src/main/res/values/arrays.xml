@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="font_options">
+        <item>Default (Standar Sistem)</item>
+        <item>Roboto Modern (Clean Sans-Serif)</item>
+        <item>Inter UI (High Legibility)</item>
+        <item>Monospace Receipt (Thermal Courier)</item>
+        <item>Oswald Bold (Condensed Header)</item>
+        <item>Classic Serif (Formal)</item>
+        <item>Casual Minimalist (Rounded)</item>
+        <item>Condensed Logistics (Font B Thermal)</item>
+    </string-array>
+
+    <string-array name="courier_options">
+        <!-- 1. Prioritas Utama / Populer Marketplace -->
+        <item>Shopee Xpress (SPX)</item>
+        <item>SPX Standard</item>
+        <item>SPX Sameday</item>
+        <item>SPX Instant</item>
+        <item>SPX Hemat</item>
+        <item>J&amp;T Express</item>
+        <item>J&amp;T Cargo</item>
+        <item>JNE Reguler</item>
+        <item>JNE YES</item>
+        <item>JNE OKE</item>
+        <item>JNE Trucking (JTR)</item>
+        <item>SiCepat Reguler</item>
+        <item>SiCepat BEST</item>
+        <item>SiCepat GOKIL (Cargo)</item>
+        <item>SiCepat Halu</item>
+
+        <!-- 2. Ekspedisi Lainnya Terurut A - Z -->
+        <item>21 Express</item>
+        <item>Anteraja Cargo</item>
+        <item>Anteraja Next Day</item>
+        <item>Anteraja Reguler</item>
+        <item>Dakota Cargo</item>
+        <item>Deliveree</item>
+        <item>First Logistics</item>
+        <item>GoSend (Instant)</item>
+        <item>GoSend (Sameday)</item>
+        <item>GrabExpress (Instant)</item>
+        <item>GrabExpress (Sameday)</item>
+        <item>ID Express</item>
+        <item>Indah Logistik Cargo</item>
+        <item>Lalamove</item>
+        <item>Lion Parcel (BIGPACK Cargo)</item>
+        <item>Lion Parcel (JAGOPACK)</item>
+        <item>Lion Parcel (ONEPACK)</item>
+        <item>Lion Parcel (REGPACK)</item>
+        <item>NCS Express</item>
+        <item>Ninja Xpress</item>
+        <item>Paxel (Same Day)</item>
+        <item>Pos Indonesia (Kilat Khusus)</item>
+        <item>Pos Nextday</item>
+        <item>Royal Express (REX)</item>
+        <item>RPX Logistics</item>
+        <item>SAP Express</item>
+        <item>Sentral Cargo</item>
+        <item>Star Cargo</item>
+        <item>TIKI ONS</item>
+        <item>TIKI Reguler</item>
+        <item>Wahana Express</item>
+    </string-array>
+</resources>

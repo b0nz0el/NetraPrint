@@ -1,0 +1,10 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp"
+    android:height="24dp"
+    android:viewportWidth="24"
+    android:viewportHeight="24">
+    <!-- QR Code pattern matching benchmark -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M3,11h8V3H3v8zm2,-6h4v4H5V5zM3,21h8v-8H3v8zm2,-6h4v4H5v-4zM13,3v8h8V3h-8zm6,6h-4V5h4v4zM18,13h3v2h-3v-2zm-5,0h3v3h-3v-3zm2,5h3v3h-3v-3zm3,-2h3v5h-3v-5zm-5,2h2v3h-2v-3z"/>
+</vector>

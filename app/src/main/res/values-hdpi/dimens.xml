@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Density adjustments for hdpi (compact 5-inch phones) -->
+    <dimen name="screen_padding">12dp</dimen>
+    <dimen name="screen_padding_horizontal">12dp</dimen>
+    <dimen name="screen_padding_top">10dp</dimen>
+    <dimen name="text_input_padding">10dp</dimen>
+    <dimen name="icon_action_size">24dp</dimen>
+    <dimen name="icon_action_btn_size">32dp</dimen>
+    <dimen name="card_corner_radius">14dp</dimen>
+    <dimen name="card_margin_bottom">10dp</dimen>
+    <dimen name="logo_card_height">120dp</dimen>
+    <dimen name="logo_icon_size">48dp</dimen>
+    <dimen name="bottom_nav_height">58dp</dimen>
+    <dimen name="fab_custom_size">54dp</dimen>
+    <dimen name="fab_icon_size">26dp</dimen>
+</resources>

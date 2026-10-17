@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet_surface"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Handle -->
+    <View
+        android:layout_width="36dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="#BFC9C5" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/pilih_printer_bluetooth"
+        android:textColor="#004D40"
+        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="@string/pilih_printer_thermal_yang_sudah_dipasangkan_paired"
+        android:textColor="#6F7976"
+        android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPrinters"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:maxHeight="320dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnCancelPrinterPicker"
+        style="@style/Widget.Material3.Button.TonalButton"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:text="@string/batal"
+        android:textColor="#004D40"
+        app:cornerRadius="12dp" />
+
+</LinearLayout>

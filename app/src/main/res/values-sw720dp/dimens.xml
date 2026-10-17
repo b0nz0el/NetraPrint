@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Screen & Content Padding -->
+    <dimen name="screen_padding">48dp</dimen>
+    <dimen name="screen_padding_horizontal">36dp</dimen>
+    <dimen name="screen_padding_top">24dp</dimen>
+    <dimen name="content_max_width">960dp</dimen>
+
+    <!-- Form Cards & Inputs -->
+    <dimen name="card_corner_radius">22dp</dimen>
+    <dimen name="card_elevation">3dp</dimen>
+    <dimen name="card_margin_bottom">20dp</dimen>
+    <dimen name="card_inner_padding">18dp</dimen>
+    <dimen name="text_input_padding">18dp</dimen>
+    <dimen name="input_corner_radius">18dp</dimen>
+
+    <!-- Action Bar & Chips -->
+    <dimen name="icon_action_size">34dp</dimen>
+    <dimen name="icon_action_btn_size">44dp</dimen>
+    <dimen name="action_chip_padding_h">8dp</dimen>
+    <dimen name="action_chip_padding_v">4dp</dimen>
+    <dimen name="action_chip_margin_top">12dp</dimen>
+
+    <!-- Header Logo Card -->
+    <dimen name="logo_card_height">180dp</dimen>
+    <dimen name="logo_icon_size">80dp</dimen>
+    <dimen name="logo_text_size">14sp</dimen>
+    <dimen name="logo_corner_radius">24dp</dimen>
+
+    <!-- Two-Column Spacing -->
+    <dimen name="column_gap">20dp</dimen>
+    <dimen name="column_gap_half">10dp</dimen>
+
+    <!-- Bottom Navigation & FAB -->
+    <dimen name="bottom_nav_height">78dp</dimen>
+    <dimen name="nav_pill_width">64dp</dimen>
+    <dimen name="nav_pill_height">36dp</dimen>
+    <dimen name="nav_icon_size">28dp</dimen>
+    <dimen name="nav_text_size">13sp</dimen>
+    <dimen name="fab_custom_size">70dp</dimen>
+    <dimen name="fab_icon_size">34dp</dimen>
+    <dimen name="fab_cradle_margin">10dp</dimen>
+</resources>

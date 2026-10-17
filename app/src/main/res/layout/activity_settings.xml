@@ -1,0 +1,1135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F5F5"
+    android:orientation="vertical">
+
+    <!-- Top AppBar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayoutSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:elevation="0dp">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbarSettings"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#004D40"
+            app:navigationIcon="@drawable/ic_arrow_back_m3"
+            app:navigationIconTint="#FFFFFF"
+            app:title="@string/pengaturan"
+            app:titleTextColor="#FFFFFF" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <!-- ConstraintLayout untuk membatasi lebar di tablet agar proporsional di tengah -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="16dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_max="800dp">
+
+                <!-- Card: Konfigurasi Printer -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#E0E0E0"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.08"
+                            android:text="@string/konfigurasi_printer"
+                            android:textColor="#004D40"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textStyle="bold" />
+
+                        <!-- Koneksi Printer -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/tipe_koneksi"
+                            android:textColor="#37474F"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:id="@+id/rgConnectionType"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rbBluetooth"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="@string/bluetooth"
+                                android:textColor="#212121" />
+
+                            <RadioButton
+                                android:id="@+id/rbWifi"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/wi_fi"
+                                android:textColor="#212121" />
+
+                            <RadioButton
+                                android:id="@+id/rbUsb"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/usb"
+                                android:textColor="#212121" />
+                        </RadioGroup>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="12dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- Nama Printer -->
+                        <LinearLayout
+                            android:id="@+id/layoutPrinterSelector"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingVertical="8dp">
+
+                            <ImageView
+                                android:layout_width="36dp"
+                                android:layout_height="36dp"
+                                android:layout_marginEnd="12dp"
+                                android:contentDescription="@string/ikon_printer"
+                                android:src="@drawable/ic_print"
+                                app:tint="#004D40" />
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/pilih_printer_bluetooth"
+                                    android:textColor="#37474F"
+                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:id="@+id/tvPrinterName"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:text="@string/semua_printer_dipilih_saat_cetak"
+                                    android:textColor="#004D40"
+                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                            </LinearLayout>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnChangePrinter"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="44dp"
+                                android:letterSpacing="0.01"
+                                android:text="@string/pilih"
+                                android:textAllCaps="false"
+                                android:textColor="#004D40"
+                                android:textStyle="bold"
+                                app:cornerRadius="12dp"
+                                app:strokeColor="#004D40" />
+                        </LinearLayout>
+
+                        <!-- Wi-Fi Printer Config -->
+                        <LinearLayout
+                            android:id="@+id/layoutWifiConfig"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:paddingVertical="4dp"
+                            android:visibility="gone">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/pengaturan_printer_wi_fi"
+                                android:textColor="#37474F"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
+                                android:textStyle="bold" />
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                app:boxCornerRadiusBottomEnd="12dp"
+                                app:boxCornerRadiusBottomStart="12dp"
+                                app:boxCornerRadiusTopEnd="12dp"
+                                app:boxCornerRadiusTopStart="12dp"
+                                app:boxStrokeColor="#004D40"
+                                app:hintTextColor="#004D40">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etWifiIp"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/alamat_ip_printer_contoh_192_168_1_100"
+                                    android:inputType="textUri"
+                                    android:textColor="#212121"
+                                    android:textSize="14sp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <com.google.android.material.textfield.TextInputLayout
+                                style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="8dp"
+                                app:boxCornerRadiusBottomEnd="12dp"
+                                app:boxCornerRadiusBottomStart="12dp"
+                                app:boxCornerRadiusTopEnd="12dp"
+                                app:boxCornerRadiusTopStart="12dp"
+                                app:boxStrokeColor="#004D40"
+                                app:hintTextColor="#004D40">
+
+                                <com.google.android.material.textfield.TextInputEditText
+                                    android:id="@+id/etWifiPort"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:hint="@string/port_tcp_default_9100"
+                                    android:inputType="number"
+                                    android:text="9100"
+                                    android:textColor="#212121"
+                                    android:textSize="14sp" />
+                            </com.google.android.material.textfield.TextInputLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
+                                android:orientation="horizontal">
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnScanWifiPrinter"
+                                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                    android:layout_width="0dp"
+                                    android:layout_height="48dp"
+                                    android:layout_marginEnd="6dp"
+                                    android:layout_weight="1"
+                                    android:letterSpacing="0.01"
+                                    android:text="@string/cari_ip_otomatis"
+                                    android:textAllCaps="false"
+                                    android:textColor="#004D40"
+                                    android:textStyle="bold"
+                                    app:cornerRadius="12dp"
+                                    app:strokeColor="#004D40" />
+
+                                <com.google.android.material.button.MaterialButton
+                                    android:id="@+id/btnTestPrint"
+                                    android:layout_width="0dp"
+                                    android:layout_height="48dp"
+                                    android:layout_marginStart="6dp"
+                                    android:layout_weight="1"
+                                    android:backgroundTint="#004D40"
+                                    android:letterSpacing="0.01"
+                                    android:text="@string/tes_cetak"
+                                    android:textAllCaps="false"
+                                    android:textColor="#FFFFFF"
+                                    android:textStyle="bold"
+                                    app:cornerRadius="12dp" />
+                            </LinearLayout>
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="12dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- Ukuran Printer -->
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/ukuran_kertas_printer"
+                            android:textColor="#37474F"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                            android:textStyle="bold" />
+
+                        <RadioGroup
+                            android:id="@+id/rgPaperSize"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:orientation="horizontal">
+
+                            <RadioButton
+                                android:id="@+id/rb58mm"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:checked="true"
+                                android:text="@string/txt_58_mm"
+                                android:textColor="#212121" />
+
+                            <RadioButton
+                                android:id="@+id/rb80mm"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/txt_80_mm"
+                                android:textColor="#212121" />
+
+                            <RadioButton
+                                android:id="@+id/rb100mm"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="16dp"
+                                android:text="@string/txt_100_mm"
+                                android:textColor="#212121" />
+                        </RadioGroup>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="12dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- Lebar Cetak -->
+                        <LinearLayout
+                            android:id="@+id/layoutPrintWidth"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:orientation="vertical"
+                            android:paddingVertical="4dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="center_vertical"
+                                android:orientation="horizontal">
+
+                                <TextView
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="@string/lebar_cetak_print_width"
+                                    android:textColor="#37474F"
+                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/ubah_kustom"
+                                    android:textColor="#004D40"
+                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
+                                    android:textStyle="bold" />
+                            </LinearLayout>
+
+                            <TextView
+                                android:id="@+id/tvPrintWidth"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="2dp"
+                                android:text="@string/txt_384_dots_standar_58mm"
+                                android:textColor="#78909C"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Card: Preferensi Cetak -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#E0E0E0"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.08"
+                            android:text="@string/preferensi_cetak"
+                            android:textColor="#004D40"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textStyle="bold" />
+
+                        <!-- Langsung Cetak -->
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchDirectPrint"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:text="@string/langsung_cetak"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            app:thumbTint="#004D40"
+                            app:trackTint="#80CBC4" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cetak_otomatis_menggunakan_printer_terakhir_tanpa_memilih_printer_lagi"
+                            android:textColor="#78909C"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="12dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- Auto Cut -->
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchAutoCut"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:checked="true"
+                            android:text="@string/auto_cut_kertas"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            app:thumbTint="#004D40"
+                            app:trackTint="#80CBC4" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/kirim_perintah_potong_kertas_cut_paper_otomatis_ke_printer"
+                            android:textColor="#78909C"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Card: Integrasi API & Webhook -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#E0E0E0"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.08"
+                            android:text="@string/integrasi_api_webhook"
+                            android:textColor="#004D40"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/mode_integrasi"
+                            android:textColor="#37474F"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
+                            android:textStyle="bold" />
+
+                        <!-- RadioGroup dalam Kotak Pilihan Modern Berlatar #F4F7F6 -->
+                        <RadioGroup
+                            android:id="@+id/rgApiMode"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:background="@drawable/bg_radiogroup_box"
+                            android:orientation="horizontal"
+                            android:padding="8dp">
+
+                            <RadioButton
+                                android:id="@+id/rbApiCustom"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:checked="true"
+                                android:text="@string/rest_api_pos"
+                                android:textColor="#212121"
+                                android:textSize="12sp" />
+
+                            <RadioButton
+                                android:id="@+id/rbApiMarketplace"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/resi_marketplace"
+                                android:textColor="#212121"
+                                android:textSize="12sp" />
+
+                            <RadioButton
+                                android:id="@+id/rbApiWebBridge"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/web_print_bridge"
+                                android:textColor="#212121"
+                                android:textSize="12sp" />
+                        </RadioGroup>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxStrokeColor="#004D40"
+                            app:hintTextColor="#004D40">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etApiEndpoint"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/url_endpoint_api_https"
+                                android:inputType="textUri"
+                                android:textColor="#212121"
+                                android:textSize="14sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxStrokeColor="#004D40"
+                            app:endIconMode="password_toggle"
+                            app:hintTextColor="#004D40">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etApiKey"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/api_key_secret_token_aes_256"
+                                android:inputType="textPassword"
+                                android:textColor="#212121"
+                                android:textSize="14sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchAutoPrintApi"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/auto_print_antrean_api"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            app:thumbTint="#004D40"
+                            app:trackTint="#80CBC4" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnTestApi"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="6dp"
+                                android:layout_weight="1"
+                                android:letterSpacing="0.01"
+                                android:text="@string/tes_koneksi_api"
+                                android:textAllCaps="false"
+                                android:textColor="#004D40"
+                                android:textStyle="bold"
+                                app:cornerRadius="12dp"
+                                app:strokeColor="#004D40" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnPrintFromApiNow"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="6dp"
+                                android:layout_weight="1"
+                                android:backgroundTint="#004D40"
+                                android:letterSpacing="0.01"
+                                android:text="@string/cetak_data_api"
+                                android:textAllCaps="false"
+                                android:textColor="#FFFFFF"
+                                android:textStyle="bold"
+                                app:cornerRadius="12dp" />
+                        </LinearLayout>
+
+                        <!-- Tombol Panduan & Dokumentasi API Tanpa Emoji -->
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/layoutApiDocs"
+                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="48dp"
+                            android:layout_marginTop="10dp"
+                            android:letterSpacing="0.01"
+                            android:text="@string/panduan_dokumentasi_api"
+                            android:textAllCaps="false"
+                            android:textColor="#004D40"
+                            android:textStyle="bold"
+                            app:cornerRadius="12dp"
+                            app:strokeColor="#004D40" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Card: Cloud Sync & Backup -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#E0E0E0"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.08"
+                            android:text="@string/sinkronisasi_cloud_cadangan"
+                            android:textColor="#004D40"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/tvCloudSyncStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="@string/status_belum_disinkronkan"
+                            android:textColor="#78909C"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxStrokeColor="#004D40"
+                            app:hintTextColor="#004D40">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etCloudSyncKey"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/kode_pairing_cloud_sync_key"
+                                android:inputType="text"
+                                android:textColor="#212121"
+                                android:textSize="14sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchAutoCloudSync"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/sinkronisasi_cloud_otomatis"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            app:thumbTint="#004D40"
+                            app:trackTint="#80CBC4" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnBackupCloud"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_marginEnd="6dp"
+                                android:layout_weight="1"
+                                android:letterSpacing="0.01"
+                                android:text="@string/cadangkan_data"
+                                android:textAllCaps="false"
+                                android:textColor="#004D40"
+                                android:textStyle="bold"
+                                app:cornerRadius="12dp"
+                                app:strokeColor="#004D40" />
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnRestoreCloud"
+                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_marginStart="6dp"
+                                android:layout_weight="1"
+                                android:letterSpacing="0.01"
+                                android:text="@string/pulihkan_data"
+                                android:textAllCaps="false"
+                                android:textColor="#004D40"
+                                android:textStyle="bold"
+                                app:cornerRadius="12dp"
+                                app:strokeColor="#004D40" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Card: Bahasa & Profil Struk -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#E0E0E0"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.08"
+                            android:text="@string/bahasa_profil_struk"
+                            android:textColor="#004D40"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textStyle="bold" />
+
+                        <!-- Versi -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="12dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/versi_aplikasi"
+                                android:textColor="#37474F"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1.0.0"
+                                android:textColor="#212121"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="12dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- Bahasa -->
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/bahasa"
+                                android:textColor="#37474F"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+
+                            <TextView
+                                android:id="@+id/tvLanguage"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/bahasa_indonesia"
+                                android:textColor="#004D40"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="12dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- Profil Toko Custom -->
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchUseCustomHeader"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cetak_header_footer_profil_toko"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            app:thumbTint="#004D40"
+                            app:trackTint="#80CBC4" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/menampilkan_nama_usaha_alamat_dan_pesan_terima_kasih_kustom_pada_setiap_cetakan_struk_resi"
+                            android:textColor="#78909C"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxStrokeColor="#004D40"
+                            app:hintTextColor="#004D40">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etStoreName"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/nama_toko_usaha"
+                                android:inputType="textCapWords"
+                                android:textColor="#212121"
+                                android:textSize="14sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxStrokeColor="#004D40"
+                            app:hintTextColor="#004D40">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etStoreAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/alamat_kontak_toko"
+                                android:inputType="textCapSentences"
+                                android:textColor="#212121"
+                                android:textSize="14sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+
+                        <com.google.android.material.textfield.TextInputLayout
+                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            app:boxCornerRadiusBottomEnd="12dp"
+                            app:boxCornerRadiusBottomStart="12dp"
+                            app:boxCornerRadiusTopEnd="12dp"
+                            app:boxCornerRadiusTopStart="12dp"
+                            app:boxStrokeColor="#004D40"
+                            app:hintTextColor="#004D40">
+
+                            <com.google.android.material.textfield.TextInputEditText
+                                android:id="@+id/etStoreFooter"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="@string/catatan_kaki_struk_contoh_terima_kasih"
+                                android:inputType="textCapSentences"
+                                android:textColor="#212121"
+                                android:textSize="14sp" />
+                        </com.google.android.material.textfield.TextInputLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Card: Keamanan & Legalitas -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:cardBackgroundColor="#FFFFFF"
+                    app:cardCornerRadius="16dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#E0E0E0"
+                    app:strokeWidth="1dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:letterSpacing="0.08"
+                            android:text="@string/keamanan_legalitas"
+                            android:textColor="#004D40"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textStyle="bold" />
+
+                        <!-- Status Keamanan -->
+                        <TextView
+                            android:id="@+id/tvSecurityStatus"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:text="@string/keamanan_aes_256_aktif_root_memeriksa"
+                            android:textColor="#004D40"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
+                            android:textStyle="bold" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="12dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- PIN Admin Protection -->
+                        <com.google.android.material.switchmaterial.SwitchMaterial
+                            android:id="@+id/switchAdminPin"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/kunci_pengaturan_dengan_pin_admin"
+                            android:textColor="#212121"
+                            android:textSize="14sp"
+                            app:thumbTint="#004D40"
+                            app:trackTint="#80CBC4" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/melindungi_halaman_pengaturan_agar_staf_kasir_tidak_mengubah_konfigurasi_printer_sembarangan"
+                            android:textColor="#78909C"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="12dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- Bersihkan Cache -->
+                        <LinearLayout
+                            android:id="@+id/layoutClearCache"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingVertical="8dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/bersihkan_cache_webview_file_sementara"
+                                android:textColor="#37474F"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="›"
+                                android:textColor="#78909C"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="6dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- Kebijakan Privasi -->
+                        <LinearLayout
+                            android:id="@+id/layoutPrivacyPolicy"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingVertical="8dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/kebijakan_privasi_privacy_policy"
+                                android:textColor="#37474F"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="›"
+                                android:textColor="#78909C"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="6dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- Syarat & Ketentuan -->
+                        <LinearLayout
+                            android:id="@+id/layoutTermsOfService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingVertical="8dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/syarat_ketentuan_terms_of_service"
+                                android:textColor="#37474F"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="›"
+                                android:textColor="#78909C"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="6dp"
+                            android:background="#ECEFF1" />
+
+                        <!-- Lisensi Open Source -->
+                        <LinearLayout
+                            android:id="@+id/layoutOpenSourceLicenses"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingVertical="8dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/lisensi_sumber_terbuka_open_source"
+                                android:textColor="#37474F"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="›"
+                                android:textColor="#78909C"
+                                android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Save Button -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSaveSettings"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:backgroundTint="#004D40"
+                    android:letterSpacing="0.01"
+                    android:text="@string/simpan_pengaturan"
+                    android:textAllCaps="false"
+                    android:textColor="#FFFFFF"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    app:cornerRadius="12dp" />
+
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</LinearLayout>
