@@ -813,8 +813,24 @@ class SettingsActivity : AppCompatActivity() {
                     packageManager.getPackageInfo(packageName, 0).versionCode
                 }
                 val jsonText = withContext(Dispatchers.IO) {
-                    URL("https://raw.githubusercontent.com/b0nz0el/NetraPrint/main/version.json")
-                        .readText()
+                    val conn = (URL("https://raw.githubusercontent.com/b0nz0el/NetraPrint/main/version.json").openConnection() as java.net.HttpURLConnection).apply {
+                        connectTimeout = 8000
+                        readTimeout = 8000
+                        requestMethod = "GET"
+                        setRequestProperty("User-Agent", "NetraPrint-Android")
+                        setRequestProperty("Accept", "application/json")
+                        useCaches = false
+                    }
+                    try {
+                        val code = conn.responseCode
+                        if (code in 200..299) {
+                            conn.inputStream.bufferedReader().use { it.readText() }
+                        } else {
+                            throw java.io.IOException("HTTP error $code")
+                        }
+                    } finally {
+                        conn.disconnect()
+                    }
                 }
                 val json = JSONObject(jsonText)
                 val latestVersionCode = json.getInt("latestVersionCode")
