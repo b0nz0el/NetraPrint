@@ -1474,27 +1474,25 @@
                 android:textAppearance="@style/TextAppearance.NetraPrint.TitleMedium" />
         </LinearLayout>
 
-        <!-- Modern Bottom Navigation Bar (Matching Benchmark) -->
-        <com.google.android.material.bottomappbar.BottomAppBar
+        <!-- Animated Fluid Curved Bottom Navigation Bar (Pinterest & Material Design 3 Benchmark) -->
+        <com.netraprint.app.CurvedBottomNavigationView
             android:id="@+id/bottomAppBar"
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottom_nav_height"
             android:layout_gravity="bottom"
-            app:elevation="8dp"
-            app:backgroundTint="@color/white"
-            app:contentInsetEnd="0dp"
-            app:contentInsetStart="0dp"
-            app:fabAlignmentMode="center"
-            app:fabCradleMargin="@dimen/fab_cradle_margin"
-            app:fabCradleRoundedCornerRadius="18dp"
-            app:fabCradleVerticalOffset="18dp">
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:elevation="8dp">
 
             <LinearLayout
+                android:id="@+id/layoutNavItems"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:baselineAligned="false"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:gravity="bottom"
+                android:orientation="horizontal"
+                android:paddingTop="14dp"
+                android:paddingBottom="4dp">
 
                 <!-- 1. Label Tab (Leftmost - Main Form) -->
                 <LinearLayout
@@ -1502,30 +1500,33 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_nav_pill_inactive"
-                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/ivTabLabel"
-                        android:layout_width="@dimen/nav_icon_size"
-                        android:layout_height="@dimen/nav_icon_size"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_tab_label"
-                        app:tint="@color/nav_active"
-                        android:importantForAccessibility="no"/>
+                        app:tint="@color/nav_inactive"
+                        android:importantForAccessibility="no" />
 
                     <TextView
                         android:id="@+id/tvTabLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif"
+                        android:maxLines="1"
                         android:text="@string/label"
-                        android:textColor="@color/nav_active" android:textSize="12sp"
-                        android:fontFamily="sans-serif"  android:textFontWeight="400" />
+                        android:textColor="@color/nav_active"
+                        android:textSize="12sp"
+                        android:textFontWeight="500" />
                 </LinearLayout>
 
                 <!-- 2. Text Tab (Free Text) -->
@@ -1534,152 +1535,152 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_nav_pill_inactive"
-                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/ivTabText"
-                        android:layout_width="@dimen/nav_icon_size"
-                        android:layout_height="@dimen/nav_icon_size"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_tab_text"
                         app:tint="@color/nav_inactive"
-                        android:importantForAccessibility="no"/>
+                        android:importantForAccessibility="no" />
 
                     <TextView
                         android:id="@+id/tvTabText"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif"
+                        android:maxLines="1"
                         android:text="@string/teks"
-                        android:textColor="@color/nav_inactive" android:textSize="12sp"
-                        android:fontFamily="sans-serif"  android:textFontWeight="400" />
+                        android:textColor="@color/nav_inactive"
+                        android:textSize="12sp"
+                        android:textFontWeight="400" />
                 </LinearLayout>
 
-                <!-- Center Print FAB Cradle Space -->
-                <View
-                    android:layout_width="80dp"
-                    android:layout_height="match_parent" />
+                <!-- 3. Center Print Action (Hero Button) -->
+                <LinearLayout
+                    android:id="@+id/tabCenterCetak"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
 
-                <!-- 3. Image Tab -->
+                    <FrameLayout
+                        android:id="@+id/fabPrint"
+                        android:layout_width="52dp"
+                        android:layout_height="52dp"
+                        android:background="@drawable/bg_center_fab_outer_ring"
+                        android:clickable="true"
+                        android:contentDescription="@string/cetak"
+                        android:elevation="6dp"
+                        android:focusable="true"
+                        android:foreground="?attr/selectableItemBackgroundBorderless"
+                        android:gravity="center"
+                        android:importantForAccessibility="yes">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="center"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_print"
+                            app:tint="#FFFFFF" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/tvCetakLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif"
+                        android:maxLines="1"
+                        android:text="@string/cetak"
+                        android:textColor="@color/nav_active"
+                        android:textSize="11sp"
+                        android:textFontWeight="600" />
+                </LinearLayout>
+
+                <!-- 4. Image Tab -->
                 <LinearLayout
                     android:id="@+id/tabImage"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_nav_pill_inactive"
-                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/ivTabImage"
-                        android:layout_width="@dimen/nav_icon_size"
-                        android:layout_height="@dimen/nav_icon_size"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_tab_image"
                         app:tint="@color/nav_inactive"
-                        android:importantForAccessibility="no"/>
+                        android:importantForAccessibility="no" />
 
                     <TextView
                         android:id="@+id/tvTabImage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif"
+                        android:maxLines="1"
                         android:text="@string/gambar"
-                        android:textColor="@color/nav_inactive" android:textSize="12sp"
-                        android:fontFamily="sans-serif"  android:textFontWeight="400" />
+                        android:textColor="@color/nav_inactive"
+                        android:textSize="12sp"
+                        android:textFontWeight="400" />
                 </LinearLayout>
 
-                <!-- 4. PDF Tab -->
+                <!-- 5. PDF Tab -->
                 <LinearLayout
                     android:id="@+id/tabPdf"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_nav_pill_inactive"
-                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
+                    android:foreground="?attr/selectableItemBackgroundBorderless"
                     android:gravity="center"
                     android:orientation="vertical">
 
                     <ImageView
                         android:id="@+id/ivTabPdf"
-                        android:layout_width="@dimen/nav_icon_size"
-                        android:layout_height="@dimen/nav_icon_size"
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_tab_pdf"
                         app:tint="@color/nav_inactive"
-                        android:importantForAccessibility="no"/>
+                        android:importantForAccessibility="no" />
 
                     <TextView
                         android:id="@+id/tvTabPdf"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
+                        android:ellipsize="end"
+                        android:fontFamily="sans-serif"
+                        android:maxLines="1"
                         android:text="@string/pdf"
-                        android:textColor="@color/nav_inactive" android:textSize="12sp"
-                        android:fontFamily="sans-serif"  android:textFontWeight="400" />
+                        android:textColor="@color/nav_inactive"
+                        android:textSize="12sp"
+                        android:textFontWeight="400" />
                 </LinearLayout>
 
             </LinearLayout>
-        </com.google.android.material.bottomappbar.BottomAppBar>
-
-        <!-- One floating print action unit: the button and label move together. -->
-        <FrameLayout
-            android:id="@+id/containerCetakFloating"
-            android:layout_width="80dp"
-            android:layout_height="88dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:translationY="26dp"
-            app:layout_anchor="@id/bottomAppBar"
-            app:layout_anchorGravity="top|center_horizontal">
-
-            <FrameLayout
-                android:id="@+id/fabPrint"
-                android:layout_width="58dp"
-                android:layout_height="58dp"
-                android:layout_gravity="top|center_horizontal"
-                android:background="@drawable/bg_center_fab_outer_ring"
-                android:clickable="true"
-                android:contentDescription="@string/cetak"
-                android:elevation="12dp"
-                android:focusable="true"
-                android:foreground="?attr/selectableItemBackgroundBorderless"
-                android:gravity="center"
-                android:importantForAccessibility="yes">
-
-                <androidx.appcompat.widget.AppCompatImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:contentDescription="@null"
-                    app:srcCompat="@drawable/ic_print"
-                    app:tint="#FFFFFF" />
-            </FrameLayout>
-
-            <TextView
-                android:id="@+id/tvCetakLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|center_horizontal"
-                android:layout_marginBottom="8dp"
-                android:fontFamily="sans-serif"
-                android:letterSpacing="0.08"
-                android:text="@string/cetak"
-                android:textAllCaps="true"
-                android:textColor="#0F766E"
-                android:textSize="10sp"
-                android:textStyle="bold" />
-        </FrameLayout>
+        </com.netraprint.app.CurvedBottomNavigationView>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 

@@ -1,5 +1,13 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.20] - Release
+
+- Animated Fluid Curved Bottom Navigation: Mengadopsi bilah navigasi bawah dengan kurva Bézier dinamis yang mengalir (fluid wave) dan elevated circular badge aktif beranimasi membal (pop bounce) sesuai benchmark Pinterest & Material Design 3.
+- Tactile Hero Print Action: Tombol CETAK di posisi tengah bilah dilengkapi animasi sentuhan membal (tactile spring scale) untuk respon visual yang responsif dan memuaskan.
+- Full Multi-Screen Density Audit: Audit dan kalibrasi ketinggian bilah navigasi pada seluruh varian densitas layar (values-hdpi, values-xhdpi, values-xxhdpi) untuk mencegah penumpukan atau pemotongan view.
+- Tablet & Landscape Parity: Penyelarasan tata letak kurva navigasi pada layar lebar (layout-sw600dp, layout-sw600dp-land) dan orientasi landscape ponsel (layout-land) dengan proporsi vertikal yang efisien.
+- Accessibility & Gesture Insets: Teks label tab dilengkapi perlindungan single-line ellipsize serta integrasi WindowInsetsCompat agar tidak terhalang oleh gesture bar / 3-button navigation sistem Android.
+
 ## [v2.0.19] - Release
 
 - International Standard Typography: Beralih ke font sistem bawaan Android resmi (`sans-serif` / Roboto) sesuai pedoman Material Design 3 Google.

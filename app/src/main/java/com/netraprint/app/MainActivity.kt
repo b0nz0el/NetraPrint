@@ -673,7 +673,7 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        val bottomAppBar = findViewById<BottomAppBar>(R.id.bottomAppBar)
+        val bottomAppBar = findViewById<CurvedBottomNavigationView>(R.id.bottomAppBar)
         bottomAppBar?.let { bar ->
             ViewCompat.setOnApplyWindowInsetsListener(bar) { v, insets ->
                 val navInsets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -1562,80 +1562,46 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun updateBottomNavState(mode: CurrentMode) {
-        val tabText = findViewById<LinearLayout>(R.id.tabText)
-        val ivTabText = findViewById<ImageView>(R.id.ivTabText)
+        val curvedNav = findViewById<CurvedBottomNavigationView>(R.id.bottomAppBar)
+        val tabIndex = when (mode) {
+            CurrentMode.FORM -> 0
+            CurrentMode.FREE_TEXT -> 1
+            CurrentMode.IMAGE -> 3
+            CurrentMode.PDF -> 4
+            else -> 0
+        }
+        curvedNav?.selectTab(tabIndex)
+
         val tvTabText = findViewById<TextView>(R.id.tvTabText)
-
-        val tabLabel = findViewById<LinearLayout>(R.id.tabLabel)
-        val ivTabLabel = findViewById<ImageView>(R.id.ivTabLabel)
         val tvTabLabel = findViewById<TextView>(R.id.tvTabLabel)
-
-        val tabImage = findViewById<LinearLayout>(R.id.tabImage)
-        val ivTabImage = findViewById<ImageView>(R.id.ivTabImage)
         val tvTabImage = findViewById<TextView>(R.id.tvTabImage)
-
-        val tabPdf = findViewById<LinearLayout>(R.id.tabPdf)
-        val ivTabPdf = findViewById<ImageView>(R.id.ivTabPdf)
         val tvTabPdf = findViewById<TextView>(R.id.tvTabPdf)
 
         val activeColor = getColor(R.color.nav_active)
         val inactiveColor = getColor(R.color.nav_inactive)
         listOf(tvTabText, tvTabLabel, tvTabImage, tvTabPdf).forEach { label ->
             setNavigationLabelWeight(label, 400)
-        }
-        listOf(tabText, tabLabel, tabImage, tabPdf).forEach {
-            it?.setBackgroundResource(R.drawable.bg_nav_pill_inactive)
+            label?.setTextColor(inactiveColor)
         }
 
-        ivTabText?.setColorFilter(inactiveColor)
-        tvTabText?.setTextColor(inactiveColor)
-
-        ivTabLabel?.setColorFilter(inactiveColor)
-        tvTabLabel?.setTextColor(inactiveColor)
-
-        ivTabImage?.setColorFilter(inactiveColor)
-        tvTabImage?.setTextColor(inactiveColor)
-
-        ivTabPdf?.setColorFilter(inactiveColor)
-        tvTabPdf?.setTextColor(inactiveColor)
-
-        val activeTab = when (mode) {
+        when (mode) {
             CurrentMode.FREE_TEXT -> {
-                ivTabText?.setColorFilter(activeColor)
                 tvTabText?.setTextColor(activeColor)
                 setNavigationLabelWeight(tvTabText, 500)
-                tabText
             }
             CurrentMode.FORM -> {
-                ivTabLabel?.setColorFilter(activeColor)
                 tvTabLabel?.setTextColor(activeColor)
                 setNavigationLabelWeight(tvTabLabel, 500)
-                tabLabel
             }
             CurrentMode.IMAGE -> {
-                ivTabImage?.setColorFilter(activeColor)
                 tvTabImage?.setTextColor(activeColor)
                 setNavigationLabelWeight(tvTabImage, 500)
-                tabImage
             }
             CurrentMode.PDF -> {
-                ivTabPdf?.setColorFilter(activeColor)
                 tvTabPdf?.setTextColor(activeColor)
                 setNavigationLabelWeight(tvTabPdf, 500)
-                tabPdf
             }
-            else -> null
-        }
-        activeTab?.let { tab ->
-            tab.setBackgroundResource(R.drawable.bg_nav_pill_active)
-            tab.scaleX = 0.90f
-            tab.scaleY = 0.90f
-            tab.animate()
-                .scaleX(1.0f)
-                .scaleY(1.0f)
-                .setDuration(220)
-                .setInterpolator(android.view.animation.OvershootInterpolator())
-                .start()
+            else -> {}
         }
     }
 
@@ -1789,7 +1755,20 @@ class MainActivity : AppCompatActivity() {
     // ==========================================
 
     private fun setupFabPrint() {
-        findViewById<View>(R.id.fabPrint).setOnClickListener {
+        val fab = findViewById<View>(R.id.fabPrint)
+        fab.setOnClickListener { view ->
+            view.animate()
+                .scaleX(0.88f)
+                .scaleY(0.88f)
+                .setDuration(80)
+                .withEndAction {
+                    view.animate()
+                        .scaleX(1.0f)
+                        .scaleY(1.0f)
+                        .setDuration(120)
+                        .start()
+                }
+                .start()
             val prefs = SecurePreferencesHelper.getPreferences(this)
             val connType = prefs.getString(SettingsActivity.KEY_CONNECTION_TYPE, "Bluetooth")
 

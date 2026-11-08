@@ -32,7 +32,7 @@
     <dimen name="column_gap_half">10dp</dimen>
 
     <!-- Bottom Navigation & FAB -->
-    <dimen name="bottom_nav_height">78dp</dimen>
+    <dimen name="bottom_nav_height">88dp</dimen>
     <dimen name="nav_pill_width">64dp</dimen>
     <dimen name="nav_pill_height">36dp</dimen>
     <dimen name="nav_icon_size">28dp</dimen>
