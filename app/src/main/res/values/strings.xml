@@ -526,6 +526,12 @@ Apakah Anda mengizinkan pencetakan ini?</string>
     <string name="kt_system_print_received">Dokumen Cetak Diterima (%1$d rangkap)</string>
     <string name="kt_system_print_tap_to_continue">Ketuk untuk melanjutkan pencetakan thermal</string>
     <string name="kt_system_print_processing_failed">Gagal memproses dokumen cetak</string>
+    <string name="kt_system_print_printing">Sedang mencetak ke %1$s...</string>
+    <string name="kt_system_print_success">Pencetakan berhasil (%1$s)</string>
+    <string name="kt_system_print_success_body">Dokumen (%1$d halaman, %2$d rangkap) berhasil dicetak.</string>
+    <string name="kt_system_print_failed_title">Gagal mencetak ke %1$s</string>
+    <string name="kt_system_print_failed_spooled">Printer tidak terhubung. Dokumen disimpan di antrean offline NetraPrint.</string>
+    <string name="kt_system_print_no_printer">Printer thermal belum dipilih. Buka NetraPrint untuk memilih printer default.</string>
     <string name="kt_camera_permission_required">Izin kamera diperlukan untuk memindai dokumen.</string>
     <string name="kt_bluetooth_permission_required">Izin Bluetooth diperlukan untuk terhubung ke printer.</string>
     <string name="kt_play_store_unavailable">Tidak dapat membuka Google Play Store pada perangkat ini.</string>

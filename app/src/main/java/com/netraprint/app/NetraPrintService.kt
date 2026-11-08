@@ -1,13 +1,18 @@
 package com.netraprint.app
 
-import android.app.ActivityOptions
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.bluetooth.BluetoothDevice
 import android.bluetooth.BluetoothManager
 import android.content.Context
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.Canvas
+import android.graphics.Color
+import android.graphics.pdf.PdfRenderer
 import android.os.Build
+import android.os.ParcelFileDescriptor
 import android.print.PrintAttributes
 import android.print.PrinterCapabilitiesInfo
 import android.print.PrinterId
@@ -17,6 +22,12 @@ import android.printservice.PrintService
 import android.printservice.PrinterDiscoverySession
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -40,9 +51,17 @@ class NetraPrintService : PrintService() {
         private val TEMP_PDF_TTL_MILLIS = TimeUnit.DAYS.toMillis(7)
     }
 
+    private val serviceJob = SupervisorJob()
+    private val serviceScope = CoroutineScope(Dispatchers.Main + serviceJob)
+
     override fun onCreate() {
         super.onCreate()
         purgeExpiredPrintFiles()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        serviceScope.cancel()
     }
 
     override fun onCreatePrinterDiscoverySession(): PrinterDiscoverySession {
@@ -198,100 +217,316 @@ class NetraPrintService : PrintService() {
             return
         }
 
-        var tempPdf: File? = null
-        try {
-            val localized = AppLocaleContext.wrap(this)
-            val pfd = printJob.document?.data
-            if (pfd == null) {
-                printJob.fail(localized.getString(R.string.kt_system_print_empty))
-                return
-            }
+        val localized = AppLocaleContext.wrap(this)
+        val pfd = printJob.document?.data
+        if (pfd == null) {
+            printJob.fail(localized.getString(R.string.kt_system_print_empty))
+            return
+        }
 
-            val createdPdf = File.createTempFile("sys_print_", ".pdf", cacheDir)
-            tempPdf = createdPdf
+        val prefs = SecurePreferencesHelper.getPreferences(this)
+        val copies = printJob.info.copies.coerceAtLeast(1)
+        val targetPrinterId = printJob.info.printerId?.localId ?: ""
+        val mediaSize = printJob.info.attributes?.mediaSize
+
+        // Save PDF to temp file for seekable PdfRenderer access
+        val tempPdf: File
+        try {
+            tempPdf = File.createTempFile("sys_print_", ".pdf", cacheDir)
             FileInputStream(pfd.fileDescriptor).use { input ->
-                FileOutputStream(createdPdf).use { output ->
+                FileOutputStream(tempPdf).use { output ->
                     input.copyTo(output)
                 }
             }
+        } catch (e: Exception) {
+            Log.e(TAG, "Failed to copy system print PDF stream", e)
+            printJob.fail(localized.getString(R.string.kt_system_print_processing_failed))
+            return
+        }
 
-            val copies = printJob.info.copies
-            val targetPrinterId = printJob.info.printerId?.localId ?: ""
+        val appContainer = (application as? PrinterApplication)?.appContainer ?: AppContainer(this)
+        val bluetoothService = appContainer.bluetoothService
+        val spoolerManager = appContainer.printSpoolerManager
 
-            // Intent for MainActivity
-            val intent = Intent(this, MainActivity::class.java).apply {
-                action = ACTION_SYSTEM_PRINT_JOB
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
-                putExtra(EXTRA_PDF_PATH, createdPdf.absolutePath)
+        val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as? BluetoothManager
+        val bluetoothAdapter = bluetoothManager?.adapter
+        val bondedDevices = try { bluetoothAdapter?.bondedDevices?.toList() ?: emptyList() } catch (_: Exception) { emptyList() }
+
+        var isWifi = false
+        var wifiIp = ""
+        var wifiPort = 9100
+        var targetDevice: BluetoothDevice? = null
+        var targetPrinterDisplayName = ""
+
+        if (targetPrinterId.startsWith("wifi_")) {
+            isWifi = true
+            wifiIp = targetPrinterId.removePrefix("wifi_").replace("_", ".")
+            wifiPort = prefs.getString(SettingsActivity.KEY_WIFI_PORT, "9100")?.toIntOrNull() ?: 9100
+            targetPrinterDisplayName = "Wi-Fi ($wifiIp:$wifiPort)"
+        } else if (targetPrinterId.startsWith("bt_")) {
+            val mac = targetPrinterId.removePrefix("bt_").replace("_", ":")
+            targetDevice = bondedDevices.find { it.address.equals(mac, ignoreCase = true) }
+            targetPrinterDisplayName = targetDevice?.let { bluetoothService.getDeviceName(it) ?: it.address } ?: mac
+        } else {
+            // "netraprint_thermal_main" or fallback: check saved default printer
+            val defaultAddress = prefs.getString(SettingsActivity.KEY_DEFAULT_PRINTER_ADDRESS, "") ?: ""
+            val defaultName = prefs.getString(SettingsActivity.KEY_DEFAULT_PRINTER_NAME, "") ?: ""
+
+            if (defaultAddress.isNotBlank()) {
+                targetDevice = bondedDevices.find { it.address.equals(defaultAddress, ignoreCase = true) }
+            }
+            if (targetDevice == null && defaultName.isNotBlank()) {
+                targetDevice = bondedDevices.find {
+                    val dName = try { it.name } catch (_: Exception) { null }
+                    dName.equals(defaultName, ignoreCase = true)
+                }
+            }
+            if (targetDevice == null && bondedDevices.size == 1) {
+                targetDevice = bondedDevices.first()
+            }
+            targetPrinterDisplayName = targetDevice?.let { bluetoothService.getDeviceName(it) ?: it.address }
+                ?: if (defaultName.isNotBlank()) defaultName else localized.getString(R.string.kt_system_printer_name)
+        }
+
+        if (!isWifi && targetDevice == null) {
+            Log.w(TAG, "No target printer found for system print job")
+            printJob.fail(localized.getString(R.string.kt_system_print_no_printer))
+            showNotification(
+                notificationId = 2002,
+                title = localized.getString(R.string.kt_system_print_failed_title, targetPrinterDisplayName),
+                content = localized.getString(R.string.kt_system_print_no_printer),
+                isError = true,
+                pdfFile = tempPdf,
+                copies = copies,
+                targetPrinterId = targetPrinterId
+            )
+            return
+        }
+
+        // Keep default printer updated if resolved
+        if (targetDevice != null) {
+            prefs.edit()
+                .putString(SettingsActivity.KEY_DEFAULT_PRINTER_ADDRESS, targetDevice.address)
+                .putString(SettingsActivity.KEY_DEFAULT_PRINTER_NAME, targetPrinterDisplayName)
+                .apply()
+        }
+
+        val configWidth = prefs.getInt(SettingsActivity.KEY_PRINT_WIDTH, 384)
+        val printWidth = when {
+            mediaSize?.id == "THERMAL_80MM" || mediaSize == PrintAttributes.MediaSize.ISO_A6 || mediaSize == PrintAttributes.MediaSize.NA_INDEX_4X6 -> 576
+            mediaSize?.id == "THERMAL_58MM" -> 384
+            else -> configWidth
+        }
+        val autoCut = prefs.getBoolean(SettingsActivity.KEY_AUTO_CUT, true)
+        val ditherMode = DitheringEngine.DitherMode.FLOYD_STEINBERG
+
+        serviceScope.launch(Dispatchers.IO) {
+            var pfdSeekable: ParcelFileDescriptor? = null
+            var renderer: PdfRenderer? = null
+            try {
+                showNotification(
+                    notificationId = 2001,
+                    title = localized.getString(R.string.kt_system_print_printing, targetPrinterDisplayName),
+                    content = localized.getString(R.string.kt_system_print_received, copies),
+                    isOngoing = true
+                )
+
+                pfdSeekable = ParcelFileDescriptor.open(tempPdf, ParcelFileDescriptor.MODE_READ_ONLY)
+                renderer = PdfRenderer(pfdSeekable)
+                val totalPages = renderer.pageCount
+                if (totalPages == 0) {
+                    dismissNotification(2001)
+                    printJob.fail(localized.getString(R.string.kt_system_print_empty))
+                    return@launch
+                }
+
+                val pagesItems = mutableListOf<BluetoothService.PrintPageItem>()
+                for (pageIndex in 0 until totalPages) {
+                    var page: PdfRenderer.Page? = null
+                    var bitmap: Bitmap? = null
+                    try {
+                        val openedPage = renderer.openPage(pageIndex)
+                        page = openedPage
+                        val renderWidth = (openedPage.width * 2).coerceAtLeast(printWidth)
+                        val renderHeight = (openedPage.height * 2).coerceAtLeast(1)
+                        val renderedBitmap = Bitmap.createBitmap(renderWidth, renderHeight, Bitmap.Config.ARGB_8888)
+                        bitmap = renderedBitmap
+                        val canvas = Canvas(renderedBitmap)
+                        canvas.drawColor(Color.WHITE)
+                        openedPage.render(renderedBitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_PRINT)
+
+                        val pageRaster = bluetoothService.createImageBytes(
+                            bitmap = renderedBitmap,
+                            customWidth = printWidth,
+                            autoCut = (pageIndex == totalPages - 1) && autoCut,
+                            ditherMode = ditherMode
+                        )
+                        pagesItems.add(BluetoothService.PrintPageItem(pageIndex + 1, pageRaster))
+                    } finally {
+                        page?.close()
+                        bitmap?.recycle()
+                    }
+                }
+
+                val printItems = if (copies <= 1) {
+                    pagesItems
+                } else {
+                    val expanded = mutableListOf<BluetoothService.PrintPageItem>()
+                    for (c in 1..copies) {
+                        for (item in pagesItems) {
+                            expanded.add(BluetoothService.PrintPageItem(item.pageNumber, item.bytes))
+                        }
+                    }
+                    expanded
+                }
+
+                val printResult = if (isWifi) {
+                    if (printItems.size == 1) {
+                        bluetoothService.printDataWifi(wifiIp, wifiPort, printItems[0].bytes)
+                    } else {
+                        bluetoothService.printMultiplePagesWifi(wifiIp, wifiPort, printItems) { _, _, _ -> }
+                    }
+                } else {
+                    if (printItems.size == 1) {
+                        bluetoothService.printData(targetDevice!!, printItems[0].bytes)
+                    } else {
+                        bluetoothService.printMultiplePages(targetDevice!!, printItems) { _, _, _ -> }
+                    }
+                }
+
+                dismissNotification(2001)
+
+                if (printResult.isSuccess) {
+                    printJob.complete()
+                    showNotification(
+                        notificationId = 2003,
+                        title = localized.getString(R.string.kt_system_print_success, targetPrinterDisplayName),
+                        content = localized.getString(R.string.kt_system_print_success_body, totalPages, copies),
+                        autoCancel = true
+                    )
+                    if (tempPdf.exists()) {
+                        tempPdf.delete()
+                    }
+                    Log.i(TAG, "Direct system print succeeded for $targetPrinterDisplayName")
+                } else {
+                    try {
+                        val combinedStream = ByteArrayOutputStream()
+                        for (item in printItems) {
+                            combinedStream.write(item.bytes)
+                        }
+                        val combinedBytes = combinedStream.toByteArray()
+                        val jobTitle = printJob.document?.info?.name?.ifBlank { null }
+                            ?: localized.getString(R.string.kt_job_pdf)
+                        spoolerManager.enqueueData(
+                            title = jobTitle,
+                            printType = "PDF",
+                            data = combinedBytes,
+                            copies = copies,
+                            targetDeviceAddress = targetDevice?.address,
+                            targetWifiIp = if (isWifi) wifiIp else null,
+                            targetWifiPort = wifiPort
+                        )
+                    } catch (spoolError: Exception) {
+                        Log.e(TAG, "Failed to enqueue failed system print to offline spooler", spoolError)
+                    }
+
+                    printJob.fail(printResult.exceptionOrNull()?.message ?: localized.getString(R.string.kt_system_print_processing_failed))
+                    showNotification(
+                        notificationId = 2002,
+                        title = localized.getString(R.string.kt_system_print_failed_title, targetPrinterDisplayName),
+                        content = localized.getString(R.string.kt_system_print_failed_spooled),
+                        isError = true,
+                        pdfFile = tempPdf,
+                        copies = copies,
+                        targetPrinterId = targetPrinterId
+                    )
+                    Log.w(TAG, "Direct system print failed, job enqueued to offline spooler")
+                }
+            } catch (e: Exception) {
+                Log.e(TAG, "Error executing direct system print", e)
+                dismissNotification(2001)
+                printJob.fail(localized.getString(R.string.kt_system_print_processing_failed))
+                showNotification(
+                    notificationId = 2002,
+                    title = localized.getString(R.string.kt_system_print_failed_title, targetPrinterDisplayName),
+                    content = localized.getString(R.string.kt_system_print_processing_failed),
+                    isError = true,
+                    pdfFile = tempPdf,
+                    copies = copies,
+                    targetPrinterId = targetPrinterId
+                )
+            } finally {
+                try { renderer?.close() } catch (_: Exception) {}
+                try { pfdSeekable?.close() } catch (_: Exception) {}
+            }
+        }
+    }
+
+    private fun showNotification(
+        notificationId: Int,
+        title: String,
+        content: String,
+        isOngoing: Boolean = false,
+        isError: Boolean = false,
+        autoCancel: Boolean = true,
+        pdfFile: File? = null,
+        copies: Int = 1,
+        targetPrinterId: String = ""
+    ) {
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager ?: return
+        val channelId = "netraprint_system_print"
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            val localized = AppLocaleContext.wrap(this)
+            val channel = NotificationChannel(
+                channelId,
+                localized.getString(R.string.kt_system_print_channel_name),
+                if (isOngoing) NotificationManager.IMPORTANCE_LOW else NotificationManager.IMPORTANCE_HIGH
+            ).apply {
+                description = localized.getString(R.string.kt_system_print_channel_description)
+                enableVibration(!isOngoing)
+            }
+            notificationManager.createNotificationChannel(channel)
+        }
+
+        val intent = Intent(this, MainActivity::class.java).apply {
+            action = ACTION_SYSTEM_PRINT_JOB
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_SINGLE_TOP
+            if (pdfFile != null) {
+                putExtra(EXTRA_PDF_PATH, pdfFile.absolutePath)
                 putExtra(EXTRA_PRINT_COPIES, copies)
                 putExtra(EXTRA_TARGET_PRINTER_ID, targetPrinterId)
             }
-
-            val pendingIntent = PendingIntent.getActivity(
-                this,
-                (System.currentTimeMillis() % 100000).toInt(),
-                intent,
-                PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
-            )
-
-            // 1. Try launching with Background Activity Launch (BAL) exemption
-            var directLaunchSuccess = false
-            try {
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-                    val options = ActivityOptions.makeBasic()
-                    options.setPendingIntentBackgroundActivityStartMode(ActivityOptions.MODE_BACKGROUND_ACTIVITY_START_ALLOWED)
-                    pendingIntent.send(this, 0, null, null, null, null, options.toBundle())
-                    directLaunchSuccess = true
-                } else {
-                    startActivity(intent)
-                    directLaunchSuccess = true
-                }
-            } catch (e: Exception) {
-                Log.w(TAG, "Direct system print handoff was unavailable")
-            }
-
-            // 2. Also create/show high-priority Heads-up Notification
-            val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
-            val channelId = "netraprint_system_print"
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && notificationManager != null) {
-                val channel = NotificationChannel(
-                    channelId,
-                    localized.getString(R.string.kt_system_print_channel_name),
-                    NotificationManager.IMPORTANCE_HIGH
-                ).apply {
-                    description = localized.getString(R.string.kt_system_print_channel_description)
-                    enableVibration(true)
-                }
-                notificationManager.createNotificationChannel(channel)
-            }
-
-            if (notificationManager != null) {
-                val notification = NotificationCompat.Builder(this, channelId)
-                    .setSmallIcon(R.mipmap.ic_launcher)
-                    .setContentTitle(localized.getString(R.string.kt_system_print_received, copies))
-                    .setContentText(localized.getString(R.string.kt_system_print_tap_to_continue))
-                    .setPriority(NotificationCompat.PRIORITY_MAX)
-                    .setCategory(NotificationCompat.CATEGORY_CALL)
-                    .setContentIntent(pendingIntent)
-                    .setFullScreenIntent(pendingIntent, true)
-                    .setAutoCancel(true)
-                    .build()
-
-                notificationManager.notify(2001, notification)
-            }
-
-            // Complete the system print job so the Android print notification clears
-            printJob.complete()
-            Log.i(TAG, "Android system print job handed off (direct launch: $directLaunchSuccess)")
-        } catch (e: Exception) {
-            tempPdf?.let { file ->
-                if (file.exists() && !file.delete()) {
-                    Log.w(TAG, "Unable to remove a failed system print cache file")
-                }
-            }
-            Log.e(TAG, "Unable to process Android system print job")
-            printJob.fail(AppLocaleContext.wrap(this).getString(R.string.kt_system_print_processing_failed))
         }
+
+        val pendingIntent = PendingIntent.getActivity(
+            this,
+            notificationId,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+        )
+
+        val builder = NotificationCompat.Builder(this, channelId)
+            .setSmallIcon(R.mipmap.ic_launcher)
+            .setContentTitle(title)
+            .setContentText(content)
+            .setStyle(NotificationCompat.BigTextStyle().bigText(content))
+            .setOngoing(isOngoing)
+            .setAutoCancel(autoCancel)
+            .setContentIntent(pendingIntent)
+
+        if (isError) {
+            builder.setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_ERROR)
+        } else if (isOngoing) {
+            builder.setProgress(0, 0, true)
+        }
+
+        notificationManager.notify(notificationId, builder.build())
+    }
+
+    private fun dismissNotification(notificationId: Int) {
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
+        notificationManager?.cancel(notificationId)
     }
 
     override fun onRequestCancelPrintJob(printJob: PrintJob) {

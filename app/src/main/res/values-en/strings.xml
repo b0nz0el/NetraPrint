@@ -526,6 +526,12 @@ Do you allow this printing?</string>
     <string name="kt_system_print_received">Print Document Received (%1$d copies)</string>
     <string name="kt_system_print_tap_to_continue">Tap to continue thermal printing</string>
     <string name="kt_system_print_processing_failed">Failed to process print document</string>
+    <string name="kt_system_print_printing">Printing to %1$s...</string>
+    <string name="kt_system_print_success">Print succeeded (%1$s)</string>
+    <string name="kt_system_print_success_body">Document (%1$d pages, %2$d copies) printed successfully.</string>
+    <string name="kt_system_print_failed_title">Failed to print to %1$s</string>
+    <string name="kt_system_print_failed_spooled">Printer not connected. Document saved to NetraPrint offline queue.</string>
+    <string name="kt_system_print_no_printer">Thermal printer not configured. Open NetraPrint to select a default printer.</string>
     <string name="kt_camera_permission_required">Camera permission is required to scan a document.</string>
     <string name="kt_bluetooth_permission_required">Bluetooth permission is required to connect to a printer.</string>
     <string name="kt_play_store_unavailable">Could not open Google Play Store on this device.</string>
