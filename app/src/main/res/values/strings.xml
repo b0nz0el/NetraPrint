@@ -634,4 +634,33 @@ Apakah Anda mengizinkan pencetakan ini?</string>
 
     <!-- Share to Print -->
     <string name="shared_content_ready">Berkas diterima dari aplikasi lain. Siap dicetak!</string>
+
+    <!-- Modernized Image & PDF Hub, Toolbar, and Print Confirmation Sheet -->
+    <string name="upload_hub_image_title">Unggah Dokumen / Gambar</string>
+    <string name="upload_hub_image_desc">Mendukung JPG, PNG, WEBP. Cetak resi pengiriman, barcode, foto produk, atau struk fisik.</string>
+    <string name="btn_take_photo">Ambil Foto / Scan</string>
+    <string name="btn_choose_gallery">Pilih dari Galeri</string>
+    <string name="upload_hub_image_tips">💡 Tips: Pastikan pencahayaan terang dan teks fokus untuk hasil cetak thermal terbaik.</string>
+    <string name="action_rotate_90">Putar 90°</string>
+    <string name="action_fit_width">Pas Kertas</string>
+    <string name="action_dither_preview">Simulasi Thermal</string>
+    <string name="action_original_preview">Gambar Asli</string>
+    <string name="upload_hub_pdf_title">Unggah Dokumen PDF</string>
+    <string name="upload_hub_pdf_desc">Ideal untuk Resi Pengiriman (Shopee, Tokopedia, TikTok), Faktur, dan Dokumen A4/A6.</string>
+    <string name="upload_hub_pdf_tips">📄 Mendukung dokumen multi-halaman. Anda dapat memilih halaman tertentu saat mencetak.</string>
+    <string name="pdf_page_counter_format">Halaman %1$d dari %2$d</string>
+    <string name="print_dialog_title">Konfirmasi Cetak</string>
+    <string name="print_dialog_target_printer">Target Printer</string>
+    <string name="print_dialog_ready_status">Siap Mencetak</string>
+    <string name="print_dialog_change_printer">Ganti</string>
+    <string name="print_dialog_copies_title">Jumlah Salinan (Copies)</string>
+    <string name="print_dialog_copies_subtitle">Rangkap cetakan fisik</string>
+    <string name="print_dialog_paper_size">Ukuran Kertas</string>
+    <string name="print_dialog_paper_58mm">58 mm (Struk)</string>
+    <string name="print_dialog_paper_80mm">80 mm (Resi/Label)</string>
+    <string name="print_dialog_auto_cut">Potong Kertas Otomatis</string>
+    <string name="print_dialog_btn_print_now">Cetak Sekarang</string>
+    <string name="print_dialog_btn_print_copies">Cetak (%1$d Salinan)</string>
+    <string name="print_dialog_btn_cancel">Batal</string>
+    <string name="print_dialog_doc_type_label">Jenis Dokumen: %1$s</string>
 </resources>

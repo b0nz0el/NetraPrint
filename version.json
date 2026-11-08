@@ -1,8 +1,8 @@
 {
-  "latestVersionCode": 26,
-  "latestVersionName": "2.0.20",
+  "latestVersionCode": 27,
+  "latestVersionName": "2.0.21",
   "downloadUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
-  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/download/v2.0.20/NetraPrint.apk",
+  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/download/v2.0.21/NetraPrint.apk",
   "releasePageUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
-  "changelog": "Fluid Curved Bottom Navigation Bar & Audit Responsivitas Layar: Mengadopsi navigasi bawah dengan kurva Bézier dinamis yang mengalir dan elevated circular badge aktif beranimasi membal (pop bounce). Audit menyeluruh memastikan tampilan presisi di semua resolusi HP kecil (hdpi/xhdpi), layar besar (xxhdpi), rotasi landscape, serta tablet (sw600dp/sw720dp)."
+  "changelog": "Modernisasi Menu Foto/Gambar, Dokumen PDF & Dialog Konfirmasi Cetak: Menghadirkan Upload Hub interaktif dengan akses instan Kamera Scanner & Galeri, Paper Roll Canvas berbayang realistis, Floating Pill Toolbar (Rotasi 90° instan untuk label Shopee/Tokopedia, Fit to Paper, Simulasi Dithering Thermal real-time), Navigasi Halaman PDF chevron presisi, serta Sheet Konfirmasi Cetak modern dengan Stepper Salinan (1-10 copies), pemilih ukuran kertas cepat 58mm/80mm, dan status kesiapan printer."
 }

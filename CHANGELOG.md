@@ -1,5 +1,22 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.21] - Release
+
+- Interactive Upload Hub: Penggantian form kosong yang kaku pada Menu Foto/Gambar dan Menu PDF dengan Hub Unggah interaktif bergaris putus-putus modern (dashed border), kartu panduan, serta tombol aksi ganda (Kamera Scanner Dokumen & Galeri Berkas).
+- Paper Roll Canvas Experience: Pratinjau dokumen kini ditampilkan di atas Paper Canvas berlatar putih dengan bayangan realistis berstandar Material Design 3, memberikan sensasi visual nyata menyerupai kertas thermal fisik.
+- Floating Pill Quick Toolbar: Penambahan floating toolbar interaktif tepat di atas pratinjau yang memungkinkan:
+  - Rotasi 90° instan searah jarum jam untuk menyesuaikan label pengiriman Shopee, Tokopedia, TikTok yang seringkali terpotong dalam orientasi landscape.
+  - Fit Width (Pas Ukuran Kertas) untuk mencegah pemotongan margin.
+  - Simulasi Dithering Thermal real-time (WYSIWYG) untuk melihat hasil cetak hitam-putih sebelum dicetak ke kertas thermal fisik.
+- High-Precision PDF Navigation: Mengganti navigasi tombol hamburger lama dengan kontrol Chevron Material kiri/kanan (`ic_chevron_left` & `ic_chevron_right`) yang responsif beserta indikator halaman yang elegan.
+- Bottom Sheet Konfirmasi Cetak Interaktif: Saat menekan tombol CETAK hero, dialog konfirmasi interaktif muncul menampilkan:
+  - Status printer target dan tombol ganti printer cepat.
+  - Stepper jumlah salinan cetak fisik (1–10 copies) dengan tombol minus/plus responsif.
+  - Quick Selector ukuran kertas 58 mm (struk kasir) dan 80 mm (label/resi pengiriman).
+  - Sakelar pemotong kertas otomatis (Auto-cut).
+- Multi-Copies Printing Engine: Dukungan loop pencetakan multi-salinan cerdas dengan delay 500ms pada koneksi Bluetooth dan Wi-Fi ESC/POS serta pencatatan spooler offline yang akurat.
+- Multi-Screen Density & Layout Parity: Desain responsif terverifikasi penuh di semua 4 varian konfigurasi layout (`layout`, `layout-land`, `layout-sw600dp`, `layout-sw600dp-land`) serta dukungan bahasa ganda lengkap (Indonesia & Inggris).
+
 ## [v2.0.20] - Release
 
 - Animated Fluid Curved Bottom Navigation: Mengadopsi bilah navigasi bawah dengan kurva Bézier dinamis yang mengalir (fluid wave) dan elevated circular badge aktif beranimasi membal (pop bounce) sesuai benchmark Pinterest & Material Design 3.

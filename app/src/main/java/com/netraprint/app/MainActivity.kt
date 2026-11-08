@@ -21,6 +21,7 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Canvas
 import android.graphics.Color
+import android.graphics.Matrix
 import android.graphics.Typeface
 import android.graphics.ImageDecoder
 import android.graphics.pdf.PdfRenderer
@@ -77,6 +78,7 @@ import com.google.mlkit.vision.text.TextRecognition
 import com.google.mlkit.vision.text.latin.TextRecognizerOptions
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
@@ -174,6 +176,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sliderPdfZoom: Slider
     private lateinit var tvPdfZoom: TextView
     private lateinit var btnChoosePdf: MaterialButton
+    private var btnRotatePdf: MaterialButton? = null
+    private var btnFitPdf: MaterialButton? = null
 
     private var selectedPdfUri: Uri? = null
     private var pdfFileDescriptor: ParcelFileDescriptor? = null
@@ -181,6 +185,7 @@ class MainActivity : AppCompatActivity() {
     private var managedSystemPrintPdf: File? = null
     private var currentPdfPageIndex = 0
     private var currentPdfPageBitmap: Bitmap? = null
+    private var currentPdfRotation: Int = 0
 
     // Image Preview Views
     private lateinit var layoutImagePlaceholder: LinearLayout
@@ -191,9 +196,14 @@ class MainActivity : AppCompatActivity() {
     private lateinit var sliderImageZoom: Slider
     private lateinit var tvImageZoom: TextView
     private lateinit var btnChooseImage: MaterialButton
+    private var btnTakePhoto: MaterialButton? = null
+    private var btnRotateImage: MaterialButton? = null
+    private var btnFitImage: MaterialButton? = null
+    private var btnDitherPreview: MaterialButton? = null
 
     private var selectedImageUri: Uri? = null
     private var originalImageBitmap: Bitmap? = null
+    private var isDitherPreviewActive: Boolean = false
 
     // Form Views
     private lateinit var ivLogoPlaceholder: ImageView
@@ -271,6 +281,51 @@ class MainActivity : AppCompatActivity() {
         } else {
             deleteTemporaryOcrPhoto()
             Toast.makeText(this, getString(R.string.kt_toast_photo_cancelled), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    // Direct Print Document Camera
+    private var tempPrintPhotoUri: Uri? = null
+
+    private fun createTempPrintPhotoUri(): Uri {
+        val tempFile = File(cacheDir, "temp_print_photo.jpg")
+        if (tempFile.exists()) tempFile.delete()
+        tempFile.createNewFile()
+        return FileProvider.getUriForFile(this, "${packageName}.fileprovider", tempFile)
+    }
+
+    private fun deleteTemporaryPrintPhoto() {
+        val tempFile = File(cacheDir, "temp_print_photo.jpg")
+        if (tempFile.exists() && !tempFile.delete()) {
+            Log.w("MainActivity", "Unable to remove temporary print photo")
+        }
+        tempPrintPhotoUri = null
+    }
+
+    private val takePrintPictureLauncher = registerForActivityResult(
+        ActivityResultContracts.TakePicture()
+    ) { success: Boolean ->
+        if (success) {
+            tempPrintPhotoUri?.let { uri ->
+                loadImageDocument(uri)
+            }
+        } else {
+            deleteTemporaryPrintPhoto()
+        }
+    }
+
+    private fun launchDocumentCamera() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+            try {
+                val uri = createTempPrintPhotoUri()
+                tempPrintPhotoUri = uri
+                takePrintPictureLauncher.launch(uri)
+            } catch (e: Exception) {
+                Log.e("MainActivity", "Failed to launch document camera: ${e.message}")
+                Toast.makeText(this, getString(R.string.kt_toast_camera_open_error), Toast.LENGTH_SHORT).show()
+            }
+        } else {
+            cameraPermissionLauncher.launch(Manifest.permission.CAMERA)
         }
     }
 
@@ -589,6 +644,8 @@ class MainActivity : AppCompatActivity() {
         sliderPdfZoom = findViewById(R.id.sliderPdfZoom)
         tvPdfZoom = findViewById(R.id.tvPdfZoom)
         btnChoosePdf = findViewById(R.id.btnChoosePdf)
+        btnRotatePdf = findViewById(R.id.btnRotatePdf)
+        btnFitPdf = findViewById(R.id.btnFitPdf)
 
         ivPdfPreview.scaleType = ImageView.ScaleType.FIT_CENTER
 
@@ -601,6 +658,10 @@ class MainActivity : AppCompatActivity() {
         sliderImageZoom = findViewById(R.id.sliderImageZoom)
         tvImageZoom = findViewById(R.id.tvImageZoom)
         btnChooseImage = findViewById(R.id.btnChooseImage)
+        btnTakePhoto = findViewById(R.id.btnTakePhoto)
+        btnRotateImage = findViewById(R.id.btnRotateImage)
+        btnFitImage = findViewById(R.id.btnFitImage)
+        btnDitherPreview = findViewById(R.id.btnDitherPreview)
 
         ivImagePreview.scaleType = ImageView.ScaleType.FIT_CENTER
 
@@ -1460,6 +1521,19 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+        btnRotatePdf?.setOnClickListener {
+            currentPdfRotation = (currentPdfRotation + 90) % 360
+            renderCurrentPdfPage()
+        }
+
+        btnFitPdf?.setOnClickListener {
+            sliderPdfZoom.value = 100f
+            tvPdfZoom.text = "100%"
+            currentPdfPageBitmap?.let { bmp ->
+                applyZoomToImageView(ivPdfPreview, bmp, 1.0f)
+            }
+        }
+
         sliderPdfZoom.addOnChangeListener { _, value, _ ->
             val scale = (value.coerceAtLeast(30f)) / 100f
             tvPdfZoom.text = "${(scale * 100).toInt()}%"
@@ -1468,6 +1542,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupImageModeViews() {
+        btnTakePhoto?.setOnClickListener {
+            launchDocumentCamera()
+        }
+
         btnChooseImage.setOnClickListener {
             imagePickerLauncher.launch("image/*")
         }
@@ -1475,10 +1553,68 @@ class MainActivity : AppCompatActivity() {
             imagePickerLauncher.launch("image/*")
         }
 
+        btnRotateImage?.setOnClickListener {
+            rotateImage90()
+        }
+
+        btnFitImage?.setOnClickListener {
+            sliderImageZoom.value = 100f
+            tvImageZoom.text = "100%"
+            val bmp = if (isDitherPreviewActive) ditheredPreviewBitmap else originalImageBitmap
+            bmp?.let {
+                applyZoomToImageView(ivImagePreview, it, 1.0f)
+            }
+        }
+
+        btnDitherPreview?.setOnClickListener {
+            toggleDitherPreview()
+        }
+
         sliderImageZoom.addOnChangeListener { _, value, _ ->
             val scale = (value.coerceAtLeast(30f)) / 100f
             tvImageZoom.text = "${(scale * 100).toInt()}%"
-            applyZoomToImageView(ivImagePreview, originalImageBitmap, scale)
+            val bmp = if (isDitherPreviewActive) ditheredPreviewBitmap else originalImageBitmap
+            applyZoomToImageView(ivImagePreview, bmp, scale)
+        }
+    }
+
+    private var ditheredPreviewBitmap: Bitmap? = null
+
+    private fun rotateImage90() {
+        val bitmap = originalImageBitmap ?: return
+        val matrix = Matrix().apply { postRotate(90f) }
+        val rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
+        originalImageBitmap = rotated
+        isDitherPreviewActive = false
+        ditheredPreviewBitmap = null
+        btnDitherPreview?.text = getString(R.string.action_dither_preview)
+        applyZoomToImageView(ivImagePreview, rotated, sliderImageZoom.value / 100f)
+    }
+
+    private fun toggleDitherPreview() {
+        val bitmap = originalImageBitmap ?: return
+        val prefs = SecurePreferencesHelper.getPreferences(this)
+        val printWidth = prefs.getInt(SettingsActivity.KEY_PRINT_WIDTH, 384)
+
+        if (!isDitherPreviewActive) {
+            lifecycleScope.launch(Dispatchers.IO) {
+                val dithered = DitheringEngine.ditherToBitmap(
+                    sourceBitmap = bitmap,
+                    targetWidth = printWidth,
+                    mode = currentDitherMode
+                )
+                withContext(Dispatchers.Main) {
+                    ditheredPreviewBitmap = dithered
+                    isDitherPreviewActive = true
+                    btnDitherPreview?.text = getString(R.string.action_original_preview)
+                    applyZoomToImageView(ivImagePreview, dithered, sliderImageZoom.value / 100f)
+                }
+            }
+        } else {
+            isDitherPreviewActive = false
+            ditheredPreviewBitmap = null
+            btnDitherPreview?.text = getString(R.string.action_dither_preview)
+            applyZoomToImageView(ivImagePreview, bitmap, sliderImageZoom.value / 100f)
         }
     }
 
@@ -1490,18 +1626,10 @@ class MainActivity : AppCompatActivity() {
             switchToMode(CurrentMode.FORM)
         }
         findViewById<LinearLayout>(R.id.tabImage).setOnClickListener {
-            if (selectedImageUri == null) {
-                imagePickerLauncher.launch("image/*")
-            } else {
-                switchToMode(CurrentMode.IMAGE)
-            }
+            switchToMode(CurrentMode.IMAGE)
         }
         findViewById<LinearLayout>(R.id.tabPdf).setOnClickListener {
-            if (selectedPdfUri == null) {
-                pdfPickerLauncher.launch("application/pdf")
-            } else {
-                switchToMode(CurrentMode.PDF)
-            }
+            switchToMode(CurrentMode.PDF)
         }
         switchToMode(CurrentMode.FORM)
     }
@@ -1621,6 +1749,7 @@ class MainActivity : AppCompatActivity() {
     private fun loadPdfDocument(uri: Uri) {
         closePdfRenderer()
         selectedPdfUri = uri
+        currentPdfRotation = 0
         val fileName = getFileNameFromUri(uri) ?: "Dokumen.pdf"
         tvPdfFileName.text = fileName
 
@@ -1655,15 +1784,24 @@ class MainActivity : AppCompatActivity() {
 
         try {
             val page = renderer.openPage(currentPdfPageIndex)
-            tvPdfPageIndicator.text = "${currentPdfPageIndex + 1} / ${renderer.pageCount}"
+            tvPdfPageIndicator.text = getString(R.string.pdf_page_counter_format, currentPdfPageIndex + 1, renderer.pageCount)
 
             val renderWidth = page.width * 2
             val renderHeight = page.height * 2
-            val bitmap = Bitmap.createBitmap(renderWidth, renderHeight, Bitmap.Config.ARGB_8888)
-            val canvas = Canvas(bitmap)
+            val rawBitmap = Bitmap.createBitmap(renderWidth, renderHeight, Bitmap.Config.ARGB_8888)
+            val canvas = Canvas(rawBitmap)
             canvas.drawColor(Color.WHITE)
-            page.render(bitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
+            page.render(rawBitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_DISPLAY)
             page.close()
+
+            val bitmap = if (currentPdfRotation != 0) {
+                val matrix = Matrix().apply { postRotate(currentPdfRotation.toFloat()) }
+                val rotated = Bitmap.createBitmap(rawBitmap, 0, 0, rawBitmap.width, rawBitmap.height, matrix, true)
+                rawBitmap.recycle()
+                rotated
+            } else {
+                rawBitmap
+            }
 
             currentPdfPageBitmap = bitmap
 
@@ -1716,6 +1854,9 @@ class MainActivity : AppCompatActivity() {
             withContext(Dispatchers.Main) {
                 if (bitmap != null) {
                     originalImageBitmap = bitmap
+                    isDitherPreviewActive = false
+                    ditheredPreviewBitmap = null
+                    btnDitherPreview?.text = getString(R.string.action_dither_preview)
                     layoutImagePlaceholder.visibility = View.GONE
                     layoutImageContent.visibility = View.VISIBLE
                     sliderImageZoom.value = 100f
@@ -1769,42 +1910,129 @@ class MainActivity : AppCompatActivity() {
                         .start()
                 }
                 .start()
-            val prefs = SecurePreferencesHelper.getPreferences(this)
-            val connType = prefs.getString(SettingsActivity.KEY_CONNECTION_TYPE, "Bluetooth")
 
-            if (connType == "Wi-Fi") {
-                if (currentMode == CurrentMode.PDF) {
+            // Pre-validation
+            when (currentMode) {
+                CurrentMode.FREE_TEXT -> {
+                    if (etFreeText.text.toString().trim().isEmpty()) {
+                        showImportantError(getString(R.string.kt_important_error_text_first))
+                        return@setOnClickListener
+                    }
+                }
+                CurrentMode.IMAGE -> {
+                    if (originalImageBitmap == null) {
+                        showImportantError(getString(R.string.kt_important_error_image_first))
+                        return@setOnClickListener
+                    }
+                }
+                CurrentMode.PDF -> {
                     val renderer = pdfRenderer
                     if (renderer == null || renderer.pageCount == 0) {
                         showImportantError(getString(R.string.kt_important_error_pdf_first))
                         return@setOnClickListener
                     }
-                    PageRangeDialog(this, renderer.pageCount) { selectedPages ->
-                        executeWifiPrint(selectedPages)
-                    }.show()
-                } else {
-                    executeWifiPrint(null)
                 }
-            } else {
-                if (checkAndRequestBluetoothPermissions()) {
-                    if (currentMode == CurrentMode.PDF) {
-                        val renderer = pdfRenderer
-                        if (renderer == null || renderer.pageCount == 0) {
-                            showImportantError(getString(R.string.kt_important_error_pdf_first))
-                            return@setOnClickListener
-                        }
-                        PageRangeDialog(this, renderer.pageCount) { selectedPages ->
-                            handlePrintAction(selectedPages)
-                        }.show()
-                    } else {
-                        handlePrintAction(null)
-                    }
+                CurrentMode.PLACEHOLDER -> {
+                    showImportantError(getString(R.string.fitur_sedang_dalam_pengembangan))
+                    return@setOnClickListener
+                }
+                CurrentMode.FORM -> {
+                    // Siap dicetak
                 }
             }
+
+            val prefs = SecurePreferencesHelper.getPreferences(this)
+            val connType = prefs.getString(SettingsActivity.KEY_CONNECTION_TYPE, "Bluetooth") ?: "Bluetooth"
+            val printWidth = prefs.getInt(SettingsActivity.KEY_PRINT_WIDTH, 384)
+            val autoCut = prefs.getBoolean(SettingsActivity.KEY_AUTO_CUT, true)
+
+            val docTitle = when (currentMode) {
+                CurrentMode.FORM -> getString(R.string.kt_job_shipping_label)
+                CurrentMode.FREE_TEXT -> getString(R.string.kt_job_free_text)
+                CurrentMode.IMAGE -> getString(R.string.kt_job_image)
+                CurrentMode.PDF -> {
+                    selectedPdfUri?.let { getFileNameFromUri(it) } ?: getString(R.string.kt_job_pdf)
+                }
+                else -> getString(R.string.kt_job_document)
+            }
+
+            val printerName = if (connType == "Wi-Fi") {
+                val ip = prefs.getString(SettingsActivity.KEY_WIFI_IP, "")?.trim() ?: ""
+                val port = prefs.getString(SettingsActivity.KEY_WIFI_PORT, "9100")?.trim() ?: "9100"
+                if (ip.isNotBlank()) "$ip:$port" else ""
+            } else {
+                val defaultAddress = prefs.getString(SettingsActivity.KEY_DEFAULT_PRINTER_ADDRESS, "") ?: ""
+                val pairedDevices = if (bluetoothService.isBluetoothSupported && bluetoothService.isBluetoothEnabled) {
+                    try { bluetoothService.getPairedDevices() } catch (_: Exception) { emptyList() }
+                } else emptyList()
+                val targetDevice = pairedDevices.firstOrNull { it.address == defaultAddress } ?: pairedDevices.firstOrNull()
+                if (targetDevice != null) {
+                    bluetoothService.getDeviceName(targetDevice) ?: targetDevice.address
+                } else ""
+            }
+
+            PrintOptionsBottomSheetDialog(
+                context = this,
+                documentTitle = docTitle,
+                printerName = printerName,
+                connectionType = connType,
+                initialPrintWidth = printWidth,
+                initialAutoCut = autoCut,
+                onChangePrinterClicked = {
+                    if (connType == "Wi-Fi") {
+                        startActivity(Intent(this, SettingsActivity::class.java))
+                    } else {
+                        if (checkAndRequestBluetoothPermissions()) {
+                            val paired = bluetoothService.getPairedDevices()
+                            if (paired.isNotEmpty()) {
+                                showPrinterSelectionDialog(paired, null)
+                            } else {
+                                startActivity(Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS))
+                            }
+                        }
+                    }
+                },
+                onConfirmPrint = { copies, selectedWidth, confirmAutoCut ->
+                    prefs.edit()
+                        .putInt(SettingsActivity.KEY_PRINT_WIDTH, selectedWidth)
+                        .putBoolean(SettingsActivity.KEY_AUTO_CUT, confirmAutoCut)
+                        .apply()
+
+                    if (connType == "Wi-Fi") {
+                        if (currentMode == CurrentMode.PDF) {
+                            val renderer = pdfRenderer
+                            if (renderer != null && renderer.pageCount > 1) {
+                                PageRangeDialog(this, renderer.pageCount) { selectedPages ->
+                                    executeWifiPrint(selectedPages, copies)
+                                }.show()
+                            } else {
+                                executeWifiPrint(null, copies)
+                            }
+                        } else {
+                            executeWifiPrint(null, copies)
+                        }
+                    } else {
+                        if (checkAndRequestBluetoothPermissions()) {
+                            if (currentMode == CurrentMode.PDF) {
+                                val renderer = pdfRenderer
+                                if (renderer != null && renderer.pageCount > 1) {
+                                    PageRangeDialog(this, renderer.pageCount) { selectedPages ->
+                                        handlePrintAction(selectedPages, copies)
+                                    }.show()
+                                } else {
+                                    handlePrintAction(null, copies)
+                                }
+                            } else {
+                                handlePrintAction(null, copies)
+                            }
+                        }
+                    }
+                }
+            ).show()
         }
     }
 
-    private fun executeWifiPrint(selectedPdfPages: List<Int>? = null) {
+    private fun executeWifiPrint(selectedPdfPages: List<Int>? = null, copies: Int = 1) {
         val prefs = SecurePreferencesHelper.getPreferences(this)
         val ip = prefs.getString(SettingsActivity.KEY_WIFI_IP, "")?.trim() ?: ""
         val port = prefs.getString(SettingsActivity.KEY_WIFI_PORT, "9100")?.trim()?.toIntOrNull() ?: 9100
@@ -1858,7 +2086,19 @@ class MainActivity : AppCompatActivity() {
                                 val canvas = Canvas(renderedBitmap)
                                 canvas.drawColor(Color.WHITE)
                                 openedPage.render(renderedBitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_PRINT)
-                                val pageRaster = bluetoothService.createImageBytes(renderedBitmap, printWidth, autoCut, currentDitherMode)
+
+                                val finalBitmap = if (currentPdfRotation != 0) {
+                                    val matrix = Matrix().apply { postRotate(currentPdfRotation.toFloat()) }
+                                    val rotated = Bitmap.createBitmap(renderedBitmap, 0, 0, renderedBitmap.width, renderedBitmap.height, matrix, true)
+                                    rotated
+                                } else {
+                                    renderedBitmap
+                                }
+
+                                val pageRaster = bluetoothService.createImageBytes(finalBitmap, printWidth, autoCut, currentDitherMode)
+                                if (finalBitmap !== renderedBitmap) {
+                                    finalBitmap.recycle()
+                                }
                                 list.add(BluetoothService.PrintPageItem(pageIndex + 1, pageRaster))
                             } catch (cancelled: CancellationException) {
                                 throw cancelled
@@ -1884,44 +2124,56 @@ class MainActivity : AppCompatActivity() {
                         return@launch
                     }
 
-                    val result = bluetoothService.printMultiplePagesWifi(
-                        ipAddress = ip,
-                        port = port,
-                        pages = pagesItems,
-                        delayBetweenPagesMs = 500
-                    ) { currentStep, totalSteps, actualPdfPage ->
-                        withContext(Dispatchers.Main) {
-                            val percent = (currentStep * 100) / totalSteps
-                            statusDialog.updateProgress(
-                                getString(R.string.kt_progress_pdf_page, currentStep, totalSteps, actualPdfPage),
-                                percent
-                            )
+                    var allSuccess = true
+                    for (copyIndex in 1..copies) {
+                        val result = bluetoothService.printMultiplePagesWifi(
+                            ipAddress = ip,
+                            port = port,
+                            pages = pagesItems,
+                            delayBetweenPagesMs = 500
+                        ) { currentStep, totalSteps, actualPdfPage ->
+                            withContext(Dispatchers.Main) {
+                                val copyPrefix = if (copies > 1) "[$copyIndex/$copies] " else ""
+                                val percent = (currentStep * 100) / totalSteps
+                                statusDialog.updateProgress(
+                                    copyPrefix + getString(R.string.kt_progress_pdf_page, currentStep, totalSteps, actualPdfPage),
+                                    percent
+                                )
+                            }
+                        }
+                        if (!result.isSuccess) {
+                            allSuccess = false
+                            break
+                        }
+                        if (copyIndex < copies) {
+                            delay(500)
                         }
                     }
 
                     try {
-                        if (result.isSuccess) {
+                        val jobTitle = getString(R.string.kt_job_pdf)
+                        val totalPagesPrinted = totalToPrint * copies
+                        if (allSuccess) {
                             printHistoryManager.addEntry(
-                                title = getString(R.string.kt_job_pdf),
+                                title = jobTitle,
                                 printType = "PDF",
                                 targetName = ip,
                                 targetInfo = port.toString(),
                                 status = PrintHistoryItem.Status.SUCCESS,
-                                copies = totalToPrint
+                                copies = totalPagesPrinted
                             )
                             statusDialog.showSuccess(
                                 title = getString(R.string.kt_sbs_default_success_title),
-                                message = getString(R.string.kt_pdf_print_success, totalToPrint)
+                                message = getString(R.string.kt_pdf_print_success, totalPagesPrinted)
                             )
                         } else {
-                            val jobTitle = getString(R.string.kt_job_pdf)
                             printHistoryManager.addEntry(
                                 title = jobTitle,
                                 printType = "PDF",
                                 targetName = ip,
                                 targetInfo = port.toString(),
                                 status = PrintHistoryItem.Status.QUEUED_OFFLINE,
-                                copies = 1
+                                copies = totalPagesPrinted
                             )
                             val combinedBytes = ByteArrayOutputStream().apply {
                                 for (item in pagesItems) {
@@ -1933,7 +2185,7 @@ class MainActivity : AppCompatActivity() {
                                     title = jobTitle,
                                     printType = "PDF",
                                     data = combinedBytes,
-                                    copies = 1,
+                                    copies = copies,
                                     targetWifiIp = ip,
                                     targetWifiPort = port
                                 )
@@ -1999,7 +2251,17 @@ class MainActivity : AppCompatActivity() {
                 )
 
                 try {
-                    val result = bluetoothService.printDataWifi(ip, port, printBytes)
+                    val result = withContext(Dispatchers.IO) {
+                        var lastResult = bluetoothService.printDataWifi(ip, port, printBytes)
+                        if (lastResult.isSuccess && copies > 1) {
+                            for (c in 2..copies) {
+                                delay(500)
+                                lastResult = bluetoothService.printDataWifi(ip, port, printBytes)
+                                if (!lastResult.isSuccess) break
+                            }
+                        }
+                        lastResult
+                    }
                     if (result.isSuccess) {
                         val jobTitle = when (currentMode) {
                             CurrentMode.FORM -> getString(R.string.kt_job_shipping_label)
@@ -2013,7 +2275,7 @@ class MainActivity : AppCompatActivity() {
                             targetName = ip,
                             targetInfo = port.toString(),
                             status = PrintHistoryItem.Status.SUCCESS,
-                            copies = 1
+                            copies = copies
                         )
                         statusDialog.showSuccess(
                             title = getString(R.string.kt_success_printed_title),
@@ -2033,13 +2295,13 @@ class MainActivity : AppCompatActivity() {
                             targetName = ip,
                             targetInfo = port.toString(),
                             status = PrintHistoryItem.Status.QUEUED_OFFLINE,
-                            copies = 1
+                            copies = copies
                         )
                         printSpoolerManager.enqueueData(
                             title = jobTitle,
                             printType = currentMode.name,
                             data = printBytes,
-                            copies = 1,
+                            copies = copies,
                             targetWifiIp = ip,
                             targetWifiPort = port
                         )
@@ -2066,7 +2328,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun handlePrintAction(selectedPdfPages: List<Int>? = null) {
+    private fun handlePrintAction(selectedPdfPages: List<Int>? = null, copies: Int = 1) {
         if (!bluetoothService.isBluetoothSupported) {
             showImportantError(getString(R.string.kt_bt_not_supported_msg))
             return
@@ -2105,12 +2367,12 @@ class MainActivity : AppCompatActivity() {
         if ((directPrint || pairedDevices.size == 1) && defaultAddress.isNotBlank()) {
             val targetDevice = pairedDevices.find { it.address == defaultAddress }
             if (targetDevice != null) {
-                executePrint(targetDevice, selectedPdfPages)
+                executePrint(targetDevice, selectedPdfPages, copies)
                 return
             }
         }
 
-        showPrinterSelectionDialog(pairedDevices, selectedPdfPages)
+        showPrinterSelectionDialog(pairedDevices, selectedPdfPages, copies)
     }
 
     private fun checkAndRequestBluetoothPermissions(): Boolean {
@@ -2144,7 +2406,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     @SuppressLint("MissingPermission")
-    private fun showPrinterSelectionDialog(pairedDevices: List<BluetoothDevice>, selectedPdfPages: List<Int>? = null) {
+    private fun showPrinterSelectionDialog(
+        pairedDevices: List<BluetoothDevice>,
+        selectedPdfPages: List<Int>? = null,
+        copies: Int = 1
+    ) {
         val prefs = SecurePreferencesHelper.getPreferences(this)
         val defaultAddress = prefs.getString(SettingsActivity.KEY_DEFAULT_PRINTER_ADDRESS, "") ?: ""
         PrinterPickerBottomSheetDialog(
@@ -2166,12 +2432,16 @@ class MainActivity : AppCompatActivity() {
                         .apply()
                     updateToolbarStatusBadge()
                 }
-                executePrint(selectedDevice, selectedPdfPages)
+                executePrint(selectedDevice, selectedPdfPages, copies)
             }
         }.show()
     }
 
-    private fun executePrint(device: BluetoothDevice, selectedPdfPages: List<Int>? = null) {
+    private fun executePrint(
+        device: BluetoothDevice,
+        selectedPdfPages: List<Int>? = null,
+        copies: Int = 1
+    ) {
         val prefs = SecurePreferencesHelper.getPreferences(this)
         val printWidth = prefs.getInt(SettingsActivity.KEY_PRINT_WIDTH, 384)
         val autoCut = prefs.getBoolean(SettingsActivity.KEY_AUTO_CUT, true)
@@ -2211,7 +2481,19 @@ class MainActivity : AppCompatActivity() {
                                 val canvas = Canvas(renderedBitmap)
                                 canvas.drawColor(Color.WHITE)
                                 openedPage.render(renderedBitmap, null, null, PdfRenderer.Page.RENDER_MODE_FOR_PRINT)
-                                val pageRaster = bluetoothService.createImageBytes(renderedBitmap, printWidth, autoCut, currentDitherMode)
+
+                                val finalBitmap = if (currentPdfRotation != 0) {
+                                    val matrix = Matrix().apply { postRotate(currentPdfRotation.toFloat()) }
+                                    val rotated = Bitmap.createBitmap(renderedBitmap, 0, 0, renderedBitmap.width, renderedBitmap.height, matrix, true)
+                                    rotated
+                                } else {
+                                    renderedBitmap
+                                }
+
+                                val pageRaster = bluetoothService.createImageBytes(finalBitmap, printWidth, autoCut, currentDitherMode)
+                                if (finalBitmap !== renderedBitmap) {
+                                    finalBitmap.recycle()
+                                }
                                 list.add(BluetoothService.PrintPageItem(pageIndex + 1, pageRaster))
                             } catch (cancelled: CancellationException) {
                                 throw cancelled
@@ -2237,35 +2519,47 @@ class MainActivity : AppCompatActivity() {
                         return@launch
                     }
 
-                    val result = bluetoothService.printMultiplePages(
-                        device = device,
-                        pages = pagesItems,
-                        delayBetweenPagesMs = 500
-                    ) { currentStep, totalSteps, actualPdfPage ->
-                        withContext(Dispatchers.Main) {
-                            val percent = (currentStep * 100) / totalSteps
-                            statusDialog.updateProgress(
-                                getString(R.string.kt_progress_pdf_page, currentStep, totalSteps, actualPdfPage),
-                                percent
-                            )
+                    var allSuccess = true
+                    for (copyIndex in 1..copies) {
+                        val result = bluetoothService.printMultiplePages(
+                            device = device,
+                            pages = pagesItems,
+                            delayBetweenPagesMs = 500
+                        ) { currentStep, totalSteps, actualPdfPage ->
+                            withContext(Dispatchers.Main) {
+                                val copyPrefix = if (copies > 1) "[$copyIndex/$copies] " else ""
+                                val percent = (currentStep * 100) / totalSteps
+                                statusDialog.updateProgress(
+                                    copyPrefix + getString(R.string.kt_progress_pdf_page, currentStep, totalSteps, actualPdfPage),
+                                    percent
+                                )
+                            }
+                        }
+                        if (!result.isSuccess) {
+                            allSuccess = false
+                            break
+                        }
+                        if (copyIndex < copies) {
+                            delay(500)
                         }
                     }
 
                     try {
                         val deviceName = bluetoothService.getDeviceName(device) ?: getString(R.string.kt_thermal_printer)
                         val jobTitle = getString(R.string.kt_job_pdf)
-                        if (result.isSuccess) {
+                        val totalPagesPrinted = totalToPrint * copies
+                        if (allSuccess) {
                             printHistoryManager.addEntry(
                                 title = jobTitle,
                                 printType = "PDF",
                                 targetName = deviceName,
                                 targetInfo = device.address,
                                 status = PrintHistoryItem.Status.SUCCESS,
-                                copies = totalToPrint
+                                copies = totalPagesPrinted
                             )
                             statusDialog.showSuccess(
                                 title = getString(R.string.kt_sbs_default_success_title),
-                                message = getString(R.string.kt_pdf_print_success, totalToPrint)
+                                message = getString(R.string.kt_pdf_print_success, totalPagesPrinted)
                             )
                         } else {
                             printHistoryManager.addEntry(
@@ -2274,7 +2568,7 @@ class MainActivity : AppCompatActivity() {
                                 targetName = deviceName,
                                 targetInfo = device.address,
                                 status = PrintHistoryItem.Status.QUEUED_OFFLINE,
-                                copies = totalToPrint
+                                copies = totalPagesPrinted
                             )
                             val combinedBytes = ByteArrayOutputStream().apply {
                                 for (item in pagesItems) {
@@ -2286,7 +2580,7 @@ class MainActivity : AppCompatActivity() {
                                     title = jobTitle,
                                     printType = "PDF",
                                     data = combinedBytes,
-                                    copies = 1,
+                                    copies = copies,
                                     targetDeviceAddress = device.address
                                 )
                             } finally {
@@ -2355,7 +2649,15 @@ class MainActivity : AppCompatActivity() {
 
                 try {
                     val result = withContext(Dispatchers.IO) {
-                        bluetoothService.printData(device, printBytes)
+                        var lastResult = bluetoothService.printData(device, printBytes)
+                        if (lastResult.isSuccess && copies > 1) {
+                            for (c in 2..copies) {
+                                delay(500)
+                                lastResult = bluetoothService.printData(device, printBytes)
+                                if (!lastResult.isSuccess) break
+                            }
+                        }
+                        lastResult
                     }
                     val deviceName = bluetoothService.getDeviceName(device) ?: getString(R.string.kt_thermal_printer)
                     val jobTitle = when (currentMode) {
@@ -2372,7 +2674,7 @@ class MainActivity : AppCompatActivity() {
                             targetName = deviceName,
                             targetInfo = device.address,
                             status = PrintHistoryItem.Status.SUCCESS,
-                            copies = 1
+                            copies = copies
                         )
                         statusDialog.showSuccess(
                             title = getString(R.string.kt_success_printed_title),
@@ -2385,13 +2687,13 @@ class MainActivity : AppCompatActivity() {
                             targetName = deviceName,
                             targetInfo = device.address,
                             status = PrintHistoryItem.Status.QUEUED_OFFLINE,
-                            copies = 1
+                            copies = copies
                         )
                         printSpoolerManager.enqueueData(
                             title = jobTitle,
                             printType = currentMode.name,
                             data = printBytes,
-                            copies = 1,
+                            copies = copies,
                             targetDeviceAddress = device.address
                         )
                         statusDialog.showError(

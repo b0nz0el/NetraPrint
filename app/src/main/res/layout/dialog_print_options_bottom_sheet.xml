@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet_surface"
+    android:orientation="vertical"
+    android:padding="20dp">
+
+    <!-- Bottom Sheet Drag Handle -->
+    <View
+        android:layout_width="40dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginBottom="16dp"
+        android:background="#CBD5E1" />
+
+    <!-- Header Section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="@drawable/bg_badge_rounded"
+            android:backgroundTint="#E0F2FE"
+            android:padding="6dp"
+            android:src="@drawable/ic_print"
+            app:tint="#0F766E" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="12dp"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPrintConfirmTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/print_dialog_title"
+                android:textColor="#0F766E"
+                android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvPrintConfirmDocType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jenis Dokumen: Label Pengiriman"
+                android:textColor="#64748B"
+                android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Target Printer Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardTargetPrinter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:cardBackgroundColor="#F8FAFC"
+        app:cardCornerRadius="14dp"
+        app:cardElevation="0dp"
+        app:strokeColor="#E2E8F0"
+        app:strokeWidth="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="14dp"
+            android:paddingVertical="12dp">
+
+            <ImageView
+                android:id="@+id/ivPrinterConnIcon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_nav_setting"
+                app:tint="#0F766E" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvTargetPrinterName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="Printer Thermal Default"
+                    android:textColor="#1E293B"
+                    android:textAppearance="@style/TextAppearance.NetraPrint.TitleMedium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvTargetPrinterStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="● Siap Mencetak"
+                    android:textColor="#10B981"
+                    android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnChangeTargetPrinter"
+                style="@style/Widget.Material3.Button.TextButton"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="@string/print_dialog_change_printer"
+                android:textColor="#0F766E"
+                android:textSize="13sp" />
+        </LinearLayout>
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Copies Stepper Card -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/bg_radiogroup_box"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="14dp"
+        android:paddingVertical="10dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/print_dialog_copies_title"
+                android:textColor="#1E293B"
+                android:textAppearance="@style/TextAppearance.NetraPrint.TitleMedium"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/print_dialog_copies_subtitle"
+                android:textColor="#64748B"
+                android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
+        </LinearLayout>
+
+        <!-- Stepper Controls -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_floating_pill_toolbar"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="4dp"
+            android:paddingVertical="2dp">
+
+            <ImageButton
+                android:id="@+id/btnCopiesMinus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Kurangi salinan"
+                android:src="@drawable/ic_minus"
+                app:tint="#0F766E" />
+
+            <TextView
+                android:id="@+id/tvCopiesCount"
+                android:layout_width="36dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="1"
+                android:textColor="#0F766E"
+                android:textAppearance="@style/TextAppearance.NetraPrint.TitleMedium"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/btnCopiesPlus"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:contentDescription="Tambah salinan"
+                android:src="@drawable/ic_plus"
+                app:tint="#0F766E" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Quick Settings: Paper Size & Auto Cut -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <!-- Paper Size RadioGroup -->
+        <RadioGroup
+            android:id="@+id/rgPaperWidth"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/rbPaper58mm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/print_dialog_paper_58mm"
+                android:textColor="#334155"
+                android:textSize="13sp" />
+
+            <RadioButton
+                android:id="@+id/rbPaper80mm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@string/print_dialog_paper_80mm"
+                android:textColor="#334155"
+                android:textSize="13sp" />
+        </RadioGroup>
+
+        <!-- Auto-Cut Toggle -->
+        <com.google.android.material.switchmaterial.SwitchMaterial
+            android:id="@+id/switchConfirmAutoCut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Cut"
+            android:textColor="#475569"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- Confirm Hero Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPrintConfirmAction"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:layout_marginTop="20dp"
+        android:backgroundTint="#0F766E"
+        android:stateListAnimator="@animator/scale_bounce"
+        android:text="@string/print_dialog_btn_print_now"
+        android:textColor="#FFFFFF"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:cornerRadius="14dp"
+        app:icon="@drawable/ic_print"
+        app:iconGravity="textStart"
+        app:iconTint="#FFFFFF" />
+
+    <!-- Cancel Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPrintCancelAction"
+        style="@style/Widget.Material3.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_marginTop="4dp"
+        android:text="@string/print_dialog_btn_cancel"
+        android:textColor="#64748B"
+        android:textSize="14sp" />
+
+</LinearLayout>

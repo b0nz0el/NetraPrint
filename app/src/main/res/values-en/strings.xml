@@ -634,4 +634,33 @@ Do you allow this printing?</string>
 
     <!-- Share to Print -->
     <string name="shared_content_ready">File received from another app. Ready to print!</string>
+
+    <!-- Modernized Image & PDF Hub, Toolbar, and Print Confirmation Sheet -->
+    <string name="upload_hub_image_title">Upload Document / Image</string>
+    <string name="upload_hub_image_desc">Supports JPG, PNG, WEBP. Print shipping labels, barcodes, product photos, or receipts.</string>
+    <string name="btn_take_photo">Take Photo / Scan</string>
+    <string name="btn_choose_gallery">Choose from Gallery</string>
+    <string name="upload_hub_image_tips">💡 Tips: Ensure bright lighting and clear focus for optimal thermal print quality.</string>
+    <string name="action_rotate_90">Rotate 90°</string>
+    <string name="action_fit_width">Fit to Paper</string>
+    <string name="action_dither_preview">Thermal Preview</string>
+    <string name="action_original_preview">Original Image</string>
+    <string name="upload_hub_pdf_title">Upload PDF Document</string>
+    <string name="upload_hub_pdf_desc">Ideal for Marketplace Labels (Shopee, Tokopedia, TikTok), Invoices, and A4/A6 documents.</string>
+    <string name="upload_hub_pdf_tips">📄 Multi-page support. You can choose specific pages during print confirmation.</string>
+    <string name="pdf_page_counter_format">Page %1$d of %2$d</string>
+    <string name="print_dialog_title">Print Confirmation</string>
+    <string name="print_dialog_target_printer">Target Printer</string>
+    <string name="print_dialog_ready_status">Ready to Print</string>
+    <string name="print_dialog_change_printer">Change</string>
+    <string name="print_dialog_copies_title">Number of Copies</string>
+    <string name="print_dialog_copies_subtitle">Physical print copies</string>
+    <string name="print_dialog_paper_size">Paper Size</string>
+    <string name="print_dialog_paper_58mm">58 mm (Receipt)</string>
+    <string name="print_dialog_paper_80mm">80 mm (Label/Wide)</string>
+    <string name="print_dialog_auto_cut">Auto-cut Paper</string>
+    <string name="print_dialog_btn_print_now">Print Now</string>
+    <string name="print_dialog_btn_print_copies">Print (%1$d Copies)</string>
+    <string name="print_dialog_btn_cancel">Cancel</string>
+    <string name="print_dialog_doc_type_label">Document Type: %1$s</string>
 </resources>
