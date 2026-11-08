@@ -381,7 +381,7 @@ class WebViewActivity : AppCompatActivity() {
 
     override fun onDestroy() {
         webView.stopLoading()
-        webView.removeJavascriptInterface("PrinterJTM")
+        webView.removeJavascriptInterface("NetraPrint")
         webView.clearHistory()
         webView.clearFormData()
         webView.clearCache(true)

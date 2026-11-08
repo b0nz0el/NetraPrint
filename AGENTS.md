@@ -1,12 +1,12 @@
-# PrinterJTM Pro — Panduan untuk AI Agent
+# NetraPrint Pro — Panduan untuk AI Agent
 
 Panduan ini adalah konteks proyek yang persisten untuk AI agent di workspace ini. Baca panduan ini, lalu buka hanya file yang relevan dengan tugas. Jangan memindai seluruh repository atau mengulang pembacaan tanpa alasan.
 
 ## Identitas dan tujuan proyek
 
-- **Nama:** PrinterJTM Pro / PrinterJTM.
+- **Nama:** NetraPrint Pro / NetraPrint.
 - **Jenis:** aplikasi Android native untuk membuat dan mencetak struk serta label pengiriman menggunakan printer thermal ESC/POS.
-- **Package / namespace:** `com.david.printerjtm`.
+- **Package / namespace:** `com.netraprint.app`.
 - **Fitur utama:** cetak via Bluetooth dan Wi-Fi, antrean offline dengan retry, teks/form/gambar/PDF, pratinjau thermal, dithering gambar, QR/barcode, pemindaian/OCR, Android System Print Service, berbagi file ke aplikasi, bahasa Indonesia dan Inggris, serta layout adaptif ponsel/tablet.
 - **Bahasa komunikasi:** balas dalam bahasa yang dipakai pengguna; gunakan bahasa Indonesia bila tidak ada petunjuk lain. Pertahankan bahasa UI dan pola lokalisasi aplikasi.
 
@@ -29,16 +29,16 @@ Mulai dari file yang sesuai dengan lingkup tugas; daftar ini bukan instruksi unt
 |---|---|
 | Konfigurasi modul, SDK, signing, dependencies | `app/build.gradle.kts`, `gradle/libs.versions.toml`, `gradle/wrapper/gradle-wrapper.properties` |
 | Manifest, permission, komponen Android | `app/src/main/AndroidManifest.xml` |
-| Aktivitas utama dan alur layar | `app/src/main/java/com/david/printerjtm/MainActivity.kt` |
-| State UI dan aksi layar utama | `app/src/main/java/com/david/printerjtm/viewmodel/MainViewModel.kt` |
-| Komposisi dependency | `app/src/main/java/com/david/printerjtm/AppContainer.kt`, `PrinterApplication.kt` |
-| Pencetakan dan antrean | `repository/PrintRepository.kt`, `BluetoothService.kt`, `PrintSpoolerManager.kt`, `SpoolerFileStore.kt`, `PrinterJtmPrintService.kt` |
-| ESC/POS, gambar, dan input | `DitheringEngine.kt`, `EscPosSanitizer.kt`, `PageRangeHelper.kt`, `ApiEndpointValidator.kt` |
+| Aktivitas utama dan alur layar | `app/src/main/java/com/netraprint/app/MainActivity.kt` |
+| State UI dan aksi layar utama | `app/src/main/java/com/netraprint/app/viewmodel/MainViewModel.kt` |
+| Komposisi dependency | `app/src/main/java/com/netraprint/app/AppContainer.kt`, `PrinterApplication.kt` |
+| Pencetakan dan antrean | `repository/PrintRepository.kt`, `BluetoothService.kt`, `PrintSpoolerManager.kt`, `SpoolerFileStore.kt`, `NetraPrintService.kt` |
+| ESC/POS, gambar, dan input | `DitheringEngine.kt`, `EscPosSanitizer.kt`, `PageRangeHelper.kt` |
 | Preferensi dan pemulihan data aman | `SecurePreferencesHelper.kt`, `EncryptedStorageRecovery.kt` |
-| Layar lain | Activity/dialog terkait di `app/src/main/java/com/david/printerjtm/` |
+| Layar lain | Activity/dialog terkait di `app/src/main/java/com/netraprint/app/` |
 | String, tema, dimensi, layout | `app/src/main/res/` |
-| Unit test | `app/src/test/java/com/david/printerjtm/` |
-| Instrumentation test | `app/src/androidTest/java/com/david/printerjtm/` |
+| Unit test | `app/src/test/java/com/netraprint/app/` |
+| Instrumentation test | `app/src/androidTest/java/com/netraprint/app/` |
 | Catatan rilis | `CHANGELOG.md` |
 | QA printer fisik | `docs/verification/physical-device-printer-qa.md` |
 

@@ -4,7 +4,7 @@ Run on each supported Android version and on both 58 mm and 80 mm thermal printe
 
 ## Bluetooth
 
-- [ ] Pair the printer in Android Bluetooth settings; verify it appears in PrinterJTM.
+- [ ] Pair the printer in Android Bluetooth settings; verify it appears in NetraPrint.
 - [ ] Print the connection test receipt and a shipping label; confirm the selected paper width, readable text, and correct cut behavior.
 - [ ] Turn Bluetooth off and on, reconnect, and retry a queued job.
 - [ ] Disconnect or power off the printer during a multi-page print; verify retry is available and record whether completed pages are retransmitted.

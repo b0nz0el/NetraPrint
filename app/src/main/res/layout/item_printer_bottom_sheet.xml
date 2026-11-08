@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/nama_printer"
                 android:textColor="#191C1B"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium"
                 android:textStyle="bold" />
 
             <TextView
@@ -52,7 +52,7 @@
                 android:layout_marginTop="2dp"
                 android:text="00:11:22:33:44:55"
                 android:textColor="#6F7976"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
         </LinearLayout>
 
         <RadioButton

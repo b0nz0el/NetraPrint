@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:text="@string/pilih_halaman_cetak"
         android:textColor="#0F766E"
-        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+        android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge"
         android:textStyle="bold" />
 
     <TextView
@@ -24,7 +24,7 @@
         android:layout_marginBottom="16dp"
         android:text="@string/total_dokumen_10_halaman"
         android:textColor="#546E7A"
-        android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+        android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
 
     <RadioGroup
         android:id="@+id/rgPageSelection"
@@ -99,7 +99,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:textColor="#D32F2F"
-        android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
+        android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall"
         android:visibility="gone" />
 
     <!-- Buttons -->

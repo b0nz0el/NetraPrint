@@ -30,9 +30,9 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/selamat_datang_di_printerjtm"
+                android:text="@string/selamat_datang_di_netraprint"
                 android:textColor="#0F766E"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+                android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge"
                 android:textStyle="bold" />
 
             <TextView
@@ -43,7 +43,7 @@
                 android:gravity="center"
                 android:text="@string/utilitas_cetak_thermal_nirkabel_profesional_untuk_toko_online_dan_logistik"
                 android:textColor="#546E7A"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+                android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
 
             <!-- Highlight Card -->
             <com.google.android.material.card.MaterialCardView
@@ -68,7 +68,7 @@
                         android:layout_marginBottom="8dp"
                         android:text="@string/fitur_unggulan"
                         android:textColor="#0F766E"
-                        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleMedium"
+                        android:textAppearance="@style/TextAppearance.NetraPrint.TitleMedium"
                         android:textStyle="bold" />
 
                     <TextView
@@ -77,7 +77,7 @@
                         android:lineSpacingExtra="4dp"
                         android:text="@string/cetak_label_pengiriman_otomatis_lengkap_23_ekspedisi_pemindai_barcode_camerax_resolusi_tinggi_1080p_cetak_dokumen_pdf_multi_halaman_dengan_filter_rentang_generator_qr_code_bisnis_dan_konversi_web_page"
                         android:textColor="#0F766E"
-                        android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                        android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
 
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/privasi_keamanan_data_terjamin"
                 android:textColor="#263238"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.TitleMedium"
+                android:textAppearance="@style/TextAppearance.NetraPrint.TitleMedium"
                 android:textStyle="bold" />
 
             <TextView
@@ -95,7 +95,7 @@
                 android:layout_marginTop="4dp"
                 android:text="@string/seluruh_data_formulir_dan_pemrosesan_gambar_diproses_secara_lokal_pada_perangkat_anda_tanpa_dikirim_ke_server_luar"
                 android:textColor="#546E7A"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
 
         </LinearLayout>
     </ScrollView>
@@ -125,9 +125,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="4dp"
                 android:layout_weight="1"
-                android:text="@string/saya_setuju_dengan_kebijakan_privasi_dan_syarat_ketentuan_penggunaan_printerjtm"
+                android:text="@string/saya_setuju_dengan_kebijakan_privasi_dan_syarat_ketentuan_penggunaan_netraprint"
                 android:textColor="#37474F"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
         </LinearLayout>
 
         <com.google.android.material.button.MaterialButton
@@ -137,7 +137,7 @@
             android:layout_marginTop="12dp"
             android:backgroundTint="#0F766E"
             android:enabled="false"
-            android:text="@string/mulai_gunakan_printerjtm"
+            android:text="@string/mulai_gunakan_netraprint"
             android:textColor="#FFFFFF"
             android:textSize="15sp"
             android:textStyle="bold" />

@@ -37,7 +37,7 @@
                 android:layout_weight="1"
                 android:text="@string/pratinjau_roll_wysiwyg"
                 android:textColor="#0F766E"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+                android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/chipPaperWidth"
@@ -128,7 +128,7 @@
                             android:lineSpacingExtra="1.5dp"
                             android:text="@string/resi_pengiriman_paket_kurir_j_t_express_no_resi_jnt8829103847_penerima_budi_santoso_alamat_jl_sudirman_no_45_jakarta_selatan_terima_kasih_atas_pesanan_anda"
                             android:textColor="#1A1C1B"
-                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall" />
+                            android:textAppearance="@style/TextAppearance.NetraPrint.LabelSmall" />
                     </LinearLayout>
 
                     <ImageView
@@ -155,7 +155,7 @@
                 android:layout_weight="1"
                 android:text="@string/pratinjau_fisik_nyata_384_dots_203_dpi"
                 android:textColor="#6F7976"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall" />
+                android:textAppearance="@style/TextAppearance.NetraPrint.LabelSmall" />
 
             <TextView
                 android:id="@+id/tvThermalPreviewZoomHint"
@@ -163,7 +163,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/monokrom_1_bit_esc_pos"
                 android:textColor="#0F766E"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall" />
+                android:textAppearance="@style/TextAppearance.NetraPrint.LabelSmall" />
         </LinearLayout>
     </LinearLayout>
 </com.google.android.material.card.MaterialCardView>

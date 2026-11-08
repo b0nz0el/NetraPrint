@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="@string/pilih_printer_bluetooth"
         android:textColor="#0F766E"
-        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+        android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge"
         android:textStyle="bold" />
 
     <TextView
@@ -29,7 +29,7 @@
         android:layout_marginTop="4dp"
         android:text="@string/pilih_printer_thermal_yang_sudah_dipasangkan_paired"
         android:textColor="#6F7976"
-        android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+        android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvPrinters"

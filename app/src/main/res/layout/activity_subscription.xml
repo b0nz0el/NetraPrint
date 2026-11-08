@@ -72,7 +72,7 @@
                             android:paddingVertical="5dp"
                             android:text="@string/status_lisensi_pro_aktif"
                             android:textColor="#FFFFFF"
-                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textAppearance="@style/TextAppearance.NetraPrint.LabelSmall"
                             android:textStyle="bold" />
 
                         <!-- Judul Banner -->
@@ -81,18 +81,18 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="14dp"
                             android:lineSpacingExtra="2dp"
-                            android:text="@string/printerjtm_enterprise_pro_aktif"
+                            android:text="@string/netraprint_enterprise_pro_aktif"
                             android:textColor="#FFFFFF"
-                            android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+                            android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge"
                             android:textStyle="bold" />
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
-                            android:text="@string/perangkat_anda_telah_teraktivasi_lisensi_resmi_printerjtm_pro_seumur_hidup_lifetime_seluruh_modul_enterprise_telah_terbuka_penuh_tanpa_batas_cetak"
+                            android:text="@string/perangkat_anda_telah_teraktivasi_lisensi_resmi_netraprint_pro_seumur_hidup_lifetime_seluruh_modul_enterprise_telah_terbuka_penuh_tanpa_batas_cetak"
                             android:textColor="#99F6E4"
-                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                            android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
 
                         <View
                             android:layout_width="match_parent"
@@ -112,7 +112,7 @@
                                 android:layout_height="wrap_content"
                                 android:text="@string/aktif_seumur_hidup"
                                 android:textColor="#A7FFEB"
-                                android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+                                android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -122,7 +122,7 @@
                                 android:layout_marginBottom="2dp"
                                 android:text="@string/bebas_biaya"
                                 android:textColor="#99F6E4"
-                                android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                                android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -150,7 +150,7 @@
                             android:letterSpacing="0.08"
                             android:text="@string/fitur_keunggulan_eksklusif_pro"
                             android:textColor="#0F766E"
-                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textAppearance="@style/TextAppearance.NetraPrint.LabelSmall"
                             android:textStyle="bold" />
 
                         <!-- Fitur 1 -->
@@ -179,7 +179,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/cetak_pdf_multi_halaman_tanpa_batas"
                                     android:textColor="#263238"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -188,7 +188,7 @@
                                     android:layout_marginTop="2dp"
                                     android:text="@string/cetak_10_lembar_resi_dan_invoice_pdf_sekaligus_secara_otomatis"
                                     android:textColor="#78909C"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -223,7 +223,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/pencetakan_jaringan_wi_fi_lan"
                                     android:textColor="#263238"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -232,7 +232,7 @@
                                     android:layout_marginTop="2dp"
                                     android:text="@string/koneksi_tcp_ip_port_9100_untuk_multi_kasir_dalam_satu_jaringan"
                                     android:textColor="#78909C"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -267,7 +267,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/integrasi_rest_api_webhook"
                                     android:textColor="#263238"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -276,7 +276,7 @@
                                     android:layout_marginTop="2dp"
                                     android:text="@string/terima_perintah_cetak_resi_dan_struk_otomatis_dari_server_backend_pos"
                                     android:textColor="#78909C"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -311,7 +311,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/sinkronisasi_cloud_cadangan_konfigurasi"
                                     android:textColor="#263238"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -320,7 +320,7 @@
                                     android:layout_marginTop="2dp"
                                     android:text="@string/sinkronisasi_pengaturan_dan_data_printer_antar_perangkat_hp_dan_tablet"
                                     android:textColor="#78909C"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -355,7 +355,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/kustomisasi_header_logo_footer_toko"
                                     android:textColor="#263238"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -364,7 +364,7 @@
                                     android:layout_marginTop="2dp"
                                     android:text="@string/tampilkan_branding_identitas_bisnis_anda_di_setiap_cetakan_struk"
                                     android:textColor="#78909C"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
                             </LinearLayout>
                         </LinearLayout>
 
@@ -399,7 +399,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/dukungan_prioritas_pembaruan_seumur_hidup"
                                     android:textColor="#263238"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium"
                                     android:textStyle="bold" />
 
                                 <TextView
@@ -408,7 +408,7 @@
                                     android:layout_marginTop="2dp"
                                     android:text="@string/akses_instan_ke_pembaruan_fitur_masa_depan_dan_kanal_bantuan_teknis_vip"
                                     android:textColor="#78909C"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
                             </LinearLayout>
                         </LinearLayout>
 

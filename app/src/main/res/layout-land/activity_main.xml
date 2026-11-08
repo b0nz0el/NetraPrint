@@ -32,7 +32,7 @@
                 app:navigationIconTint="#FFFFFF"
                 app:title="@string/app_name"
                 app:titleTextColor="#FFFFFF"
-                 app:titleTextAppearance="@style/TextAppearance.PrinterJTM.Toolbar">
+                 app:titleTextAppearance="@style/TextAppearance.NetraPrint.Toolbar">
 
                 <!-- Interactive Live Printer Status Badge Pill -->
                 <LinearLayout
@@ -62,7 +62,7 @@
                         android:layout_marginStart="6dp"
                         android:text="@string/pilih_printer"
                         android:textColor="#FFFFFF"
-                        android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                        android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
                 </LinearLayout>
 
             </com.google.android.material.appbar.MaterialToolbar>
@@ -96,7 +96,7 @@
                     android:layout_weight="1"
                     android:text="@string/antrean_cetak_offline_1_dokumen_tertunda"
                     android:textColor="#E65100"
-                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                    android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnRetrySpooler"
@@ -215,7 +215,7 @@
                                     android:layout_height="wrap_content"
                                     android:text="@string/logo_toko_struk"
                                     android:textColor="#0F766E"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
 
                                 <TextView
                                     android:layout_width="wrap_content"
@@ -223,7 +223,7 @@
                                     android:layout_marginTop="2dp"
                                     android:text="@string/ketuk_untuk_upload_logo_toko"
                                     android:textColor="#78909C"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -281,7 +281,7 @@
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/layoutPenerima"
-                                style="@style/Widget.PrinterJTM.TextInputLayout.OutlinedBox"
+                                style="@style/Widget.NetraPrint.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/penerima_nama_alamat_no_hp"
@@ -418,7 +418,7 @@
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/layoutPengirim"
-                                style="@style/Widget.PrinterJTM.TextInputLayout.OutlinedBox"
+                                style="@style/Widget.NetraPrint.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/pengirim_nama_alamat_no_hp"
@@ -539,7 +539,7 @@
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:id="@+id/layoutJasaKurir"
-                                    style="@style/Widget.PrinterJTM.TextInputLayout.ExposedDropdown"
+                                    style="@style/Widget.NetraPrint.TextInputLayout.ExposedDropdown"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="@string/jasa_kurir"
@@ -583,7 +583,7 @@
 
                                 <com.google.android.material.textfield.TextInputLayout
                                     android:id="@+id/layoutKodeBooking"
-                                    style="@style/Widget.PrinterJTM.TextInputLayout.OutlinedBox"
+                                    style="@style/Widget.NetraPrint.TextInputLayout.OutlinedBox"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:hint="@string/no_resi"
@@ -669,7 +669,7 @@
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/layoutIsiPaket"
-                                style="@style/Widget.PrinterJTM.TextInputLayout.OutlinedBox"
+                                style="@style/Widget.NetraPrint.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/isi_paket"
@@ -767,7 +767,7 @@
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/layoutCatatan"
-                                style="@style/Widget.PrinterJTM.TextInputLayout.OutlinedBox"
+                                style="@style/Widget.NetraPrint.TextInputLayout.OutlinedBox"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/catatan_tambahan"
@@ -867,7 +867,7 @@
 
                             <com.google.android.material.textfield.TextInputLayout
                                 android:id="@+id/layoutFont"
-                                style="@style/Widget.PrinterJTM.TextInputLayout.ExposedDropdown"
+                                style="@style/Widget.NetraPrint.TextInputLayout.ExposedDropdown"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:hint="@string/jenis_huruf_font"
@@ -902,7 +902,7 @@
                                     android:layout_weight="1"
                                     android:text="@string/ukuran_font"
                                     android:textColor="#0F766E"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
 
                                 <TextView
                                     android:id="@+id/tvFontSize"
@@ -914,7 +914,7 @@
                                     android:paddingVertical="3dp"
                                     android:text="20"
                                     android:textColor="#0F766E"
-                                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
 
                                 <CheckBox
                                     android:id="@+id/cbAutoFontSize"
@@ -928,7 +928,7 @@
 
                             <com.google.android.material.slider.Slider
                                 android:id="@+id/sliderFontSize"
-                                style="@style/Widget.PrinterJTM.Slider"
+                                style="@style/Widget.NetraPrint.Slider"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
@@ -997,7 +997,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/belum_ada_file_pdf_yang_dipilih"
                     android:textColor="#212121"
-                    android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge" />
+                    android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -1006,7 +1006,7 @@
                     android:gravity="center"
                     android:text="@string/pilih_dokumen_pdf_dari_memori_perangkat_untuk_dicetak_ke_printer_thermal"
                     android:textColor="#78909C"
-                    android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+                    android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnChoosePdf"
@@ -1047,7 +1047,7 @@
                         android:singleLine="true"
                         android:text="@string/dokumen_pdf"
                         android:textColor="#212121"
-                        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleMedium" />
+                        android:textAppearance="@style/TextAppearance.NetraPrint.TitleMedium" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnChangePdfDoc"
@@ -1083,7 +1083,7 @@
                         android:layout_marginHorizontal="20dp"
                         android:text="@string/halaman_1_1"
                         android:textColor="#334155"
-                        android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+                        android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
 
                     <ImageButton
                         android:id="@+id/btnNextPdfPage"
@@ -1140,11 +1140,11 @@
                         android:layout_height="wrap_content"
                         android:text="@string/zoom"
                         android:textColor="#546E7A"
-                        android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+                        android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
 
                     <com.google.android.material.slider.Slider
                         android:id="@+id/sliderPdfZoom"
-                        style="@style/Widget.PrinterJTM.Slider"
+                        style="@style/Widget.NetraPrint.Slider"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -1160,7 +1160,7 @@
                         android:gravity="end"
                         android:text="100%"
                         android:textColor="#212121"
-                        android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+                        android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
@@ -1196,7 +1196,7 @@
                     android:layout_marginTop="16dp"
                     android:text="@string/belum_ada_gambar_yang_dipilih"
                     android:textColor="#212121"
-                    android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge" />
+                    android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge" />
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnChooseImage"
@@ -1237,7 +1237,7 @@
                         android:singleLine="true"
                         android:text="@string/gambar"
                         android:textColor="#212121"
-                        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleMedium" />
+                        android:textAppearance="@style/TextAppearance.NetraPrint.TitleMedium" />
 
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnChangeImageDoc"
@@ -1294,11 +1294,11 @@
                         android:layout_height="wrap_content"
                         android:text="@string/zoom"
                         android:textColor="#546E7A"
-                        android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+                        android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
 
                     <com.google.android.material.slider.Slider
                         android:id="@+id/sliderImageZoom"
-                        style="@style/Widget.PrinterJTM.Slider"
+                        style="@style/Widget.NetraPrint.Slider"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
@@ -1314,7 +1314,7 @@
                         android:gravity="end"
                         android:text="100%"
                         android:textColor="#212121"
-                        android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+                        android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
                 </LinearLayout>
             </LinearLayout>
         </FrameLayout>
@@ -1347,7 +1347,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutEtFreeText"
-                    style="@style/Widget.PrinterJTM.TextInputLayout.OutlinedBox"
+                    style="@style/Widget.NetraPrint.TextInputLayout.OutlinedBox"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/ketik_teks_bebas_di_sini_untuk_dicetak"
@@ -1405,7 +1405,7 @@
                 android:layout_marginTop="20dp"
                 android:text="@string/fitur_dalam_pengembangan"
                 android:textColor="#1C1B1F"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge" />
+                android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge" />
 
             <TextView
                 android:id="@+id/tvPlaceholderDesc"
@@ -1415,7 +1415,7 @@
                 android:gravity="center"
                 android:text="@string/fitur_sedang_dalam_pengembangan"
                 android:textColor="#78909C"
-                android:textAppearance="@style/TextAppearance.PrinterJTM.TitleMedium" />
+                android:textAppearance="@style/TextAppearance.NetraPrint.TitleMedium" />
         </LinearLayout>
 
         <!-- Modern Bottom Navigation Bar (Matching Benchmark) -->
@@ -1637,7 +1637,7 @@
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/nav_drawer_item_tint"
         app:itemTextColor="@color/nav_drawer_item_text"
-        app:itemTextAppearance="@style/TextAppearance.PrinterJTM.Navigation"
+        app:itemTextAppearance="@style/TextAppearance.NetraPrint.Navigation"
         app:itemBackground="@drawable/nav_drawer_item_background"
         app:itemShapeInsetStart="12dp"
         app:itemShapeInsetEnd="12dp"

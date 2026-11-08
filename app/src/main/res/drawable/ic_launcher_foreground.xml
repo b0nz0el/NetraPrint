@@ -54,21 +54,15 @@
         android:fillColor="#CFD8DC"
         android:pathData="M74,65 A3,3 0,1,1 74,71 A3,3 0,1,1 74,65 Z" />
 
-    <!-- Center Brand Badge: PRINTER JTM -->
-    <!-- JTM Letters in Dark Green on Printer Front -->
-    <!-- J -->
+    <!-- Center Brand Badge: NETRAPRINT (NP) -->
+    <!-- N -->
     <path
         android:fillColor="#0F766E"
-        android:pathData="M45,62 L45,68 A2.5,2.5 0,0,1 42.5,70.5 A2.5,2.5 0,0,1 40,68 L41.5,68 A1,1 0,0,0 42.5,69.2 A1,1 0,0,0 43.5,68 L43.5,62 Z" />
+        android:pathData="M46,62 L48,62 L52,68 L52,62 L54,62 L54,71 L52,71 L48,65 L48,71 L46,71 Z" />
 
-    <!-- T -->
+    <!-- P -->
     <path
         android:fillColor="#0F766E"
-        android:pathData="M48,62 L57,62 L57,63.5 L53.5,63.5 L53.5,71 L51.5,71 L51.5,63.5 L48,63.5 Z" />
-
-    <!-- M -->
-    <path
-        android:fillColor="#0F766E"
-        android:pathData="M59,62 L61,62 L62.5,67 L64,62 L66,62 L66,71 L64.5,71 L64.5,64.5 L63.2,68.5 L61.8,68.5 L60.5,64.5 L60.5,71 L59,71 Z" />
+        android:pathData="M57,62 L62,62 A3,3 0,0,1 62,68 L59,68 L59,71 L57,71 Z M59,63.5 L61.5,63.5 A1.5,1.5 0,0,1 61.5,66.5 L59,66.5 Z" />
 
 </vector>

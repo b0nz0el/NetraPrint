@@ -23,16 +23,16 @@ import java.io.FileOutputStream
 import java.util.concurrent.TimeUnit
 
 /**
- * Production-grade Native Android PrintService for PrinterJTM.
+ * Production-grade Native Android PrintService for NetraPrint.
  *
- * Integrates PrinterJTM directly with the Android System Print Spooler (`com.android.bips`),
+ * Integrates NetraPrint directly with the Android System Print Spooler (`com.android.bips`),
  * allowing native printing from Chrome, Shopee (STD SPX, etc.), Tokopedia, WhatsApp,
  * PDF viewers, and all standard Android apps.
  */
-class PrinterJtmPrintService : PrintService() {
+class NetraPrintService : PrintService() {
 
     companion object {
-        const val TAG = "PrinterJtmPrintService"
+        const val TAG = "NetraPrintService"
         const val ACTION_SYSTEM_PRINT_JOB = "com.netraprint.app.ACTION_SYSTEM_PRINT_JOB"
         const val EXTRA_PDF_PATH = "com.netraprint.app.EXTRA_PDF_PATH"
         const val EXTRA_PRINT_COPIES = "com.netraprint.app.EXTRA_PRINT_COPIES"
@@ -73,8 +73,8 @@ class PrinterJtmPrintService : PrintService() {
 
             private fun publishPrinters() {
                 val printers = mutableListOf<PrinterInfo>()
-                val localized = AppLocaleContext.wrap(this@PrinterJtmPrintService)
-                val prefs = SecurePreferencesHelper.getPreferences(this@PrinterJtmPrintService)
+                val localized = AppLocaleContext.wrap(this@NetraPrintService)
+                val prefs = SecurePreferencesHelper.getPreferences(this@NetraPrintService)
                 val defaultName = prefs.getString(SettingsActivity.KEY_DEFAULT_PRINTER_NAME, "") ?: ""
                 val printWidth = prefs.getInt(SettingsActivity.KEY_PRINT_WIDTH, 384)
                 val is80Default = (printWidth == 576)
@@ -124,7 +124,7 @@ class PrinterJtmPrintService : PrintService() {
                 }
 
                 // 1. Primary Virtual Thermal Service Entry
-                val mainPrinterId = generatePrinterId("printerjtm_thermal_main")
+                val mainPrinterId = generatePrinterId("netraprint_thermal_main")
                 val mainCaps = buildCapabilities(mainPrinterId)
 
                 val mainDisplayName = if (defaultName.isNotBlank()) {
@@ -252,7 +252,7 @@ class PrinterJtmPrintService : PrintService() {
 
             // 2. Also create/show high-priority Heads-up Notification
             val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE) as? NotificationManager
-            val channelId = "printerjtm_system_print"
+            val channelId = "netraprint_system_print"
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O && notificationManager != null) {
                 val channel = NotificationChannel(
                     channelId,

@@ -14,7 +14,7 @@ import java.util.UUID
 import java.util.concurrent.CopyOnWriteArrayList
 
 /**
- * Resilient, thread-safe Offline Print Spooler Queue for PrinterJTM.
+ * Resilient, thread-safe Offline Print Spooler Queue for NetraPrint.
  * Automatically stores print jobs when the printer is offline or out of range,
  * and allows 1-tap retry or automatic background flushing when reconnected.
  */

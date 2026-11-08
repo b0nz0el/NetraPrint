@@ -38,7 +38,7 @@
         android:gravity="center"
         android:text="@string/memproses_dokumen"
         android:textColor="#191C1B"
-        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge" />
+        android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge" />
 
     <!-- Message: Body Medium Material 3 -->
     <TextView
@@ -50,7 +50,7 @@
         android:lineSpacingExtra="3dp"
         android:text="@string/sedang_menyiapkan_halaman_cetak"
         android:textColor="#49454F"
-        android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+        android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
 
     <!-- Progress Indicator -->
     <com.google.android.material.progressindicator.LinearProgressIndicator

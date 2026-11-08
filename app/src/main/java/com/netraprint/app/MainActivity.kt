@@ -336,7 +336,7 @@ class MainActivity : AppCompatActivity() {
 
         // Security check: Root detection
         if (RootDetectionHelper.isDeviceRooted()) {
-            android.util.Log.w("PrinterJTM_Security", "Root risk detected")
+            android.util.Log.w("NetraPrint_Security", "Root risk detected")
         }
 
         enableEdgeToEdge()
@@ -783,7 +783,7 @@ class MainActivity : AppCompatActivity() {
     private fun openContactUs() {
         val intent = Intent(Intent.ACTION_SENDTO).apply {
             data = Uri.parse("mailto:")
-            putExtra(Intent.EXTRA_EMAIL, arrayOf("support@printerjtm.com"))
+            putExtra(Intent.EXTRA_EMAIL, arrayOf("support@netraprint.com"))
             putExtra(Intent.EXTRA_SUBJECT, getString(R.string.kt_contact_subject))
             val versionName = try {
                 packageManager.getPackageInfo(packageName, 0).versionName
@@ -791,7 +791,7 @@ class MainActivity : AppCompatActivity() {
                 "1.0.0"
             }
             val deviceInfo = "\n\n---\nPerangkat: ${android.os.Build.MANUFACTURER} ${android.os.Build.MODEL}\nAndroid OS: ${android.os.Build.VERSION.RELEASE} (API ${android.os.Build.VERSION.SDK_INT})\nApp Version: $versionName"
-            putExtra(Intent.EXTRA_TEXT, "Halo Tim Support PrinterJTM,\n\n(Tuliskan kendala atau pertanyaan Anda di sini)\n$deviceInfo")
+            putExtra(Intent.EXTRA_TEXT, "Halo Tim Support NetraPrint,\n\n(Tuliskan kendala atau pertanyaan Anda di sini)\n$deviceInfo")
         }
         try {
             startActivity(Intent.createChooser(intent, getString(R.string.kt_contact_chooser)))
@@ -2372,10 +2372,10 @@ class MainActivity : AppCompatActivity() {
     private fun handleIncomingIntent(intent: Intent?) {
         if (intent == null) return
 
-        if (intent.action == PrinterJtmPrintService.ACTION_SYSTEM_PRINT_JOB) {
-            val pdfPath = intent.getStringExtra(PrinterJtmPrintService.EXTRA_PDF_PATH)
-            val copies = intent.getIntExtra(PrinterJtmPrintService.EXTRA_PRINT_COPIES, 1)
-            val targetPrinterId = intent.getStringExtra(PrinterJtmPrintService.EXTRA_TARGET_PRINTER_ID)
+        if (intent.action == NetraPrintService.ACTION_SYSTEM_PRINT_JOB) {
+            val pdfPath = intent.getStringExtra(NetraPrintService.EXTRA_PDF_PATH)
+            val copies = intent.getIntExtra(NetraPrintService.EXTRA_PRINT_COPIES, 1)
+            val targetPrinterId = intent.getStringExtra(NetraPrintService.EXTRA_TARGET_PRINTER_ID)
             if (!targetPrinterId.isNullOrBlank() && targetPrinterId.startsWith("bt_")) {
                 val mac = targetPrinterId.removePrefix("bt_").replace("_", ":")
                 val prefs = SecurePreferencesHelper.getPreferences(this)

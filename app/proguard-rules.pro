@@ -1,4 +1,4 @@
-# PrinterJTM ProGuard / R8 Rules
+# NetraPrint ProGuard / R8 Rules
 
 # Preserve Line Numbers and Source File Attributes for accurate crash debugging
 -keepattributes SourceFile,LineNumberTable
@@ -7,9 +7,9 @@
 -keepattributes InnerClasses,EnclosingMethod
 
 # Keep Application components required by OS & reflection
--keep class com.david.printerjtm.PrinterApplication { *; }
--keep class com.david.printerjtm.PrinterJtmPrintService { *; }
--keepclassmembers enum com.david.printerjtm.** { *; }
+-keep class com.netraprint.app.PrinterApplication { *; }
+-keep class com.netraprint.app.NetraPrintService { *; }
+-keepclassmembers enum com.netraprint.app.** { *; }
 
 # Google ML Kit Barcode Scanning & Text Recognition
 -keep class com.google.mlkit.** { *; }

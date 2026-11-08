@@ -44,7 +44,7 @@ import java.util.Locale
 class SettingsActivity : AppCompatActivity() {
 
     companion object {
-        const val PREFS_NAME = "printer_jtm_settings"
+        const val PREFS_NAME = "netraprint_settings"
         const val LEGACY_PREFS_NAME = "printer_az_settings"
         const val KEY_CONNECTION_TYPE = "connection_type"
         const val KEY_DEFAULT_PRINTER_NAME = "default_printer_name"

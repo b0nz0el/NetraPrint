@@ -70,7 +70,7 @@
                             android:letterSpacing="0.08"
                             android:text="@string/pratinjau_qr_code"
                             android:textColor="#0F766E"
-                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textAppearance="@style/TextAppearance.NetraPrint.LabelSmall"
                             android:textStyle="bold" />
 
                         <!-- Bingkai Dalam Berlatar #F8FAFC -->
@@ -101,7 +101,7 @@
                             android:paddingVertical="8dp"
                             android:text="@string/ketik_konten_di_bawah_untuk_memperbarui_qr_code"
                             android:textColor="#0F766E"
-                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
+                            android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall"
                             android:textStyle="bold" />
 
                     </LinearLayout>
@@ -130,7 +130,7 @@
                             android:letterSpacing="0.08"
                             android:text="@string/konten_pengaturan_teks"
                             android:textColor="#0F766E"
-                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+                            android:textAppearance="@style/TextAppearance.NetraPrint.LabelSmall"
                             android:textStyle="bold" />
 
                         <!-- Input dengan OutlinedBox 14dp & clear_text -->

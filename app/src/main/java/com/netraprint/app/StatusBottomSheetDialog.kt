@@ -20,7 +20,7 @@ class StatusBottomSheetDialog(private val context: Context) {
         LOADING, SUCCESS, ERROR
     }
 
-    private val dialog = BottomSheetDialog(context, R.style.Theme_PrinterJTM_BottomSheetDialog)
+    private val dialog = BottomSheetDialog(context, R.style.Theme_NetraPrint_BottomSheetDialog)
     private val lottieView: LottieAnimationView
     private val tvTitle: TextView
     private val tvMessage: TextView

@@ -5,13 +5,13 @@
 -->
 <data-extraction-rules>
     <cloud-backup>
-        <exclude domain="sharedpref" path="printer_jtm_secure_prefs.xml" />
-        <exclude domain="sharedpref" path="printer_jtm_settings.xml" />
+        <exclude domain="sharedpref" path="netraprint_secure_prefs.xml" />
+        <exclude domain="sharedpref" path="netraprint_settings.xml" />
         <exclude domain="sharedpref" path="printer_az_settings.xml" />
     </cloud-backup>
     <device-transfer>
-        <exclude domain="sharedpref" path="printer_jtm_secure_prefs.xml" />
-        <exclude domain="sharedpref" path="printer_jtm_settings.xml" />
+        <exclude domain="sharedpref" path="netraprint_secure_prefs.xml" />
+        <exclude domain="sharedpref" path="netraprint_settings.xml" />
         <exclude domain="sharedpref" path="printer_az_settings.xml" />
     </device-transfer>
 </data-extraction-rules>

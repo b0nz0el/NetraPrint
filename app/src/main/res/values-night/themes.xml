@@ -1,5 +1,5 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <style name="Base.Theme.PrinterJTM" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.NetraPrint" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/md_theme_dark_primary</item>
         <item name="colorOnPrimary">@color/md_theme_dark_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_dark_primaryContainer</item>
@@ -25,10 +25,10 @@
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowAnimationStyle">@style/Animation.PrinterJTM.Activity</item>
+        <item name="android:windowAnimationStyle">@style/Animation.NetraPrint.Activity</item>
 
-        <item name="bottomSheetDialogTheme">@style/Theme.PrinterJTM.BottomSheetDialog</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.NetraPrint.BottomSheetDialog</item>
     </style>
 
-    <style name="Theme.PrinterJTM" parent="Base.Theme.PrinterJTM" />
+    <style name="Theme.NetraPrint" parent="Base.Theme.NetraPrint" />
 </resources>

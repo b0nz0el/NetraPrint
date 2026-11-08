@@ -106,7 +106,7 @@
     <string name="legalitas">Legalitas</string>
     <string name="lisensi_pro_aktif_siap_digunakan">Lisensi Pro Aktif • Siap Digunakan</string>
     <string name="lisensi_sumber_terbuka_open_source">Lisensi Sumber Terbuka (Open Source)</string>
-    <string name="logo_printerjtm">Logo NetraPrint</string>
+    <string name="logo_netraprint">Logo NetraPrint</string>
     <string name="logo_toko_struk">Logo Toko / Struk</string>
     <string name="maju">Maju</string>
     <string name="masukkan_url_misal_google_com">Masukkan URL (misal: google.com)</string>
@@ -117,7 +117,7 @@
     <string name="mode_integrasi">Mode Integrasi</string>
     <string name="monokrom_1_bit_esc_pos">Monokrom 1-Bit ESC/POS</string>
     <string name="muat_ulang">Muat ulang</string>
-    <string name="mulai_gunakan_printerjtm">Mulai Gunakan NetraPrint</string>
+    <string name="mulai_gunakan_netraprint">Mulai Gunakan NetraPrint</string>
     <string name="nama_printer">Nama Printer</string>
     <string name="nama_toko_usaha">Nama Toko / Usaha</string>
     <string name="no_resi">No. Resi</string>
@@ -130,7 +130,7 @@
     <string name="pengaturan_printer_wi_fi">PENGATURAN PRINTER WI-FI</string>
     <string name="pengirim_nama_alamat_no_hp">Pengirim (Nama, Alamat, No. HP)</string>
     <string name="penilaian_ulasan">Penilaian &amp; Ulasan</string>
-    <string name="perangkat_anda_telah_teraktivasi_lisensi_resmi_printerjtm_pro_seumur_hidup_lifetime_seluruh_modul_enterprise_telah_terbuka_penuh_tanpa_batas_cetak">Perangkat Anda telah teraktivasi lisensi resmi NetraPrint Pro Seumur Hidup (Lifetime). Seluruh modul enterprise telah terbuka penuh tanpa batas cetak.</string>
+    <string name="perangkat_anda_telah_teraktivasi_lisensi_resmi_netraprint_pro_seumur_hidup_lifetime_seluruh_modul_enterprise_telah_terbuka_penuh_tanpa_batas_cetak">Perangkat Anda telah teraktivasi lisensi resmi NetraPrint Pro Seumur Hidup (Lifetime). Seluruh modul enterprise telah terbuka penuh tanpa batas cetak.</string>
     <string name="perbarui_qr_code">Perbarui QR Code</string>
     <string name="pilih">Pilih</string>
     <string name="pilih_dari_galeri">Pilih dari Galeri</string>
@@ -157,7 +157,7 @@
     <string name="pratinjau_qr_code_2">Pratinjau QR Code</string>
     <string name="pratinjau_roll_wysiwyg">Pratinjau Roll WYSIWYG</string>
     <string name="preferensi_cetak">PREFERENSI CETAK</string>
-    <string name="printerjtm_enterprise_pro_aktif">NetraPrint Enterprise Pro Aktif</string>
+    <string name="netraprint_enterprise_pro_aktif">NetraPrint Enterprise Pro Aktif</string>
     <string name="privasi_keamanan_data_terjamin">Privasi &amp; Keamanan Data Terjamin</string>
     <string name="pulihkan_data">Pulihkan Data</string>
     <string name="rentang_halaman_contoh_1_5_8_10_12">Rentang Halaman (Contoh: 1-5, 8, 10-12)</string>
@@ -179,9 +179,9 @@ Terima kasih atas pesanan Anda!
     <string name="salin_isi_paket">Salin Isi Paket</string>
     <string name="salin_penerima">Salin Penerima</string>
     <string name="salin_pengirim">Salin Pengirim</string>
-    <string name="saya_setuju_dengan_kebijakan_privasi_dan_syarat_ketentuan_penggunaan_printerjtm">Saya setuju dengan Kebijakan Privasi dan Syarat &amp; Ketentuan penggunaan NetraPrint.</string>
+    <string name="saya_setuju_dengan_kebijakan_privasi_dan_syarat_ketentuan_penggunaan_netraprint">Saya setuju dengan Kebijakan Privasi dan Syarat &amp; Ketentuan penggunaan NetraPrint.</string>
     <string name="sedang_menyiapkan_halaman_cetak">Sedang menyiapkan halaman cetak...</string>
-    <string name="selamat_datang_di_printerjtm">Selamat Datang di NetraPrint</string>
+    <string name="selamat_datang_di_netraprint">Selamat Datang di NetraPrint</string>
     <string name="seluruh_data_formulir_dan_pemrosesan_gambar_diproses_secara_lokal_pada_perangkat_anda_tanpa_dikirim_ke_server_luar">Seluruh data formulir dan pemrosesan gambar diproses secara lokal pada perangkat Anda tanpa dikirim ke server luar.</string>
     <string name="semua_halaman">Semua Halaman</string>
     <string name="semua_printer_dipilih_saat_cetak">Semua Printer (Dipilih saat cetak)</string>
@@ -264,7 +264,7 @@ Terima kasih atas pesanan Anda!
     <string name="kt_toast_scan_failed">Gagal memindai.</string>
     <string name="kt_toast_system_print_received">Dokumen cetak sistem diterima (%d rangkap). Siap dicetak.</string>
     <string name="kt_dialog_exit_title">Keluar Aplikasi</string>
-    <string name="kt_dialog_exit_msg">Apakah Anda yakin ingin menutup Printer JTM?</string>
+    <string name="kt_dialog_exit_msg">Apakah Anda yakin ingin menutup NetraPrint?</string>
     <string name="kt_dialog_delete_logo_title">Hapus Logo Toko?</string>
     <string name="kt_dialog_delete_logo_msg">Apakah Anda ingin menghapus logo toko yang tersimpan?</string>
     <string name="kt_ocr_processing_msg">Sedang memproses pengenalan karakter (OCR)...</string>
@@ -430,7 +430,7 @@ Apakah Anda mengizinkan pencetakan ini?</string>
     <string name="kt_qr_empty_title">QR Code Kosong</string>
     <string name="kt_qr_empty_msg">Silakan masukkan teks atau tautan untuk menghasilkan QR Code terlebih dahulu.</string>
     <string name="kt_btn_ok">OK</string>
-    <string name="kt_qr_default_content">https://printerjtm.com</string>
+    <string name="kt_qr_default_content">https://netraprint.com</string>
     <string name="kt_qr_saved_to_gallery_title">Berhasil Disimpan</string>
     <string name="kt_qr_saved_to_gallery_msg">QR Code berhasil disimpan ke galeri foto perangkat Anda.</string>
     <string name="kt_dialog_save_fail_title">Gagal Menyimpan</string>
@@ -487,7 +487,7 @@ Apakah Anda mengizinkan pencetakan ini?</string>
     <string name="kt_print_wifi_connection_failed">Gagal terhubung ke printer Wi-Fi. Periksa jaringan dan alamat printer.</string>
     <string name="kt_print_wifi_failed">Terjadi kesalahan saat mencetak melalui Wi-Fi.</string>
     <string name="kt_print_wifi_multipage_failed">Terjadi kesalahan saat mencetak dokumen multi-halaman melalui Wi-Fi.</string>
-    <string name="kt_receipt_test_title">TES CETAK PRINTER JTM</string>
+    <string name="kt_receipt_test_title">TES CETAK NETRAPRINT</string>
     <string name="kt_receipt_connection">Koneksi     : %1$s</string>
     <string name="kt_receipt_width">Lebar Cetak : %1$d dots</string>
     <string name="kt_receipt_printed_at">Waktu Cetak : %1$s</string>
@@ -530,7 +530,7 @@ Apakah Anda mengizinkan pencetakan ini?</string>
     <string name="kt_play_store_unavailable">Tidak dapat membuka Google Play Store pada perangkat ini.</string>
     <string name="kt_contact_subject">[Dukungan NetraPrint] Pertanyaan atau masukan pengguna</string>
     <string name="kt_contact_chooser">Hubungi Dukungan NetraPrint</string>
-    <string name="kt_contact_email_unavailable">Tidak ditemukan aplikasi email. Hubungi support@printerjtm.com.</string>
+    <string name="kt_contact_email_unavailable">Tidak ditemukan aplikasi email. Hubungi support@netraprint.com.</string>
     <string name="kt_ocr_take_photo">Ambil Foto (Kamera)</string>
     <string name="kt_ocr_choose_gallery">Pilih dari Galeri</string>
     <string name="kt_btn_exit">Keluar</string>

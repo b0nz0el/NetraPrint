@@ -24,7 +24,7 @@
             android:id="@+id/ivNavHeaderLogo"
             android:layout_width="68dp"
             android:layout_height="68dp"
-            android:contentDescription="@string/logo_printerjtm"
+            android:contentDescription="@string/logo_netraprint"
             android:scaleType="fitCenter"
             android:src="@mipmap/ic_launcher_round" />
     </LinearLayout>
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:text="@string/app_name"
             android:textColor="#FFFFFF"
-            android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
+            android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge"
             android:textStyle="bold" />
 
         <TextView
@@ -55,7 +55,7 @@
             android:paddingHorizontal="10dp"
             android:paddingVertical="4dp"
             android:textColor="#FFFFFF"
-            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
+            android:textAppearance="@style/TextAppearance.NetraPrint.LabelSmall"
             android:textStyle="bold"
             tools:text="v2.0.5 PRO" />
     </LinearLayout>
@@ -67,6 +67,6 @@
         android:letterSpacing="0.02"
         android:text="@string/enterprise_thermal_suite_lisensi_pro_aktif"
         android:textColor="#99F6E4"
-        android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
+        android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
 
 </LinearLayout>

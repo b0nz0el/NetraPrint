@@ -1,6 +1,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme using Material 3 -->
-    <style name="Base.Theme.PrinterJTM" parent="Theme.Material3.DayNight.NoActionBar">
+    <style name="Base.Theme.NetraPrint" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="android:fontFamily">@font/custom_font</item>
         <item name="fontFamily">@font/custom_font</item>
         <item name="android:windowBackground">@color/md_theme_light_background</item>
@@ -33,53 +33,53 @@
         <!-- Material 3 Transitions -->
         <item name="android:windowActivityTransitions">true</item>
         <item name="android:windowContentTransitions">true</item>
-        <item name="android:windowAnimationStyle">@style/Animation.PrinterJTM.Activity</item>
+        <item name="android:windowAnimationStyle">@style/Animation.NetraPrint.Activity</item>
 
         <!-- Material 3 Shape & Elevation defaults -->
         <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.Material3.Corner.Small</item>
         <item name="shapeAppearanceCornerMedium">@style/ShapeAppearance.Material3.Corner.Medium</item>
         <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.Material3.Corner.Large</item>
         <item name="colorControlHighlight">#1A0F766E</item>
-        <item name="bottomSheetDialogTheme">@style/Theme.PrinterJTM.BottomSheetDialog</item>
+        <item name="bottomSheetDialogTheme">@style/Theme.NetraPrint.BottomSheetDialog</item>
     </style>
 
-    <style name="Animation.PrinterJTM.Activity" parent="@android:style/Animation.Activity">
+    <style name="Animation.NetraPrint.Activity" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/slide_in_right</item>
         <item name="android:activityOpenExitAnimation">@anim/slide_out_left</item>
         <item name="android:activityCloseEnterAnimation">@anim/slide_in_left</item>
         <item name="android:activityCloseExitAnimation">@anim/slide_out_right</item>
     </style>
 
-    <style name="Theme.PrinterJTM" parent="Base.Theme.PrinterJTM" />
+    <style name="Theme.NetraPrint" parent="Base.Theme.NetraPrint" />
 
-    <style name="TextAppearance.PrinterJTM.Navigation" parent="TextAppearance.Material3.LabelLarge" tools:ignore="NewApi">
+    <style name="TextAppearance.NetraPrint.Navigation" parent="TextAppearance.Material3.LabelLarge" tools:ignore="NewApi">
         <item name="android:fontFamily">@font/custom_font</item>
         <item name="android:textFontWeight">500</item>
         <item name="android:textSize">14sp</item>
     </style>
 
-    <style name="TextAppearance.PrinterJTM.Toolbar" parent="TextAppearance.Material3.TitleLarge" tools:ignore="NewApi">
+    <style name="TextAppearance.NetraPrint.Toolbar" parent="TextAppearance.Material3.TitleLarge" tools:ignore="NewApi">
         <item name="android:fontFamily">@font/custom_font</item>
         <item name="android:textFontWeight">600</item>
         <item name="android:textSize">18sp</item>
     </style>
 
-    <style name="TextAppearance.PrinterJTM.NavigationTab" parent="TextAppearance.Material3.LabelMedium" tools:ignore="NewApi">
+    <style name="TextAppearance.NetraPrint.NavigationTab" parent="TextAppearance.Material3.LabelMedium" tools:ignore="NewApi">
         <item name="android:fontFamily">@font/custom_font</item>
         <item name="android:textFontWeight">500</item>
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="Theme.PrinterJTM.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/Widget.PrinterJTM.BottomSheet</item>
+    <style name="Theme.NetraPrint.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/Widget.NetraPrint.BottomSheet</item>
     </style>
 
-    <style name="Widget.PrinterJTM.BottomSheet" parent="Widget.Material3.BottomSheet">
-        <item name="shapeAppearance">@style/ShapeAppearance.PrinterJTM.BottomSheet</item>
+    <style name="Widget.NetraPrint.BottomSheet" parent="Widget.Material3.BottomSheet">
+        <item name="shapeAppearance">@style/ShapeAppearance.NetraPrint.BottomSheet</item>
         <item name="backgroundTint">@android:color/transparent</item>
     </style>
 
-    <style name="ShapeAppearance.PrinterJTM.BottomSheet" parent="ShapeAppearance.Material3.Corner.Large">
+    <style name="ShapeAppearance.NetraPrint.BottomSheet" parent="ShapeAppearance.Material3.Corner.Large">
         <item name="cornerSizeTopLeft">28dp</item>
         <item name="cornerSizeTopRight">28dp</item>
         <item name="cornerSizeBottomLeft">0dp</item>
@@ -87,7 +87,7 @@
     </style>
 
     <!-- Modern M3 Form Input Style -->
-    <style name="Widget.PrinterJTM.TextInputLayout.OutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+    <style name="Widget.NetraPrint.TextInputLayout.OutlinedBox" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="boxCornerRadiusTopStart">16dp</item>
         <item name="boxCornerRadiusTopEnd">16dp</item>
         <item name="boxCornerRadiusBottomStart">16dp</item>
@@ -98,7 +98,7 @@
         <item name="hintTextColor">#0F766E</item>
     </style>
 
-    <style name="Widget.PrinterJTM.TextInputLayout.ExposedDropdown" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+    <style name="Widget.NetraPrint.TextInputLayout.ExposedDropdown" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
         <item name="boxCornerRadiusTopStart">16dp</item>
         <item name="boxCornerRadiusTopEnd">16dp</item>
         <item name="boxCornerRadiusBottomStart">16dp</item>
@@ -112,7 +112,7 @@
     </style>
 
     <!-- Modern M3 Slider Style -->
-    <style name="Widget.PrinterJTM.Slider" parent="Widget.Material3.Slider">
+    <style name="Widget.NetraPrint.Slider" parent="Widget.Material3.Slider">
         <item name="thumbColor">#0F766E</item>
         <item name="thumbElevation">4dp</item>
         <item name="trackColorActive">#0F766E</item>

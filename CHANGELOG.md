@@ -1,4 +1,4 @@
-# Changelog — PrinterJTM (Native Android ESC/POS Hub)
+# Changelog — NetraPrint (Native Android ESC/POS Hub)
 
 ## [v2.0.5 PRO] - Release
 
@@ -20,7 +20,7 @@
 - Added Java keystore files to `.gitignore`; the existing local signing keystore is intentionally retained and must not be committed.
 
 ## [2.0.3] - 2026-10-17
-### Full UI Internationalization (i18n): Resource Externalization + English Locale (`com.david.printerjtm`)
+### Full UI Internationalization (i18n): Resource Externalization + English Locale (`com.netraprint.app`)
 
 - **Hardcoded String Extraction (434 okuran → `@string`):** Mengekstrak seluruh teks UI hardcoded dari 18 file layout + `menu/drawer_menu.xml` ke `values/strings.xml` (**214 resource**) mencakup `android:text`, `android:hint`, `android:contentDescription`, `app:title`, dan `android:title`. Hanya 19 literal numerik/simbol dibiarkan disengaja (locale-invariant: `100%`, `9100`, `1.0.0`, glyph `›`, placeholder MAC).
 - **English Locale Lengkap (`values-en/strings.xml`, 214 string):** Terjemahan penuh dengan key identik ID↔EN (divalidasi otomatis: 0 mismatch, 0 undefined ref). Terbukti berjalan di emulator API 37: tab `Label/Text/Image/PDF`, hint `Recipient (Name, Address, Phone No.)`, `Store Logo / Receipt`, `WYSIWYG Roll Preview`.
@@ -30,14 +30,14 @@
 - **Ruang lingkup diketahui (Phase B):** 51 string runtime Kotlin (title toolbar `Alamat Pengiriman`, pill `Pilih Printer`, komposisi konten pratinjau resi, 21 Toast + 30 `view.text`) masih hardcoded di kode — tetap Indonesia pada mode EN hingga ekstraksi Kotlin dieksekusi.
 
 ## [2.0.2] - 2026-10-17
-### International-Grade Typography System & Accessibility Hardening (`com.david.printerjtm`)
+### International-Grade Typography System & Accessibility Hardening (`com.netraprint.app`)
 
 - **Canonical Material 3 Type Scale (`values/text_appearances.xml`):** Menstandarkan **152 elemen `TextView` di 16 file layout** ke 5 role M3 — `LabelSmall` 11sp · `BodySmall` 12sp · `BodyMedium` 14sp · `TitleMedium` 16sp · `TitleLarge` 22sp. Seluruh ukuran fraksional dihapus (10.5 → 11, 11.5 → 12, 13.5 → 14) dan ukuran off-scale di-absorbsi ke langkah terdekat (13 → 12, 15 → 16, 18/20/21/24 → 22). Setiap style sengaja hanya memuat `android:textSize` sehingga `textColor`/`fontFamily`/`textStyle` per-view serta text appearance milik widget Material (MaterialButton, Chip, TextInputEditText, CheckBox, RadioButton, Switch) tidak pernah tertimpa — zero-regresi visual.
 - **TalkBack / Accessibility Compliance:** Menambahkan `android:contentDescription` pada **15 kontrol & konten interaktif** yang sebelumnya bisu (tombol Kembali/Senter di barcode scanner, Kembali/Maju/Muat ulang di web viewer, placeholder Logo/PDF/Gambar, pratinjau thermal). **25 ikon dekoratif** (tab icon, receipt tear edge, ikon header banner, ikon drawer) ditandai `android:importantForAccessibility="no"` agar screen reader tidak membaca label ganda. Label FAB diseragamkan `Print` → `Cetak` di 4 varian layout.
 - **Defensive Migration Validation:** Validasi berbasis parser XML (bukan regex) atas 18 file layout: **0 well-formedness error, 0 `android:textSize` mentah tersisa pada `TextView`** (hanya referensi `@dimen/nav_text_size` yang memang adaptif per layar), dan `:app:assembleDebug` **BUILD SUCCESSFUL** (37 tasks).
 
 ## [2.0.1] - 2026-10-17
-### UI/UX Stability Hotfix & Project Synchronization (`com.david.printerjtm`)
+### UI/UX Stability Hotfix & Project Synchronization (`com.netraprint.app`)
 
 - **Fixed Cold-Start `BottomAppBar` Inflate Crash (Material 1.12.0):** Menghapus atribut `android:elevation`, `app:elevation`, dan `android:translationZ` dari `<com.google.android.material.bottomappbar.BottomAppBar>` di seluruh varian layout untuk mencegah `NullPointerException` pada `materialShapeDrawable.setElevation()` saat inisialisasi constructor.
 - **Fixed Scroll Overflow & Header Bleeding:** Mengunci `AppBarLayout` (`#004D40`, `fitsSystemWindows="true"`) dan mengisolasi batas atas kontainer scroll (`app:layout_constraintTop_toBottomOf="@id/appBarLayout"`) sehingga kartu pratinjau dan form terpotong rapi di bawah header tanpa menabrak jam status bar sistem.

@@ -11,7 +11,7 @@ import java.nio.file.Files
 class SpoolerFileStoreTest {
     @Test
     fun payloadIsPrivateToCacheAndDeletedOnCompletion() {
-        val root = Files.createTempDirectory("printerjtm-spool-test").toFile()
+        val root = Files.createTempDirectory("netraprint-spool-test").toFile()
         try {
             val store = SpoolerFileStore(root)
             val id = "job-123"
@@ -30,7 +30,7 @@ class SpoolerFileStoreTest {
 
     @Test
     fun startupSweepRemovesExpiredOrphanPayloadsButKeepsLiveJobs() {
-        val root = Files.createTempDirectory("printerjtm-spool-sweep-test").toFile()
+        val root = Files.createTempDirectory("netraprint-spool-sweep-test").toFile()
         try {
             var now = 10L * SpoolerFileStore.TTL_MILLIS
             val store = SpoolerFileStore(root) { now }
@@ -58,7 +58,7 @@ class SpoolerFileStoreTest {
 
     @Test
     fun payloadNamesCannotEscapeCacheDirectory() {
-        val root = Files.createTempDirectory("printerjtm-spool-path-test").toFile()
+        val root = Files.createTempDirectory("netraprint-spool-path-test").toFile()
         try {
             val store = SpoolerFileStore(root)
             assertNull(store.readPayload("../outside.payload"))

@@ -21,7 +21,7 @@ import java.util.concurrent.atomic.AtomicBoolean
 object SecurePreferencesHelper {
 
     private const val TAG = "SecurePreferences"
-    private const val SECURE_PREFS_NAME = "printer_jtm_secure_prefs"
+    private const val SECURE_PREFS_NAME = "netraprint_secure_prefs"
     private const val MASTER_KEY_ALIAS = MasterKey.DEFAULT_MASTER_KEY_ALIAS
 
     @Volatile

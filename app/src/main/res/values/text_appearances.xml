@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
     ============================================================================
-    PrinterJTM Type Scale — Material 3 canonical steps (values & roles verbatim)
+    NetraPrint Type Scale — Material 3 canonical steps (values & roles verbatim)
     ============================================================================
     LabelSmall   11sp  : chip labels, toolbar pill, dense meta info (medium)
     BodySmall    12sp  : secondary text, captions, field helper text
@@ -22,33 +22,33 @@
 -->
 <resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
 
-    <!-- Anchor style for the PrinterJTM appearance family (no attributes). -->
-    <style name="TextAppearance.PrinterJTM" parent="@android:style/TextAppearance" tools:ignore="NewApi">
+    <!-- Anchor style for the NetraPrint appearance family (no attributes). -->
+    <style name="TextAppearance.NetraPrint" parent="@android:style/TextAppearance" tools:ignore="NewApi">
         <item name="android:fontFamily">@font/custom_font</item>
         <item name="android:textFontWeight">400</item>
     </style>
 
-    <style name="TextAppearance.PrinterJTM.LabelSmall" parent="@style/TextAppearance.PrinterJTM" tools:ignore="NewApi">
+    <style name="TextAppearance.NetraPrint.LabelSmall" parent="@style/TextAppearance.NetraPrint" tools:ignore="NewApi">
         <item name="android:textSize">11sp</item>
         <item name="android:textFontWeight">500</item>
     </style>
 
-    <style name="TextAppearance.PrinterJTM.BodySmall" parent="@style/TextAppearance.PrinterJTM">
+    <style name="TextAppearance.NetraPrint.BodySmall" parent="@style/TextAppearance.NetraPrint">
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="TextAppearance.PrinterJTM.BodyMedium" parent="@style/TextAppearance.PrinterJTM" tools:ignore="NewApi">
+    <style name="TextAppearance.NetraPrint.BodyMedium" parent="@style/TextAppearance.NetraPrint" tools:ignore="NewApi">
         <item name="android:textSize">14sp</item>
         <item name="android:textColor">#334155</item>
         <item name="android:textFontWeight">500</item>
     </style>
 
-    <style name="TextAppearance.PrinterJTM.TitleMedium" parent="@style/TextAppearance.PrinterJTM" tools:ignore="NewApi">
+    <style name="TextAppearance.NetraPrint.TitleMedium" parent="@style/TextAppearance.NetraPrint" tools:ignore="NewApi">
         <item name="android:textSize">16sp</item>
         <item name="android:textFontWeight">600</item>
     </style>
 
-    <style name="TextAppearance.PrinterJTM.TitleLarge" parent="@style/TextAppearance.PrinterJTM" tools:ignore="NewApi">
+    <style name="TextAppearance.NetraPrint.TitleLarge" parent="@style/TextAppearance.NetraPrint" tools:ignore="NewApi">
         <item name="android:textSize">22sp</item>
         <item name="android:textFontWeight">600</item>
     </style>

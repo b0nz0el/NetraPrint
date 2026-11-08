@@ -22,7 +22,7 @@ class PrinterPickerBottomSheetDialog(
     private val includeAllPrintersOption: Boolean = true,
     private val onPrinterSelected: (name: String, address: String) -> Unit
 ) {
-    private val dialog = BottomSheetDialog(context, R.style.Theme_PrinterJTM_BottomSheetDialog)
+    private val dialog = BottomSheetDialog(context, R.style.Theme_NetraPrint_BottomSheetDialog)
 
     init {
         val view = LayoutInflater.from(context).inflate(R.layout.dialog_printer_picker_bottom_sheet, null)

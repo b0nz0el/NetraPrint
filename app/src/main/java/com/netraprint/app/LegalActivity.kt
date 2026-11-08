@@ -105,7 +105,7 @@ class LegalActivity : AppCompatActivity() {
             </head>
             <body>
                 <h1>Lisensi Sumber Terbuka (Open Source)</h1>
-                <p>Aplikasi PrinterJTM menggunakan library pihak ketiga berikut yang dilisensikan secara legal:</p>
+                <p>Aplikasi NetraPrint menggunakan library pihak ketiga berikut yang dilisensikan secara legal:</p>
 
                 <h2>1. Google ML Kit (Barcode Scanning & Text Recognition)</h2>
                 <p>Hak Cipta: The Android Open Source Project / Google LLC</p>

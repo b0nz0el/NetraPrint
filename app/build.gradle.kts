@@ -53,7 +53,7 @@ android {
         create("release") {
             storeFile = file("release.jks")
             storePassword = releaseStorePassword
-            keyAlias = "printerjtm"
+            keyAlias = "netraprint"
             keyPassword = releaseKeyPassword
         }
     }

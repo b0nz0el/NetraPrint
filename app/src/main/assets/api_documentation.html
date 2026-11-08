@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Panduan & Dokumentasi API PrinterJTM</title>
+    <title>Panduan & Dokumentasi API NetraPrint</title>
     <style>
         :root {
             --primary: #0F766E;
@@ -262,7 +262,7 @@
                 </svg>
                 <span>Manual Book &amp; Dokumentasi API</span>
             </h1>
-            <p>Panduan API endpoint dan konfigurasi cetak PrinterJTM 2.0.5</p>
+            <p>Panduan API endpoint dan konfigurasi cetak NetraPrint 2.0.5</p>
             <div class="badge-bar">
                 <span class="badge">ESC/POS 58mm / 80mm / 100mm</span>
                 <span class="badge">Bluetooth &amp; Wi-Fi TCP Port 9100</span>
@@ -275,7 +275,7 @@
         <div class="section-card">
             <h2>1. Pengenalan Pengaturan API</h2>
             <p>
-                PrinterJTM dapat mencetak label, teks, gambar, dan dokumen secara manual ke printer yang terhubung ke perangkat Android. Pengaturan API pada versi ini menyimpan endpoint dan token serta menyediakan tombol untuk menguji koneksi keluar ke server Anda.
+                NetraPrint dapat mencetak label, teks, gambar, dan dokumen secara manual ke printer yang terhubung ke perangkat Android. Pengaturan API pada versi ini menyimpan endpoint dan token serta menyediakan tombol untuk menguji koneksi keluar ke server Anda.
             </p>
 
             <div class="callout">
@@ -295,7 +295,7 @@
 
         <!-- 2. Pengaturan di Aplikasi -->
         <div class="section-card">
-            <h2>2. Cara Mengisi Pengaturan API di PrinterJTM</h2>
+            <h2>2. Cara Mengisi Pengaturan API di NetraPrint</h2>
             <p>Buka menu <strong>Pengaturan (Settings) &rarr; INTEGRASI API &amp; WEBHOOK</strong> dan sesuaikan kolom berikut:</p>
 
             <div class="table-responsive">
@@ -328,7 +328,7 @@
                         <tr>
                             <td><strong>API Key / Secret Token</strong></td>
                             <td><code>Token yang dibuat di aplikasi</code></td>
-                            <td>Token dikirim pada header <code>Authorization: Bearer</code> dan <code>X-PrinterJTM-Key</code> saat tes koneksi. Token disimpan menggunakan EncryptedSharedPreferences dan Android Keystore; dukungan hardware-backed bergantung pada perangkat.</td>
+                            <td>Token dikirim pada header <code>Authorization: Bearer</code> dan <code>X-NetraPrint-Key</code> saat tes koneksi. Token disimpan menggunakan EncryptedSharedPreferences dan Android Keystore; dukungan hardware-backed bergantung pada perangkat.</td>
                         </tr>
                         <tr>
                             <td><strong>Auto-Print Antrean API</strong></td>
@@ -355,9 +355,9 @@
 Host: api.tokoanda.com
 Authorization: Bearer &lt;API_KEY_ANDA&gt;
 Accept: application/json
-User-Agent: PrinterJTM-Android-Client/2.5</code></pre>
+User-Agent: NetraPrint-Android-Client/2.5</code></pre>
 
-            <p>Untuk tes koneksi, server cukup memberikan respons HTTP 2xx. PrinterJTM saat ini tidak membaca response JSON sebagai antrean cetak dan tidak mengirim status callback.</p>
+            <p>Untuk tes koneksi, server cukup memberikan respons HTTP 2xx. NetraPrint saat ini tidak membaca response JSON sebagai antrean cetak dan tidak mengirim status callback.</p>
             <h3>Contoh format antrean untuk pengembangan lanjutan (belum diproses aplikasi)</h3>
             <pre><code>{
   "status": "success",
@@ -388,7 +388,7 @@ Content-Type: application/json
         <!-- 4. Contoh Format JSON -->
         <div class="section-card">
             <h2>4. Contoh Format JSON Usulan (Belum Didukung sebagai Job API)</h2>
-            <p>Contoh berikut hanya bahan rancangan integrasi. PrinterJTM belum mengambil atau mencetak JSON job dari endpoint API.</p>
+            <p>Contoh berikut hanya bahan rancangan integrasi. NetraPrint belum mengambil atau mencetak JSON job dari endpoint API.</p>
 
             <h3>A. Format JSON Struk Kasir (POS Receipt)</h3>
             <pre><code>{
@@ -431,7 +431,7 @@ Content-Type: application/json
 
             <h3>B. Format JSON Label Resi Marketplace / Ekspedisi</h3>
             <pre><code>{
-  "job_id": "RESI-JTM-7712",
+  "job_id": "RESI-NP-7712",
   "print_type": "shipping_label",
   "paper_width_mm": 80,
   "auto_cut": true,
@@ -449,7 +449,7 @@ Content-Type: application/json
       "city": "Kota Bandung"
     },
     "recipient": {
-      "name": "David Prasetyo",
+      "name": "Budi Santoso",
       "phone": "085211223344",
       "address": "Jl. Gatot Subroto No. 12, Kel. Petisah Tengah, Medan",
       "city": "Kota Medan",
@@ -465,13 +465,13 @@ Content-Type: application/json
   "print_type": "raw_text",
   "paper_width_mm": 58,
   "auto_cut": true,
-  "content": "================================\n   ANTREAN PELAYANAN BANK JTM   \n================================\nNOMOR ANTREAN: A-042\nLAYANAN      : CUSTOMER SERVICE\nWAKTU        : 15/10/2026 09:15\n================================\nSilakan menunggu panggilan Anda.\n"
+  "content": "================================\n   ANTREAN PELAYANAN BANK NUSANTARA   \n================================\nNOMOR ANTREAN: A-042\nLAYANAN      : CUSTOMER SERVICE\nWAKTU        : 15/10/2026 09:15\n================================\nSilakan menunggu panggilan Anda.\n"
 }</code></pre>
         </div>
 
         <!-- 5. Contoh Kode Backend -->
         <div class="section-card">
-            <h2>5. Contoh Backend untuk Prototipe Server (Belum Terhubung ke Polling PrinterJTM)</h2>
+            <h2>5. Contoh Backend untuk Prototipe Server (Belum Terhubung ke Polling NetraPrint)</h2>
             <p>Kode contoh server di bawah dapat digunakan untuk bereksperimen dengan endpoint dan autentikasi. Aplikasi versi ini hanya menguji koneksi, bukan meminta job dari rute tersebut.</p>
 
             <h3>Node.js / Express Example:</h3>
@@ -480,7 +480,7 @@ const express = require('express');
 const app = express();
 app.use(express.json());
 
-const API_KEY = "jtm_sec_secret_key_anda";
+const API_KEY = "np_sec_secret_key_anda";
 
 // Middleware verifikasi Bearer Token
 function authMiddleware(req, res, next) {
@@ -491,7 +491,7 @@ function authMiddleware(req, res, next) {
     next();
 }
 
-// Endpoint antrean cetak yang diakses PrinterJTM
+// Endpoint antrean cetak yang diakses NetraPrint
 app.get('/v1/print/jobs', authMiddleware, (req, res) => {
     // Ambil order pertama dari database antrean
     const pendingJob = getNextPendingPrintJob();
@@ -515,7 +515,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/v1/print/jobs', function (Request $request) {
     $token = $request-&gt;bearerToken();
-    if ($token !== config('services.printerjtm.key')) {
+    if ($token !== config('services.netraprint.key')) {
         return response()-&gt;json(['error' =&gt; 'Unauthorized'], 401);
     }
 
@@ -548,7 +548,7 @@ Route::get('/v1/print/jobs', function (Request $request) {
                     <tbody>
                         <tr>
                             <td><code>HTTP 401 Unauthorized</code></td>
-                            <td>API Key pada pengaturan PrinterJTM tidak cocok dengan yang diharapkan server.</td>
+                            <td>API Key pada pengaturan NetraPrint tidak cocok dengan yang diharapkan server.</td>
                             <td>Periksa kembali teks token di menu pengaturan. Pastikan tidak ada spasi tersembunyi di awal atau akhir.</td>
                         </tr>
                         <tr>
@@ -563,7 +563,7 @@ Route::get('/v1/print/jobs', function (Request $request) {
                         </tr>
                         <tr>
                             <td><code>Teks Cetak Terpotong</code></td>
-                            <td>Pengaturan lebar kertas di PrinterJTM (58mm) tidak sesuai dengan fisik printer (80mm) atau sebaliknya.</td>
+                            <td>Pengaturan lebar kertas di NetraPrint (58mm) tidak sesuai dengan fisik printer (80mm) atau sebaliknya.</td>
                             <td>Sesuaikan pilihan ukuran kertas di menu Pengaturan Printer (58mm, 80mm, atau 100mm).</td>
                         </tr>
                     </tbody>
@@ -573,7 +573,7 @@ Route::get('/v1/print/jobs', function (Request $request) {
 
         <!-- Footer -->
         <div class="footer">
-            Dokumentasi PrinterJTM &bull; Versi 2.0.5
+            Dokumentasi NetraPrint &bull; Versi 2.0.5
         </div>
     </div>
 </body>
