@@ -1,5 +1,12 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.18] - Release
+
+- International UX Motion Standards: Menyesuaikan durasi animasi splash screen ke standar emas Material Design & Nielsen Norman Group (~1.5–1.6 detik total).
+- Graceful Receipt Printing: Meningkatkan durasi animasi luncuran kertas struk menjadi 900 ms dan denyut printer ke 600 ms agar gerakan terlihat nyata, anggun, dan memanjakan mata.
+- Extended Brand Impression: Memperpanjang penahan layar (keep-on-screen condition) menjadi 1.250 ms, memberikan jeda waktu istirahat yang sempurna bagi pengguna untuk melihat struk hasil cetak dan lampu LED hijau sebelum transisi keluar.
+- Fluid Exit Fade: Transisi keluar (scale & alpha fade) diselaraskan ke 350 ms sehingga transisi masuk ke menu dashboard utama terasa sangat mulus.
+
 ## [v2.0.17] - Release
 
 - Animated Splash Screen Resmi Android 12+: Integrasi Animated Vector Drawable (AVD) pada windowSplashScreenAnimatedIcon yang menampilkan animasi printer thermal mengeluarkan kertas struk (receipt print sliding motion) dengan status indikator LED aktif.

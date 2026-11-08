@@ -5,12 +5,12 @@
         android:propertyName="scaleX"
         android:valueFrom="0.88"
         android:valueTo="1.0"
-        android:duration="500"
+        android:duration="600"
         android:interpolator="@android:anim/overshoot_interpolator" />
     <objectAnimator
         android:propertyName="scaleY"
         android:valueFrom="0.88"
         android:valueTo="1.0"
-        android:duration="500"
+        android:duration="600"
         android:interpolator="@android:anim/overshoot_interpolator" />
 </set>

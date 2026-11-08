@@ -1,8 +1,8 @@
 {
-  "latestVersionCode": 23,
-  "latestVersionName": "2.0.17",
+  "latestVersionCode": 24,
+  "latestVersionName": "2.0.18",
   "downloadUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
-  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/download/v2.0.17/NetraPrint.apk",
+  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/download/v2.0.18/NetraPrint.apk",
   "releasePageUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
-  "changelog": "Animasi Splash Screen Resmi Android 12+: Ikon printer thermal beranimasi mengeluarkan kertas struk (Animated Vector Drawable) dan transisi keluar halus (smooth exit transition) saat membuka aplikasi."
+  "changelog": "Optimalisasi Animasi Splash Screen Berstandar Internasional: Penyesuaian durasi pencetakan struk (900ms), penahan layar elegan (1250ms), dan transisi keluar sinematik (350ms) dengan total durasi visual ~1.6 detik yang nyaman bagi mata."
 }

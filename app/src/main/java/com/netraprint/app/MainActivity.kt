@@ -330,19 +330,19 @@ class MainActivity : AppCompatActivity() {
         val splashScreen = installSplashScreen()
         val splashStartTime = System.currentTimeMillis()
         splashScreen.setKeepOnScreenCondition {
-            System.currentTimeMillis() - splashStartTime < 650L
+            System.currentTimeMillis() - splashStartTime < 1250L
         }
         splashScreen.setOnExitAnimationListener { splashScreenViewProvider ->
             val iconView = splashScreenViewProvider.iconView
             val splashView = splashScreenViewProvider.view
 
-            val scaleX = ObjectAnimator.ofFloat(iconView, View.SCALE_X, 1f, 1.2f, 0.85f)
-            val scaleY = ObjectAnimator.ofFloat(iconView, View.SCALE_Y, 1f, 1.2f, 0.85f)
+            val scaleX = ObjectAnimator.ofFloat(iconView, View.SCALE_X, 1f, 1.15f, 0.9f)
+            val scaleY = ObjectAnimator.ofFloat(iconView, View.SCALE_Y, 1f, 1.15f, 0.9f)
             val iconAlpha = ObjectAnimator.ofFloat(iconView, View.ALPHA, 1f, 0f)
             val bgAlpha = ObjectAnimator.ofFloat(splashView, View.ALPHA, 1f, 0f)
 
             AnimatorSet().apply {
-                duration = 400L
+                duration = 350L
                 interpolator = AccelerateInterpolator()
                 playTogether(scaleX, scaleY, iconAlpha, bgAlpha)
                 addListener(object : AnimatorListenerAdapter() {
