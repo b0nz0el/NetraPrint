@@ -1,48 +1,53 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
-## [v2.0.12 PRO] - Release
+## [v2.0.13] - Release
+
+- Branding & UI: Penghapusan menyeluruh label "PRO" pada seluruh tampilan antarmuka, badge versi di navigation drawer (`v2.0.13`), dan penamaan rilis agar identitas aplikasi menjadi NetraPrint murni yang lebih minimalis, resmi, dan elegan.
+- Resource & String Harmonization: Penyelarasan seluruh string resource lokal dan rujukan lisensi menjadi nama tunggal NetraPrint.
+
+## [v2.0.12] - Release
 
 - Security & Private Repo Support: Integrasi Cloudflare Worker Secure Proxy (`netraprint-updater.yt-hackrandom.workers.dev`) sebagai perantara aman untuk pemeriksaan versi dan pengunduhan rilis APK terbaru. Memungkinkan repository GitHub diatur menjadi **Private** tanpa mengorbankan fungsionalitas pembaruan otomatis di aplikasi pengguna.
 - CDN Acceleration: Pengunduhan APK diarahkan langsung ke CDN berkecepatan tinggi via pre-signed storage redirect tanpa membebani server/worker.
 
-## [v2.0.11 PRO] - Release
+## [v2.0.11] - Release
 
 - Branding & Launcher Icon: Revisi ikon aplikasi dengan latar belakang putih bersih (`#FFFFFF`) sesuai standar desain aplikasi Google/Android (Pixel, Samsung One UI), menampilkan printer thermal isometrik 3D modern (*Deep Teal & Matte Slate*) dengan struk thermal NetraPrint dan bayangan kontak halus.
 - Adaptive Icon Asset Sync: Regenerasi seluruh aset icon (`ic_launcher.webp`, `ic_launcher_round.webp`, `ic_launcher_foreground.webp`) dari mdpi hingga xxxhdpi dengan penyesuaian safe-zone 72dp agar tampil proporsional tanpa terpotong di semua launcher.
 - Onboarding Screen Redesign: Penataan ulang kartu fitur unggulan di halaman onboarding menjadi layout daftar terstruktur dengan ikon checkmark, judul fitur tebal, dan deskripsi penjelasan terpisah sehingga rapi dan mudah dipahami.
 - Onboarding Header Elevation: Penambahan elevated circular card pada logo di onboarding screen agar menyatu secara harmonis dan tampak profesional di atas kanvas putih.
 
-## [v2.0.10 PRO] - Release
+## [v2.0.10] - Release
 
 - UI/UX & Copy: Peringkasan teks daftar fitur unggulan pada kartu selamat datang onboarding agar lebih padat, ringkas, dan mudah dibaca dalam 4 poin utama.
 - Refactoring Resource: Penyederhanaan nama resource key dari 167 karakter menjadi `@string/onboarding_fitur_list` dengan backward-compatibility alias ke key lama.
 
-## [v2.0.9 PRO] - Release
+## [v2.0.9] - Release
 
 - Update Engine: Perbaikan kompatibilitas `downloadUrl` agar aplikasi versi lama dapat langsung membuka browser ke halaman rilis tanpa error `ActivityNotFoundException` akibat ekstensi `.apk`.
 - Update Engine: Penyediaan `apkUrl` terpisah untuk pengunduhan native background `DownloadManager` dan eksekusi callback langsung sebelum penutupan dialog `StatusBottomSheetDialog`.
 
-## [v2.0.8 PRO] - Release
+## [v2.0.8] - Release
 
 - Update Engine: Perbaikan total aksi tombol **Unduh Sekarang** dengan integrasi native `android.app.DownloadManager`. Unduhan APK berjalan langsung di sistem Android dengan bilah progres di notifikasi.
 - Auto-Install Prompt: Penambahan listener `ACTION_DOWNLOAD_COMPLETE` dan `FileProvider` untuk menampilkan dialog konfirmasi instalasi otomatis begitu file APK selesai diunduh.
 - Security & Compatibility: Penambahan izin `REQUEST_INSTALL_PACKAGES` (Android 8.0+) dan deklarasi intent `https` pada `<queries>` (Android 11+) agar intent instalasi dan browser tidak diblokir oleh sistem operasi.
 - Fallback & Alternatif: Menyediakan tombol **Buka di Browser** di dialog pembaruan serta fallback otomatis ke halaman rilis GitHub jika DownloadManager tidak tersedia.
 
-## [v2.0.7 PRO] - Release
+## [v2.0.7] - Release
 
 - Branding & UI: Pembaruan ikon aplikasi ke konsep **Sleek Compact Thermal Printer** (Opsi 2) dengan gaya hardware modern, kurva halus non-kaku, dan palet warna Forest Teal (#00463B) & Slate.
 - Adaptive Icon: Regenerasi aset Android Adaptive Icon lengkap (`ic_launcher.webp`, `ic_launcher_round.webp`, `ic_launcher_foreground.webp`, dan `ic_launcher_monochrome.xml`) di seluruh kepadatan layar (`mdpi`, `hdpi`, `xhdpi`, `xxhdpi`, `xxxhdpi`) dengan penyesuaian safe-zone 72dp untuk menghindari clipping pada launcher Pixel, Samsung One UI, MIUI, dll.
 - UI: Logo di navigation drawer header dan onboarding screen otomatis tersinkronisasi dengan aset resolusi tinggi baru tanpa kontras rusak.
 
-## [v2.0.6 PRO] - Release
+## [v2.0.6] - Release
 
 - System Print: Direct Background Printing dari Android System Print Spooler (1-ketuk langsung cetak ke printer thermal RPP02N/ESC-POS di latar belakang).
 - System Print: Filter pintar dan deduplikasi daftar printer (menghilangkan duplikasi entri Bluetooth dan entri virtual redundan).
 - System Print: Menghindari pemblokiran Background Activity Launch (BAL) pada Android 10+.
 - System Print: Integrasi otomatis dengan antrean offline spooler saat printer sedang mati atau di luar jangkauan.
 
-## [v2.0.5 PRO] - Release
+## [v2.0.5] - Release
 
 - System: Fixed dynamic version badge synchronization using PackageManager.
 - System: Added in-app "Cek Pembaruan" (Check for Updates) in Settings with version comparison against GitHub Releases.

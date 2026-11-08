@@ -1,4 +1,4 @@
-# NetraPrint Pro 🖨️📦
+# NetraPrint 🖨️📦
 
 [![Latest Release](https://img.shields.io/github/v/release/b0nz0el/NetraPrint?color=0F766E&label=Latest%20Version)](https://github.com/b0nz0el/NetraPrint/releases/latest)
 [![Android Min SDK](https://img.shields.io/badge/Android-8.0%2B%20%28API%2026%2B%29-3DDC84?logo=android&logoColor=white)](https://developer.android.com)

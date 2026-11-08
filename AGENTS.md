@@ -1,10 +1,10 @@
-# NetraPrint Pro — Panduan untuk AI Agent
+# NetraPrint — Panduan untuk AI Agent
 
 Panduan ini adalah konteks proyek yang persisten untuk AI agent di workspace ini. Baca panduan ini, lalu buka hanya file yang relevan dengan tugas. Jangan memindai seluruh repository atau mengulang pembacaan tanpa alasan.
 
 ## Identitas dan tujuan proyek
 
-- **Nama:** NetraPrint Pro / NetraPrint.
+- **Nama:** NetraPrint.
 - **Jenis:** aplikasi Android native untuk membuat dan mencetak struk serta label pengiriman menggunakan printer thermal ESC/POS.
 - **Package / namespace:** `com.netraprint.app`.
 - **Fitur utama:** cetak via Bluetooth dan Wi-Fi, antrean offline dengan retry, teks/form/gambar/PDF, pratinjau thermal, dithering gambar, QR/barcode, pemindaian/OCR, Android System Print Service, berbagi file ke aplikasi, bahasa Indonesia dan Inggris, serta layout adaptif ponsel/tablet.

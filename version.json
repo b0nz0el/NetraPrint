@@ -1,8 +1,8 @@
 {
-  "latestVersionCode": 18,
-  "latestVersionName": "2.0.12",
+  "latestVersionCode": 19,
+  "latestVersionName": "2.0.13",
   "downloadUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
   "apkUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
   "releasePageUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
-  "changelog": "Integrasi sistem update berbasis Cloudflare Worker Secure Proxy, memungkinkan aplikasi tetap dapat menerima pembaruan otomatis secara aman saat repositori GitHub berstatus Private."
+  "changelog": "Standardisasi identitas merek NetraPrint murni, pembersihan seluruh label PRO pada antarmuka dan badge drawer, serta perapihan dokumentasi resmi."
 }

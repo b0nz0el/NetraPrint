@@ -57,7 +57,7 @@
             android:textColor="#FFFFFF"
             android:textAppearance="@style/TextAppearance.NetraPrint.LabelSmall"
             android:textStyle="bold"
-            tools:text="v2.0.5 PRO" />
+            tools:text="v2.0.13" />
     </LinearLayout>
 
 </LinearLayout>

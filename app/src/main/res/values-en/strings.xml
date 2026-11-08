@@ -79,7 +79,7 @@
     <string name="dokumen_pdf">Document.pdf</string>
     <string name="dukungan_prioritas_pembaruan_seumur_hidup">Priority Support &amp; Lifetime Updates</string>
     <string name="fitur_dalam_pengembangan">Feature in Development</string>
-    <string name="fitur_keunggulan_eksklusif_pro">EXCLUSIVE PRO FEATURES &amp; BENEFITS</string>
+    <string name="fitur_keunggulan_eksklusif_pro">EXCLUSIVE FEATURES &amp; BENEFITS</string>
     <string name="fitur_sedang_dalam_pengembangan">This feature is under development.</string>
     <string name="fitur_unggulan">Key Features:</string>
     <string name="floyd_steinberg">Floyd-Steinberg</string>
@@ -256,7 +256,7 @@ Thank you for your purchase!
     <string name="api_key_storage_failed">The API Key could not be stored securely. Please try again.</string>
     <string name="usb">USB</string>
     <string name="utilitas_cetak_thermal_nirkabel_profesional_untuk_toko_online_dan_logistik">Professional Wireless Thermal Printing Utility for Online Stores and Logistics</string>
-    <string name="v1_1_7_pro">v1.1.7 PRO</string>
+    <string name="v1_1_7_pro">v1.1.7</string>
     <string name="versi_aplikasi">App Version</string>
     <string name="web_print_bridge">Web Print Bridge</string>
     <string name="wi_fi">Wi-Fi</string>
@@ -424,7 +424,7 @@ Standard: 384 dots (58mm), 576 dots (80mm), 720 dots (100mm).</string>
     <string name="kt_dialog_load_printer_fail_title">Failed to Load Printer</string>
     <string name="kt_load_printer_error_msg">An error occurred while loading the printer list: %s</string>
     <string name="kt_sub_license_title">License Status Verified</string>
-    <string name="kt_sub_license_msg">Congratulations! NetraPrint Pro license on this device is already ACTIVE for lifetime (Lifetime License).
+    <string name="kt_sub_license_msg">Congratulations! NetraPrint license on this device is already ACTIVE for lifetime (Lifetime License).
 
 All advanced modules (Offline Print Queue Spooler, Android System PrintService, Dithering 3-Mode, Multi-page PDF, and Scan Barcode OCR) can be used without limitation.</string>
     <string name="kt_btn_sub_close">Close</string>

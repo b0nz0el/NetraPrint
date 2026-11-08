@@ -374,7 +374,7 @@ class MainActivity : AppCompatActivity() {
             val headerV = navView.getHeaderView(0)
             val badge = headerV.findViewById<android.widget.TextView>(R.id.tvNavVersionBadge)
             val versionName = packageManager.getPackageInfo(packageName, 0).versionName
-            badge.text = "v$versionName PRO"
+            badge.text = "v$versionName"
         } catch (e: Exception) {
             e.printStackTrace()
         }
