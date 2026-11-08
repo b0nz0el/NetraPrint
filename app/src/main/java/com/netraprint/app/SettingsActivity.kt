@@ -2,6 +2,14 @@ package com.netraprint.app
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.app.DownloadManager
+import android.content.BroadcastReceiver
+import android.content.IntentFilter
+import android.os.Environment
+import android.provider.Settings
+import android.widget.Toast
+import androidx.core.content.FileProvider
+import java.io.File
 import android.Manifest
 import android.bluetooth.BluetoothDevice
 import android.content.ClipData
@@ -798,6 +806,9 @@ class SettingsActivity : AppCompatActivity() {
         tvPrintWidth.text = label
     }
 
+    private var updateDownloadId: Long = -1L
+    private var downloadCompleteReceiver: BroadcastReceiver? = null
+
     private fun checkForUpdates() {
         val dialog = StatusBottomSheetDialog(this)
         dialog.showLoading(
@@ -836,18 +847,32 @@ class SettingsActivity : AppCompatActivity() {
                 val latestVersionCode = json.getInt("latestVersionCode")
                 val latestVersionName = json.getString("latestVersionName")
                 val downloadUrl = json.getString("downloadUrl")
+                val releasePageUrl = json.optString("releasePageUrl", "https://github.com/b0nz0el/NetraPrint/releases/latest")
+                val changelog = json.optString("changelog", "")
+
                 if (isFinishing || isDestroyed) return@launch
                 dialog.dismiss()
+
                 if (latestVersionCode > currentVersionCode) {
+                    val updateMessage = if (changelog.isNotBlank()) {
+                        getString(R.string.kt_update_available_msg, latestVersionName) +
+                                getString(R.string.kt_release_notes_header) + changelog
+                    } else {
+                        getString(R.string.kt_update_available_msg, latestVersionName)
+                    }
+
                     StatusBottomSheetDialog(this@SettingsActivity).showSuccess(
                         title = getString(R.string.kt_update_available),
-                        message = getString(R.string.kt_update_available_msg, latestVersionName),
-                        actionText = getString(R.string.kt_btn_download)
-                    ) {
-                        try {
-                            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(downloadUrl)))
-                        } catch (_: Exception) {}
-                    }
+                        message = updateMessage,
+                        actionText = getString(R.string.kt_btn_download),
+                        secondaryText = getString(R.string.kt_btn_open_browser),
+                        onDismiss = {
+                            downloadApkUpdate(downloadUrl, releasePageUrl, latestVersionName)
+                        },
+                        onSecondary = {
+                            openInBrowser(releasePageUrl)
+                        }
+                    )
                 } else {
                     StatusBottomSheetDialog(this@SettingsActivity).showSuccess(
                         title = getString(R.string.cek_pembaruan),
@@ -864,6 +889,161 @@ class SettingsActivity : AppCompatActivity() {
                 )
             }
         }
+    }
+
+    private fun downloadApkUpdate(downloadUrl: String, releasePageUrl: String, versionName: String) {
+        val fileName = "NetraPrint-v$versionName.apk"
+        val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
+        val targetApk = File(downloadDir, fileName)
+
+        // If target file already exists and is completely downloaded (> 10MB), install directly
+        if (targetApk.exists() && targetApk.length() > 10 * 1024 * 1024) {
+            showInstallDialog(targetApk, versionName)
+            return
+        }
+
+        try {
+            if (targetApk.exists()) {
+                targetApk.delete()
+            }
+        } catch (_: Exception) {}
+
+        try {
+            val request = DownloadManager.Request(Uri.parse(downloadUrl)).apply {
+                setTitle(getString(R.string.app_name) + " v$versionName")
+                setDescription(getString(R.string.kt_downloading_update_desc))
+                setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName)
+                setMimeType("application/vnd.android.package-archive")
+                setAllowedOverMetered(true)
+                setAllowedOverRoaming(true)
+            }
+
+            val dm = getSystemService(Context.DOWNLOAD_SERVICE) as? DownloadManager
+            if (dm != null) {
+                val downloadId = dm.enqueue(request)
+                updateDownloadId = downloadId
+                Toast.makeText(
+                    this,
+                    getString(R.string.kt_download_started_toast, versionName),
+                    Toast.LENGTH_LONG
+                ).show()
+
+                registerDownloadReceiver(downloadId, targetApk, versionName)
+            } else {
+                openInBrowser(releasePageUrl.ifBlank { downloadUrl })
+            }
+        } catch (e: Exception) {
+            Log.e("SettingsActivity", "DownloadManager failed, falling back to browser", e)
+            openInBrowser(releasePageUrl.ifBlank { downloadUrl })
+        }
+    }
+
+    private fun registerDownloadReceiver(downloadId: Long, apkFile: File, versionName: String) {
+        unregisterDownloadReceiver()
+
+        val receiver = object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1L) ?: -1L
+                if (id == downloadId && id != -1L) {
+                    if (isFinishing || isDestroyed) return
+                    if (apkFile.exists() && apkFile.length() > 0) {
+                        showInstallDialog(apkFile, versionName)
+                    }
+                }
+            }
+        }
+        downloadCompleteReceiver = receiver
+        val filter = IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
+        ContextCompat.registerReceiver(this, receiver, filter, ContextCompat.RECEIVER_EXPORTED)
+    }
+
+    private fun unregisterDownloadReceiver() {
+        downloadCompleteReceiver?.let {
+            try {
+                unregisterReceiver(it)
+            } catch (_: Exception) {}
+            downloadCompleteReceiver = null
+        }
+    }
+
+    private fun showInstallDialog(apkFile: File, versionName: String) {
+        StatusBottomSheetDialog(this).showSuccess(
+            title = getString(R.string.kt_download_complete_title),
+            message = getString(R.string.kt_download_complete_msg, versionName),
+            actionText = getString(R.string.kt_btn_install_now),
+            secondaryText = getString(R.string.batal),
+            onDismiss = {
+                installDownloadedApk(apkFile)
+            }
+        )
+    }
+
+    private fun installDownloadedApk(apkFile: File) {
+        if (!apkFile.exists()) {
+            Toast.makeText(this, getString(R.string.kt_file_not_found), Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            if (!packageManager.canRequestPackageInstalls()) {
+                try {
+                    val permissionIntent = Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES).apply {
+                        data = Uri.parse("package:$packageName")
+                    }
+                    startActivity(permissionIntent)
+                    Toast.makeText(
+                        this,
+                        getString(R.string.kt_install_permission_prompt),
+                        Toast.LENGTH_LONG
+                    ).show()
+                    return
+                } catch (e: Exception) {
+                    Log.e("SettingsActivity", "Could not open manage unknown app sources", e)
+                }
+            }
+        }
+
+        try {
+            val apkUri = FileProvider.getUriForFile(
+                this,
+                "$packageName.fileprovider",
+                apkFile
+            )
+            val installIntent = Intent(Intent.ACTION_VIEW).apply {
+                setDataAndType(apkUri, "application/vnd.android.package-archive")
+                addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            startActivity(installIntent)
+        } catch (e: Exception) {
+            Log.e("SettingsActivity", "Failed to launch installer", e)
+            Toast.makeText(this, "Gagal membuka installer: ${e.message}", Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun openInBrowser(url: String) {
+        try {
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+                addCategory(Intent.CATEGORY_BROWSABLE)
+                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+            }
+            startActivity(intent)
+        } catch (_: Exception) {
+            try {
+                val fallback = Intent(Intent.ACTION_VIEW, Uri.parse(url)).apply {
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+                startActivity(fallback)
+            } catch (_: Exception) {
+                Toast.makeText(this, getString(R.string.kt_cannot_open_browser), Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    override fun onDestroy() {
+        unregisterDownloadReceiver()
+        super.onDestroy()
     }
 
     private fun updatePrinterDisplay() {

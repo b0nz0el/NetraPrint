@@ -1,5 +1,12 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.8 PRO] - Release
+
+- Update Engine: Perbaikan total aksi tombol **Unduh Sekarang** dengan integrasi native `android.app.DownloadManager`. Unduhan APK berjalan langsung di sistem Android dengan bilah progres di notifikasi.
+- Auto-Install Prompt: Penambahan listener `ACTION_DOWNLOAD_COMPLETE` dan `FileProvider` untuk menampilkan dialog konfirmasi instalasi otomatis begitu file APK selesai diunduh.
+- Security & Compatibility: Penambahan izin `REQUEST_INSTALL_PACKAGES` (Android 8.0+) dan deklarasi intent `https` pada `<queries>` (Android 11+) agar intent instalasi dan browser tidak diblokir oleh sistem operasi.
+- Fallback & Alternatif: Menyediakan tombol **Buka di Browser** di dialog pembaruan serta fallback otomatis ke halaman rilis GitHub jika DownloadManager tidak tersedia.
+
 ## [v2.0.7 PRO] - Release
 
 - Branding & UI: Pembaruan ikon aplikasi ke konsep **Sleek Compact Thermal Printer** (Opsi 2) dengan gaya hardware modern, kurva halus non-kaku, dan palet warna Forest Teal (#00463B) & Slate.

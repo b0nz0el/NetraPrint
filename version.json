@@ -1,6 +1,7 @@
 {
-  "latestVersionCode": 13,
-  "latestVersionName": "2.0.7",
+  "latestVersionCode": 14,
+  "latestVersionName": "2.0.8",
   "downloadUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest/download/NetraPrint.apk",
-  "changelog": "Desain ikon baru: Sleek Compact Thermal Printer modern dengan warna Forest Teal & Slate, perbaikan logo navigation drawer, dan dukungan penuh Android Adaptive Icons."
+  "releasePageUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
+  "changelog": "Perbaikan tombol Unduh Sekarang: Pengunduhan langsung via DownloadManager dengan bilah progres, notifikasi instalasi otomatis saat unduhan selesai, serta tombol Buka di Browser sebagai alternatif."
 }

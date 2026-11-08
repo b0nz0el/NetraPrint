@@ -26,6 +26,16 @@
     <string name="kt_update_failed">Failed to check for updates. Please ensure internet connection is active.</string>
     <string name="kt_btn_download">Download Now</string>
     <string name="kt_btn_later">Later</string>
+    <string name="kt_download_started_toast">Downloading NetraPrint v%s... Check your notification bar.</string>
+    <string name="kt_downloading_update_desc">Downloading NetraPrint APK update…</string>
+    <string name="kt_download_complete_title">Update Ready to Install</string>
+    <string name="kt_download_complete_msg">NetraPrint v%s has been downloaded successfully. Install update now?</string>
+    <string name="kt_btn_install_now">Install Now</string>
+    <string name="kt_btn_open_browser">Open in Browser</string>
+    <string name="kt_cannot_open_browser">Unable to open browser</string>
+    <string name="kt_install_permission_prompt">Please allow app install permission for NetraPrint, then try again.</string>
+    <string name="kt_file_not_found">Update file not found</string>
+    <string name="kt_release_notes_header">\n\nRelease Notes:\n</string>
     <string name="bahasa">Language</string>
     <string name="bahasa_indonesia">Bahasa Indonesia</string>
     <string name="bahasa_profil_struk">LANGUAGE &amp; RECEIPT PROFILE</string>

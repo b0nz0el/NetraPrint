@@ -26,6 +26,16 @@
     <string name="kt_update_failed">Gagal memeriksa pembaruan. Pastikan koneksi internet aktif.</string>
     <string name="kt_btn_download">Unduh Sekarang</string>
     <string name="kt_btn_later">Nanti</string>
+    <string name="kt_download_started_toast">Mengunduh NetraPrint v%s... Pantau bilah notifikasi Anda.</string>
+    <string name="kt_downloading_update_desc">Mengunduh pembaruan NetraPrint APK…</string>
+    <string name="kt_download_complete_title">Pembaruan Siap Dipasang</string>
+    <string name="kt_download_complete_msg">NetraPrint v%s telah berhasil diunduh. Pasang pembaruan sekarang?</string>
+    <string name="kt_btn_install_now">Pasang Sekarang</string>
+    <string name="kt_btn_open_browser">Buka di Browser</string>
+    <string name="kt_cannot_open_browser">Tidak dapat membuka browser</string>
+    <string name="kt_install_permission_prompt">Harap aktifkan izin instalasi untuk NetraPrint, lalu pasang kembali.</string>
+    <string name="kt_file_not_found">Berkas pembaruan tidak ditemukan</string>
+    <string name="kt_release_notes_header">\n\nCatatan Rilis:\n</string>
     <string name="bahasa">Bahasa</string>
     <string name="bahasa_indonesia">Bahasa Indonesia</string>
     <string name="bahasa_profil_struk">BAHASA &amp; PROFIL STRUK</string>
