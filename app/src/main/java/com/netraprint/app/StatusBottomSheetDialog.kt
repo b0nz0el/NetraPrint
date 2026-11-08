@@ -131,16 +131,16 @@ class StatusBottomSheetDialog(private val context: Context) {
             btnAction.text = actionText ?: localized.getString(R.string.kt_btn_done)
             btnAction.visibility = View.VISIBLE
             btnAction.setOnClickListener {
-                dialog.dismiss()
                 onDismiss?.invoke()
+                dialog.dismiss()
             }
 
             if (secondaryText != null) {
                 btnSecondary.text = secondaryText
                 btnSecondary.visibility = View.VISIBLE
                 btnSecondary.setOnClickListener {
-                    dialog.dismiss()
                     onSecondary?.invoke()
+                    dialog.dismiss()
                 }
             } else {
                 btnSecondary.visibility = View.GONE

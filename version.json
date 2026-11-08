@@ -1,7 +1,8 @@
 {
-  "latestVersionCode": 14,
-  "latestVersionName": "2.0.8",
-  "downloadUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest/download/NetraPrint.apk",
+  "latestVersionCode": 15,
+  "latestVersionName": "2.0.9",
+  "downloadUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
+  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest/download/NetraPrint.apk",
   "releasePageUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
-  "changelog": "Perbaikan tombol Unduh Sekarang: Pengunduhan langsung via DownloadManager dengan bilah progres, notifikasi instalasi otomatis saat unduhan selesai, serta tombol Buka di Browser sebagai alternatif."
+  "changelog": "Perbaikan tombol Unduh Sekarang: Kompatibilitas pembukaan browser langsung untuk versi lama dan DownloadManager otomatis di latar belakang untuk versi baru."
 }

@@ -846,9 +846,17 @@ class SettingsActivity : AppCompatActivity() {
                 val json = JSONObject(jsonText)
                 val latestVersionCode = json.getInt("latestVersionCode")
                 val latestVersionName = json.getString("latestVersionName")
-                val downloadUrl = json.getString("downloadUrl")
+                val downloadUrl = json.optString("downloadUrl", "https://github.com/b0nz0el/NetraPrint/releases/latest")
+                val rawApkUrl = json.optString("apkUrl", "")
                 val releasePageUrl = json.optString("releasePageUrl", "https://github.com/b0nz0el/NetraPrint/releases/latest")
                 val changelog = json.optString("changelog", "")
+                val apkUrl = if (rawApkUrl.endsWith(".apk", ignoreCase = true)) {
+                    rawApkUrl
+                } else if (downloadUrl.endsWith(".apk", ignoreCase = true)) {
+                    downloadUrl
+                } else {
+                    "https://github.com/b0nz0el/NetraPrint/releases/latest/download/NetraPrint.apk"
+                }
 
                 if (isFinishing || isDestroyed) return@launch
                 dialog.dismiss()
@@ -867,7 +875,7 @@ class SettingsActivity : AppCompatActivity() {
                         actionText = getString(R.string.kt_btn_download),
                         secondaryText = getString(R.string.kt_btn_open_browser),
                         onDismiss = {
-                            downloadApkUpdate(downloadUrl, releasePageUrl, latestVersionName)
+                            downloadApkUpdate(apkUrl, releasePageUrl, latestVersionName)
                         },
                         onSecondary = {
                             openInBrowser(releasePageUrl)

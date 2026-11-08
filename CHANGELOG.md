@@ -1,5 +1,10 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.9 PRO] - Release
+
+- Update Engine: Perbaikan kompatibilitas `downloadUrl` agar aplikasi versi lama dapat langsung membuka browser ke halaman rilis tanpa error `ActivityNotFoundException` akibat ekstensi `.apk`.
+- Update Engine: Penyediaan `apkUrl` terpisah untuk pengunduhan native background `DownloadManager` dan eksekusi callback langsung sebelum penutupan dialog `StatusBottomSheetDialog`.
+
 ## [v2.0.8 PRO] - Release
 
 - Update Engine: Perbaikan total aksi tombol **Unduh Sekarang** dengan integrasi native `android.app.DownloadManager`. Unduhan APK berjalan langsung di sistem Android dengan bilah progres di notifikasi.
