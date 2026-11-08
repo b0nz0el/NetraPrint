@@ -435,7 +435,20 @@ class NetraPrintService : PrintService() {
 
                 dismissNotification(2001)
 
+                val historyManager = (application as? PrinterApplication)?.appContainer?.printHistoryManager
+                    ?: PrintHistoryManager.getInstance(applicationContext)
+                val jobTitle = printJob.document?.info?.name?.ifBlank { null }
+                    ?: localized.getString(R.string.kt_job_pdf)
+
                 if (printResult.isSuccess) {
+                    historyManager.addEntry(
+                        title = jobTitle,
+                        printType = "PDF",
+                        targetName = targetPrinterDisplayName,
+                        targetInfo = if (isWifi) "$wifiIp:$wifiPort" else targetDevice?.address,
+                        status = PrintHistoryItem.Status.SUCCESS,
+                        copies = copies
+                    )
                     printJob.complete()
                     showNotification(
                         notificationId = 2003,
@@ -448,14 +461,20 @@ class NetraPrintService : PrintService() {
                     }
                     Log.i(TAG, "Direct system print succeeded for $targetPrinterDisplayName")
                 } else {
+                    historyManager.addEntry(
+                        title = jobTitle,
+                        printType = "PDF",
+                        targetName = targetPrinterDisplayName,
+                        targetInfo = if (isWifi) "$wifiIp:$wifiPort" else targetDevice?.address,
+                        status = PrintHistoryItem.Status.QUEUED_OFFLINE,
+                        copies = copies
+                    )
                     try {
                         val combinedStream = ByteArrayOutputStream()
                         for (item in printItems) {
                             combinedStream.write(item.bytes)
                         }
                         val combinedBytes = combinedStream.toByteArray()
-                        val jobTitle = printJob.document?.info?.name?.ifBlank { null }
-                            ?: localized.getString(R.string.kt_job_pdf)
                         spoolerManager.enqueueData(
                             title = jobTitle,
                             printType = "PDF",

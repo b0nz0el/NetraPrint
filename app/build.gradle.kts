@@ -16,8 +16,8 @@ android {
         applicationId = "com.netraprint.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 19
-        versionName = "2.0.13"
+        versionCode = 21
+        versionName = "2.0.15"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -122,6 +122,7 @@ dependencies {
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.core.splashscreen)
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     implementation("com.google.mlkit:barcode-scanning:17.3.0")
@@ -155,6 +156,7 @@ dependencies {
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
     testImplementation(libs.junit)
+    testImplementation("org.json:json:20240303")
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
 }

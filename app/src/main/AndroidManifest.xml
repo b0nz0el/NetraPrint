@@ -58,6 +58,7 @@
         <activity
             android:name=".MainActivity"
             android:exported="true"
+            android:theme="@style/Theme.NetraPrint.Starting"
             android:resizeableActivity="true"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
@@ -72,6 +73,24 @@
                 <data android:mimeType="text/plain" />
                 <data android:mimeType="image/*" />
                 <data android:mimeType="application/pdf" />
+            </intent-filter>
+
+            <intent-filter>
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="image/*" />
+            </intent-filter>
+
+            <!-- Open With / Deep Link for Documents, Images, and Text -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="content" />
+                <data android:scheme="file" />
+                <data android:mimeType="application/pdf" />
+                <data android:mimeType="image/*" />
+                <data android:mimeType="text/plain" />
             </intent-filter>
         </activity>
 
@@ -107,6 +126,11 @@
             android:name=".OnboardingActivity"
             android:exported="false"
             android:label="Selamat Datang" />
+
+        <activity
+            android:name=".PrintHistoryActivity"
+            android:exported="false"
+            android:label="@string/riwayat_cetak" />
 
         <!-- Native Android System Print Service -->
         <service

@@ -91,6 +91,7 @@ class WebViewActivity : AppCompatActivity() {
     private lateinit var etUrl: EditText
     private lateinit var progressBar: ProgressBar
     private lateinit var bluetoothService: BluetoothService
+    private lateinit var printHistoryManager: PrintHistoryManager
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -98,6 +99,7 @@ class WebViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_web_view)
 
         bluetoothService = BluetoothService(this)
+        printHistoryManager = (application as? PrinterApplication)?.appContainer?.printHistoryManager ?: PrintHistoryManager.getInstance(applicationContext)
 
         val appBarLayout = findViewById<AppBarLayout>(R.id.appBarLayoutWeb)
         ViewCompat.setOnApplyWindowInsetsListener(appBarLayout) { v, insets ->
@@ -269,16 +271,33 @@ class WebViewActivity : AppCompatActivity() {
                         statusDialog.dismiss()
                         result.fold(
                             onSuccess = {
+                                printHistoryManager.addEntry(
+                                    title = getString(R.string.halaman_web),
+                                    printType = "WEB",
+                                    targetName = ip,
+                                    targetInfo = port.toString(),
+                                    status = PrintHistoryItem.Status.SUCCESS,
+                                    copies = 1
+                                )
                                 StatusBottomSheetDialog(this@WebViewActivity).showSuccess(
                                     title = getString(R.string.kt_success_print_done_title),
                                     message = getString(R.string.kt_wifi_print_success_msg, ip, port)
                                 )
                             },
                             onFailure = {
+                                printHistoryManager.addEntry(
+                                    title = getString(R.string.halaman_web),
+                                    printType = "WEB",
+                                    targetName = ip,
+                                    targetInfo = port.toString(),
+                                    status = PrintHistoryItem.Status.FAILED,
+                                    copies = 1
+                                )
                                 StatusBottomSheetDialog(this@WebViewActivity).showError(
                                     title = getString(R.string.kt_dialog_wifi_error_title),
                                     message = getString(R.string.kt_print_wifi_connection_failed),
-                                    actionText = getString(R.string.kt_btn_grant_permission)
+                                    actionText = getString(R.string.kt_btn_retry),
+                                    secondaryText = getString(R.string.kt_btn_close)
                                 ) {
                                     printWebContent()
                                 }
@@ -319,7 +338,7 @@ class WebViewActivity : AppCompatActivity() {
             val directPrint = prefs.getBoolean(SettingsActivity.KEY_DIRECT_PRINT, false)
             val defaultAddress = prefs.getString(SettingsActivity.KEY_DEFAULT_PRINTER_ADDRESS, "") ?: ""
 
-            val sendPrint = { device: BluetoothDevice ->
+            fun sendPrint(device: BluetoothDevice) {
                 lifecycleScope.launch {
                     val statusDialog = StatusBottomSheetDialog(this@WebViewActivity)
                     statusDialog.showLoading(
@@ -340,16 +359,37 @@ class WebViewActivity : AppCompatActivity() {
                             val result = withContext(Dispatchers.IO) {
                                 bluetoothService.printData(device, printBytes)
                             }
+                            val deviceName = bluetoothService.getDeviceName(device) ?: getString(R.string.kt_thermal_printer)
                             if (result.isSuccess) {
+                                printHistoryManager.addEntry(
+                                    title = getString(R.string.halaman_web),
+                                    printType = "WEB",
+                                    targetName = deviceName,
+                                    targetInfo = device.address,
+                                    status = PrintHistoryItem.Status.SUCCESS,
+                                    copies = 1
+                                )
                                 statusDialog.showSuccess(
                                     title = getString(R.string.kt_success_print_done_title),
                                     message = getString(R.string.kt_thermal_print_success_msg)
                                 )
                             } else {
-                                statusDialog.showError(
-                                    title = getString(R.string.kt_dialog_pdf_print_fail_title),
-                                    message = getString(R.string.kt_print_bluetooth_connection_failed)
+                                printHistoryManager.addEntry(
+                                    title = getString(R.string.halaman_web),
+                                    printType = "WEB",
+                                    targetName = deviceName,
+                                    targetInfo = device.address,
+                                    status = PrintHistoryItem.Status.FAILED,
+                                    copies = 1
                                 )
+                                statusDialog.showError(
+                                    title = getString(R.string.kt_bluetooth_printer_unreachable_title),
+                                    message = getString(R.string.kt_print_bluetooth_connection_failed),
+                                    actionText = getString(R.string.kt_btn_retry),
+                                    secondaryText = getString(R.string.kt_btn_close)
+                                ) {
+                                    sendPrint(device)
+                                }
                             }
                         } finally {
                             printBytes.fill(0)

@@ -259,6 +259,18 @@ class PrintSpoolerManager private constructor(private val context: Context) {
 
                 removeJob(job.id)
                 successCount++
+                try {
+                    PrintHistoryManager.getInstance(context).addEntry(
+                        title = job.title,
+                        printType = job.printType,
+                        targetName = job.targetWifiIp ?: (job.targetDeviceAddress ?: "Printer"),
+                        targetInfo = if (!job.targetWifiIp.isNullOrBlank()) job.targetWifiPort.toString() else job.targetDeviceAddress,
+                        status = PrintHistoryItem.Status.SUCCESS,
+                        copies = job.copies
+                    )
+                } catch (_: Exception) {
+                    // Ignored
+                }
             } catch (cancelled: CancellationException) {
                 removeJob(job.id)
                 throw cancelled

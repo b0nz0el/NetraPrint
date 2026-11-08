@@ -312,20 +312,18 @@ Type the recipient address in the form, then click the save (bookmark) icon to s
     <string name="kt_dialog_camera_unavailable_title">Camera Unavailable</string>
     <string name="kt_dialog_camera_error_msg">Could not start the camera. Check camera permission and try again.</string>
     <string name="kt_dialog_wifi_ip_title">Wi-Fi IP Not Set</string>
-    <string name="kt_dialog_wifi_ip_msg">Wi-Fi printer IP address not configured. Please open Settings to set your printer IP address.</string>
+    <string name="kt_dialog_wifi_ip_msg">Wi-Fi printer IP address not configured.\n\nOpen Settings → Wi-Fi Printer, then enter your printer IP address.</string>
     <string name="kt_wifi_connect_fail">Failed to connect to Wi-Fi printer.</string>
     <string name="kt_dialog_wifi_print_fail_title">Failed to Print PDF via Wi-Fi</string>
     <string name="kt_dialog_wifi_print_fail_msg">%1$s
 
 Document \'%2$s\' has been automatically added to Offline Print Queue.</string>
-    <string name="kt_dialog_wifi_error_title">Wi-Fi Print Process Error</string>
-    <string name="kt_wifi_process_error">An error occurred while processing Wi-Fi printing.</string>
-    <string name="kt_dialog_bluetooth_off_title">Bluetooth Not Active</string>
-    <string name="kt_dialog_bluetooth_off_msg">Please turn on Bluetooth first to connect to the thermal printer.</string>
+    <string name="kt_dialog_wifi_error_title">Wi-Fi Printer Not Connected</string>
+    <string name="kt_wifi_process_error">Printer cannot be reached via Wi-Fi.\n\n• Make sure the printer is turned on\n• Phone and printer are connected to the same Wi-Fi\n• Check the printer IP address in Settings</string>
+    <string name="kt_dialog_bluetooth_off_title">Bluetooth Is Off</string>
+    <string name="kt_dialog_bluetooth_off_msg">Your phone\'s Bluetooth is currently turned off.\n\nPlease turn on Bluetooth first to connect to the thermal printer.</string>
     <string name="kt_dialog_no_printer_title">No Printer Found</string>
-    <string name="kt_dialog_no_printer_msg">No Bluetooth printer paired with this phone.
-
-Please turn on the printer, then pair it first via Bluetooth Settings.</string>
+    <string name="kt_dialog_no_printer_msg">No Bluetooth printer has been paired with this phone.\n\nHow to connect:\n1. Turn on your thermal printer\n2. Open Bluetooth Settings on your phone\n3. Search and pair your printer\n4. Return to NetraPrint</string>
     <string name="kt_dialog_pdf_print_fail_title">Failed to Print PDF</string>
     <string name="kt_printer_connect_fail">Failed to connect to printer.</string>
     <string name="kt_dialog_pdf_print_fail_msg">%1$s
@@ -340,7 +338,7 @@ Document \'%2$s\' has been automatically added to Offline Print Queue.</string>
     <string name="kt_qr_wifi_print_success_msg">QR Code successfully sent to Wi-Fi printer (%1$s:%2$d).</string>
     <string name="kt_qr_thermal_print_success_msg">QR Code successfully printed to thermal printer.</string>
     <string name="kt_dialog_spooler_fail_title">Failed to Print Queue</string>
-    <string name="kt_spooler_connect_fail_msg">Failed to connect to printer. Remaining queue is still saved.</string>
+    <string name="kt_spooler_connect_fail_msg">Could not connect to the printer. Remaining documents are safely saved in the offline queue.\n\nMake sure the printer is turned on and within range before trying again.</string>
     <string name="kt_dialog_error_title">An Error Occurred</string>
     <string name="kt_spooler_process_error_msg">Failed to process offline print queue.</string>
     <string name="kt_spooler_success_title">Queue Successfully Printed</string>
@@ -353,6 +351,7 @@ Document \'%2$s\' has been automatically added to Offline Print Queue.</string>
 
 Make sure the printer is on and connected, then tap \'Print Now\'.</string>
     <string name="kt_spooler_print_now_action">Print Now</string>
+    <string name="kt_spooler_view_queue_action">View Queue</string>
     <string name="kt_spooler_badge_text">Offline Print Queue (%d documents pending)</string>
     <string name="kt_important_error_pdf_first">Please select a PDF document before printing</string>
     <string name="kt_important_error_pdf_render_fail">Failed to render selected PDF document pages.</string>
@@ -498,10 +497,10 @@ Do you allow this printing?</string>
     <string name="kt_secure_storage_reset_title">Secure Settings Were Reset</string>
     <string name="kt_secure_storage_reset_message">Encrypted storage was recovered after a device security error. Review and reconfigure your printer preferences and other sensitive settings.</string>
     <string name="kt_spooler_failed_retry">Printing failed. The job remains temporarily queued so you can retry it.</string>
-    <string name="kt_print_bluetooth_connection_failed">Could not connect to the Bluetooth printer. Check printer power, range, and pairing.</string>
-    <string name="kt_print_bluetooth_failed">A Bluetooth printing error occurred.</string>
+    <string name="kt_print_bluetooth_connection_failed">Could not connect to the Bluetooth printer.\n\nPlease check:\n• Printer is powered on\n• Phone Bluetooth is active &amp; printer is in range\n• Printer battery is sufficient</string>
+    <string name="kt_print_bluetooth_failed">Failed to process Bluetooth print.\n\nMake sure the printer remains powered on, close to the phone, and not connected to another device.</string>
     <string name="kt_print_bluetooth_multipage_failed">A Bluetooth multi-page printing error occurred.</string>
-    <string name="kt_print_wifi_connection_failed">Could not connect to the Wi-Fi printer. Check the network and printer address.</string>
+    <string name="kt_print_wifi_connection_failed">Could not connect to the Wi-Fi printer.\n\nPlease check:\n• Printer is powered on &amp; connected to Wi-Fi\n• Printer IP address is correct in Settings\n• Wi-Fi connection is stable</string>
     <string name="kt_print_wifi_failed">A Wi-Fi printing error occurred.</string>
     <string name="kt_print_wifi_multipage_failed">A Wi-Fi multi-page printing error occurred.</string>
     <string name="kt_receipt_test_title">NETRAPRINT TEST PRINT</string>
@@ -565,7 +564,7 @@ Do you allow this printing?</string>
     <string name="kt_bluetooth_sending_title">Sending to Printer</string>
     <string name="kt_wifi_printer_unreachable_title">Wi-Fi Printer Unreachable</string>
     <string name="kt_bluetooth_printer_unreachable_title">Bluetooth Printer Unreachable</string>
-    <string name="kt_print_failed_queued_message">Printing failed. %1$s was added to the offline queue for retry.</string>
+    <string name="kt_print_failed_queued_message">Printing failed. Document \'%1$s\' has been saved to the offline queue for retry.\n\nMake sure the printer is turned on and connected before retrying.</string>
     <string name="kt_job_shipping_label">Shipping label</string>
     <string name="kt_job_free_text">Free text</string>
     <string name="kt_job_image">Image document</string>
@@ -586,7 +585,7 @@ Do you allow this printing?</string>
     <string name="kt_test_print_success_title">Test Print Successful</string>
     <string name="kt_test_print_success_message">The test print command was sent to the printer.</string>
     <string name="kt_test_print_failed_title">Test Print Failed</string>
-    <string name="kt_test_print_failed_message">Could not send the test print. Check the printer connection and try again.</string>
+    <string name="kt_test_print_failed_message">Failed to send test print to printer.\n\nMake sure the printer is turned on, thermal paper is properly loaded, and connection is ready.</string>
     <string name="kt_btn_retry">Try Again</string>
     <string name="kt_api_test_title">Testing API Connection...</string>
     <string name="kt_api_test_connecting">Connecting to API endpoint...</string>
@@ -613,4 +612,23 @@ Do you allow this printing?</string>
     <string name="kt_system_printer_wifi_description">Wi-Fi thermal printer (%1$s:%2$s)</string>
     <string name="kt_notification_title">Notification</string>
     <string name="kt_btn_open_bluetooth_settings">Open Bluetooth Settings</string>
+
+    <!-- Print History Feature -->
+    <string name="riwayat_cetak">Print History</string>
+    <string name="riwayat_cetak_kosong_title">No Print History Yet</string>
+    <string name="riwayat_cetak_kosong_desc">Documents you print will be recorded here automatically.</string>
+    <string name="riwayat_cetak_hapus_semua">Clear All</string>
+    <string name="riwayat_cetak_dialog_hapus_title">Clear Print History?</string>
+    <string name="riwayat_cetak_dialog_hapus_msg">All printed document history will be permanently deleted.</string>
+    <string name="riwayat_cetak_status_berhasil">Success</string>
+    <string name="riwayat_cetak_status_antrean">Offline Queue</string>
+    <string name="riwayat_cetak_status_gagal">Failed</string>
+    <string name="riwayat_cetak_salinan">%1$d Copies</string>
+
+    <!-- In-App Update Banner -->
+    <string name="in_app_update_banner_title">NetraPrint v%1$s update is available!</string>
+    <string name="in_app_update_banner_action">Update</string>
+
+    <!-- Share to Print -->
+    <string name="shared_content_ready">File received from another app. Ready to print!</string>
 </resources>

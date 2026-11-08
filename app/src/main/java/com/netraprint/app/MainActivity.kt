@@ -28,6 +28,7 @@ import android.provider.OpenableColumns
 import android.widget.Filter
 import androidx.core.content.FileProvider
 import android.speech.tts.TextToSpeech
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -75,7 +76,9 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.ByteArrayOutputStream
 import java.io.File
+import java.net.URL
 import java.util.Locale
+import org.json.JSONObject
 import androidx.activity.viewModels
 import com.netraprint.app.viewmodel.MainViewModel
 
@@ -134,6 +137,7 @@ class MainActivity : AppCompatActivity() {
     // Dithering & Print Spooler (state di MainViewModel)
     private var currentDitherMode = DitheringEngine.DitherMode.FLOYD_STEINBERG
     private lateinit var printSpoolerManager: PrintSpoolerManager
+    private lateinit var printHistoryManager: PrintHistoryManager
     private val spoolerListener: (Int) -> Unit = { count ->
         // postValue aman dipanggil dari thread mana pun (spooler bisa notify dari thread IO)
         mainViewModel.spoolerQueueCount.postValue(count)
@@ -318,6 +322,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
@@ -326,6 +331,7 @@ class MainActivity : AppCompatActivity() {
         val appContainer = (application as PrinterApplication).appContainer
         bluetoothService = appContainer.bluetoothService
         printSpoolerManager = appContainer.printSpoolerManager
+        printHistoryManager = appContainer.printHistoryManager
 
         val prefs = SecurePreferencesHelper.getPreferences(this)
         if (!prefs.getBoolean(OnboardingActivity.KEY_ONBOARDING_COMPLETED, false)) {
@@ -378,6 +384,8 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+
+        setupInAppUpdateChecker()
 
         onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -715,6 +723,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_label -> {
                     switchToMode(CurrentMode.FORM)
+                    true
+                }
+                R.id.nav_print_history -> {
+                    startActivity(Intent(this, PrintHistoryActivity::class.java))
                     true
                 }
                 R.id.nav_setting -> {
@@ -1793,7 +1805,8 @@ class MainActivity : AppCompatActivity() {
             StatusBottomSheetDialog(this).showError(
                 title = getString(R.string.kt_dialog_wifi_ip_title),
                 message = getString(R.string.kt_dialog_wifi_ip_msg),
-                actionText = getString(R.string.kt_btn_open_settings)
+                actionText = getString(R.string.kt_btn_open_settings),
+                secondaryText = getString(R.string.kt_btn_close)
             ) {
                 startActivity(Intent(this, SettingsActivity::class.java))
             }
@@ -1878,12 +1891,28 @@ class MainActivity : AppCompatActivity() {
 
                     try {
                         if (result.isSuccess) {
+                            printHistoryManager.addEntry(
+                                title = getString(R.string.kt_job_pdf),
+                                printType = "PDF",
+                                targetName = ip,
+                                targetInfo = port.toString(),
+                                status = PrintHistoryItem.Status.SUCCESS,
+                                copies = totalToPrint
+                            )
                             statusDialog.showSuccess(
                                 title = getString(R.string.kt_sbs_default_success_title),
                                 message = getString(R.string.kt_pdf_print_success, totalToPrint)
                             )
                         } else {
                             val jobTitle = getString(R.string.kt_job_pdf)
+                            printHistoryManager.addEntry(
+                                title = jobTitle,
+                                printType = "PDF",
+                                targetName = ip,
+                                targetInfo = port.toString(),
+                                status = PrintHistoryItem.Status.QUEUED_OFFLINE,
+                                copies = 1
+                            )
                             val combinedBytes = ByteArrayOutputStream().apply {
                                 for (item in pagesItems) {
                                     write(item.bytes)
@@ -1904,7 +1933,8 @@ class MainActivity : AppCompatActivity() {
                             statusDialog.showError(
                                 title = getString(R.string.kt_wifi_printer_unreachable_title),
                                 message = getString(R.string.kt_print_failed_queued_message, jobTitle),
-                                actionText = getString(R.string.kt_spooler_print_now_action)
+                                actionText = getString(R.string.kt_spooler_view_queue_action),
+                                secondaryText = getString(R.string.kt_btn_close)
                             ) {
                                 showSpoolerQueueDialog()
                             }
@@ -1961,6 +1991,20 @@ class MainActivity : AppCompatActivity() {
                 try {
                     val result = bluetoothService.printDataWifi(ip, port, printBytes)
                     if (result.isSuccess) {
+                        val jobTitle = when (currentMode) {
+                            CurrentMode.FORM -> getString(R.string.kt_job_shipping_label)
+                            CurrentMode.FREE_TEXT -> getString(R.string.kt_job_free_text)
+                            CurrentMode.IMAGE -> getString(R.string.kt_job_image)
+                            else -> getString(R.string.kt_job_document)
+                        }
+                        printHistoryManager.addEntry(
+                            title = jobTitle,
+                            printType = currentMode.name,
+                            targetName = ip,
+                            targetInfo = port.toString(),
+                            status = PrintHistoryItem.Status.SUCCESS,
+                            copies = 1
+                        )
                         statusDialog.showSuccess(
                             title = getString(R.string.kt_success_printed_title),
                             message = getString(R.string.kt_wifi_print_success_msg, ip, port)
@@ -1973,6 +2017,14 @@ class MainActivity : AppCompatActivity() {
                             CurrentMode.PDF -> getString(R.string.kt_job_pdf)
                             else -> getString(R.string.kt_job_document)
                         }
+                        printHistoryManager.addEntry(
+                            title = jobTitle,
+                            printType = currentMode.name,
+                            targetName = ip,
+                            targetInfo = port.toString(),
+                            status = PrintHistoryItem.Status.QUEUED_OFFLINE,
+                            copies = 1
+                        )
                         printSpoolerManager.enqueueData(
                             title = jobTitle,
                             printType = currentMode.name,
@@ -1984,7 +2036,8 @@ class MainActivity : AppCompatActivity() {
                         statusDialog.showError(
                             title = getString(R.string.kt_wifi_printer_unreachable_title),
                             message = getString(R.string.kt_print_failed_queued_message, jobTitle),
-                            actionText = getString(R.string.kt_spooler_print_now_action)
+                            actionText = getString(R.string.kt_spooler_view_queue_action),
+                            secondaryText = getString(R.string.kt_btn_close)
                         ) {
                             showSpoolerQueueDialog()
                         }
@@ -2013,7 +2066,8 @@ class MainActivity : AppCompatActivity() {
             StatusBottomSheetDialog(this).showError(
                 title = getString(R.string.kt_dialog_bluetooth_off_title),
                 message = getString(R.string.kt_dialog_bluetooth_off_msg),
-                actionText = getString(R.string.kt_btn_open_settings)
+                actionText = getString(R.string.kt_btn_open_settings),
+                secondaryText = getString(R.string.kt_btn_close)
             ) {
                 startActivity(Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS))
             }
@@ -2029,7 +2083,8 @@ class MainActivity : AppCompatActivity() {
             StatusBottomSheetDialog(this).showError(
                 title = getString(R.string.kt_dialog_no_paired_title),
                 message = getString(R.string.kt_no_paired_msg),
-                actionText = getString(R.string.kt_btn_open_settings)
+                actionText = getString(R.string.kt_btn_open_settings),
+                secondaryText = getString(R.string.kt_btn_close)
             ) {
                 startActivity(Intent(android.provider.Settings.ACTION_BLUETOOTH_SETTINGS))
             }
@@ -2187,13 +2242,30 @@ class MainActivity : AppCompatActivity() {
                     }
 
                     try {
+                        val deviceName = bluetoothService.getDeviceName(device) ?: getString(R.string.kt_thermal_printer)
+                        val jobTitle = getString(R.string.kt_job_pdf)
                         if (result.isSuccess) {
+                            printHistoryManager.addEntry(
+                                title = jobTitle,
+                                printType = "PDF",
+                                targetName = deviceName,
+                                targetInfo = device.address,
+                                status = PrintHistoryItem.Status.SUCCESS,
+                                copies = totalToPrint
+                            )
                             statusDialog.showSuccess(
                                 title = getString(R.string.kt_sbs_default_success_title),
                                 message = getString(R.string.kt_pdf_print_success, totalToPrint)
                             )
                         } else {
-                            val jobTitle = getString(R.string.kt_job_pdf)
+                            printHistoryManager.addEntry(
+                                title = jobTitle,
+                                printType = "PDF",
+                                targetName = deviceName,
+                                targetInfo = device.address,
+                                status = PrintHistoryItem.Status.QUEUED_OFFLINE,
+                                copies = totalToPrint
+                            )
                             val combinedBytes = ByteArrayOutputStream().apply {
                                 for (item in pagesItems) {
                                     write(item.bytes)
@@ -2213,7 +2285,8 @@ class MainActivity : AppCompatActivity() {
                             statusDialog.showError(
                                 title = getString(R.string.kt_bluetooth_printer_unreachable_title),
                                 message = getString(R.string.kt_print_failed_queued_message, jobTitle),
-                                actionText = getString(R.string.kt_spooler_print_now_action)
+                                actionText = getString(R.string.kt_spooler_view_queue_action),
+                                secondaryText = getString(R.string.kt_btn_close)
                             ) {
                                 showSpoolerQueueDialog()
                             }
@@ -2274,19 +2347,36 @@ class MainActivity : AppCompatActivity() {
                     val result = withContext(Dispatchers.IO) {
                         bluetoothService.printData(device, printBytes)
                     }
+                    val deviceName = bluetoothService.getDeviceName(device) ?: getString(R.string.kt_thermal_printer)
+                    val jobTitle = when (currentMode) {
+                        CurrentMode.FORM -> getString(R.string.kt_job_shipping_label)
+                        CurrentMode.FREE_TEXT -> getString(R.string.kt_job_free_text)
+                        CurrentMode.IMAGE -> getString(R.string.kt_job_image)
+                        CurrentMode.PDF -> getString(R.string.kt_job_pdf)
+                        else -> getString(R.string.kt_job_document)
+                    }
                     if (result.isSuccess) {
+                        printHistoryManager.addEntry(
+                            title = jobTitle,
+                            printType = currentMode.name,
+                            targetName = deviceName,
+                            targetInfo = device.address,
+                            status = PrintHistoryItem.Status.SUCCESS,
+                            copies = 1
+                        )
                         statusDialog.showSuccess(
                             title = getString(R.string.kt_success_printed_title),
                             message = getString(R.string.kt_thermal_print_success_msg)
                         )
                     } else {
-                        val jobTitle = when (currentMode) {
-                            CurrentMode.FORM -> getString(R.string.kt_job_shipping_label)
-                            CurrentMode.FREE_TEXT -> getString(R.string.kt_job_free_text)
-                            CurrentMode.IMAGE -> getString(R.string.kt_job_image)
-                            CurrentMode.PDF -> getString(R.string.kt_job_pdf)
-                            else -> getString(R.string.kt_job_document)
-                        }
+                        printHistoryManager.addEntry(
+                            title = jobTitle,
+                            printType = currentMode.name,
+                            targetName = deviceName,
+                            targetInfo = device.address,
+                            status = PrintHistoryItem.Status.QUEUED_OFFLINE,
+                            copies = 1
+                        )
                         printSpoolerManager.enqueueData(
                             title = jobTitle,
                             printType = currentMode.name,
@@ -2297,7 +2387,8 @@ class MainActivity : AppCompatActivity() {
                         statusDialog.showError(
                             title = getString(R.string.kt_bluetooth_printer_unreachable_title),
                             message = getString(R.string.kt_print_failed_queued_message, jobTitle),
-                            actionText = getString(R.string.kt_spooler_print_now_action)
+                            actionText = getString(R.string.kt_spooler_view_queue_action),
+                            secondaryText = getString(R.string.kt_btn_close)
                         ) {
                             showSpoolerQueueDialog()
                         }
@@ -2409,42 +2500,111 @@ class MainActivity : AppCompatActivity() {
             return
         }
 
-        if (intent.action != Intent.ACTION_SEND) return
+        if (intent.action == Intent.ACTION_VIEW) {
+            val uri = intent.data ?: return
+            val mimeType = intent.type ?: contentResolver.getType(uri) ?: ""
+            val uriString = uri.toString().lowercase()
+            val isPdf = mimeType.equals("application/pdf", ignoreCase = true) || uriString.endsWith(".pdf")
+            val isImage = mimeType.startsWith("image/") || uriString.endsWith(".png") || uriString.endsWith(".jpg") || uriString.endsWith(".jpeg") || uriString.endsWith(".webp")
+            val isText = mimeType.startsWith("text/") || uriString.endsWith(".txt")
 
-        val type = intent.type ?: return
-        when {
-            type.startsWith("text/") -> {
-                val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
-                if (!sharedText.isNullOrBlank()) {
-                    switchToMode(CurrentMode.FREE_TEXT)
-                    etFreeText.setText(sharedText)
-                    updateThermalPreview()
-                }
-            }
-            type.startsWith("image/") -> {
-                val imageUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
-                } else {
-                    @Suppress("DEPRECATION")
-                    intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
-                }
-                if (imageUri != null) {
-                    switchToMode(CurrentMode.IMAGE)
-                    loadImageDocument(imageUri)
-                }
-            }
-            type == "application/pdf" -> {
-                val pdfUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                    intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
-                } else {
-                    @Suppress("DEPRECATION")
-                    intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
-                }
-                if (pdfUri != null) {
+            when {
+                isPdf -> {
                     switchToMode(CurrentMode.PDF)
-                    loadPdfDocument(pdfUri)
+                    loadPdfDocument(uri)
+                    Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                }
+                isImage -> {
+                    switchToMode(CurrentMode.IMAGE)
+                    loadImageDocument(uri)
+                    Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                }
+                isText -> {
+                    val text = try {
+                        contentResolver.openInputStream(uri)?.use { stream ->
+                            stream.bufferedReader(Charsets.UTF_8).readText()
+                        }
+                    } catch (_: Exception) {
+                        null
+                    }
+                    if (!text.isNullOrBlank()) {
+                        switchToMode(CurrentMode.FREE_TEXT)
+                        etFreeText.setText(text)
+                        updateThermalPreview()
+                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                    }
                 }
             }
+            return
+        }
+
+        if (intent.action == Intent.ACTION_SEND_MULTIPLE) {
+            val uris = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                intent.getParcelableArrayListExtra(Intent.EXTRA_STREAM, Uri::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                intent.getParcelableArrayListExtra<Uri>(Intent.EXTRA_STREAM)
+            }
+            val firstUri = uris?.firstOrNull()
+            if (firstUri != null) {
+                val mimeType = intent.type ?: contentResolver.getType(firstUri) ?: ""
+                val uriString = firstUri.toString().lowercase()
+                when {
+                    mimeType.startsWith("image/") || uriString.endsWith(".png") || uriString.endsWith(".jpg") || uriString.endsWith(".jpeg") -> {
+                        switchToMode(CurrentMode.IMAGE)
+                        loadImageDocument(firstUri)
+                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                    }
+                    mimeType == "application/pdf" || uriString.endsWith(".pdf") -> {
+                        switchToMode(CurrentMode.PDF)
+                        loadPdfDocument(firstUri)
+                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            return
+        }
+
+        if (intent.action == Intent.ACTION_SEND) {
+            val type = intent.type ?: return
+            when {
+                type.startsWith("text/") -> {
+                    val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
+                    if (!sharedText.isNullOrBlank()) {
+                        switchToMode(CurrentMode.FREE_TEXT)
+                        etFreeText.setText(sharedText)
+                        updateThermalPreview()
+                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                    }
+                }
+                type.startsWith("image/") -> {
+                    val imageUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
+                    } else {
+                        @Suppress("DEPRECATION")
+                        intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
+                    }
+                    if (imageUri != null) {
+                        switchToMode(CurrentMode.IMAGE)
+                        loadImageDocument(imageUri)
+                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                    }
+                }
+                type == "application/pdf" -> {
+                    val pdfUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                        intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
+                    } else {
+                        @Suppress("DEPRECATION")
+                        intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
+                    }
+                    if (pdfUri != null) {
+                        switchToMode(CurrentMode.PDF)
+                        loadPdfDocument(pdfUri)
+                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                    }
+                }
+            }
+            return
         }
     }
 
@@ -2478,6 +2638,84 @@ class MainActivity : AppCompatActivity() {
         prefs.edit().putInt(SettingsActivity.KEY_PRINT_WIDTH, newWidth).apply()
         updateToolbarStatusBadge()
         updateThermalPreview()
+    }
+
+    private fun setupInAppUpdateChecker() {
+        val layoutUpdateBanner = findViewById<View>(R.id.layoutUpdateBanner) ?: return
+        val tvUpdateBannerText = findViewById<TextView>(R.id.tvUpdateBannerText)
+        val btnUpdateBannerAction = findViewById<View>(R.id.btnUpdateBannerAction)
+        val btnUpdateBannerClose = findViewById<View>(R.id.btnUpdateBannerClose)
+
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val prefs = SecurePreferencesHelper.getPreferences(this@MainActivity)
+                val currentVersionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    packageManager.getPackageInfo(packageName, 0).longVersionCode.toInt()
+                } else {
+                    @Suppress("DEPRECATION")
+                    packageManager.getPackageInfo(packageName, 0).versionCode
+                }
+
+                val lastCheck = prefs.getLong("key_last_auto_update_check", 0L)
+                val now = System.currentTimeMillis()
+                if (now - lastCheck < 24 * 60 * 60 * 1000L && lastCheck > 0L) {
+                    return@launch
+                }
+
+                val conn = (URL("https://netraprint-updater.yt-hackrandom.workers.dev/version.json").openConnection() as java.net.HttpURLConnection).apply {
+                    connectTimeout = 6000
+                    readTimeout = 6000
+                    requestMethod = "GET"
+                    setRequestProperty("User-Agent", "NetraPrint-Android")
+                    setRequestProperty("Accept", "application/json")
+                    useCaches = false
+                }
+                val jsonText = try {
+                    if (conn.responseCode in 200..299) {
+                        conn.inputStream.bufferedReader().use { it.readText() }
+                    } else {
+                        null
+                    }
+                } finally {
+                    conn.disconnect()
+                } ?: return@launch
+
+                prefs.edit().putLong("key_last_auto_update_check", now).apply()
+
+                val json = JSONObject(jsonText)
+                val latestVersionCode = json.getInt("latestVersionCode")
+                val latestVersionName = json.getString("latestVersionName")
+                val downloadUrl = json.optString("downloadUrl", "https://netraprint-updater.yt-hackrandom.workers.dev/download")
+                val rawApkUrl = json.optString("apkUrl", "")
+                val targetUrl = if (rawApkUrl.isNotBlank()) rawApkUrl else downloadUrl
+
+                val dismissedVersion = prefs.getInt("key_dismissed_update_version", 0)
+                if (latestVersionCode > currentVersionCode && latestVersionCode != dismissedVersion) {
+                    withContext(Dispatchers.Main) {
+                        if (isFinishing || isDestroyed) return@withContext
+                        tvUpdateBannerText?.text = getString(R.string.in_app_update_banner_title, latestVersionName)
+                        layoutUpdateBanner.visibility = View.VISIBLE
+
+                        btnUpdateBannerAction?.setOnClickListener {
+                            try {
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(targetUrl))
+                                startActivity(intent)
+                            } catch (_: Exception) {
+                                val settingsIntent = Intent(this@MainActivity, SettingsActivity::class.java)
+                                startActivity(settingsIntent)
+                            }
+                        }
+
+                        btnUpdateBannerClose?.setOnClickListener {
+                            layoutUpdateBanner.visibility = View.GONE
+                            prefs.edit().putInt("key_dismissed_update_version", latestVersionCode).apply()
+                        }
+                    }
+                }
+            } catch (_: Exception) {
+                // Silently ignore background check errors to preserve offline experience
+            }
+        }
     }
 
     private fun showDitherModeDialog() {

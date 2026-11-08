@@ -1,8 +1,8 @@
 {
-  "latestVersionCode": 19,
-  "latestVersionName": "2.0.13",
+  "latestVersionCode": 21,
+  "latestVersionName": "2.0.15",
   "downloadUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
   "apkUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
   "releasePageUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
-  "changelog": "Standardisasi identitas merek NetraPrint murni, pembersihan seluruh label PRO pada antarmuka dan badge drawer, serta perapihan dokumentasi resmi."
+  "changelog": "Fitur baru: Riwayat Cetakan lengkap di menu navigasi, Splash Screen resmi Android 12+, Banner In-App Update otomatis, dan Share to Print untuk mencetak langsung dari WhatsApp, Galeri, atau File Manager."
 }

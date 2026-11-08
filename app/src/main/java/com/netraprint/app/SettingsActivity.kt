@@ -491,7 +491,8 @@ class SettingsActivity : AppCompatActivity() {
                             StatusBottomSheetDialog(this@SettingsActivity).showError(
                                 title = getString(R.string.kt_test_print_failed_title),
                                 message = getString(R.string.kt_test_print_failed_message),
-                                actionText = getString(R.string.kt_btn_retry)
+                                actionText = getString(R.string.kt_btn_retry),
+                                secondaryText = getString(R.string.kt_btn_close)
                             ) {
                                 executeTestPrint()
                             }
@@ -557,7 +558,8 @@ class SettingsActivity : AppCompatActivity() {
                             StatusBottomSheetDialog(this@SettingsActivity).showError(
                                 title = getString(R.string.kt_test_print_failed_title),
                                 message = getString(R.string.kt_test_print_failed_message),
-                                actionText = getString(R.string.kt_btn_retry)
+                                actionText = getString(R.string.kt_btn_retry),
+                                secondaryText = getString(R.string.kt_btn_close)
                             ) {
                                 executeTestPrint()
                             }

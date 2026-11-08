@@ -1,5 +1,20 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.15] - Release
+
+- Riwayat Cetakan: Menu riwayat pencetakan interaktif di drawer navigasi untuk melihat dokumen yang pernah dicetak (Form, Resi, Teks Bebas, Gambar, PDF, QR Code, dan Web) dengan status keberhasilan (Berhasil, Antrean Offline, Gagal), waktu cetak, nama/alamat printer tujuan, serta tombol Hapus Semua.
+- Splash Screen Android 12+: Integrasi library resmi AndroidX Core SplashScreen API (`androidx.core:core-splashscreen:1.0.1`) dengan tema `Theme.NetraPrint.Starting` untuk pengalaman startup yang mulus, responsif, dan bebas kedipan di Android 12 ke atas maupun perangkat sebelumnya.
+- Banner In-App Update Otomatis: Deteksi pembaruan otomatis di latar belakang saat aplikasi dibuka (dengan interval 24 jam) dan menampilkan banner notifikasi yang elegan di bagian atas layar utama dengan tombol tindakan unduh dan tombol tutup.
+- Share to Print (Deep Link & File Sharing): Kemampuan menerima berkas langsung dari aplikasi lain (WhatsApp, Telegram, Galeri, File Manager, browser) via intent `ACTION_VIEW`, `ACTION_SEND`, dan `ACTION_SEND_MULTIPLE` untuk dokumen PDF, gambar, maupun teks bebas.
+- Optimasi Test Suite: Penambahan dependency `org.json:json` pada `testImplementation` untuk memastikan verifikasi persistensi file riwayat dan spooler berjalan stabil pada lingkungan JVM lokal.
+
+## [v2.0.14] - Release
+
+- UX Error Printer Offline: Transformasi pesan error saat printer mati, di luar jangkauan, atau gagal terhubung menjadi panduan troubleshooting yang ramah pengguna (mengecek daya printer, jangkauan Bluetooth, status Wi-Fi, dan kertas thermal).
+- UX Antrean Offline: Mengganti tombol aksi pada dialog kegagalan koneksi cetak menjadi "Lihat Antrean" (View Queue) yang lebih intuitif, dilengkapi tombol sekunder "Tutup" (Close) sehingga pengguna tidak terjebak.
+- Retry Flow Harmonization: Memperbaiki penanganan retry cetak pada QrGeneratorActivity dan WebViewActivity menggunakan tombol "Coba Lagi" yang dapat langsung mengeksekusi ulang pencetakan setelah printer siap.
+- Dual-Locale Parity: Penyelarasan format placeholder dan kelengkapan string resource untuk bahasa Indonesia dan bahasa Inggris secara konsisten.
+
 ## [v2.0.13] - Release
 
 - Branding & UI: Penghapusan menyeluruh label "PRO" pada seluruh tampilan antarmuka, badge versi di navigation drawer (`v2.0.13`), dan penamaan rilis agar identitas aplikasi menjadi NetraPrint murni yang lebih minimalis, resmi, dan elegan.

@@ -312,20 +312,18 @@ Ketik alamat penerima pada formulir, lalu klik ikon simpan (bookmark) untuk meny
     <string name="kt_dialog_camera_unavailable_title">Kamera Tidak Tersedia</string>
     <string name="kt_dialog_camera_error_msg">Gagal memulai kamera. Periksa izin kamera dan coba lagi.</string>
     <string name="kt_dialog_wifi_ip_title">IP Wi-Fi Belum Diatur</string>
-    <string name="kt_dialog_wifi_ip_msg">Alamat IP printer Wi-Fi belum dikonfigurasi. Silakan buka Pengaturan untuk mengatur alamat IP printer Anda.</string>
+    <string name="kt_dialog_wifi_ip_msg">Alamat IP printer Wi-Fi belum dikonfigurasi.\n\nBuka Pengaturan → Printer Wi-Fi, lalu masukkan alamat IP printer Anda.</string>
     <string name="kt_wifi_connect_fail">Gagal terhubung ke printer Wi-Fi.</string>
     <string name="kt_dialog_wifi_print_fail_title">Gagal Mencetak PDF via Wi-Fi</string>
     <string name="kt_dialog_wifi_print_fail_msg">%1$s
 
 Dokumen \'%2$s\' telah otomatis dimasukkan ke Antrean Cetak Offline.</string>
-    <string name="kt_dialog_wifi_error_title">Error Proses Cetak Wi-Fi</string>
-    <string name="kt_wifi_process_error">Terjadi kesalahan saat memproses cetak Wi-Fi.</string>
+    <string name="kt_dialog_wifi_error_title">Printer Wi-Fi Tidak Terhubung</string>
+    <string name="kt_wifi_process_error">Printer tidak dapat dihubungi melalui Wi-Fi.\n\n• Pastikan printer dalam keadaan menyala\n• HP dan printer terhubung ke Wi-Fi yang sama\n• Periksa kembali alamat IP di Pengaturan</string>
     <string name="kt_dialog_bluetooth_off_title">Bluetooth Belum Aktif</string>
-    <string name="kt_dialog_bluetooth_off_msg">Silakan nyalakan Bluetooth terlebih dahulu untuk menghubungkan ke printer thermal.</string>
+    <string name="kt_dialog_bluetooth_off_msg">Bluetooth HP Anda saat ini nonaktif.\n\nSilakan nyalakan Bluetooth terlebih dahulu untuk menghubungkan ke printer thermal.</string>
     <string name="kt_dialog_no_printer_title">Tidak Ada Printer Ditemukan</string>
-    <string name="kt_dialog_no_printer_msg">Belum ada printer Bluetooth yang dipasangkan (paired) dengan HP ini.
-
-Silakan hidupkan printer, lalu pasangkan (pair) terlebih dahulu melalui Pengaturan Bluetooth HP.</string>
+    <string name="kt_dialog_no_printer_msg">Belum ada printer Bluetooth yang dipasangkan (paired) dengan HP ini.\n\nLangkah menghubungkan:\n1. Nyalakan printer thermal Anda\n2. Buka Pengaturan Bluetooth HP\n3. Cari dan pasangkan (pair) printer\n4. Kembali ke NetraPrint</string>
     <string name="kt_dialog_pdf_print_fail_title">Gagal Mencetak PDF</string>
     <string name="kt_printer_connect_fail">Gagal terhubung ke printer.</string>
     <string name="kt_dialog_pdf_print_fail_msg">%1$s
@@ -340,7 +338,7 @@ Dokumen \'%2$s\' telah otomatis dimasukkan ke Antrean Cetak Offline.</string>
     <string name="kt_qr_wifi_print_success_msg">QR Code berhasil dikirim ke printer Wi-Fi (%1$s:%2$d).</string>
     <string name="kt_qr_thermal_print_success_msg">QR Code berhasil dicetak ke printer thermal.</string>
     <string name="kt_dialog_spooler_fail_title">Gagal Mencetak Antrean</string>
-    <string name="kt_spooler_connect_fail_msg">Gagal terhubung ke printer. Sisa antrean tetap disimpan.</string>
+    <string name="kt_spooler_connect_fail_msg">Gagal terhubung ke printer. Dokumen tetap tersimpan aman di antrean offline.\n\nPastikan printer menyala dan berada dalam jangkauan sebelum mencoba lagi.</string>
     <string name="kt_dialog_error_title">Terjadi Kesalahan</string>
     <string name="kt_spooler_process_error_msg">Gagal memproses antrean cetak offline.</string>
     <string name="kt_spooler_success_title">Antrean Berhasil Dicetak</string>
@@ -353,6 +351,7 @@ Dokumen \'%2$s\' telah otomatis dimasukkan ke Antrean Cetak Offline.</string>
 
 Pastikan printer sudah menyala dan terhubung, lalu ketuk \'Cetak Sekarang\'.</string>
     <string name="kt_spooler_print_now_action">Cetak Sekarang</string>
+    <string name="kt_spooler_view_queue_action">Lihat Antrean</string>
     <string name="kt_spooler_badge_text">Antrean Cetak Offline (%d dokumen tertunda)</string>
     <string name="kt_important_error_pdf_first">Pilih dokumen PDF terlebih dahulu sebelum mencetak</string>
     <string name="kt_important_error_pdf_render_fail">Gagal merender halaman dokumen PDF yang dipilih.</string>
@@ -498,10 +497,10 @@ Apakah Anda mengizinkan pencetakan ini?</string>
     <string name="kt_secure_storage_reset_title">Pengaturan Keamanan Diatur Ulang</string>
     <string name="kt_secure_storage_reset_message">Penyimpanan terenkripsi pulih setelah terjadi masalah keamanan perangkat. Periksa dan atur ulang preferensi printer atau konfigurasi sensitif Anda.</string>
     <string name="kt_spooler_failed_retry">Pencetakan gagal. Pekerjaan tetap tersimpan sementara di antrean untuk dicoba kembali.</string>
-    <string name="kt_print_bluetooth_connection_failed">Gagal terhubung ke printer Bluetooth. Periksa daya, jarak, dan pemasangan printer.</string>
-    <string name="kt_print_bluetooth_failed">Terjadi kesalahan saat mencetak melalui Bluetooth.</string>
+    <string name="kt_print_bluetooth_connection_failed">Gagal terhubung ke printer Bluetooth.\n\nPastikan:\n• Printer dalam keadaan menyala\n• Bluetooth HP aktif &amp; printer dalam jangkauan\n• Baterai printer mencukupi</string>
+    <string name="kt_print_bluetooth_failed">Gagal memproses cetak Bluetooth.\n\nPastikan printer tetap menyala, dekat dengan HP, dan tidak tersambung ke perangkat lain.</string>
     <string name="kt_print_bluetooth_multipage_failed">Terjadi kesalahan saat mencetak dokumen multi-halaman melalui Bluetooth.</string>
-    <string name="kt_print_wifi_connection_failed">Gagal terhubung ke printer Wi-Fi. Periksa jaringan dan alamat printer.</string>
+    <string name="kt_print_wifi_connection_failed">Gagal terhubung ke printer Wi-Fi.\n\nPastikan:\n• Printer menyala &amp; terhubung ke jaringan Wi-Fi\n• Alamat IP printer sudah benar di Pengaturan\n• Koneksi jaringan Wi-Fi stabil</string>
     <string name="kt_print_wifi_failed">Terjadi kesalahan saat mencetak melalui Wi-Fi.</string>
     <string name="kt_print_wifi_multipage_failed">Terjadi kesalahan saat mencetak dokumen multi-halaman melalui Wi-Fi.</string>
     <string name="kt_receipt_test_title">TES CETAK NETRAPRINT</string>
@@ -565,7 +564,7 @@ Apakah Anda mengizinkan pencetakan ini?</string>
     <string name="kt_bluetooth_sending_title">Mengirim ke Printer</string>
     <string name="kt_wifi_printer_unreachable_title">Printer Wi-Fi Tidak Terjangkau</string>
     <string name="kt_bluetooth_printer_unreachable_title">Printer Bluetooth Tidak Terjangkau</string>
-    <string name="kt_print_failed_queued_message">Pencetakan gagal. %1$s telah dimasukkan ke antrean offline untuk dicoba kembali.</string>
+    <string name="kt_print_failed_queued_message">Pencetakan gagal. Dokumen \'%1$s\' telah disimpan ke antrean offline untuk dicoba kembali.\n\nPastikan printer menyala dan terhubung sebelum mencetak ulang.</string>
     <string name="kt_job_shipping_label">Label pengiriman</string>
     <string name="kt_job_free_text">Teks bebas</string>
     <string name="kt_job_image">Dokumen gambar</string>
@@ -586,7 +585,7 @@ Apakah Anda mengizinkan pencetakan ini?</string>
     <string name="kt_test_print_success_title">Tes Cetak Berhasil</string>
     <string name="kt_test_print_success_message">Perintah tes cetak berhasil dikirim ke printer.</string>
     <string name="kt_test_print_failed_title">Tes Cetak Gagal</string>
-    <string name="kt_test_print_failed_message">Gagal mengirim tes cetak. Periksa koneksi printer dan coba lagi.</string>
+    <string name="kt_test_print_failed_message">Gagal mengirim tes cetak ke printer.\n\nPastikan printer menyala, kertas thermal terpasang dengan benar, dan koneksi Bluetooth/Wi-Fi siap.</string>
     <string name="kt_btn_retry">Coba Lagi</string>
     <string name="kt_api_test_title">Menguji Koneksi API...</string>
     <string name="kt_api_test_connecting">Menghubungi endpoint API...</string>
@@ -613,4 +612,23 @@ Apakah Anda mengizinkan pencetakan ini?</string>
     <string name="kt_system_printer_wifi_description">Printer thermal Wi-Fi (%1$s:%2$s)</string>
     <string name="kt_notification_title">Pemberitahuan</string>
     <string name="kt_btn_open_bluetooth_settings">Buka Pengaturan Bluetooth</string>
+
+    <!-- Fitur Riwayat Cetakan (Print History) -->
+    <string name="riwayat_cetak">Riwayat Cetak</string>
+    <string name="riwayat_cetak_kosong_title">Belum Ada Riwayat Cetak</string>
+    <string name="riwayat_cetak_kosong_desc">Dokumen yang Anda cetak akan otomatis tercatat di sini.</string>
+    <string name="riwayat_cetak_hapus_semua">Hapus Semua</string>
+    <string name="riwayat_cetak_dialog_hapus_title">Hapus Riwayat Cetak?</string>
+    <string name="riwayat_cetak_dialog_hapus_msg">Semua riwayat cetakan dokumen akan dihapus secara permanen.</string>
+    <string name="riwayat_cetak_status_berhasil">Berhasil</string>
+    <string name="riwayat_cetak_status_antrean">Antrean Offline</string>
+    <string name="riwayat_cetak_status_gagal">Gagal</string>
+    <string name="riwayat_cetak_salinan">%1$d Salinan</string>
+
+    <!-- Banner In-App Update Otomatis -->
+    <string name="in_app_update_banner_title">Pembaruan NetraPrint v%1$s tersedia!</string>
+    <string name="in_app_update_banner_action">Perbarui</string>
+
+    <!-- Share to Print -->
+    <string name="shared_content_ready">Berkas diterima dari aplikasi lain. Siap dicetak!</string>
 </resources>

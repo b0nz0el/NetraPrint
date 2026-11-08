@@ -28,4 +28,8 @@ class AppContainer(context: Context) {
     val printRepository: PrintRepository by lazy {
         PrintRepository(appContext, bluetoothService, printSpoolerManager)
     }
+
+    val printHistoryManager: PrintHistoryManager by lazy {
+        PrintHistoryManager.getInstance(appContext)
+    }
 }

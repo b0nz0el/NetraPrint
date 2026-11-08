@@ -52,6 +52,13 @@
 
     <style name="Theme.NetraPrint" parent="Base.Theme.NetraPrint" />
 
+    <!-- Android 12+ Modern Splash Screen Theme -->
+    <style name="Theme.NetraPrint.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">#FFFFFF</item>
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
+        <item name="postSplashScreenTheme">@style/Theme.NetraPrint</item>
+    </style>
+
     <style name="TextAppearance.NetraPrint.Navigation" parent="TextAppearance.Material3.LabelLarge" tools:ignore="NewApi">
         <item name="android:fontFamily">@font/custom_font</item>
         <item name="android:textFontWeight">500</item>

@@ -55,6 +55,10 @@
         android:id="@+id/group_settings"
         android:checkableBehavior="single">
         <item
+            android:id="@+id/nav_print_history"
+            android:icon="@drawable/ic_nav_history"
+            android:title="@string/riwayat_cetak" />
+        <item
             android:id="@+id/nav_setting"
             android:icon="@drawable/ic_nav_setting"
             android:title="@string/pengaturan" />
