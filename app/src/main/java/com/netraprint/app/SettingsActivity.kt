@@ -2,14 +2,15 @@ package com.netraprint.app
 
 import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.DownloadManager
-import android.content.BroadcastReceiver
-import android.content.IntentFilter
 import android.os.Environment
 import android.provider.Settings
 import android.widget.Toast
 import androidx.core.content.FileProvider
+import java.io.BufferedInputStream
 import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.InputStream
 import android.Manifest
 import android.bluetooth.BluetoothDevice
 import android.content.ClipData
@@ -42,7 +43,10 @@ import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.google.android.material.materialswitch.MaterialSwitch
 import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
@@ -808,8 +812,7 @@ class SettingsActivity : AppCompatActivity() {
         tvPrintWidth.text = label
     }
 
-    private var updateDownloadId: Long = -1L
-    private var downloadCompleteReceiver: BroadcastReceiver? = null
+    private var updateDownloadJob: Job? = null
 
     private fun checkForUpdates() {
         val dialog = StatusBottomSheetDialog(this)
@@ -903,8 +906,7 @@ class SettingsActivity : AppCompatActivity() {
 
     private fun downloadApkUpdate(downloadUrl: String, releasePageUrl: String, versionName: String) {
         val fileName = "NetraPrint-v$versionName.apk"
-        val downloadDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS)
-        val targetApk = File(downloadDir, fileName)
+        val targetApk = File(cacheDir, fileName)
 
         // If target file already exists and is completely downloaded (> 10MB), install directly
         if (targetApk.exists() && targetApk.length() > 10 * 1024 * 1024) {
@@ -918,62 +920,146 @@ class SettingsActivity : AppCompatActivity() {
             }
         } catch (_: Exception) {}
 
-        try {
-            val request = DownloadManager.Request(Uri.parse(downloadUrl)).apply {
-                setTitle(getString(R.string.app_name) + " v$versionName")
-                setDescription(getString(R.string.kt_downloading_update_desc))
-                setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
-                setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName)
-                setMimeType("application/vnd.android.package-archive")
-                setAllowedOverMetered(true)
-                setAllowedOverRoaming(true)
-            }
+        val statusDialog = StatusBottomSheetDialog(this)
+        statusDialog.showLoading(
+            title = getString(R.string.kt_downloading_update_title),
+            message = getString(R.string.kt_downloading_update_desc),
+            showProgress = true
+        )
 
-            val dm = getSystemService(Context.DOWNLOAD_SERVICE) as? DownloadManager
-            if (dm != null) {
-                val downloadId = dm.enqueue(request)
-                updateDownloadId = downloadId
-                Toast.makeText(
-                    this,
-                    getString(R.string.kt_download_started_toast, versionName),
-                    Toast.LENGTH_LONG
-                ).show()
-
-                registerDownloadReceiver(downloadId, targetApk, versionName)
-            } else {
-                openInBrowser(releasePageUrl.ifBlank { downloadUrl })
-            }
-        } catch (e: Exception) {
-            Log.e("SettingsActivity", "DownloadManager failed, falling back to browser", e)
-            openInBrowser(releasePageUrl.ifBlank { downloadUrl })
+        updateDownloadJob?.cancel()
+        statusDialog.setOnDismissListener {
+            updateDownloadJob?.cancel()
         }
-    }
 
-    private fun registerDownloadReceiver(downloadId: Long, apkFile: File, versionName: String) {
-        unregisterDownloadReceiver()
+        updateDownloadJob = lifecycleScope.launch(Dispatchers.IO) {
+            var inputStream: InputStream? = null
+            var outputStream: FileOutputStream? = null
+            var finalConnection: java.net.HttpURLConnection? = null
+            try {
+                var currentUrl = downloadUrl
+                var redirectCount = 0
+                val maxRedirects = 5
 
-        val receiver = object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                val id = intent?.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1L) ?: -1L
-                if (id == downloadId && id != -1L) {
-                    if (isFinishing || isDestroyed) return
-                    if (apkFile.exists() && apkFile.length() > 0) {
-                        showInstallDialog(apkFile, versionName)
+                while (redirectCount < maxRedirects) {
+                    val urlObj = URL(currentUrl)
+                    val conn = (urlObj.openConnection() as java.net.HttpURLConnection).apply {
+                        instanceFollowRedirects = false
+                        connectTimeout = 15000
+                        readTimeout = 30000
+                        requestMethod = "GET"
+                        setRequestProperty("User-Agent", "NetraPrint-Android-Updater")
+                        setRequestProperty("Accept", "*/*")
+                        useCaches = false
+                    }
+                    conn.connect()
+
+                    val code = conn.responseCode
+                    if (code == java.net.HttpURLConnection.HTTP_MOVED_PERM ||
+                        code == java.net.HttpURLConnection.HTTP_MOVED_TEMP ||
+                        code == java.net.HttpURLConnection.HTTP_SEE_OTHER ||
+                        code == 307 || code == 308
+                    ) {
+                        val location = conn.getHeaderField("Location")
+                        conn.disconnect()
+                        if (location.isNullOrBlank()) {
+                            throw IOException("Redirect without Location header")
+                        }
+                        currentUrl = if (location.startsWith("http://") || location.startsWith("https://")) {
+                            location
+                        } else {
+                            URL(urlObj, location).toString()
+                        }
+                        redirectCount++
+                    } else if (code in 200..299) {
+                        finalConnection = conn
+                        break
+                    } else {
+                        conn.disconnect()
+                        throw IOException("HTTP error $code")
                     }
                 }
-            }
-        }
-        downloadCompleteReceiver = receiver
-        val filter = IntentFilter(DownloadManager.ACTION_DOWNLOAD_COMPLETE)
-        ContextCompat.registerReceiver(this, receiver, filter, ContextCompat.RECEIVER_EXPORTED)
-    }
 
-    private fun unregisterDownloadReceiver() {
-        downloadCompleteReceiver?.let {
-            try {
-                unregisterReceiver(it)
-            } catch (_: Exception) {}
-            downloadCompleteReceiver = null
+                val conn = finalConnection ?: throw IOException("Terlalu banyak pengalihan")
+                val totalBytes = conn.contentLengthLong
+
+                inputStream = BufferedInputStream(conn.inputStream)
+                outputStream = FileOutputStream(targetApk)
+
+                val buffer = ByteArray(8192)
+                var downloadedBytes = 0L
+                var bytesRead: Int
+                var lastUpdateMs = 0L
+
+                while (inputStream.read(buffer).also { bytesRead = it } != -1) {
+                    ensureActive()
+                    outputStream.write(buffer, 0, bytesRead)
+                    downloadedBytes += bytesRead
+
+                    val now = System.currentTimeMillis()
+                    if (now - lastUpdateMs >= 150 || (totalBytes > 0 && downloadedBytes == totalBytes)) {
+                        lastUpdateMs = now
+                        val progressPercent = if (totalBytes > 0) {
+                            ((downloadedBytes * 100) / totalBytes).toInt().coerceIn(0, 100)
+                        } else {
+                            null
+                        }
+                        val mbDownloaded = downloadedBytes / (1024.0 * 1024.0)
+                        val progressMessage = if (totalBytes > 0) {
+                            val mbTotal = totalBytes / (1024.0 * 1024.0)
+                            String.format(Locale.US, "%.1f MB / %.1f MB (%d%%)", mbDownloaded, mbTotal, progressPercent ?: 0)
+                        } else {
+                            String.format(Locale.US, "%.1f MB...", mbDownloaded)
+                        }
+                        withContext(Dispatchers.Main) {
+                            if (!isFinishing && !isDestroyed) {
+                                statusDialog.updateProgress(progressMessage, progressPercent)
+                            }
+                        }
+                    }
+                }
+                outputStream.flush()
+
+                if (targetApk.length() < 5 * 1024 * 1024) {
+                    throw IOException("Ukuran file tidak lengkap (${targetApk.length()} bytes)")
+                }
+
+                withContext(Dispatchers.Main) {
+                    if (isFinishing || isDestroyed) return@withContext
+                    statusDialog.showSuccess(
+                        title = getString(R.string.kt_download_complete_title),
+                        message = getString(R.string.kt_download_complete_msg, versionName),
+                        actionText = getString(R.string.kt_btn_install_now),
+                        secondaryText = getString(R.string.batal),
+                        onDismiss = {
+                            installDownloadedApk(targetApk)
+                        }
+                    )
+                }
+            } catch (e: Exception) {
+                if (e is CancellationException) {
+                    try { targetApk.delete() } catch (_: Exception) {}
+                    return@launch
+                }
+                Log.e("SettingsActivity", "In-app download failed", e)
+                try { targetApk.delete() } catch (_: Exception) {}
+                withContext(Dispatchers.Main) {
+                    if (isFinishing || isDestroyed) return@withContext
+                    statusDialog.showError(
+                        title = getString(R.string.kt_download_failed_title),
+                        message = getString(R.string.kt_download_failed_msg, e.localizedMessage ?: "Network error"),
+                        actionText = getString(R.string.kt_btn_open_browser),
+                        secondaryText = getString(R.string.batal),
+                        onDismiss = {
+                            openInBrowser(releasePageUrl.ifBlank { downloadUrl })
+                        }
+                    )
+                }
+            } finally {
+                try { inputStream?.close() } catch (_: Exception) {}
+                try { outputStream?.close() } catch (_: Exception) {}
+                finalConnection?.disconnect()
+            }
         }
     }
 
@@ -1052,7 +1138,7 @@ class SettingsActivity : AppCompatActivity() {
     }
 
     override fun onDestroy() {
-        unregisterDownloadReceiver()
+        updateDownloadJob?.cancel()
         super.onDestroy()
     }
 

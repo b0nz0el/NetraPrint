@@ -1,8 +1,8 @@
 {
-  "latestVersionCode": 21,
-  "latestVersionName": "2.0.15",
+  "latestVersionCode": 22,
+  "latestVersionName": "2.0.16",
   "downloadUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
-  "apkUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
-  "releasePageUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
-  "changelog": "Fitur baru: Riwayat Cetakan lengkap di menu navigasi, Splash Screen resmi Android 12+, Banner In-App Update otomatis, dan Share to Print untuk mencetak langsung dari WhatsApp, Galeri, atau File Manager."
+  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/download/v2.0.16/NetraPrint.apk",
+  "releasePageUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
+  "changelog": "Perbaikan In-App Downloader mandiri dengan indikator progres unduhan live (MB & persen), penanganan redirect HTTP 302 yang andal di Android 10+, dan tombol fallback otomatis ke rilis resmi."
 }

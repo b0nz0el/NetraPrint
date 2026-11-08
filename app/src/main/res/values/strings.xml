@@ -28,6 +28,9 @@
     <string name="kt_btn_later">Nanti</string>
     <string name="kt_download_started_toast">Mengunduh NetraPrint v%s... Pantau bilah notifikasi Anda.</string>
     <string name="kt_downloading_update_desc">Mengunduh pembaruan NetraPrint APK…</string>
+    <string name="kt_downloading_update_title">Mengunduh Pembaruan</string>
+    <string name="kt_download_failed_title">Gagal Mengunduh Pembaruan</string>
+    <string name="kt_download_failed_msg">Gagal mengunduh berkas pembaruan (%s). Silakan coba lagi atau buka melalui browser.</string>
     <string name="kt_download_complete_title">Pembaruan Siap Dipasang</string>
     <string name="kt_download_complete_msg">NetraPrint v%s telah berhasil diunduh. Pasang pembaruan sekarang?</string>
     <string name="kt_btn_install_now">Pasang Sekarang</string>

@@ -2686,8 +2686,9 @@ class MainActivity : AppCompatActivity() {
                 val latestVersionCode = json.getInt("latestVersionCode")
                 val latestVersionName = json.getString("latestVersionName")
                 val downloadUrl = json.optString("downloadUrl", "https://netraprint-updater.yt-hackrandom.workers.dev/download")
+                val releasePageUrl = json.optString("releasePageUrl", "https://github.com/b0nz0el/NetraPrint/releases/latest")
                 val rawApkUrl = json.optString("apkUrl", "")
-                val targetUrl = if (rawApkUrl.isNotBlank()) rawApkUrl else downloadUrl
+                val targetUrl = releasePageUrl.ifBlank { if (rawApkUrl.isNotBlank()) rawApkUrl else downloadUrl }
 
                 val dismissedVersion = prefs.getInt("key_dismissed_update_version", 0)
                 if (latestVersionCode > currentVersionCode && latestVersionCode != dismissedVersion) {

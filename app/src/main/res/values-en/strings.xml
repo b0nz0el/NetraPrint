@@ -3,7 +3,7 @@
     <string name="txt_100_mm">100 mm</string>
     <string name="txt_384_dots_standar_58mm">384 dots (Standard 58mm)</string>
     <string name="txt_58_mm">58 mm</string>
-    <string name="txt_58mm_32_cpl">58mm • 32 CPL</string>
+    <string name="txt_58mm_32_cpl">58mm</string>
     <string name="txt_80_mm">80 mm</string>
     <string name="akses_instan_ke_pembaruan_fitur_masa_depan_dan_kanal_bantuan_teknis_vip">Instant access to future feature updates and VIP technical support channels</string>
     <string name="aktif_seumur_hidup">LIFETIME ACTIVE</string>
@@ -28,6 +28,9 @@
     <string name="kt_btn_later">Later</string>
     <string name="kt_download_started_toast">Downloading NetraPrint v%s... Check your notification bar.</string>
     <string name="kt_downloading_update_desc">Downloading NetraPrint APK update…</string>
+    <string name="kt_downloading_update_title">Downloading Update</string>
+    <string name="kt_download_failed_title">Download Failed</string>
+    <string name="kt_download_failed_msg">Failed to download update file (%s). Please try again or open in browser.</string>
     <string name="kt_download_complete_title">Update Ready to Install</string>
     <string name="kt_download_complete_msg">NetraPrint v%s has been downloaded successfully. Install update now?</string>
     <string name="kt_btn_install_now">Install Now</string>

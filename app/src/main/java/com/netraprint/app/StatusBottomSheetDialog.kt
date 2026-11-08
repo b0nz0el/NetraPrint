@@ -207,4 +207,8 @@ class StatusBottomSheetDialog(private val context: Context) {
 
     val isShowing: Boolean
         get() = dialog.isShowing
+
+    fun setOnDismissListener(listener: () -> Unit) {
+        dialog.setOnDismissListener { listener() }
+    }
 }

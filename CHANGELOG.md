@@ -1,5 +1,13 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.16] - Release
+
+- In-App Coroutine Downloader: Mengganti DownloadManager sistem Android dengan downloader mandiri berbasis coroutine I/O yang mendukung pengalihan bertingkat (multi-hop HTTP 302 redirect) tanpa batasan MediaStore maupun Scoped Storage.
+- Live Download Progress: Menampilkan indikator unduhan real-time pada StatusBottomSheetDialog dengan metrik ukuran berkas (MB / MB) dan persentase progress (0% - 100%).
+- Isolated Storage: Menyimpan berkas APK pembaruan sementara ke direktori cache privat aplikasi yang aman dan langsung dilindungi FileProvider untuk pemasangan otomatis.
+- Error Resilience & Fallback: Penanganan kegagalan unduhan yang transparan dengan dialog ramah pengguna dan tombol tindakan "Buka di Browser" yang otomatis mengarahkan ke halaman rilis GitHub resmi.
+- Release URL Harmonization: Penyelarasan tautan rilis pada version.json dan banner aplikasi agar mengarah ke halaman rilis GitHub resmi yang ramah pengguna.
+
 ## [v2.0.15] - Release
 
 - Riwayat Cetakan: Menu riwayat pencetakan interaktif di drawer navigasi untuk melihat dokumen yang pernah dicetak (Form, Resi, Teks Bebas, Gambar, PDF, QR Code, dan Web) dengan status keberhasilan (Berhasil, Antrean Offline, Gagal), waktu cetak, nama/alamat printer tujuan, serta tombol Hapus Semua.
