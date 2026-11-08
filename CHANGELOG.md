@@ -1,5 +1,11 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.7 PRO] - Release
+
+- Branding & UI: Pembaruan ikon aplikasi ke konsep **Sleek Compact Thermal Printer** (Opsi 2) dengan gaya hardware modern, kurva halus non-kaku, dan palet warna Forest Teal (#00463B) & Slate.
+- Adaptive Icon: Regenerasi aset Android Adaptive Icon lengkap (`ic_launcher.webp`, `ic_launcher_round.webp`, `ic_launcher_foreground.webp`, dan `ic_launcher_monochrome.xml`) di seluruh kepadatan layar (`mdpi`, `hdpi`, `xhdpi`, `xxhdpi`, `xxxhdpi`) dengan penyesuaian safe-zone 72dp untuk menghindari clipping pada launcher Pixel, Samsung One UI, MIUI, dll.
+- UI: Logo di navigation drawer header dan onboarding screen otomatis tersinkronisasi dengan aset resolusi tinggi baru tanpa kontras rusak.
+
 ## [v2.0.6 PRO] - Release
 
 - System Print: Direct Background Printing dari Android System Print Spooler (1-ketuk langsung cetak ke printer thermal RPP02N/ESC-POS di latar belakang).

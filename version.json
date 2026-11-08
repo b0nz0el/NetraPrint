@@ -1,6 +1,6 @@
 {
-  "latestVersionCode": 12,
-  "latestVersionName": "2.0.6",
+  "latestVersionCode": 13,
+  "latestVersionName": "2.0.7",
   "downloadUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest/download/NetraPrint.apk",
-  "changelog": "Direct background printing dari Android System Print Spooler, deduplikasi dan pembersihan daftar printer thermal, perbaikan pembatasan background activity."
+  "changelog": "Desain ikon baru: Sleek Compact Thermal Printer modern dengan warna Forest Teal & Slate, perbaikan logo navigation drawer, dan dukungan penuh Android Adaptive Icons."
 }
