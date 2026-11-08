@@ -83,5 +83,13 @@ Jalankan dari root repository menggunakan Gradle Wrapper:
 - Jawaban akhir harus ringkas dan fokus pada hasil; sertakan hanya detail teknis yang membantu pengguna mengambil tindakan.
 
 ## Dokumentasi
-
+ 
 Perbarui dokumentasi yang terdampak langsung oleh perubahan, terutama `CHANGELOG.md` bila sesuai dengan praktik rilis dan checklist QA bila prosedur fisik berubah. Jangan menyalin seluruh dokumentasi ke file panduan ini; tambahkan tautan/petunjuk lokasi seperlunya.
+
+## Aturan Versi & Rilis (Setiap Git Push)
+
+Setiap kali melakukan `git push` untuk perubahan baru:
+- Naikkan `versionCode` (+1) dan `versionName` (misal 2.0.5 -> 2.0.6) di `app/build.gradle.kts`.
+- Selaraskan `version.json` di root repository (`latestVersionCode`, `latestVersionName`, `changelog`).
+- Tambahkan catatan perubahan di bagian paling atas `CHANGELOG.md`.
+

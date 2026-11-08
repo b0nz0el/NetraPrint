@@ -1,5 +1,12 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.6 PRO] - Release
+
+- System Print: Direct Background Printing dari Android System Print Spooler (1-ketuk langsung cetak ke printer thermal RPP02N/ESC-POS di latar belakang).
+- System Print: Filter pintar dan deduplikasi daftar printer (menghilangkan duplikasi entri Bluetooth dan entri virtual redundan).
+- System Print: Menghindari pemblokiran Background Activity Launch (BAL) pada Android 10+.
+- System Print: Integrasi otomatis dengan antrean offline spooler saat printer sedang mati atau di luar jangkauan.
+
 ## [v2.0.5 PRO] - Release
 
 - System: Fixed dynamic version badge synchronization using PackageManager.

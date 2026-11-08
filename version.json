@@ -1,6 +1,6 @@
 {
-  "latestVersionCode": 11,
-  "latestVersionName": "2.0.5",
+  "latestVersionCode": 12,
+  "latestVersionName": "2.0.6",
   "downloadUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
-  "changelog": "Rename ke NetraPrint, hapus fitur Langganan, tambah Cek Pembaruan, ikon baru, bersihkan seluruh branding lama."
+  "changelog": "Direct background printing dari Android System Print Spooler, deduplikasi dan pembersihan daftar printer thermal, perbaikan pembatasan background activity."
 }
