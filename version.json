@@ -1,8 +1,8 @@
 {
-  "latestVersionCode": 17,
-  "latestVersionName": "2.0.11",
-  "downloadUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
-  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest/download/NetraPrint.apk",
-  "releasePageUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
-  "changelog": "Revisi ikon aplikasi dengan latar belakang putih murni (#FFFFFF) dan hardware printer thermal 3D modern, serta penataan tipografi fitur unggulan pada kartu onboarding dengan layout terstruktur profesional."
+  "latestVersionCode": 18,
+  "latestVersionName": "2.0.12",
+  "downloadUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
+  "apkUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
+  "releasePageUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
+  "changelog": "Integrasi sistem update berbasis Cloudflare Worker Secure Proxy, memungkinkan aplikasi tetap dapat menerima pembaruan otomatis secara aman saat repositori GitHub berstatus Private."
 }

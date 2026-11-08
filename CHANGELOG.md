@@ -1,5 +1,10 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.12 PRO] - Release
+
+- Security & Private Repo Support: Integrasi Cloudflare Worker Secure Proxy (`netraprint-updater.yt-hackrandom.workers.dev`) sebagai perantara aman untuk pemeriksaan versi dan pengunduhan rilis APK terbaru. Memungkinkan repository GitHub diatur menjadi **Private** tanpa mengorbankan fungsionalitas pembaruan otomatis di aplikasi pengguna.
+- CDN Acceleration: Pengunduhan APK diarahkan langsung ke CDN berkecepatan tinggi via pre-signed storage redirect tanpa membebani server/worker.
+
 ## [v2.0.11 PRO] - Release
 
 - Branding & Launcher Icon: Revisi ikon aplikasi dengan latar belakang putih bersih (`#FFFFFF`) sesuai standar desain aplikasi Google/Android (Pixel, Samsung One UI), menampilkan printer thermal isometrik 3D modern (*Deep Teal & Matte Slate*) dengan struk thermal NetraPrint dan bayangan kontak halus.

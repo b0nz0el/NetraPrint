@@ -824,7 +824,7 @@ class SettingsActivity : AppCompatActivity() {
                     packageManager.getPackageInfo(packageName, 0).versionCode
                 }
                 val jsonText = withContext(Dispatchers.IO) {
-                    val conn = (URL("https://raw.githubusercontent.com/b0nz0el/NetraPrint/main/version.json").openConnection() as java.net.HttpURLConnection).apply {
+                    val conn = (URL("https://netraprint-updater.yt-hackrandom.workers.dev/version.json").openConnection() as java.net.HttpURLConnection).apply {
                         connectTimeout = 8000
                         readTimeout = 8000
                         requestMethod = "GET"
@@ -846,16 +846,16 @@ class SettingsActivity : AppCompatActivity() {
                 val json = JSONObject(jsonText)
                 val latestVersionCode = json.getInt("latestVersionCode")
                 val latestVersionName = json.getString("latestVersionName")
-                val downloadUrl = json.optString("downloadUrl", "https://github.com/b0nz0el/NetraPrint/releases/latest")
+                val downloadUrl = json.optString("downloadUrl", "https://netraprint-updater.yt-hackrandom.workers.dev/download")
                 val rawApkUrl = json.optString("apkUrl", "")
-                val releasePageUrl = json.optString("releasePageUrl", "https://github.com/b0nz0el/NetraPrint/releases/latest")
+                val releasePageUrl = json.optString("releasePageUrl", "https://netraprint-updater.yt-hackrandom.workers.dev/download")
                 val changelog = json.optString("changelog", "")
-                val apkUrl = if (rawApkUrl.endsWith(".apk", ignoreCase = true)) {
+                val apkUrl = if (rawApkUrl.isNotBlank()) {
                     rawApkUrl
-                } else if (downloadUrl.endsWith(".apk", ignoreCase = true)) {
+                } else if (downloadUrl.isNotBlank()) {
                     downloadUrl
                 } else {
-                    "https://github.com/b0nz0el/NetraPrint/releases/latest/download/NetraPrint.apk"
+                    "https://netraprint-updater.yt-hackrandom.workers.dev/download"
                 }
 
                 if (isFinishing || isDestroyed) return@launch
