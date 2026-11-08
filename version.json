@@ -1,8 +1,8 @@
 {
-  "latestVersionCode": 16,
-  "latestVersionName": "2.0.10",
+  "latestVersionCode": 17,
+  "latestVersionName": "2.0.11",
   "downloadUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
   "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest/download/NetraPrint.apk",
   "releasePageUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
-  "changelog": "Penyederhanaan dan peringkasan teks fitur unggulan pada layar selamat datang (onboarding), serta refactoring nama string resource menjadi lebih rapi dan ringkas."
+  "changelog": "Revisi ikon aplikasi dengan latar belakang putih murni (#FFFFFF) dan hardware printer thermal 3D modern, serta penataan tipografi fitur unggulan pada kartu onboarding dengan layout terstruktur profesional."
 }

@@ -1,5 +1,12 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.11 PRO] - Release
+
+- Branding & Launcher Icon: Revisi ikon aplikasi dengan latar belakang putih bersih (`#FFFFFF`) sesuai standar desain aplikasi Google/Android (Pixel, Samsung One UI), menampilkan printer thermal isometrik 3D modern (*Deep Teal & Matte Slate*) dengan struk thermal NetraPrint dan bayangan kontak halus.
+- Adaptive Icon Asset Sync: Regenerasi seluruh aset icon (`ic_launcher.webp`, `ic_launcher_round.webp`, `ic_launcher_foreground.webp`) dari mdpi hingga xxxhdpi dengan penyesuaian safe-zone 72dp agar tampil proporsional tanpa terpotong di semua launcher.
+- Onboarding Screen Redesign: Penataan ulang kartu fitur unggulan di halaman onboarding menjadi layout daftar terstruktur dengan ikon checkmark, judul fitur tebal, dan deskripsi penjelasan terpisah sehingga rapi dan mudah dipahami.
+- Onboarding Header Elevation: Penambahan elevated circular card pada logo di onboarding screen agar menyatu secara harmonis dan tampak profesional di atas kanvas putih.
+
 ## [v2.0.10 PRO] - Release
 
 - UI/UX & Copy: Peringkasan teks daftar fitur unggulan pada kartu selamat datang onboarding agar lebih padat, ringkas, dan mudah dibaca dalam 4 poin utama.

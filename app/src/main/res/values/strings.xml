@@ -61,10 +61,15 @@
     <string name="cetak_data_api">Cetak Data API</string>
     <string name="cetak_halaman_web">Cetak Halaman Web</string>
     <string name="cetak_header_footer_profil_toko">Cetak Header &amp; Footer Profil Toko</string>
-    <string name="onboarding_fitur_list">• Label pengiriman otomatis 23 kurir
-• Cetak PDF, struk, teks &amp; web
-• Pemindai barcode &amp; OCR cepat
-• Printer Bluetooth &amp; Wi-Fi</string>
+    <string name="onboarding_feat_1_title">Label Pengiriman Otomatis</string>
+    <string name="onboarding_feat_1_desc">Format siap cetak untuk 23 kurir ekspedisi logistik</string>
+    <string name="onboarding_feat_2_title">Cetak Dokumen, Struk &amp; Web</string>
+    <string name="onboarding_feat_2_desc">Dukungan PDF multi-halaman, teks, dan URL web</string>
+    <string name="onboarding_feat_3_title">Pemindai Barcode &amp; Kamera OCR</string>
+    <string name="onboarding_feat_3_desc">Deteksi instan resolusi tinggi dengan presisi CameraX</string>
+    <string name="onboarding_feat_4_title">Printer Thermal Bluetooth &amp; Wi-Fi</string>
+    <string name="onboarding_feat_4_desc">Koneksi nirkabel cepat dan stabil tanpa internet</string>
+    <string name="onboarding_fitur_list">\u2022  Label pengiriman otomatis (23 kurir)\n\u2022  Cetak PDF multi-halaman, struk, teks &amp; web\n\u2022  Pemindai barcode cepat &amp; OCR kamera\n\u2022  Printer thermal Bluetooth &amp; Wi-Fi</string>
     <string name="cetak_label_pengiriman_otomatis_lengkap_23_ekspedisi_pemindai_barcode_camerax_resolusi_tinggi_1080p_cetak_dokumen_pdf_multi_halaman_dengan_filter_rentang_generator_qr_code_bisnis_dan_konversi_web_page">@string/onboarding_fitur_list</string>
     <string name="cetak_otomatis_menggunakan_printer_terakhir_tanpa_memilih_printer_lagi">Cetak otomatis menggunakan printer terakhir tanpa memilih printer lagi.</string>
     <string name="cetak_pdf_multi_halaman_tanpa_batas">Cetak PDF Multi-Halaman Tanpa Batas</string>
@@ -131,7 +136,7 @@
     <string name="menampilkan_nama_usaha_alamat_dan_pesan_terima_kasih_kustom_pada_setiap_cetakan_struk_resi">Menampilkan nama usaha, alamat, dan pesan terima kasih kustom pada setiap cetakan struk/resi.</string>
     <string name="mengerti">Mengerti</string>
     <string name="mode_integrasi">Mode Integrasi</string>
-    <string name="monokrom_1_bit_esc_pos">Monokrom 1-Bit ESC/POS</string>
+    <string name="monokrom_1_bit_esc_pos">Monokrom</string>
     <string name="muat_ulang">Muat ulang</string>
     <string name="mulai_gunakan_netraprint">Mulai Gunakan NetraPrint</string>
     <string name="nama_printer">Nama Printer</string>
@@ -165,7 +170,7 @@
     <string name="port_tcp_default_9100">Port TCP (Default: 9100)</string>
     <string name="pratinjau_cetak_thermal">Pratinjau cetak thermal</string>
     <string name="pratinjau_dokumen_pdf">Pratinjau dokumen PDF</string>
-    <string name="pratinjau_fisik_nyata_384_dots_203_dpi">Pratinjau fisik nyata (384 dots @ 203 DPI)</string>
+    <string name="pratinjau_fisik_nyata_384_dots_203_dpi">Preview</string>
     <string name="pratinjau_gambar">Pratinjau gambar</string>
     <string name="pratinjau_qr_code">Pratinjau QR CODE</string>
     <string name="pratinjau_qr_code_2">Pratinjau QR Code</string>
