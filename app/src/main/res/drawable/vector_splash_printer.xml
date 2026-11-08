@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="160dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Subtle contact shadow under printer -->
+    <path
+        android:fillColor="#15000000"
+        android:pathData="M28,84 C28,81.5 80,81.5 80,84 C80,86.5 28,86.5 28,84 Z" />
+
+    <group
+        android:name="printer_root"
+        android:pivotX="54"
+        android:pivotY="54">
+
+        <!-- Animated Paper Receipt (Feeds out of printer from translateY=26 to 0) -->
+        <group
+            android:name="receipt_group"
+            android:translateY="26">
+
+            <!-- Paper receipt background (White with clean subtle outline) -->
+            <path
+                android:fillColor="#FFFFFF"
+                android:pathData="M35,19 L73,19 A2.5,2.5 0,0,1 75.5,21.5 L75.5,51 L32.5,51 L32.5,21.5 A2.5,2.5 0,0,1 35,19 Z" />
+
+            <!-- Receipt border stroke -->
+            <path
+                android:fillColor="#00000000"
+                android:strokeColor="#CBD5E1"
+                android:strokeWidth="0.8"
+                android:pathData="M35,19 L73,19 A2.5,2.5 0,0,1 75.5,21.5 L75.5,51 L32.5,51 L32.5,21.5 A2.5,2.5 0,0,1 35,19 Z" />
+
+            <!-- Receipt Header Line (Primary Teal) -->
+            <path
+                android:fillColor="#0F766E"
+                android:pathData="M40,25 L68,25 A1.2,1.2 0,0,1 69.2,26.2 A1.2,1.2 0,0,1 68,27.4 L40,27.4 A1.2,1.2 0,0,1 38.8,26.2 A1.2,1.2 0,0,1 40,25 Z" />
+
+            <!-- Receipt Text Lines (Slate) -->
+            <path
+                android:fillColor="#475569"
+                android:pathData="M39,31 L69,31 A1,1 0,0,1 70,32 A1,1 0,0,1 69,33 L39,33 A1,1 0,0,1 38,32 A1,1 0,0,1 39,31 Z" />
+
+            <path
+                android:fillColor="#64748B"
+                android:pathData="M39,35.5 L61,35.5 A1,1 0,0,1 62,36.5 A1,1 0,0,1 61,37.5 L39,37.5 A1,1 0,0,1 38,36.5 A1,1 0,0,1 39,35.5 Z" />
+
+            <!-- Barcode lines on receipt -->
+            <path
+                android:fillColor="#0F766E"
+                android:pathData="M39.5,40h1.2v4.5h-1.2z M42,40h0.6v4.5h-0.6z M43.7,40h1.6v4.5h-1.6z M46.4,40h0.8v4.5h-0.8z M48.3,40h1.5v4.5h-1.5z M50.9,40h0.6v4.5h-0.6z M52.5,40h1.8v4.5h-1.8z M55.5,40h0.8v4.5h-0.8z M57.4,40h1.6v4.5h-1.6z M60.1,40h0.8v4.5h-0.8z M61.8,40h1.5v4.5h-1.5z M64.3,40h1.0v4.5h-1.0z M66.5,40h1.2v4.5h-1.2z" />
+        </group>
+
+        <!-- Main Thermal Printer Body (Drawn in front of receipt) -->
+        <group android:name="printer_body">
+            <!-- Chassis (NetraPrint Deep Teal) -->
+            <path
+                android:fillColor="#0F766E"
+                android:pathData="M31,48 L77,48 A6,6 0,0,1 83,54 L83,78 A6,6 0,0,1 77,84 L31,84 A6,6 0,0,1 25,78 L25,54 A6,6 0,0,1 31,48 Z" />
+
+            <!-- Paper Exit Slot (Dark Bevel) -->
+            <path
+                android:fillColor="#134E4A"
+                android:pathData="M33,48 L75,48 A2,2 0,0,1 77,50 L77,52 A1,1 0,0,1 76,53 L32,53 A1,1 0,0,1 31,52 L31,50 A2,2 0,0,1 33,48 Z" />
+
+            <!-- Power / Ready Status LED (Green) -->
+            <path
+                android:fillColor="#22C55E"
+                android:pathData="M75.5,56.5 m -1.5,0 a 1.5,1.5 0,1,0 3,0 a 1.5,1.5 0,1,0 -3,0" />
+
+            <!-- Center Brand Emblem: NP -->
+            <!-- N -->
+            <path
+                android:fillColor="#FFFFFF"
+                android:pathData="M46,60 L48.5,60 L53.5,69 L53.5,60 L56,60 L56,75 L53.5,75 L48.5,66 L48.5,75 L46,75 Z" />
+
+            <!-- P -->
+            <path
+                android:fillColor="#FFFFFF"
+                android:pathData="M58.5,60 L64.5,60 A4,4 0,0,1 64.5,68 L61,68 L61,75 L58.5,75 Z M61,62.2 L63.5,62.2 A1.8,1.8 0,0,1 63.5,65.8 L61,65.8 Z" />
+        </group>
+    </group>
+</vector>

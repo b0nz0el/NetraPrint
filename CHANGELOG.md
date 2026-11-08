@@ -1,5 +1,11 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.17] - Release
+
+- Animated Splash Screen Resmi Android 12+: Integrasi Animated Vector Drawable (AVD) pada windowSplashScreenAnimatedIcon yang menampilkan animasi printer thermal mengeluarkan kertas struk (receipt print sliding motion) dengan status indikator LED aktif.
+- Smooth Exit Transition: Penambahan setOnExitAnimationListener dengan interpolasi akselerasi halus pada MainActivity (scale dan fade-out pada ikon dan latar belakang splash screen) saat bertransisi ke tampilan utama aplikasi.
+- Splash Screen Pacing: Penambahan keep-on-screen condition berdurasi terukur (~650 ms) agar animasi pencetakan struk dapat dinikmati pengguna secara elegan tanpa memperlambat kesiapan aplikasi.
+
 ## [v2.0.16] - Release
 
 - In-App Coroutine Downloader: Mengganti DownloadManager sistem Android dengan downloader mandiri berbasis coroutine I/O yang mendukung pengalihan bertingkat (multi-hop HTTP 302 redirect) tanpa batasan MediaStore maupun Scoped Storage.

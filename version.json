@@ -1,8 +1,8 @@
 {
-  "latestVersionCode": 22,
-  "latestVersionName": "2.0.16",
+  "latestVersionCode": 23,
+  "latestVersionName": "2.0.17",
   "downloadUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
-  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/download/v2.0.16/NetraPrint.apk",
+  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/download/v2.0.17/NetraPrint.apk",
   "releasePageUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
-  "changelog": "Perbaikan In-App Downloader mandiri dengan indikator progres unduhan live (MB & persen), penanganan redirect HTTP 302 yang andal di Android 10+, dan tombol fallback otomatis ke rilis resmi."
+  "changelog": "Animasi Splash Screen Resmi Android 12+: Ikon printer thermal beranimasi mengeluarkan kertas struk (Animated Vector Drawable) dan transisi keluar halus (smooth exit transition) saat membuka aplikasi."
 }

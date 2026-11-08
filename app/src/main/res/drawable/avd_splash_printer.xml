@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/vector_splash_printer">
+
+    <target
+        android:name="receipt_group"
+        android:animation="@animator/splash_receipt_motion" />
+
+    <target
+        android:name="printer_root"
+        android:animation="@animator/splash_printer_pulse" />
+
+</animated-vector>

@@ -1,8 +1,13 @@
 package com.netraprint.app
 
 import android.Manifest
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.view.animation.AccelerateInterpolator
 import android.bluetooth.BluetoothDevice
 import android.content.ActivityNotFoundException
 import android.content.ClipData
@@ -322,7 +327,33 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
+        val splashScreen = installSplashScreen()
+        val splashStartTime = System.currentTimeMillis()
+        splashScreen.setKeepOnScreenCondition {
+            System.currentTimeMillis() - splashStartTime < 650L
+        }
+        splashScreen.setOnExitAnimationListener { splashScreenViewProvider ->
+            val iconView = splashScreenViewProvider.iconView
+            val splashView = splashScreenViewProvider.view
+
+            val scaleX = ObjectAnimator.ofFloat(iconView, View.SCALE_X, 1f, 1.2f, 0.85f)
+            val scaleY = ObjectAnimator.ofFloat(iconView, View.SCALE_Y, 1f, 1.2f, 0.85f)
+            val iconAlpha = ObjectAnimator.ofFloat(iconView, View.ALPHA, 1f, 0f)
+            val bgAlpha = ObjectAnimator.ofFloat(splashView, View.ALPHA, 1f, 0f)
+
+            AnimatorSet().apply {
+                duration = 400L
+                interpolator = AccelerateInterpolator()
+                playTogether(scaleX, scaleY, iconAlpha, bgAlpha)
+                addListener(object : AnimatorListenerAdapter() {
+                    override fun onAnimationEnd(animation: Animator) {
+                        splashScreenViewProvider.remove()
+                    }
+                })
+                start()
+            }
+        }
+
         super.onCreate(savedInstanceState)
         AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
