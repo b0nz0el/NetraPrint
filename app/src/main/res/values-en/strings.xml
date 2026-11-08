@@ -61,10 +61,11 @@
     <string name="cetak_data_api">API Data Print</string>
     <string name="cetak_halaman_web">Print Web Page</string>
     <string name="cetak_header_footer_profil_toko">Print Store Profile Header &amp; Footer</string>
-    <string name="cetak_label_pengiriman_otomatis_lengkap_23_ekspedisi_pemindai_barcode_camerax_resolusi_tinggi_1080p_cetak_dokumen_pdf_multi_halaman_dengan_filter_rentang_generator_qr_code_bisnis_dan_konversi_web_page">• Automatic shipping labels for 23 courier services
-• High-resolution 1080p CameraX barcode scanner
-• Multi-page PDF printing with page range filter
-• Business QR code generator and Web Page conversion</string>
+    <string name="onboarding_fitur_list">• Auto shipping labels (23 couriers)
+• Multi-page PDF, receipts, text &amp; web
+• Fast barcode scanner &amp; camera OCR
+• Bluetooth &amp; Wi-Fi thermal printers</string>
+    <string name="cetak_label_pengiriman_otomatis_lengkap_23_ekspedisi_pemindai_barcode_camerax_resolusi_tinggi_1080p_cetak_dokumen_pdf_multi_halaman_dengan_filter_rentang_generator_qr_code_bisnis_dan_konversi_web_page">@string/onboarding_fitur_list</string>
     <string name="cetak_otomatis_menggunakan_printer_terakhir_tanpa_memilih_printer_lagi">Automatically print using the last printer without selecting a printer again.</string>
     <string name="cetak_pdf_multi_halaman_tanpa_batas">Unlimited Multi-Page PDF Printing</string>
     <string name="cetak_qr_code">Print QR Code</string>
@@ -168,7 +169,7 @@
     <string name="pratinjau_gambar">Image preview</string>
     <string name="pratinjau_qr_code">QR CODE PREVIEW</string>
     <string name="pratinjau_qr_code_2">QR Code Preview</string>
-    <string name="pratinjau_roll_wysiwyg">WYSIWYG Roll Preview</string>
+    <string name="pratinjau_roll_wysiwyg">Preview</string>
     <string name="preferensi_cetak">PRINT PREFERENCES</string>
     <string name="privasi_keamanan_data_terjamin">Privacy &amp; Data Security Guaranteed</string>
     <string name="pulihkan_data">Restore Data</string>
@@ -201,7 +202,7 @@ Thank you for your purchase!
     <string name="simpan_galeri">Save to Gallery</string>
     <string name="simpan_penerima">Save Recipient</string>
     <string name="simpan_pengaturan">Save Settings</string>
-    <string name="sinkronisasi_cloud_cadangan">CLOUD SYNC &amp; BACKUP</string>
+    <string name="sinkronisasi_cloud_cadangan">Cloud Sync &amp; Backup</string>
     <string name="sinkronisasi_cloud_cadangan_konfigurasi">Cloud Sync &amp; Configuration Backup</string>
     <string name="sinkronisasi_cloud_otomatis">Automatic Cloud Sync</string>
     <string name="sinkronisasi_pengaturan_dan_data_printer_antar_perangkat_hp_dan_tablet">Sync printer settings and data across devices (Phone and Tablet)</string>
@@ -360,8 +361,8 @@ Make sure the printer is on and connected, then tap \'Print Now\'.</string>
     <string name="kt_loading_connect_device_msg">Connecting to %s...</string>
     <string name="kt_progress_pdf_page">Printing page %1$d of %2$d (PDF page: %3$d)...</string>
     <string name="kt_progress_spooler_item">Printing queue item %1$d of %2$d: %3$s...</string>
-    <string name="kt_chip_width_80mm">80mm • 48 CPL</string>
-    <string name="kt_chip_width_58mm">58mm • 32 CPL</string>
+    <string name="kt_chip_width_80mm">80mm</string>
+    <string name="kt_chip_width_58mm">58mm</string>
     <string name="kt_dialog_restore_title">Restore Settings Data</string>
     <string name="kt_dialog_restore_msg">Paste the JSON backup code you copied earlier:</string>
     <string name="kt_btn_restore">Restore</string>
@@ -472,7 +473,7 @@ Do you allow this printing?</string>
     <string name="kt_btn_delete">Delete</string>
     <string name="kt_cloud_sync_last">Last sync: %1$s</string>
     <string name="kt_cloud_sync_never">Status: Never backed up</string>
-    <string name="kt_security_status">Security: AES-256 Active • Root: %1$s</string>
+    <string name="kt_security_status">Terenkripsi</string>
     <string name="kt_security_rooted">Detected (Warning)</string>
     <string name="kt_security_not_rooted">Secure (Not Rooted)</string>
     <string name="kt_wifi_scan_title">Scanning network...</string>
@@ -524,8 +525,8 @@ Do you allow this printing?</string>
     <string name="kt_sbs_default_loading_title">Processing Document</string>
     <string name="kt_sbs_default_loading_msg">Preparing print pages...</string>
     <string name="kt_btn_done">Done</string>
-    <string name="kt_media_thermal_58">58mm Thermal Roll</string>
-    <string name="kt_media_thermal_80">80mm Thermal Roll</string>
+    <string name="kt_media_thermal_58">58mm</string>
+    <string name="kt_media_thermal_80">80mm</string>
     <string name="kt_media_thermal_custom">Custom Thermal Label</string>
     <string name="kt_system_printer_named">NetraPrint • %1$s</string>
     <string name="kt_system_printer_name">NetraPrint Thermal Print Service</string>

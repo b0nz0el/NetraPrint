@@ -3,7 +3,7 @@
     <string name="txt_100_mm">100 mm</string>
     <string name="txt_384_dots_standar_58mm">384 dots (Standar 58mm)</string>
     <string name="txt_58_mm">58 mm</string>
-    <string name="txt_58mm_32_cpl">58mm • 32 CPL</string>
+    <string name="txt_58mm_32_cpl">58mm</string>
     <string name="txt_80_mm">80 mm</string>
     <string name="akses_instan_ke_pembaruan_fitur_masa_depan_dan_kanal_bantuan_teknis_vip">Akses instan ke pembaruan fitur masa depan dan kanal bantuan teknis VIP</string>
     <string name="aktif_seumur_hidup">AKTIF SEUMUR HIDUP</string>
@@ -61,10 +61,11 @@
     <string name="cetak_data_api">Cetak Data API</string>
     <string name="cetak_halaman_web">Cetak Halaman Web</string>
     <string name="cetak_header_footer_profil_toko">Cetak Header &amp; Footer Profil Toko</string>
-    <string name="cetak_label_pengiriman_otomatis_lengkap_23_ekspedisi_pemindai_barcode_camerax_resolusi_tinggi_1080p_cetak_dokumen_pdf_multi_halaman_dengan_filter_rentang_generator_qr_code_bisnis_dan_konversi_web_page">• Cetak label pengiriman otomatis lengkap 23 ekspedisi
-• Pemindai Barcode CameraX resolusi tinggi 1080p
-• Cetak dokumen PDF multi-halaman dengan filter rentang
-• Generator QR Code bisnis dan konversi Web Page</string>
+    <string name="onboarding_fitur_list">• Label pengiriman otomatis 23 kurir
+• Cetak PDF, struk, teks &amp; web
+• Pemindai barcode &amp; OCR cepat
+• Printer Bluetooth &amp; Wi-Fi</string>
+    <string name="cetak_label_pengiriman_otomatis_lengkap_23_ekspedisi_pemindai_barcode_camerax_resolusi_tinggi_1080p_cetak_dokumen_pdf_multi_halaman_dengan_filter_rentang_generator_qr_code_bisnis_dan_konversi_web_page">@string/onboarding_fitur_list</string>
     <string name="cetak_otomatis_menggunakan_printer_terakhir_tanpa_memilih_printer_lagi">Cetak otomatis menggunakan printer terakhir tanpa memilih printer lagi.</string>
     <string name="cetak_pdf_multi_halaman_tanpa_batas">Cetak PDF Multi-Halaman Tanpa Batas</string>
     <string name="cetak_qr_code">Cetak QR Code</string>
@@ -166,11 +167,11 @@
     <string name="pratinjau_dokumen_pdf">Pratinjau dokumen PDF</string>
     <string name="pratinjau_fisik_nyata_384_dots_203_dpi">Pratinjau fisik nyata (384 dots @ 203 DPI)</string>
     <string name="pratinjau_gambar">Pratinjau gambar</string>
-    <string name="pratinjau_qr_code">PRATINJAU QR CODE</string>
+    <string name="pratinjau_qr_code">Pratinjau QR CODE</string>
     <string name="pratinjau_qr_code_2">Pratinjau QR Code</string>
-    <string name="pratinjau_roll_wysiwyg">Pratinjau Roll WYSIWYG</string>
-    <string name="preferensi_cetak">PREFERENSI CETAK</string>
-    <string name="privasi_keamanan_data_terjamin">Privasi &amp; Keamanan Data Terjamin</string>
+    <string name="pratinjau_roll_wysiwyg">Preview</string>
+    <string name="preferensi_cetak">Preferensi Cetak</string>
+    <string name="privasi_keamanan_data_terjamin">Privasi &amp; Keamanan</string>
     <string name="pulihkan_data">Pulihkan Data</string>
     <string name="rentang_halaman_contoh_1_5_8_10_12">Rentang Halaman (Contoh: 1-5, 8, 10-12)</string>
     <string name="resi_marketplace">Resi Marketplace</string>
@@ -201,7 +202,7 @@ Terima kasih atas pesanan Anda!
     <string name="simpan_galeri">Simpan Galeri</string>
     <string name="simpan_penerima">Simpan Penerima</string>
     <string name="simpan_pengaturan">Simpan Pengaturan</string>
-    <string name="sinkronisasi_cloud_cadangan">SINKRONISASI CLOUD &amp; CADANGAN</string>
+    <string name="sinkronisasi_cloud_cadangan">Sinkronisasi Cloud &amp; Cadangan</string>
     <string name="sinkronisasi_cloud_cadangan_konfigurasi">Sinkronisasi Cloud &amp; Cadangan Konfigurasi</string>
     <string name="sinkronisasi_cloud_otomatis">Sinkronisasi Cloud Otomatis</string>
     <string name="sinkronisasi_pengaturan_dan_data_printer_antar_perangkat_hp_dan_tablet">Sinkronisasi pengaturan dan data printer antar-perangkat (HP dan Tablet)</string>
@@ -360,8 +361,8 @@ Pastikan printer sudah menyala dan terhubung, lalu ketuk \'Cetak Sekarang\'.</st
     <string name="kt_loading_connect_device_msg">Menghubungkan ke %s...</string>
     <string name="kt_progress_pdf_page">Mencetak halaman %1$d dari %2$d (PDF hal: %3$d)...</string>
     <string name="kt_progress_spooler_item">Mencetak antrean %1$d dari %2$d: %3$s...</string>
-    <string name="kt_chip_width_80mm">80mm • 48 CPL</string>
-    <string name="kt_chip_width_58mm">58mm • 32 CPL</string>
+    <string name="kt_chip_width_80mm">80mm</string>
+    <string name="kt_chip_width_58mm">58mm</string>
     <string name="kt_dialog_restore_title">Pulihkan Data Pengaturan</string>
     <string name="kt_dialog_restore_msg">Tempelkan kode JSON backup yang telah Anda salin sebelumnya:</string>
     <string name="kt_btn_restore">Pulihkan</string>
@@ -472,7 +473,7 @@ Apakah Anda mengizinkan pencetakan ini?</string>
     <string name="kt_btn_delete">Hapus</string>
     <string name="kt_cloud_sync_last">Sinkronisasi Terakhir: %1$s</string>
     <string name="kt_cloud_sync_never">Status: Belum pernah dicadangkan</string>
-    <string name="kt_security_status">Keamanan: AES-256 Aktif • Root: %1$s</string>
+    <string name="kt_security_status">Terenkripsi</string>
     <string name="kt_security_rooted">Terdeteksi (Peringatan)</string>
     <string name="kt_security_not_rooted">Aman (Non-Root)</string>
     <string name="kt_wifi_scan_title">Memindai Jaringan...</string>
@@ -524,8 +525,8 @@ Apakah Anda mengizinkan pencetakan ini?</string>
     <string name="kt_sbs_default_loading_title">Memproses Dokumen</string>
     <string name="kt_sbs_default_loading_msg">Sedang menyiapkan halaman cetak...</string>
     <string name="kt_btn_done">Selesai</string>
-    <string name="kt_media_thermal_58">Roll Thermal 58mm</string>
-    <string name="kt_media_thermal_80">Roll Thermal 80mm</string>
+    <string name="kt_media_thermal_58">58mm</string>
+    <string name="kt_media_thermal_80">80mm</string>
     <string name="kt_media_thermal_custom">Label Thermal Kustom</string>
     <string name="kt_system_printer_named">NetraPrint • %1$s</string>
     <string name="kt_system_printer_name">Layanan Printer Thermal NetraPrint</string>

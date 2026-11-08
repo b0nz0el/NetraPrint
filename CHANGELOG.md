@@ -1,5 +1,10 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.10 PRO] - Release
+
+- UI/UX & Copy: Peringkasan teks daftar fitur unggulan pada kartu selamat datang onboarding agar lebih padat, ringkas, dan mudah dibaca dalam 4 poin utama.
+- Refactoring Resource: Penyederhanaan nama resource key dari 167 karakter menjadi `@string/onboarding_fitur_list` dengan backward-compatibility alias ke key lama.
+
 ## [v2.0.9 PRO] - Release
 
 - Update Engine: Perbaikan kompatibilitas `downloadUrl` agar aplikasi versi lama dapat langsung membuka browser ke halaman rilis tanpa error `ActivityNotFoundException` akibat ekstensi `.apk`.

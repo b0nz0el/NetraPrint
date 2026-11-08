@@ -75,7 +75,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="4dp"
-                        android:text="@string/cetak_label_pengiriman_otomatis_lengkap_23_ekspedisi_pemindai_barcode_camerax_resolusi_tinggi_1080p_cetak_dokumen_pdf_multi_halaman_dengan_filter_rentang_generator_qr_code_bisnis_dan_konversi_web_page"
+                        android:text="@string/onboarding_fitur_list"
                         android:textColor="#0F766E"
                         android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
                 </LinearLayout>
