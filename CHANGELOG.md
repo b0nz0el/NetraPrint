@@ -1,5 +1,16 @@
 # Changelog — PrinterJTM (Native Android ESC/POS Hub)
 
+## [v2.0.5 PRO] - Release
+
+- System: Fixed dynamic version badge synchronization using PackageManager.
+- Typography: Upgraded app-wide font family to a modern, premium SaaS typography.
+- UI/UX: Overhauled MaterialCardView styles (20dp corner radius for a softer look).
+- UI/UX: Removed aggressive red tints from utility icons, replacing them with professional Slate Gray.
+- UI/UX: Decluttered form action buttons by utilizing native clear_text end icons.
+- UI: Added a forest-teal-to-teal brand gradient, flat outlined form cards, and docked tonal action toolbars across phone and tablet layouts.
+- Settings: Replaced connection, paper-size, and API-mode radio controls with Material 3 segmented buttons and modern switches.
+- Documentation: Removed legacy emojis, added inline outlined icons, and aligned the offline API guide typography and callouts with the app brand.
+
 ## [2.0.4] - 2026-10-18
 ### International Readiness Follow-up
 

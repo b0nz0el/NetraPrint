@@ -1,35 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Brand Primary Colors (Hijau Tua & Teal) -->
-    <color name="md_theme_light_primary">#004D40</color>
+    <!-- Enterprise teal palette -->
+    <color name="md_theme_light_primary">#0F766E</color>
     <color name="md_theme_light_onPrimary">#FFFFFF</color>
-    <color name="md_theme_light_primaryContainer">#72F7DC</color>
-    <color name="md_theme_light_onPrimaryContainer">#00201A</color>
-    <color name="md_theme_light_secondary">#00695C</color>
+    <color name="md_theme_light_primaryContainer">#CCFBF1</color>
+    <color name="md_theme_light_onPrimaryContainer">#134E4A</color>
+    <color name="md_theme_light_secondary">#0D9488</color>
     <color name="md_theme_light_onSecondary">#FFFFFF</color>
-    <color name="md_theme_light_secondaryContainer">#A7F0E0</color>
-    <color name="md_theme_light_onSecondaryContainer">#00201A</color>
-    <color name="md_theme_light_tertiary">#00BFA5</color>
+    <color name="md_theme_light_secondaryContainer">#CCFBF1</color>
+    <color name="md_theme_light_onSecondaryContainer">#134E4A</color>
+    <color name="md_theme_light_tertiary">#14B8A6</color>
     <color name="md_theme_light_onTertiary">#00372E</color>
-    <color name="md_theme_light_tertiaryContainer">#63F8D8</color>
-    <color name="md_theme_light_onTertiaryContainer">#00201A</color>
+    <color name="md_theme_light_tertiaryContainer">#99F6E4</color>
+    <color name="md_theme_light_onTertiaryContainer">#134E4A</color>
     <color name="md_theme_light_error">#BA1A1A</color>
     <color name="md_theme_light_onError">#FFFFFF</color>
     <color name="md_theme_light_errorContainer">#FFDAD6</color>
     <color name="md_theme_light_onErrorContainer">#410002</color>
-    <color name="md_theme_light_background">#F8FAF9</color>
+    <color name="md_theme_light_background">#F8FAFC</color>
     <color name="md_theme_light_onBackground">#191C1B</color>
     <color name="md_theme_light_surface">#FFFFFF</color>
     <color name="md_theme_light_onSurface">#191C1B</color>
-    <color name="md_theme_light_surfaceVariant">#DBE5E1</color>
-    <color name="md_theme_light_onSurfaceVariant">#3F4946</color>
-    <color name="md_theme_light_outline">#6F7976</color>
-    <color name="md_theme_light_outlineVariant">#BFC9C5</color>
+    <color name="md_theme_light_surfaceVariant">#F1F5F9</color>
+    <color name="md_theme_light_onSurfaceVariant">#475569</color>
+    <color name="md_theme_light_outline">#64748B</color>
+    <color name="md_theme_light_outlineVariant">#E2E8F0</color>
 
     <!-- Dark Colors -->
     <color name="md_theme_dark_primary">#53DBC0</color>
     <color name="md_theme_dark_onPrimary">#00382E</color>
-    <color name="md_theme_dark_primaryContainer">#004D40</color>
+    <color name="md_theme_dark_primaryContainer">#0F766E</color>
     <color name="md_theme_dark_onPrimaryContainer">#72F7DC</color>
     <color name="md_theme_dark_secondary">#8BD3C4</color>
     <color name="md_theme_dark_onSecondary">#00382E</color>
@@ -54,6 +54,12 @@
 
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="brand_green_primary">#004D40</color>
-    <color name="brand_teal_accent">#00BFA5</color>
+    <color name="brand_green_primary">#0F766E</color>
+    <color name="brand_teal_accent">#14B8A6</color>
+    <color name="nav_active">#0F766E</color>
+    <color name="nav_inactive">#64748B</color>
+    <color name="nav_active_container">#E0F2F1</color>
+    <color name="surface_outline">#E2E8F0</color>
+    <color name="printer_connected">#10B981</color>
+    <color name="printer_disconnected">#F59E0B</color>
 </resources>

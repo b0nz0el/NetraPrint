@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cardThermalPreview"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardBackgroundColor="#FFFFFF"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="2dp"
+    app:strokeColor="#DCE3E0"
+    app:strokeWidth="1dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="18dp"
+                android:layout_height="18dp"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_print"
+                app:tint="#0F766E" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:text="@string/pratinjau_roll_wysiwyg"
+                android:textColor="#0F766E"
+                android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipPaperWidth"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/txt_58mm_32_cpl"
+                android:textColor="#0F766E"
+                android:textSize="11sp"
+                app:chipBackgroundColor="#E8F5E9"
+                app:chipCornerRadius="10dp"
+                app:chipStrokeColor="#A5D6A7"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/chipDitherMode"
+                style="@style/Widget.Material3.Chip.Assist"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:layout_marginStart="6dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:text="@string/floyd_steinberg"
+                android:textColor="#0F766E"
+                android:textSize="11sp"
+                app:chipBackgroundColor="#CCFBF1"
+                app:chipCornerRadius="10dp"
+                app:chipStrokeColor="#64748B"
+                app:chipStrokeWidth="1dp" />
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="1"
+            android:background="#EFF3F1"
+            android:padding="6dp">
+
+            <androidx.core.widget.NestedScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipToPadding="false"
+                android:fillViewport="true"
+                android:scrollbars="vertical">
+
+                <LinearLayout
+                    android:id="@+id/thermalPaperRollContainer"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_receipt_paper"
+                    android:elevation="2dp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:importantForAccessibility="no"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_receipt_tear_edge" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="8dp">
+
+                        <ImageView
+                            android:id="@+id/ivThermalPreviewImage"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:adjustViewBounds="true"
+                            android:contentDescription="@string/pratinjau_cetak_thermal"
+                            android:scaleType="fitCenter"
+                            android:visibility="gone"
+                            tools:src="@tools/sample/avatars"
+                            tools:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/tvThermalPreviewText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="monospace"
+                            android:letterSpacing="0.02"
+                            android:lineSpacingExtra="1.5dp"
+                            android:text="@string/resi_pengiriman_paket_kurir_j_t_express_no_resi_jnt8829103847_penerima_budi_santoso_alamat_jl_sudirman_no_45_jakarta_selatan_terima_kasih_atas_pesanan_anda"
+                            android:textColor="#1A1C1B"
+                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall" />
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="5dp"
+                        android:importantForAccessibility="no"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_receipt_tear_edge_bottom" />
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tvThermalPreviewInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/pratinjau_fisik_nyata_384_dots_203_dpi"
+                android:textColor="#6F7976"
+                android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall" />
+
+            <TextView
+                android:id="@+id/tvThermalPreviewZoomHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/monokrom_1_bit_esc_pos"
+                android:textColor="#0F766E"
+                android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall" />
+        </LinearLayout>
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

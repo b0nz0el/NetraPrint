@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.david.printerjtm"
+    namespace = "com.netraprint.app"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -13,11 +13,11 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.david.printerjtm"
+        applicationId = "com.netraprint.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 10
-        versionName = "2.0.4"
+        versionCode = 11
+        versionName = "2.0.5"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -82,7 +82,7 @@ android {
 }
 
 base {
-    archivesName.set("PrinterJTM")
+    archivesName.set("NetraPrint")
 }
 
 val releaseOutputDir = layout.buildDirectory.dir("outputs/apk/release")
@@ -92,9 +92,9 @@ tasks.matching { it.name == "assembleRelease" }.configureEach {
     val dir = releaseOutputDir
     doLast {
         val destination = dir.get().asFile
-        val targetApk = File(destination, "PrinterJTM.apk")
+        val targetApk = File(destination, "NetraPrint.apk")
         destination.listFiles()?.forEach { file ->
-            if (file.extension == "apk" && file.name != "PrinterJTM.apk") {
+            if (file.extension == "apk" && file.name != "NetraPrint.apk") {
                 file.copyTo(targetApk, overwrite = true)
             }
         }
@@ -106,9 +106,9 @@ tasks.matching { it.name == "assembleDebug" }.configureEach {
     val dir = debugOutputDir
     doLast {
         val destination = dir.get().asFile
-        val targetApk = File(destination, "PrinterJTM-debug.apk")
+        val targetApk = File(destination, "NetraPrint-debug.apk")
         destination.listFiles()?.forEach { file ->
-            if (file.extension == "apk" && file.name != "PrinterJTM-debug.apk") {
+            if (file.extension == "apk" && file.name != "NetraPrint-debug.apk") {
                 file.copyTo(targetApk, overwrite = true)
             }
         }

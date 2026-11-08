@@ -38,8 +38,7 @@
         android:gravity="center"
         android:text="@string/memproses_dokumen"
         android:textColor="#191C1B"
-        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
-        android:fontFamily="sans-serif-medium" />
+        android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge" />
 
     <!-- Message: Body Medium Material 3 -->
     <TextView
@@ -61,8 +60,8 @@
         android:layout_marginTop="20dp"
         android:indeterminate="true"
         android:visibility="gone"
-        app:indicatorColor="#004D40"
-        app:trackColor="#E0F2F1"
+        app:indicatorColor="#0F766E"
+        app:trackColor="#CCFBF1"
         app:trackCornerRadius="4dp"
         app:trackThickness="6dp" />
 
@@ -73,8 +72,7 @@
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:layout_marginTop="24dp"
-        android:backgroundTint="#004D40"
-        android:fontFamily="sans-serif-medium"
+        android:backgroundTint="#0F766E"
         android:text="@string/mengerti"
         android:textColor="#FFFFFF"
         android:textSize="15sp"
@@ -89,9 +87,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-medium"
         android:text="@string/tutup"
-        android:textColor="#004D40"
+        android:textColor="#0F766E"
         android:textSize="14sp"
         android:visibility="gone"
         app:cornerRadius="16dp" />

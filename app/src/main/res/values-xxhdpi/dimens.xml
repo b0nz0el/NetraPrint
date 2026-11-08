@@ -7,7 +7,7 @@
     <dimen name="text_input_padding">12dp</dimen>
     <dimen name="icon_action_size">28dp</dimen>
     <dimen name="icon_action_btn_size">36dp</dimen>
-    <dimen name="card_corner_radius">18dp</dimen>
+    <dimen name="card_corner_radius">20dp</dimen>
     <dimen name="card_margin_bottom">14dp</dimen>
     <dimen name="logo_card_height">140dp</dimen>
     <dimen name="logo_icon_size">64dp</dimen>

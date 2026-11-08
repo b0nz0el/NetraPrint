@@ -17,7 +17,7 @@
             android:id="@+id/toolbarQr"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#004D40"
+            android:background="#0F766E"
             app:navigationIcon="@drawable/ic_arrow_back_m3"
             app:navigationIconTint="#FFFFFF"
             app:title="@string/studio_qr_code"
@@ -53,7 +53,7 @@
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:strokeColor="#E0E0E0"
+                    app:strokeColor="#E2E8F0"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
@@ -69,11 +69,11 @@
                             android:layout_marginBottom="14dp"
                             android:letterSpacing="0.08"
                             android:text="@string/pratinjau_qr_code"
-                            android:textColor="#004D40"
+                            android:textColor="#0F766E"
                             android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
                             android:textStyle="bold" />
 
-                        <!-- Bingkai Dalam Berlatar #F8FAF9 -->
+                        <!-- Bingkai Dalam Berlatar #F8FAFC -->
                         <LinearLayout
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
@@ -100,7 +100,7 @@
                             android:paddingHorizontal="16dp"
                             android:paddingVertical="8dp"
                             android:text="@string/ketik_konten_di_bawah_untuk_memperbarui_qr_code"
-                            android:textColor="#004D40"
+                            android:textColor="#0F766E"
                             android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
                             android:textStyle="bold" />
 
@@ -115,7 +115,7 @@
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:strokeColor="#E0E0E0"
+                    app:strokeColor="#E2E8F0"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
@@ -129,7 +129,7 @@
                             android:layout_height="wrap_content"
                             android:letterSpacing="0.08"
                             android:text="@string/konten_pengaturan_teks"
-                            android:textColor="#004D40"
+                            android:textColor="#0F766E"
                             android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
                             android:textStyle="bold" />
 
@@ -143,9 +143,9 @@
                             app:boxCornerRadiusBottomStart="14dp"
                             app:boxCornerRadiusTopEnd="14dp"
                             app:boxCornerRadiusTopStart="14dp"
-                            app:boxStrokeColor="#004D40"
+                            app:boxStrokeColor="#0F766E"
                             app:endIconMode="clear_text"
-                            app:hintTextColor="#004D40">
+                            app:hintTextColor="#0F766E">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etQrContent"
@@ -168,16 +168,16 @@
                             android:letterSpacing="0.01"
                             android:text="@string/perbarui_qr_code"
                             android:textAllCaps="false"
-                            android:textColor="#004D40"
+                            android:textColor="#0F766E"
                             android:textStyle="bold"
                             app:cornerRadius="12dp"
-                            app:strokeColor="#004D40" />
+                            app:strokeColor="#0F766E" />
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="16dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- Baris Tombol Aksi Utama -->
                         <LinearLayout
@@ -195,10 +195,10 @@
                                 android:letterSpacing="0.01"
                                 android:text="@string/simpan_galeri"
                                 android:textAllCaps="false"
-                                android:textColor="#004D40"
+                                android:textColor="#0F766E"
                                 android:textStyle="bold"
                                 app:cornerRadius="12dp"
-                                app:strokeColor="#004D40" />
+                                app:strokeColor="#0F766E" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnPrintQr"
@@ -206,7 +206,7 @@
                                 android:layout_height="48dp"
                                 android:layout_marginStart="6dp"
                                 android:layout_weight="1"
-                                android:backgroundTint="#004D40"
+                                android:backgroundTint="#0F766E"
                                 android:letterSpacing="0.01"
                                 android:text="@string/cetak_qr_code"
                                 android:textAllCaps="false"

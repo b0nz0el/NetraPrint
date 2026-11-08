@@ -12,21 +12,21 @@
 
     <!-- Receipt Header Line -->
     <path
-        android:fillColor="#004D40"
+        android:fillColor="#0F766E"
         android:pathData="M43,30 L65,30 A1.5,1.5 0,0,1 66.5,31.5 A1.5,1.5 0,0,1 65,33 L43,33 A1.5,1.5 0,0,1 41.5,31.5 A1.5,1.5 0,0,1 43,30 Z" />
 
     <!-- Receipt Text Lines -->
     <path
-        android:fillColor="#80CBC4"
+        android:fillColor="#64748B"
         android:pathData="M41,36 L67,36 A1,1 0,0,1 68,37 A1,1 0,0,1 67,38 L41,38 A1,1 0,0,1 40,37 A1,1 0,0,1 41,36 Z" />
 
     <path
-        android:fillColor="#80CBC4"
+        android:fillColor="#64748B"
         android:pathData="M41,41 L61,41 A1,1 0,0,1 62,42 A1,1 0,0,1 61,43 L41,43 A1,1 0,0,1 40,42 A1,1 0,0,1 41,41 Z" />
 
     <!-- Barcode lines on receipt -->
     <path
-        android:fillColor="#004D40"
+        android:fillColor="#0F766E"
         android:pathData="M42,45h2v3h-2z M45,45h1v3h-1z M47,45h3v3h-3z M51,45h1v3h-1z M53,45h2v3h-2z M56,45h1v3h-1z M58,45h3v3h-3z M62,45h2v3h-2z M65,45h1v3h-1z" />
 
     <!-- Printer Shadow / Base Trim -->
@@ -46,7 +46,7 @@
 
     <!-- Power / Status LED (Teal Glow) -->
     <path
-        android:fillColor="#00BFA5"
+        android:fillColor="#14B8A6"
         android:pathData="M34,65 A3,3 0,1,1 34,71 A3,3 0,1,1 34,65 Z" />
 
     <!-- Paper Feed Button (Round) -->
@@ -58,17 +58,17 @@
     <!-- JTM Letters in Dark Green on Printer Front -->
     <!-- J -->
     <path
-        android:fillColor="#004D40"
+        android:fillColor="#0F766E"
         android:pathData="M45,62 L45,68 A2.5,2.5 0,0,1 42.5,70.5 A2.5,2.5 0,0,1 40,68 L41.5,68 A1,1 0,0,0 42.5,69.2 A1,1 0,0,0 43.5,68 L43.5,62 Z" />
 
     <!-- T -->
     <path
-        android:fillColor="#004D40"
+        android:fillColor="#0F766E"
         android:pathData="M48,62 L57,62 L57,63.5 L53.5,63.5 L53.5,71 L51.5,71 L51.5,63.5 L48,63.5 Z" />
 
     <!-- M -->
     <path
-        android:fillColor="#004D40"
+        android:fillColor="#0F766E"
         android:pathData="M59,62 L61,62 L62.5,67 L64,62 L66,62 L66,71 L64.5,71 L64.5,64.5 L63.2,68.5 L61.8,68.5 L60.5,64.5 L60.5,71 L59,71 Z" />
 
 </vector>

@@ -10,7 +10,7 @@
         android:id="@+id/appBarLayoutLegal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#004D40">
+        android:background="#0F766E">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarLegal"

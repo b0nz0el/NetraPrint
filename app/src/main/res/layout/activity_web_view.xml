@@ -11,7 +11,7 @@
         android:id="@+id/appBarLayoutWeb"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#004D40">
+        android:background="#0F766E">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarWeb"
@@ -30,7 +30,7 @@
                 android:layout_gravity="end"
                 android:layout_marginEnd="8dp"
                 android:text="@string/cetak_web"
-                android:textColor="#80CBC4"
+                android:textColor="#64748B"
                 android:textStyle="bold" />
         </com.google.android.material.appbar.MaterialToolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -53,8 +53,8 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
             android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_media_previous"
-            app:tint="#37474F" 
+            android:src="@drawable/ic_arrow_back_m3"
+            app:tint="#546E7A"
             android:contentDescription="@string/kembali"/>
 
         <ImageButton
@@ -64,8 +64,8 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
             android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_media_next"
-            app:tint="#37474F" 
+            android:src="@drawable/ic_arrow_forward_m3"
+            app:tint="#546E7A"
             android:contentDescription="@string/maju"/>
 
         <ImageButton
@@ -75,8 +75,8 @@
             android:background="?attr/selectableItemBackgroundBorderless"
             android:padding="6dp"
             android:scaleType="fitCenter"
-            android:src="@android:drawable/ic_popup_sync"
-            app:tint="#37474F" 
+            android:src="@drawable/ic_refresh_m3"
+            app:tint="#546E7A"
             android:contentDescription="@string/muat_ulang"/>
 
         <!-- URL Input -->
@@ -99,7 +99,7 @@
             android:id="@+id/btnWebGo"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
-            android:backgroundTint="#004D40"
+            android:backgroundTint="#0F766E"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:minWidth="50dp"
@@ -116,8 +116,8 @@
         android:layout_height="4dp"
         android:max="100"
         android:visibility="gone"
-        app:indicatorColor="#00BFA5"
-        app:trackColor="#E0F2F1"
+        app:indicatorColor="#14B8A6"
+        app:trackColor="#CCFBF1"
         app:trackCornerRadius="2dp" />
 
     <!-- Modern WebView Container -->

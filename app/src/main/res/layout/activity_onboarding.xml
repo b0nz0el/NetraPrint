@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/selamat_datang_di_printerjtm"
-                android:textColor="#004D40"
+                android:textColor="#0F766E"
                 android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
                 android:textStyle="bold" />
 
@@ -52,13 +52,13 @@
                 android:layout_marginBottom="20dp"
                 app:cardCornerRadius="12dp"
                 app:cardElevation="0dp"
-                app:strokeColor="#B2DFDB"
+                app:strokeColor="#99F6E4"
                 app:strokeWidth="1.5dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="#E0F2F1"
+                    android:background="#CCFBF1"
                     android:orientation="vertical"
                     android:padding="16dp">
 
@@ -67,7 +67,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="8dp"
                         android:text="@string/fitur_unggulan"
-                        android:textColor="#004D40"
+                        android:textColor="#0F766E"
                         android:textAppearance="@style/TextAppearance.PrinterJTM.TitleMedium"
                         android:textStyle="bold" />
 
@@ -76,7 +76,7 @@
                         android:layout_height="wrap_content"
                         android:lineSpacingExtra="4dp"
                         android:text="@string/cetak_label_pengiriman_otomatis_lengkap_23_ekspedisi_pemindai_barcode_camerax_resolusi_tinggi_1080p_cetak_dokumen_pdf_multi_halaman_dengan_filter_rentang_generator_qr_code_bisnis_dan_konversi_web_page"
-                        android:textColor="#004D40"
+                        android:textColor="#0F766E"
                         android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
                 </LinearLayout>
             </com.google.android.material.card.MaterialCardView>
@@ -117,7 +117,7 @@
                 android:id="@+id/cbAgreePolicy"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:buttonTint="#004D40" />
+                android:buttonTint="#0F766E" />
 
             <TextView
                 android:id="@+id/tvLegalLinks"
@@ -135,7 +135,7 @@
             android:layout_width="match_parent"
             android:layout_height="52dp"
             android:layout_marginTop="12dp"
-            android:backgroundTint="#004D40"
+            android:backgroundTint="#0F766E"
             android:enabled="false"
             android:text="@string/mulai_gunakan_printerjtm"
             android:textColor="#FFFFFF"

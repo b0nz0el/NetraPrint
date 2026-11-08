@@ -17,7 +17,7 @@
             android:id="@+id/toolbarSub"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#004D40"
+            android:background="#0F766E"
             app:navigationIcon="@drawable/ic_arrow_back_m3"
             app:navigationIconTint="#FFFFFF"
             app:title="@string/paket_langganan_pro"
@@ -50,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
-                    app:cardBackgroundColor="#004D40"
+                    app:cardBackgroundColor="#0F766E"
                     app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
                     app:strokeWidth="0dp">
@@ -91,7 +91,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="6dp"
                             android:text="@string/perangkat_anda_telah_teraktivasi_lisensi_resmi_printerjtm_pro_seumur_hidup_lifetime_seluruh_modul_enterprise_telah_terbuka_penuh_tanpa_batas_cetak"
-                            android:textColor="#B2DFDB"
+                            android:textColor="#99F6E4"
                             android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
 
                         <View
@@ -121,7 +121,7 @@
                                 android:layout_marginStart="6dp"
                                 android:layout_marginBottom="2dp"
                                 android:text="@string/bebas_biaya"
-                                android:textColor="#B2DFDB"
+                                android:textColor="#99F6E4"
                                 android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
                         </LinearLayout>
                     </LinearLayout>
@@ -135,7 +135,7 @@
                     app:cardBackgroundColor="#FFFFFF"
                     app:cardCornerRadius="18dp"
                     app:cardElevation="0dp"
-                    app:strokeColor="#E0E0E0"
+                    app:strokeColor="#E2E8F0"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
@@ -149,7 +149,7 @@
                             android:layout_height="wrap_content"
                             android:letterSpacing="0.08"
                             android:text="@string/fitur_keunggulan_eksklusif_pro"
-                            android:textColor="#004D40"
+                            android:textColor="#0F766E"
                             android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
                             android:textStyle="bold" />
 
@@ -420,7 +420,7 @@
                     android:id="@+id/btnUpgradePro"
                     android:layout_width="match_parent"
                     android:layout_height="54dp"
-                    android:backgroundTint="#004D40"
+                    android:backgroundTint="#0F766E"
                     android:letterSpacing="0.01"
                     android:text="@string/lisensi_pro_aktif_siap_digunakan"
                     android:textAllCaps="false"

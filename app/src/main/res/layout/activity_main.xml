@@ -11,14 +11,14 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#F8FAF9">
+        android:background="#F8FAFC">
 
         <!-- Top App Bar / Header (Elevated at 12dp to strictly prevent bleeding) -->
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#004D40"
+            android:background="@drawable/bg_header_gradient"
             android:elevation="12dp"
             android:translationZ="12dp"
             app:elevation="12dp">
@@ -27,11 +27,12 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#004D40"
+                android:background="@drawable/bg_header_gradient"
                 app:navigationIcon="@drawable/ic_menu_hamburger"
                 app:navigationIconTint="#FFFFFF"
                 app:title="@string/app_name"
-                app:titleTextColor="#FFFFFF">
+                app:titleTextColor="#FFFFFF"
+                 app:titleTextAppearance="@style/TextAppearance.PrinterJTM.Toolbar">
 
                 <!-- Interactive Live Printer Status Badge Pill -->
                 <LinearLayout
@@ -59,7 +60,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="6dp"
-                        android:fontFamily="sans-serif-medium"
                         android:text="@string/pilih_printer"
                         android:textColor="#FFFFFF"
                         android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
@@ -85,7 +85,7 @@
                     android:layout_width="18dp"
                     android:layout_height="18dp"
                     android:src="@drawable/ic_print"
-                    app:tint="#E65100" 
+                    app:tint="#E65100"
                     android:importantForAccessibility="no"/>
 
                 <TextView
@@ -94,7 +94,6 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_weight="1"
-                    android:fontFamily="sans-serif-medium"
                     android:text="@string/antrean_cetak_offline_1_dokumen_tertunda"
                     android:textColor="#E65100"
                     android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
@@ -166,9 +165,9 @@
                     android:focusable="true"
                     android:foreground="?attr/selectableItemBackground"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:strokeColor="#E0E0E0"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:strokeColor="#E2E8F0"
                     app:strokeWidth="1dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -184,10 +183,10 @@
                         <com.google.android.material.card.MaterialCardView
                             android:layout_width="48dp"
                             android:layout_height="48dp"
-                            app:cardBackgroundColor="#E0F2F1"
-                            app:cardCornerRadius="12dp"
+                            app:cardBackgroundColor="#FFFFFF"
+                            app:cardCornerRadius="20dp"
                             app:cardElevation="0dp"
-                            app:strokeColor="#B2DFDB"
+                            app:strokeColor="#E2E8F0"
                             app:strokeWidth="1dp">
 
                             <ImageView
@@ -197,7 +196,7 @@
                                 android:padding="8dp"
                                 android:scaleType="centerInside"
                                 android:src="@drawable/ic_action_camera"
-                                app:tint="#004D40" 
+                                app:tint="#0F766E"
                                 android:contentDescription="@string/unggah_logo_toko"/>
                         </com.google.android.material.card.MaterialCardView>
 
@@ -212,16 +211,14 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="sans-serif-bold"
                                 android:text="@string/logo_toko_struk"
-                                android:textColor="#004D40"
+                                android:textColor="#0F766E"
                                 android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginTop="2dp"
-                                android:fontFamily="sans-serif"
                                 android:text="@string/ketuk_untuk_upload_logo_toko"
                                 android:textColor="#78909C"
                                 android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
@@ -268,12 +265,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_margin_bottom"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:strokeWidth="0dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardLogo">
+                    app:layout_constraintTop_toBottomOf="@id/cardLogo"
+                    app:strokeColor="#E2E8F0">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -287,8 +285,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/penerima_nama_alamat_no_hp"
-                            android:textColorHint="#7A757F"
-                            app:hintTextColor="#004D40">
+                            android:textColorHint="#64748B"
+                            app:hintTextColor="#334155"
+                            app:endIconMode="clear_text">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etPenerima"
@@ -297,108 +296,103 @@
                                 android:gravity="top|start"
                                 android:inputType="textMultiLine|textCapWords"
                                 android:minLines="3"
-                                android:padding="@dimen/text_input_padding"
-                                android:textColor="#1C1B1F"
-                                android:textColorHint="#7A757F"
-                                android:textSize="14sp" />
+                                android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/action_chip_margin_top"
                             android:gravity="center_vertical|end"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:layout_gravity="end"
+                            android:background="@drawable/bg_tonal_toolbar"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="6dp">
 
                             <ImageButton
                                 android:id="@+id/btnSavePenerima"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
-                                android:background="@drawable/bg_action_chip"
+                                android:background="@android:color/transparent"
                                 android:contentDescription="@string/simpan_penerima"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_save"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="@color/color_state_action_icon" />
+                                app:tint="#475569"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:layout_marginStart="0dp" />
 
                             <ImageButton
                                 android:id="@+id/btnFolderPenerima"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
+                                android:layout_marginStart="0dp"
+                                android:background="@android:color/transparent"
                                 android:contentDescription="@string/buka_data_tersimpan"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_folder"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="@color/color_state_action_icon" />
+                                app:tint="#475569"
+                                android:foreground="?attr/selectableItemBackgroundBorderless" />
 
                             <ImageButton
                                 android:id="@+id/btnCopyPenerima"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
+                                android:layout_marginStart="0dp"
+                                android:background="@android:color/transparent"
                                 android:contentDescription="@string/salin_penerima"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_copy"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="@color/color_state_action_icon" />
-
-                            <ImageButton
-                                android:id="@+id/btnDeletePenerima"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
-                                android:contentDescription="@string/hapus_penerima"
-                                android:padding="5dp"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_action_delete"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="#D32F2F" />
+                                app:tint="#475569"
+                                android:foreground="?attr/selectableItemBackgroundBorderless" />
 
                             <ImageButton
                                 android:id="@+id/btnPastePenerima"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
+                                android:layout_marginStart="0dp"
+                                android:background="@android:color/transparent"
                                 android:contentDescription="@string/tempel_penerima"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_paste"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="@color/color_state_action_icon" />
+                                app:tint="#475569"
+                                android:foreground="?attr/selectableItemBackgroundBorderless" />
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="16dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:background="#CBD5E1" />
 
                             <ImageButton
                                 android:id="@+id/btnSpeakerPenerima"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
+                                android:layout_marginStart="0dp"
+                                android:background="@android:color/transparent"
                                 android:contentDescription="@string/ucapkan_teks_penerima"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_speaker"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="@color/color_state_action_icon" />
+                                app:tint="#475569"
+                                android:foreground="?attr/selectableItemBackgroundBorderless" />
 
                             <ImageButton
                                 android:id="@+id/btnOcrPenerima"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
+                                android:layout_marginStart="0dp"
+                                android:background="@android:color/transparent"
                                 android:contentDescription="@string/pindai_teks_penerima_ocr"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_ocr"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="@color/color_state_action_icon" />
+                                app:tint="#475569"
+                                android:foreground="?attr/selectableItemBackgroundBorderless" />
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -410,12 +404,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_margin_bottom"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:strokeWidth="0dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardPenerima">
+                    app:layout_constraintTop_toBottomOf="@id/cardPenerima"
+                    app:strokeColor="#E2E8F0">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -429,8 +424,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/pengirim_nama_alamat_no_hp"
-                            android:textColorHint="#7A757F"
-                            app:hintTextColor="#004D40">
+                            android:textColorHint="#64748B"
+                            app:hintTextColor="#334155"
+                            app:endIconMode="clear_text">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etPengirim"
@@ -439,82 +435,77 @@
                                 android:gravity="top|start"
                                 android:inputType="textMultiLine|textCapWords"
                                 android:minLines="3"
-                                android:padding="@dimen/text_input_padding"
-                                android:textColor="#1C1B1F"
-                                android:textColorHint="#7A757F"
-                                android:textSize="14sp" />
+                                android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <LinearLayout
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/action_chip_margin_top"
                             android:gravity="center_vertical|end"
-                            android:orientation="horizontal">
+                            android:orientation="horizontal"
+                            android:layout_gravity="end"
+                            android:background="@drawable/bg_tonal_toolbar"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="6dp">
 
                             <ImageButton
                                 android:id="@+id/btnCopyPengirim"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
-                                android:background="@drawable/bg_action_chip"
+                                android:background="@android:color/transparent"
                                 android:contentDescription="@string/salin_pengirim"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_copy"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="@color/color_state_action_icon" />
-
-                            <ImageButton
-                                android:id="@+id/btnDeletePengirim"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
-                                android:contentDescription="@string/hapus_pengirim"
-                                android:padding="5dp"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_action_delete"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="#D32F2F" />
+                                app:tint="#475569"
+                                android:foreground="?attr/selectableItemBackgroundBorderless"
+                                android:layout_marginStart="0dp" />
 
                             <ImageButton
                                 android:id="@+id/btnPastePengirim"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
+                                android:layout_marginStart="0dp"
+                                android:background="@android:color/transparent"
                                 android:contentDescription="@string/tempel_pengirim"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_paste"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="@color/color_state_action_icon" />
+                                app:tint="#475569"
+                                android:foreground="?attr/selectableItemBackgroundBorderless" />
+                            <View
+                                android:layout_width="1dp"
+                                android:layout_height="16dp"
+                                android:layout_marginStart="4dp"
+                                android:layout_marginEnd="4dp"
+                                android:background="#CBD5E1" />
 
                             <ImageButton
                                 android:id="@+id/btnSpeakerPengirim"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
+                                android:layout_marginStart="0dp"
+                                android:background="@android:color/transparent"
                                 android:contentDescription="@string/ucapkan_teks_pengirim"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_speaker"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="@color/color_state_action_icon" />
+                                app:tint="#475569"
+                                android:foreground="?attr/selectableItemBackgroundBorderless" />
 
                             <ImageButton
                                 android:id="@+id/btnOcrPengirim"
                                 android:layout_width="36dp"
                                 android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
+                                android:layout_marginStart="0dp"
+                                android:background="@android:color/transparent"
                                 android:contentDescription="@string/pindai_teks_pengirim_ocr"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_ocr"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="@color/color_state_action_icon" />
+                                app:tint="#475569"
+                                android:foreground="?attr/selectableItemBackgroundBorderless" />
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -526,12 +517,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_margin_bottom"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:strokeWidth="0dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardPengirim">
+                    app:layout_constraintTop_toBottomOf="@id/cardPengirim"
+                    app:strokeColor="#E2E8F0">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -545,9 +537,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/jasa_kurir"
-                            android:textColorHint="#7A757F"
+                            android:textColorHint="#64748B"
                             app:boxBackgroundColor="#FFFFFF"
-                            app:hintTextColor="#004D40">
+                            app:hintTextColor="#334155">
 
                             <AutoCompleteTextView
                                 android:id="@+id/actvJasaKurir"
@@ -558,11 +550,8 @@
                                 android:dropDownHeight="250dp"
                                 android:dropDownVerticalOffset="4dp"
                                 android:inputType="none"
-                                android:popupBackground="@android:color/white"
-                                android:textColor="#1C1B1F"
-                                android:textColorHighlight="@android:color/transparent"
-                                android:textColorHint="#7A757F"
-                                android:textSize="14sp" />
+                                android:popupBackground="@android:color/white" android:textColor="#0F172A"
+                                android:textColorHighlight="@android:color/transparent" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                         </com.google.android.material.textfield.TextInputLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -574,12 +563,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_margin_bottom"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:strokeWidth="0dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardJasaKurir">
+                    app:layout_constraintTop_toBottomOf="@id/cardJasaKurir"
+                    app:strokeColor="#E2E8F0">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -593,18 +583,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/no_resi"
-                            android:textColorHint="#7A757F"
-                            app:hintTextColor="#004D40">
+                            android:textColorHint="#64748B"
+                            app:hintTextColor="#334155"
+                            app:endIconMode="clear_text">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etKodeBooking"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="textCapCharacters"
-                                android:padding="@dimen/text_input_padding"
-                                android:textColor="#1C1B1F"
-                                android:textColorHint="#7A757F"
-                                android:textSize="14sp" />
+                                android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <LinearLayout
@@ -616,37 +604,24 @@
 
                             <ImageButton
                                 android:id="@+id/btnBarcodeKodeBooking"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:background="@drawable/bg_action_chip"
                                 android:contentDescription="@string/pindai_barcode"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_barcode"
                                 android:stateListAnimator="@animator/scale_bounce"
                                 app:tint="@color/color_state_action_icon" />
 
                             <ImageButton
-                                android:id="@+id/btnDeleteKodeBooking"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
-                                android:contentDescription="@string/hapus_no_resi"
-                                android:padding="5dp"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_action_delete"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="#D32F2F" />
-
-                            <ImageButton
                                 android:id="@+id/btnPasteKodeBooking"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_marginStart="6dp"
                                 android:background="@drawable/bg_action_chip"
                                 android:contentDescription="@string/tempel_no_resi"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_paste"
                                 android:stateListAnimator="@animator/scale_bounce"
@@ -654,12 +629,12 @@
 
                             <ImageButton
                                 android:id="@+id/btnOcrKodeBooking"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_marginStart="6dp"
                                 android:background="@drawable/bg_action_chip"
                                 android:contentDescription="@string/pindai_no_resi_ocr"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_ocr"
                                 android:stateListAnimator="@animator/scale_bounce"
@@ -675,12 +650,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_margin_bottom"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:strokeWidth="0dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardKodeBooking">
+                    app:layout_constraintTop_toBottomOf="@id/cardKodeBooking"
+                    app:strokeColor="#E2E8F0">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -694,18 +670,16 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/isi_paket"
-                            android:textColorHint="#7A757F"
-                            app:hintTextColor="#004D40">
+                            android:textColorHint="#64748B"
+                            app:hintTextColor="#334155"
+                            app:endIconMode="clear_text">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etIsiPaket"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="textCapSentences"
-                                android:padding="@dimen/text_input_padding"
-                                android:textColor="#1C1B1F"
-                                android:textColorHint="#7A757F"
-                                android:textSize="14sp" />
+                                android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <LinearLayout
@@ -717,37 +691,24 @@
 
                             <ImageButton
                                 android:id="@+id/btnCopyIsiPaket"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:background="@drawable/bg_action_chip"
                                 android:contentDescription="@string/salin_isi_paket"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_copy"
                                 android:stateListAnimator="@animator/scale_bounce"
                                 app:tint="@color/color_state_action_icon" />
 
                             <ImageButton
-                                android:id="@+id/btnDeleteIsiPaket"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
-                                android:contentDescription="@string/hapus_isi_paket"
-                                android:padding="5dp"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_action_delete"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="#D32F2F" />
-
-                            <ImageButton
                                 android:id="@+id/btnPasteIsiPaket"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_marginStart="6dp"
                                 android:background="@drawable/bg_action_chip"
                                 android:contentDescription="@string/tempel_isi_paket"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_paste"
                                 android:stateListAnimator="@animator/scale_bounce"
@@ -755,12 +716,12 @@
 
                             <ImageButton
                                 android:id="@+id/btnSpeakerIsiPaket"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_marginStart="6dp"
                                 android:background="@drawable/bg_action_chip"
                                 android:contentDescription="@string/ucapkan_isi_paket"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_speaker"
                                 android:stateListAnimator="@animator/scale_bounce"
@@ -768,12 +729,12 @@
 
                             <ImageButton
                                 android:id="@+id/btnOcrIsiPaket"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_marginStart="6dp"
                                 android:background="@drawable/bg_action_chip"
                                 android:contentDescription="@string/pindai_isi_paket_ocr"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_ocr"
                                 android:stateListAnimator="@animator/scale_bounce"
@@ -789,12 +750,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_margin_bottom"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:strokeWidth="0dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardIsiPaket">
+                    app:layout_constraintTop_toBottomOf="@id/cardIsiPaket"
+                    app:strokeColor="#E2E8F0">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -808,8 +770,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/catatan_tambahan"
-                            android:textColorHint="#7A757F"
-                            app:hintTextColor="#004D40">
+                            android:textColorHint="#64748B"
+                            app:hintTextColor="#334155"
+                            app:endIconMode="clear_text">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etCatatan"
@@ -818,10 +781,7 @@
                                 android:gravity="top|start"
                                 android:inputType="textMultiLine|textCapSentences"
                                 android:minLines="2"
-                                android:padding="@dimen/text_input_padding"
-                                android:textColor="#1C1B1F"
-                                android:textColorHint="#7A757F"
-                                android:textSize="14sp" />
+                                android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <LinearLayout
@@ -833,37 +793,24 @@
 
                             <ImageButton
                                 android:id="@+id/btnCopyCatatan"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:background="@drawable/bg_action_chip"
                                 android:contentDescription="@string/salin_catatan"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_copy"
                                 android:stateListAnimator="@animator/scale_bounce"
                                 app:tint="@color/color_state_action_icon" />
 
                             <ImageButton
-                                android:id="@+id/btnDeleteCatatan"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
-                                android:layout_marginStart="6dp"
-                                android:background="@drawable/bg_action_chip"
-                                android:contentDescription="@string/hapus_catatan"
-                                android:padding="5dp"
-                                android:scaleType="fitCenter"
-                                android:src="@drawable/ic_action_delete"
-                                android:stateListAnimator="@animator/scale_bounce"
-                                app:tint="#D32F2F" />
-
-                            <ImageButton
                                 android:id="@+id/btnPasteCatatan"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_marginStart="6dp"
                                 android:background="@drawable/bg_action_chip"
                                 android:contentDescription="@string/tempel_catatan"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_paste"
                                 android:stateListAnimator="@animator/scale_bounce"
@@ -871,12 +818,12 @@
 
                             <ImageButton
                                 android:id="@+id/btnSpeakerCatatan"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_marginStart="6dp"
                                 android:background="@drawable/bg_action_chip"
                                 android:contentDescription="@string/ucapkan_catatan"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_speaker"
                                 android:stateListAnimator="@animator/scale_bounce"
@@ -884,12 +831,12 @@
 
                             <ImageButton
                                 android:id="@+id/btnOcrCatatan"
-                                android:layout_width="36dp"
-                                android:layout_height="36dp"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
                                 android:layout_marginStart="6dp"
                                 android:background="@drawable/bg_action_chip"
                                 android:contentDescription="@string/pindai_catatan_ocr"
-                                android:padding="5dp"
+                                android:padding="8dp"
                                 android:scaleType="fitCenter"
                                 android:src="@drawable/ic_action_ocr"
                                 android:stateListAnimator="@animator/scale_bounce"
@@ -905,12 +852,13 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/card_margin_bottom"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="@dimen/card_corner_radius"
-                    app:cardElevation="@dimen/card_elevation"
-                    app:strokeWidth="0dp"
+                    app:cardCornerRadius="20dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/cardCatatan">
+                    app:layout_constraintTop_toBottomOf="@id/cardCatatan"
+                    app:strokeColor="#E2E8F0">
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -924,9 +872,9 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:hint="@string/jenis_huruf_font"
-                            android:textColorHint="#7A757F"
+                            android:textColorHint="#64748B"
                             app:boxBackgroundColor="#FFFFFF"
-                            app:hintTextColor="#004D40">
+                            app:hintTextColor="#334155">
 
                             <AutoCompleteTextView
                                 android:id="@+id/actvFont"
@@ -938,11 +886,8 @@
                                 android:dropDownVerticalOffset="4dp"
                                 android:inputType="none"
                                 android:popupBackground="@android:color/white"
-                                android:text="@string/str_default"
-                                android:textColor="#1C1B1F"
-                                android:textColorHighlight="@android:color/transparent"
-                                android:textColorHint="#7A757F"
-                                android:textSize="14sp" />
+                                android:text="@string/str_default" android:textColor="#0F172A"
+                                android:textColorHighlight="@android:color/transparent" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                         </com.google.android.material.textfield.TextInputLayout>
 
                         <LinearLayout
@@ -956,9 +901,8 @@
                                 android:layout_width="0dp"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
-                                android:fontFamily="sans-serif-medium"
                                 android:text="@string/ukuran_font"
-                                android:textColor="#004D40"
+                                android:textColor="#0F766E"
                                 android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
 
                             <TextView
@@ -967,21 +911,19 @@
                                 android:layout_height="wrap_content"
                                 android:layout_marginEnd="12dp"
                                 android:background="@drawable/bg_action_chip"
-                                android:fontFamily="sans-serif-bold"
                                 android:paddingHorizontal="10dp"
                                 android:paddingVertical="3dp"
                                 android:text="20"
-                                android:textColor="#004D40"
+                                android:textColor="#0F766E"
                                 android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
 
                             <CheckBox
                                 android:id="@+id/cbAutoFontSize"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:buttonTint="#004D40"
-                                android:fontFamily="sans-serif-medium"
+                                android:buttonTint="#0F766E"
                                 android:text="@string/auto"
-                                android:textColor="#37474F"
+                                android:textColor="#334155"
                                 android:textSize="13sp" />
                         </LinearLayout>
 
@@ -1006,7 +948,7 @@
             android:id="@+id/layoutPdfPreview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ECEFF1"
+            android:background="#F1F5F9"
             android:layout_marginBottom="@dimen/bottom_nav_height"
             android:visibility="gone"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -1023,14 +965,13 @@
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:src="@drawable/ic_tab_pdf"
-                    app:tint="#D32F2F" />
+                    app:tint="#78909C" />
 
                 <TextView
                     android:id="@+id/tvPdfPlaceholderTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif-medium"
                     android:text="@string/belum_ada_file_pdf_yang_dipilih"
                     android:textColor="#212121"
                     android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge" />
@@ -1050,7 +991,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:backgroundTint="#004D40"
+                    android:backgroundTint="#0F766E"
                     android:stateListAnimator="@animator/scale_bounce"
                     android:text="@string/pilih_dokumen_pdf"
                     android:textColor="#FFFFFF"
@@ -1080,7 +1021,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ellipsize="middle"
-                        android:fontFamily="sans-serif-medium"
                         android:singleLine="true"
                         android:text="@string/dokumen_pdf"
                         android:textColor="#212121"
@@ -1092,7 +1032,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:text="@string/ganti_dokumen"
-                        android:textColor="#004D40"
+                        android:textColor="#0F766E"
                         android:textSize="13sp" />
                 </LinearLayout>
 
@@ -1118,9 +1058,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="20dp"
-                        android:fontFamily="sans-serif-medium"
                         android:text="@string/halaman_1_1"
-                        android:textColor="#37474F"
+                        android:textColor="#334155"
                         android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
 
                     <ImageButton
@@ -1158,7 +1097,7 @@
                                 android:adjustViewBounds="true"
                                 android:background="#FFFFFF"
                                 android:elevation="4dp"
-                                android:scaleType="matrix" 
+                                android:scaleType="matrix"
                                 android:contentDescription="@string/pratinjau_dokumen_pdf"/>
                         </FrameLayout>
                     </HorizontalScrollView>
@@ -1176,7 +1115,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
                         android:text="@string/zoom"
                         android:textColor="#546E7A"
                         android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
@@ -1196,7 +1134,6 @@
                         android:id="@+id/tvPdfZoom"
                         android:layout_width="52dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-bold"
                         android:gravity="end"
                         android:text="100%"
                         android:textColor="#212121"
@@ -1210,7 +1147,7 @@
             android:id="@+id/layoutImagePreview"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#ECEFF1"
+            android:background="#F1F5F9"
             android:layout_marginBottom="@dimen/bottom_nav_height"
             android:visibility="gone"
             app:layout_behavior="@string/appbar_scrolling_view_behavior">
@@ -1227,14 +1164,13 @@
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:src="@drawable/ic_tab_image"
-                    app:tint="#004D40" />
+                    app:tint="#0F766E" />
 
                 <TextView
                     android:id="@+id/tvImageStatus"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:fontFamily="sans-serif-medium"
                     android:text="@string/belum_ada_gambar_yang_dipilih"
                     android:textColor="#212121"
                     android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge" />
@@ -1245,7 +1181,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:backgroundTint="#004D40"
+                    android:backgroundTint="#0F766E"
                     android:stateListAnimator="@animator/scale_bounce"
                     android:text="@string/pilih_gambar_dari_galeri"
                     android:textColor="#FFFFFF"
@@ -1275,7 +1211,6 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:ellipsize="middle"
-                        android:fontFamily="sans-serif-medium"
                         android:singleLine="true"
                         android:text="@string/gambar"
                         android:textColor="#212121"
@@ -1287,7 +1222,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="40dp"
                         android:text="@string/ganti_gambar"
-                        android:textColor="#004D40"
+                        android:textColor="#0F766E"
                         android:textSize="13sp" />
                 </LinearLayout>
 
@@ -1316,7 +1251,7 @@
                                 android:adjustViewBounds="true"
                                 android:background="#FFFFFF"
                                 android:elevation="4dp"
-                                android:scaleType="matrix" 
+                                android:scaleType="matrix"
                                 android:contentDescription="@string/pratinjau_gambar"/>
                         </FrameLayout>
                     </HorizontalScrollView>
@@ -1334,7 +1269,6 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-medium"
                         android:text="@string/zoom"
                         android:textColor="#546E7A"
                         android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
@@ -1354,7 +1288,6 @@
                         android:id="@+id/tvImageZoom"
                         android:layout_width="52dp"
                         android:layout_height="wrap_content"
-                        android:fontFamily="sans-serif-bold"
                         android:gravity="end"
                         android:text="100%"
                         android:textColor="#212121"
@@ -1368,7 +1301,7 @@
             android:id="@+id/layoutFreeText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F8FAF9"
+            android:background="#F8FAFC"
             android:padding="@dimen/screen_padding"
             android:layout_marginBottom="@dimen/bottom_nav_height"
             android:visibility="gone"
@@ -1378,15 +1311,16 @@
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 app:cardBackgroundColor="#FFFFFF"
-                app:cardCornerRadius="@dimen/card_corner_radius"
-                app:cardElevation="@dimen/card_elevation"
-                app:strokeWidth="0dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintWidth_max="@dimen/content_max_width"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent">
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:strokeColor="#E2E8F0">
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/layoutEtFreeText"
@@ -1394,8 +1328,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:hint="@string/ketik_teks_bebas_di_sini_untuk_dicetak"
-                    android:textColorHint="#7A757F"
-                    app:hintTextColor="#004D40">
+                    android:textColorHint="#64748B"
+                    app:hintTextColor="#334155"
+                    app:endIconMode="clear_text">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/etFreeText"
@@ -1403,10 +1338,7 @@
                         android:layout_height="match_parent"
                         android:gravity="top|start"
                         android:lineSpacingExtra="4dp"
-                        android:padding="@dimen/text_input_padding"
-                        android:textColor="#1C1B1F"
-                        android:textColorHint="#7A757F"
-                        android:textSize="16sp" />
+                        android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                 </com.google.android.material.textfield.TextInputLayout>
             </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1416,7 +1348,7 @@
             android:id="@+id/layoutPlaceholderFeature"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#F8FAF9"
+            android:background="#F8FAFC"
             android:gravity="center"
             android:orientation="vertical"
             android:padding="32dp"
@@ -1427,9 +1359,11 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="88dp"
                 android:layout_height="88dp"
-                app:cardBackgroundColor="#E0F2F1"
-                app:cardCornerRadius="44dp"
-                app:cardElevation="0dp">
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="0dp"
+                app:strokeColor="#E2E8F0"
+                app:strokeWidth="1dp">
 
                 <ImageView
                     android:id="@+id/ivPlaceholderIcon"
@@ -1437,7 +1371,7 @@
                     android:layout_height="44dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_action_ocr"
-                    app:tint="#004D40" 
+                    app:tint="#0F766E"
                     android:importantForAccessibility="no"/>
             </com.google.android.material.card.MaterialCardView>
 
@@ -1446,7 +1380,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:fontFamily="sans-serif-medium"
                 android:text="@string/fitur_dalam_pengembangan"
                 android:textColor="#1C1B1F"
                 android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge" />
@@ -1468,13 +1401,14 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/bottom_nav_height"
             android:layout_gravity="bottom"
-            android:backgroundTint="#004D40"
+            app:elevation="8dp"
+            app:backgroundTint="@color/white"
             app:contentInsetEnd="0dp"
             app:contentInsetStart="0dp"
             app:fabAlignmentMode="center"
             app:fabCradleMargin="@dimen/fab_cradle_margin"
             app:fabCradleRoundedCornerRadius="18dp"
-            app:fabCradleVerticalOffset="2dp">
+            app:fabCradleVerticalOffset="18dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -1489,7 +1423,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/bg_nav_pill_inactive"
+                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
@@ -1501,7 +1436,7 @@
                         android:layout_height="@dimen/nav_icon_size"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_tab_label"
-                        app:tint="#FFFFFF" 
+                        app:tint="@color/nav_active"
                         android:importantForAccessibility="no"/>
 
                     <TextView
@@ -1509,10 +1444,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:fontFamily="sans-serif-medium"
                         android:text="@string/label"
-                        android:textColor="#FFFFFF"
-                        android:textSize="@dimen/nav_text_size" />
+                        android:textColor="@color/nav_active" android:textSize="12sp"
+                        android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                 </LinearLayout>
 
                 <!-- 2. Text Tab (Free Text) -->
@@ -1521,7 +1455,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/bg_nav_pill_inactive"
+                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
@@ -1533,7 +1468,7 @@
                         android:layout_height="@dimen/nav_icon_size"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_tab_text"
-                        app:tint="#80CBC4" 
+                        app:tint="@color/nav_inactive"
                         android:importantForAccessibility="no"/>
 
                     <TextView
@@ -1541,10 +1476,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:fontFamily="sans-serif-medium"
                         android:text="@string/teks"
-                        android:textColor="#80CBC4"
-                        android:textSize="@dimen/nav_text_size" />
+                        android:textColor="@color/nav_inactive" android:textSize="12sp"
+                        android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                 </LinearLayout>
 
                 <!-- Center Print FAB Cradle Space -->
@@ -1558,7 +1492,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/bg_nav_pill_inactive"
+                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
@@ -1570,7 +1505,7 @@
                         android:layout_height="@dimen/nav_icon_size"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_tab_image"
-                        app:tint="#80CBC4" 
+                        app:tint="@color/nav_inactive"
                         android:importantForAccessibility="no"/>
 
                     <TextView
@@ -1578,10 +1513,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:fontFamily="sans-serif-medium"
                         android:text="@string/gambar"
-                        android:textColor="#80CBC4"
-                        android:textSize="@dimen/nav_text_size" />
+                        android:textColor="@color/nav_inactive" android:textSize="12sp"
+                        android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                 </LinearLayout>
 
                 <!-- 4. PDF Tab -->
@@ -1590,7 +1524,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/bg_nav_pill_inactive"
+                    android:foreground="?attr/selectableItemBackground"
                     android:clickable="true"
                     android:focusable="true"
                     android:gravity="center"
@@ -1602,7 +1537,7 @@
                         android:layout_height="@dimen/nav_icon_size"
                         android:scaleType="fitCenter"
                         android:src="@drawable/ic_tab_pdf"
-                        app:tint="#80CBC4" 
+                        app:tint="@color/nav_inactive"
                         android:importantForAccessibility="no"/>
 
                     <TextView
@@ -1610,31 +1545,62 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="3dp"
-                        android:fontFamily="sans-serif-medium"
                         android:text="@string/pdf"
-                        android:textColor="#80CBC4"
-                        android:textSize="@dimen/nav_text_size" />
+                        android:textColor="@color/nav_inactive" android:textSize="12sp"
+                        android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
                 </LinearLayout>
 
             </LinearLayout>
         </com.google.android.material.bottomappbar.BottomAppBar>
 
-        <!-- Center Print Button with crisp white border ring matching benchmark -->
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fabPrint"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:contentDescription="@string/cetak"
-            app:backgroundTint="#004D40"
-            app:strokeColor="#FFFFFF"
-            app:strokeWidth="2.5dp"
-            app:elevation="6dp"
-            app:fabCustomSize="@dimen/fab_custom_size"
+        <!-- One floating print action unit: the button and label move together. -->
+        <FrameLayout
+            android:id="@+id/containerCetakFloating"
+            android:layout_width="80dp"
+            android:layout_height="88dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:translationY="26dp"
             app:layout_anchor="@id/bottomAppBar"
-            app:maxImageSize="@dimen/fab_icon_size"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
-            app:srcCompat="@drawable/ic_print"
-            app:tint="#FFFFFF" />
+            app:layout_anchorGravity="top|center_horizontal">
+
+            <FrameLayout
+                android:id="@+id/fabPrint"
+                android:layout_width="58dp"
+                android:layout_height="58dp"
+                android:layout_gravity="top|center_horizontal"
+                android:background="@drawable/bg_center_fab_outer_ring"
+                android:clickable="true"
+                android:contentDescription="@string/cetak"
+                android:elevation="12dp"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackgroundBorderless"
+                android:gravity="center"
+                android:importantForAccessibility="yes">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:contentDescription="@null"
+                    app:srcCompat="@drawable/ic_print"
+                    app:tint="#FFFFFF" />
+            </FrameLayout>
+
+            <TextView
+                android:id="@+id/tvCetakLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="8dp"
+                android:fontFamily="@font/custom_font"
+                android:letterSpacing="0.08"
+                android:text="@string/cetak"
+                android:textAllCaps="true"
+                android:textColor="#0F766E"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+        </FrameLayout>
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
@@ -1648,6 +1614,7 @@
         app:headerLayout="@layout/nav_header"
         app:itemIconTint="@color/nav_drawer_item_tint"
         app:itemTextColor="@color/nav_drawer_item_text"
+        app:itemTextAppearance="@style/TextAppearance.PrinterJTM.Navigation"
         app:itemBackground="@drawable/nav_drawer_item_background"
         app:itemShapeInsetStart="12dp"
         app:itemShapeInsetEnd="12dp"

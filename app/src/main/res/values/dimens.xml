@@ -7,7 +7,7 @@
     <dimen name="content_max_width">600dp</dimen>
 
     <!-- Form Cards & Inputs -->
-    <dimen name="card_corner_radius">18dp</dimen>
+    <dimen name="card_corner_radius">20dp</dimen>
     <dimen name="card_elevation">2dp</dimen>
     <dimen name="card_margin_bottom">14dp</dimen>
     <dimen name="card_inner_padding">12dp</dimen>

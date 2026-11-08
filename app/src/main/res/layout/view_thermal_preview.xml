@@ -28,7 +28,7 @@
                 android:layout_width="18dp"
                 android:layout_height="18dp"
                 android:src="@drawable/ic_print"
-                app:tint="#004D40" 
+                app:tint="#0F766E"
                 android:importantForAccessibility="no"/>
 
             <TextView
@@ -36,9 +36,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_weight="1"
-                android:fontFamily="sans-serif-medium"
                 android:text="@string/pratinjau_roll_wysiwyg"
-                android:textColor="#004D40"
+                android:textColor="#0F766E"
                 android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
 
             <!-- Paper Width Chip -->
@@ -49,9 +48,8 @@
                 android:layout_height="32dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:fontFamily="sans-serif-medium"
                 android:text="@string/txt_58mm_32_cpl"
-                android:textColor="#004D40"
+                android:textColor="#0F766E"
                 android:textSize="11sp"
                 app:chipBackgroundColor="#E8F5E9"
                 app:chipCornerRadius="10dp"
@@ -67,13 +65,12 @@
                 android:layout_marginStart="6dp"
                 android:clickable="true"
                 android:focusable="true"
-                android:fontFamily="sans-serif-medium"
                 android:text="@string/floyd_steinberg"
-                android:textColor="#004D40"
+                android:textColor="#0F766E"
                 android:textSize="11sp"
-                app:chipBackgroundColor="#E0F2F1"
+                app:chipBackgroundColor="#CCFBF1"
                 app:chipCornerRadius="10dp"
-                app:chipStrokeColor="#80CBC4"
+                app:chipStrokeColor="#64748B"
                 app:chipStrokeWidth="1dp" />
 
         </LinearLayout>
@@ -99,7 +96,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_receipt_tear_edge" 
+                    android:src="@drawable/ic_receipt_tear_edge"
                     android:importantForAccessibility="no"/>
 
                 <!-- Paper Body: Text & Graphic Content -->
@@ -119,7 +116,7 @@
                         android:scaleType="fitCenter"
                         android:visibility="gone"
                         tools:src="@tools/sample/avatars"
-                        tools:visibility="visible" 
+                        tools:visibility="visible"
                         android:contentDescription="@string/pratinjau_cetak_thermal"/>
 
                     <!-- Monospace Formatted Thermal Receipt Text -->
@@ -143,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="5dp"
                     android:scaleType="fitXY"
-                    android:src="@drawable/ic_receipt_tear_edge_bottom" 
+                    android:src="@drawable/ic_receipt_tear_edge_bottom"
                     android:importantForAccessibility="no"/>
 
             </LinearLayout>
@@ -163,7 +160,6 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:fontFamily="sans-serif"
                 android:text="@string/pratinjau_fisik_nyata_384_dots_203_dpi"
                 android:textColor="#6F7976"
                 android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall" />
@@ -172,9 +168,8 @@
                 android:id="@+id/tvThermalPreviewZoomHint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-medium"
                 android:text="@string/monokrom_1_bit_esc_pos"
-                android:textColor="#004D40"
+                android:textColor="#0F766E"
                 android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall" />
 
         </LinearLayout>

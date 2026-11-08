@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="#F8FAFC"
     android:orientation="vertical">
 
     <!-- Top AppBar -->
@@ -11,15 +11,17 @@
         android:id="@+id/appBarLayoutSettings"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/bg_header_gradient"
         app:elevation="0dp">
 
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbarSettings"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#004D40"
+            android:background="@drawable/bg_header_gradient"
             app:navigationIcon="@drawable/ic_arrow_back_m3"
             app:navigationIconTint="#FFFFFF"
+            app:titleTextAppearance="@style/TextAppearance.PrinterJTM.Toolbar"
             app:title="@string/pengaturan"
             app:titleTextColor="#FFFFFF" />
     </com.google.android.material.appbar.AppBarLayout>
@@ -52,9 +54,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="16dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:strokeColor="#E0E0E0"
+                    app:strokeColor="#E2E8F0"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
@@ -68,7 +70,7 @@
                             android:layout_height="wrap_content"
                             android:letterSpacing="0.08"
                             android:text="@string/konfigurasi_printer"
-                            android:textColor="#004D40"
+                            android:textColor="#0F766E"
                             android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
                             android:textStyle="bold" />
 
@@ -82,43 +84,77 @@
                             android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
                             android:textStyle="bold" />
 
-                        <RadioGroup
+                        <com.google.android.material.button.MaterialButtonToggleGroup
                             android:id="@+id/rgConnectionType"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:orientation="horizontal">
-
-                            <RadioButton
-                                android:id="@+id/rbBluetooth"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:checked="true"
+                            app:selectionRequired="true"
+                            app:singleSelection="true">
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:id="@+id/btnConnBluetooth"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/custom_font"
                                 android:text="@string/bluetooth"
-                                android:textColor="#212121" />
-
-                            <RadioButton
-                                android:id="@+id/rbWifi"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
+                                android:textColor="@color/segment_button_text"
+                                android:textSize="14sp"
+                                app:backgroundTint="@color/segment_button_background"
+                                app:cornerRadius="10dp"
+                                app:elevation="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                app:strokeColor="@color/segment_button_stroke"
+                                app:strokeWidth="1dp" android:checked="true" />
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:id="@+id/btnConnWifi"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/custom_font"
                                 android:text="@string/wi_fi"
-                                android:textColor="#212121" />
-
-                            <RadioButton
-                                android:id="@+id/rbUsb"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
+                                android:textColor="@color/segment_button_text"
+                                android:textSize="14sp"
+                                app:backgroundTint="@color/segment_button_background"
+                                app:cornerRadius="10dp"
+                                app:elevation="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                app:strokeColor="@color/segment_button_stroke"
+                                app:strokeWidth="1dp" />
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:id="@+id/btnConnUsb"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/custom_font"
                                 android:text="@string/usb"
-                                android:textColor="#212121" />
-                        </RadioGroup>
+                                android:textColor="@color/segment_button_text"
+                                android:textSize="14sp"
+                                app:backgroundTint="@color/segment_button_background"
+                                app:cornerRadius="10dp"
+                                app:elevation="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                app:strokeColor="@color/segment_button_stroke"
+                                app:strokeWidth="1dp" />
+                        </com.google.android.material.button.MaterialButtonToggleGroup>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="12dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- Nama Printer -->
                         <LinearLayout
@@ -138,7 +174,7 @@
                                 android:layout_marginEnd="12dp"
                                 android:contentDescription="@string/ikon_printer"
                                 android:src="@drawable/ic_print"
-                                app:tint="#004D40" />
+                                app:tint="#0F766E" />
 
                             <LinearLayout
                                 android:layout_width="0dp"
@@ -160,7 +196,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="2dp"
                                     android:text="@string/semua_printer_dipilih_saat_cetak"
-                                    android:textColor="#004D40"
+                                    android:textColor="#0F766E"
                                     android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall" />
                             </LinearLayout>
 
@@ -172,10 +208,10 @@
                                 android:letterSpacing="0.01"
                                 android:text="@string/pilih"
                                 android:textAllCaps="false"
-                                android:textColor="#004D40"
+                                android:textColor="#0F766E"
                                 android:textStyle="bold"
                                 app:cornerRadius="12dp"
-                                app:strokeColor="#004D40" />
+                                app:strokeColor="#0F766E" />
                         </LinearLayout>
 
                         <!-- Wi-Fi Printer Config -->
@@ -204,8 +240,8 @@
                                 app:boxCornerRadiusBottomStart="12dp"
                                 app:boxCornerRadiusTopEnd="12dp"
                                 app:boxCornerRadiusTopStart="12dp"
-                                app:boxStrokeColor="#004D40"
-                                app:hintTextColor="#004D40">
+                                app:boxStrokeColor="#0F766E"
+                                app:hintTextColor="#0F766E">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/etWifiIp"
@@ -226,8 +262,8 @@
                                 app:boxCornerRadiusBottomStart="12dp"
                                 app:boxCornerRadiusTopEnd="12dp"
                                 app:boxCornerRadiusTopStart="12dp"
-                                app:boxStrokeColor="#004D40"
-                                app:hintTextColor="#004D40">
+                                app:boxStrokeColor="#0F766E"
+                                app:hintTextColor="#0F766E">
 
                                 <com.google.android.material.textfield.TextInputEditText
                                     android:id="@+id/etWifiPort"
@@ -256,10 +292,10 @@
                                     android:letterSpacing="0.01"
                                     android:text="@string/cari_ip_otomatis"
                                     android:textAllCaps="false"
-                                    android:textColor="#004D40"
+                                    android:textColor="#0F766E"
                                     android:textStyle="bold"
                                     app:cornerRadius="12dp"
-                                    app:strokeColor="#004D40" />
+                                    app:strokeColor="#0F766E" />
 
                                 <com.google.android.material.button.MaterialButton
                                     android:id="@+id/btnTestPrint"
@@ -267,7 +303,7 @@
                                     android:layout_height="48dp"
                                     android:layout_marginStart="6dp"
                                     android:layout_weight="1"
-                                    android:backgroundTint="#004D40"
+                                    android:backgroundTint="#0F766E"
                                     android:letterSpacing="0.01"
                                     android:text="@string/tes_cetak"
                                     android:textAllCaps="false"
@@ -281,7 +317,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="12dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- Ukuran Printer -->
                         <TextView
@@ -292,43 +328,77 @@
                             android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
                             android:textStyle="bold" />
 
-                        <RadioGroup
+                        <com.google.android.material.button.MaterialButtonToggleGroup
                             android:id="@+id/rgPaperSize"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="4dp"
-                            android:orientation="horizontal">
-
-                            <RadioButton
-                                android:id="@+id/rb58mm"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:checked="true"
+                            app:selectionRequired="true"
+                            app:singleSelection="true">
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:id="@+id/btnSize58"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/custom_font"
                                 android:text="@string/txt_58_mm"
-                                android:textColor="#212121" />
-
-                            <RadioButton
-                                android:id="@+id/rb80mm"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
+                                android:textColor="@color/segment_button_text"
+                                android:textSize="14sp"
+                                app:backgroundTint="@color/segment_button_background"
+                                app:cornerRadius="10dp"
+                                app:elevation="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                app:strokeColor="@color/segment_button_stroke"
+                                app:strokeWidth="1dp" android:checked="true" />
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:id="@+id/btnSize80"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/custom_font"
                                 android:text="@string/txt_80_mm"
-                                android:textColor="#212121" />
-
-                            <RadioButton
-                                android:id="@+id/rb100mm"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="16dp"
+                                android:textColor="@color/segment_button_text"
+                                android:textSize="14sp"
+                                app:backgroundTint="@color/segment_button_background"
+                                app:cornerRadius="10dp"
+                                app:elevation="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                app:strokeColor="@color/segment_button_stroke"
+                                app:strokeWidth="1dp" />
+                            <com.google.android.material.button.MaterialButton
+                                style="@style/Widget.Material3.Button.OutlinedButton"
+                                android:id="@+id/btnSize100"
+                                android:layout_width="0dp"
+                                android:layout_height="48dp"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/custom_font"
                                 android:text="@string/txt_100_mm"
-                                android:textColor="#212121" />
-                        </RadioGroup>
+                                android:textColor="@color/segment_button_text"
+                                android:textSize="14sp"
+                                app:backgroundTint="@color/segment_button_background"
+                                app:cornerRadius="10dp"
+                                app:elevation="0dp"
+                                android:insetBottom="0dp"
+                                android:insetLeft="0dp"
+                                android:insetRight="0dp"
+                                android:insetTop="0dp"
+                                app:strokeColor="@color/segment_button_stroke"
+                                app:strokeWidth="1dp" />
+                        </com.google.android.material.button.MaterialButtonToggleGroup>
 
                         <View
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="12dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- Lebar Cetak -->
                         <LinearLayout
@@ -360,7 +430,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:text="@string/ubah_kustom"
-                                    android:textColor="#004D40"
+                                    android:textColor="#0F766E"
                                     android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
                                     android:textStyle="bold" />
                             </LinearLayout>
@@ -383,9 +453,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="16dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:strokeColor="#E0E0E0"
+                    app:strokeColor="#E2E8F0"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
@@ -399,12 +469,12 @@
                             android:layout_height="wrap_content"
                             android:letterSpacing="0.08"
                             android:text="@string/preferensi_cetak"
-                            android:textColor="#004D40"
+                            android:textColor="#0F766E"
                             android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
                             android:textStyle="bold" />
 
                         <!-- Langsung Cetak -->
-                        <com.google.android.material.switchmaterial.SwitchMaterial
+                        <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switchDirectPrint"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -412,8 +482,9 @@
                             android:text="@string/langsung_cetak"
                             android:textColor="#212121"
                             android:textSize="14sp"
-                            app:thumbTint="#004D40"
-                            app:trackTint="#80CBC4" />
+                            app:thumbTint="@color/switch_thumb_tint"
+                            app:trackTint="@color/switch_track_tint"
+                            android:fontFamily="@font/custom_font" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -426,10 +497,10 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="12dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- Auto Cut -->
-                        <com.google.android.material.switchmaterial.SwitchMaterial
+                        <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switchAutoCut"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -437,8 +508,9 @@
                             android:text="@string/auto_cut_kertas"
                             android:textColor="#212121"
                             android:textSize="14sp"
-                            app:thumbTint="#004D40"
-                            app:trackTint="#80CBC4" />
+                            app:thumbTint="@color/switch_thumb_tint"
+                            app:trackTint="@color/switch_track_tint"
+                            android:fontFamily="@font/custom_font" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -449,198 +521,15 @@
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Card: Integrasi API & Webhook -->
-                <com.google.android.material.card.MaterialCardView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="16dp"
-                    app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="16dp"
-                    app:cardElevation="0dp"
-                    app:strokeColor="#E0E0E0"
-                    app:strokeWidth="1dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:padding="20dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:letterSpacing="0.08"
-                            android:text="@string/integrasi_api_webhook"
-                            android:textColor="#004D40"
-                            android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="@string/mode_integrasi"
-                            android:textColor="#37474F"
-                            android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
-                            android:textStyle="bold" />
-
-                        <!-- RadioGroup dalam Kotak Pilihan Modern Berlatar #F4F7F6 -->
-                        <RadioGroup
-                            android:id="@+id/rgApiMode"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="6dp"
-                            android:background="@drawable/bg_radiogroup_box"
-                            android:orientation="horizontal"
-                            android:padding="8dp">
-
-                            <RadioButton
-                                android:id="@+id/rbApiCustom"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:checked="true"
-                                android:text="@string/rest_api_pos"
-                                android:textColor="#212121"
-                                android:textSize="12sp" />
-
-                            <RadioButton
-                                android:id="@+id/rbApiMarketplace"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/resi_marketplace"
-                                android:textColor="#212121"
-                                android:textSize="12sp" />
-
-                            <RadioButton
-                                android:id="@+id/rbApiWebBridge"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_weight="1"
-                                android:text="@string/web_print_bridge"
-                                android:textColor="#212121"
-                                android:textSize="12sp" />
-                        </RadioGroup>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
-                            app:boxStrokeColor="#004D40"
-                            app:hintTextColor="#004D40">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etApiEndpoint"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/url_endpoint_api_https"
-                                android:inputType="textUri"
-                                android:textColor="#212121"
-                                android:textSize="14sp" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            app:boxCornerRadiusBottomEnd="12dp"
-                            app:boxCornerRadiusBottomStart="12dp"
-                            app:boxCornerRadiusTopEnd="12dp"
-                            app:boxCornerRadiusTopStart="12dp"
-                            app:boxStrokeColor="#004D40"
-                            app:endIconMode="password_toggle"
-                            app:hintTextColor="#004D40">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/etApiKey"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:hint="@string/api_key_secret_token_aes_256"
-                                android:inputType="textPassword"
-                                android:textColor="#212121"
-                                android:textSize="14sp" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.switchmaterial.SwitchMaterial
-                            android:id="@+id/switchAutoPrintApi"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="10dp"
-                            android:text="@string/auto_print_antrean_api"
-                            android:textColor="#212121"
-                            android:textSize="14sp"
-                            app:thumbTint="#004D40"
-                            app:trackTint="#80CBC4" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="12dp"
-                            android:orientation="horizontal">
-
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btnTestApi"
-                                style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                                android:layout_width="0dp"
-                                android:layout_height="48dp"
-                                android:layout_marginEnd="6dp"
-                                android:layout_weight="1"
-                                android:letterSpacing="0.01"
-                                android:text="@string/tes_koneksi_api"
-                                android:textAllCaps="false"
-                                android:textColor="#004D40"
-                                android:textStyle="bold"
-                                app:cornerRadius="12dp"
-                                app:strokeColor="#004D40" />
-
-                            <com.google.android.material.button.MaterialButton
-                                android:id="@+id/btnPrintFromApiNow"
-                                android:layout_width="0dp"
-                                android:layout_height="48dp"
-                                android:layout_marginStart="6dp"
-                                android:layout_weight="1"
-                                android:backgroundTint="#004D40"
-                                android:letterSpacing="0.01"
-                                android:text="@string/cetak_data_api"
-                                android:textAllCaps="false"
-                                android:textColor="#FFFFFF"
-                                android:textStyle="bold"
-                                app:cornerRadius="12dp" />
-                        </LinearLayout>
-
-                        <!-- Tombol Panduan & Dokumentasi API Tanpa Emoji -->
-                        <com.google.android.material.button.MaterialButton
-                            android:id="@+id/layoutApiDocs"
-                            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                            android:layout_width="match_parent"
-                            android:layout_height="48dp"
-                            android:layout_marginTop="10dp"
-                            android:letterSpacing="0.01"
-                            android:text="@string/panduan_dokumentasi_api"
-                            android:textAllCaps="false"
-                            android:textColor="#004D40"
-                            android:textStyle="bold"
-                            app:cornerRadius="12dp"
-                            app:strokeColor="#004D40" />
-                    </LinearLayout>
-                </com.google.android.material.card.MaterialCardView>
-
                 <!-- Card: Cloud Sync & Backup -->
                 <com.google.android.material.card.MaterialCardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="16dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:strokeColor="#E0E0E0"
+                    app:strokeColor="#E2E8F0"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
@@ -654,7 +543,7 @@
                             android:layout_height="wrap_content"
                             android:letterSpacing="0.08"
                             android:text="@string/sinkronisasi_cloud_cadangan"
-                            android:textColor="#004D40"
+                            android:textColor="#0F766E"
                             android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
                             android:textStyle="bold" />
 
@@ -676,8 +565,8 @@
                             app:boxCornerRadiusBottomStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
                             app:boxCornerRadiusTopStart="12dp"
-                            app:boxStrokeColor="#004D40"
-                            app:hintTextColor="#004D40">
+                            app:boxStrokeColor="#0F766E"
+                            app:hintTextColor="#0F766E">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etCloudSyncKey"
@@ -689,7 +578,7 @@
                                 android:textSize="14sp" />
                         </com.google.android.material.textfield.TextInputLayout>
 
-                        <com.google.android.material.switchmaterial.SwitchMaterial
+                        <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switchAutoCloudSync"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -697,8 +586,9 @@
                             android:text="@string/sinkronisasi_cloud_otomatis"
                             android:textColor="#212121"
                             android:textSize="14sp"
-                            app:thumbTint="#004D40"
-                            app:trackTint="#80CBC4" />
+                            app:thumbTint="@color/switch_thumb_tint"
+                            app:trackTint="@color/switch_track_tint"
+                            android:fontFamily="@font/custom_font" />
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -716,10 +606,10 @@
                                 android:letterSpacing="0.01"
                                 android:text="@string/cadangkan_data"
                                 android:textAllCaps="false"
-                                android:textColor="#004D40"
+                                android:textColor="#0F766E"
                                 android:textStyle="bold"
                                 app:cornerRadius="12dp"
-                                app:strokeColor="#004D40" />
+                                app:strokeColor="#0F766E" />
 
                             <com.google.android.material.button.MaterialButton
                                 android:id="@+id/btnRestoreCloud"
@@ -731,10 +621,10 @@
                                 android:letterSpacing="0.01"
                                 android:text="@string/pulihkan_data"
                                 android:textAllCaps="false"
-                                android:textColor="#004D40"
+                                android:textColor="#0F766E"
                                 android:textStyle="bold"
                                 app:cornerRadius="12dp"
-                                app:strokeColor="#004D40" />
+                                app:strokeColor="#0F766E" />
                         </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
@@ -745,9 +635,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="16dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:strokeColor="#E0E0E0"
+                    app:strokeColor="#E2E8F0"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
@@ -761,7 +651,7 @@
                             android:layout_height="wrap_content"
                             android:letterSpacing="0.08"
                             android:text="@string/bahasa_profil_struk"
-                            android:textColor="#004D40"
+                            android:textColor="#0F766E"
                             android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
                             android:textStyle="bold" />
 
@@ -781,9 +671,9 @@
                                 android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium" />
 
                             <TextView
+                                android:id="@+id/tvSettingsVersion"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="1.0.0"
                                 android:textColor="#212121"
                                 android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
                                 android:textStyle="bold" />
@@ -793,7 +683,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="12dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- Bahasa -->
                         <LinearLayout
@@ -814,7 +704,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:text="@string/bahasa_indonesia"
-                                android:textColor="#004D40"
+                                android:textColor="#0F766E"
                                 android:textAppearance="@style/TextAppearance.PrinterJTM.BodyMedium"
                                 android:textStyle="bold" />
                         </LinearLayout>
@@ -823,18 +713,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="12dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- Profil Toko Custom -->
-                        <com.google.android.material.switchmaterial.SwitchMaterial
+                        <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switchUseCustomHeader"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/cetak_header_footer_profil_toko"
                             android:textColor="#212121"
                             android:textSize="14sp"
-                            app:thumbTint="#004D40"
-                            app:trackTint="#80CBC4" />
+                            app:thumbTint="@color/switch_thumb_tint"
+                            app:trackTint="@color/switch_track_tint"
+                            android:fontFamily="@font/custom_font" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -852,8 +743,8 @@
                             app:boxCornerRadiusBottomStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
                             app:boxCornerRadiusTopStart="12dp"
-                            app:boxStrokeColor="#004D40"
-                            app:hintTextColor="#004D40">
+                            app:boxStrokeColor="#0F766E"
+                            app:hintTextColor="#0F766E">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etStoreName"
@@ -874,8 +765,8 @@
                             app:boxCornerRadiusBottomStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
                             app:boxCornerRadiusTopStart="12dp"
-                            app:boxStrokeColor="#004D40"
-                            app:hintTextColor="#004D40">
+                            app:boxStrokeColor="#0F766E"
+                            app:hintTextColor="#0F766E">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etStoreAddress"
@@ -896,8 +787,8 @@
                             app:boxCornerRadiusBottomStart="12dp"
                             app:boxCornerRadiusTopEnd="12dp"
                             app:boxCornerRadiusTopStart="12dp"
-                            app:boxStrokeColor="#004D40"
-                            app:hintTextColor="#004D40">
+                            app:boxStrokeColor="#0F766E"
+                            app:hintTextColor="#0F766E">
 
                             <com.google.android.material.textfield.TextInputEditText
                                 android:id="@+id/etStoreFooter"
@@ -917,9 +808,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="24dp"
                     app:cardBackgroundColor="#FFFFFF"
-                    app:cardCornerRadius="16dp"
+                    app:cardCornerRadius="20dp"
                     app:cardElevation="0dp"
-                    app:strokeColor="#E0E0E0"
+                    app:strokeColor="#E2E8F0"
                     app:strokeWidth="1dp">
 
                     <LinearLayout
@@ -933,7 +824,7 @@
                             android:layout_height="wrap_content"
                             android:letterSpacing="0.08"
                             android:text="@string/keamanan_legalitas"
-                            android:textColor="#004D40"
+                            android:textColor="#0F766E"
                             android:textAppearance="@style/TextAppearance.PrinterJTM.LabelSmall"
                             android:textStyle="bold" />
 
@@ -944,7 +835,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
                             android:text="@string/keamanan_aes_256_aktif_root_memeriksa"
-                            android:textColor="#004D40"
+                            android:textColor="#0F766E"
                             android:textAppearance="@style/TextAppearance.PrinterJTM.BodySmall"
                             android:textStyle="bold" />
 
@@ -952,18 +843,19 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="12dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- PIN Admin Protection -->
-                        <com.google.android.material.switchmaterial.SwitchMaterial
+                        <com.google.android.material.materialswitch.MaterialSwitch
                             android:id="@+id/switchAdminPin"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/kunci_pengaturan_dengan_pin_admin"
                             android:textColor="#212121"
                             android:textSize="14sp"
-                            app:thumbTint="#004D40"
-                            app:trackTint="#80CBC4" />
+                            app:thumbTint="@color/switch_thumb_tint"
+                            app:trackTint="@color/switch_track_tint"
+                            android:fontFamily="@font/custom_font" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -976,7 +868,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="12dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- Bersihkan Cache -->
                         <LinearLayout
@@ -1011,7 +903,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="6dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- Kebijakan Privasi -->
                         <LinearLayout
@@ -1046,7 +938,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="6dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- Syarat & Ketentuan -->
                         <LinearLayout
@@ -1081,7 +973,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="1dp"
                             android:layout_marginVertical="6dp"
-                            android:background="#ECEFF1" />
+                            android:background="#F1F5F9" />
 
                         <!-- Lisensi Open Source -->
                         <LinearLayout
@@ -1119,7 +1011,7 @@
                     android:id="@+id/btnSaveSettings"
                     android:layout_width="match_parent"
                     android:layout_height="52dp"
-                    android:backgroundTint="#004D40"
+                    android:backgroundTint="#0F766E"
                     android:letterSpacing="0.01"
                     android:text="@string/simpan_pengaturan"
                     android:textAllCaps="false"

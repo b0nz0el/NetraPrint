@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pilih_halaman_cetak"
-        android:textColor="#004D40"
+        android:textColor="#0F766E"
         android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
         android:textStyle="bold" />
 
@@ -80,8 +80,8 @@
         android:hint="@string/rentang_halaman_contoh_1_5_8_10_12"
         android:textColorHint="#607D8B"
         android:visibility="gone"
-        app:boxStrokeColor="#004D40"
-        app:hintTextColor="#004D40">
+        app:boxStrokeColor="#0F766E"
+        app:hintTextColor="#0F766E">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/etCustomRange"
@@ -122,7 +122,7 @@
             android:id="@+id/btnPrintSelectedPages"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:backgroundTint="#004D40"
+            android:backgroundTint="#0F766E"
             android:text="@string/lanjutkan_cetak"
             android:textColor="#FFFFFF" />
     </LinearLayout>

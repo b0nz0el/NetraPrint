@@ -48,7 +48,7 @@
             android:layout_height="40dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/senter"
-            android:src="@android:drawable/ic_menu_day"
+            android:src="@drawable/ic_flashlight_m3"
             app:tint="#FFFFFF" />
     </LinearLayout>
 

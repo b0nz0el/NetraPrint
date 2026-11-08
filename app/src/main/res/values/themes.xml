@@ -1,6 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme using Material 3 -->
     <style name="Base.Theme.PrinterJTM" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="fontFamily">@font/custom_font</item>
+        <item name="android:windowBackground">@color/md_theme_light_background</item>
         <!-- Brand Colors -->
         <item name="colorPrimary">@color/md_theme_light_primary</item>
         <item name="colorOnPrimary">@color/md_theme_light_onPrimary</item>
@@ -36,7 +39,7 @@
         <item name="shapeAppearanceCornerSmall">@style/ShapeAppearance.Material3.Corner.Small</item>
         <item name="shapeAppearanceCornerMedium">@style/ShapeAppearance.Material3.Corner.Medium</item>
         <item name="shapeAppearanceCornerLarge">@style/ShapeAppearance.Material3.Corner.Large</item>
-        <item name="colorControlHighlight">#14004D40</item>
+        <item name="colorControlHighlight">#1A0F766E</item>
         <item name="bottomSheetDialogTheme">@style/Theme.PrinterJTM.BottomSheetDialog</item>
     </style>
 
@@ -48,6 +51,24 @@
     </style>
 
     <style name="Theme.PrinterJTM" parent="Base.Theme.PrinterJTM" />
+
+    <style name="TextAppearance.PrinterJTM.Navigation" parent="TextAppearance.Material3.LabelLarge" tools:ignore="NewApi">
+        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="TextAppearance.PrinterJTM.Toolbar" parent="TextAppearance.Material3.TitleLarge" tools:ignore="NewApi">
+        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="android:textFontWeight">600</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="TextAppearance.PrinterJTM.NavigationTab" parent="TextAppearance.Material3.LabelMedium" tools:ignore="NewApi">
+        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="android:textFontWeight">500</item>
+        <item name="android:textSize">12sp</item>
+    </style>
 
     <style name="Theme.PrinterJTM.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/Widget.PrinterJTM.BottomSheet</item>
@@ -74,7 +95,7 @@
         <item name="boxStrokeWidth">1dp</item>
         <item name="boxStrokeWidthFocused">2dp</item>
         <item name="boxStrokeColor">@color/color_state_box_stroke</item>
-        <item name="hintTextColor">#004D40</item>
+        <item name="hintTextColor">#0F766E</item>
     </style>
 
     <style name="Widget.PrinterJTM.TextInputLayout.ExposedDropdown" parent="Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
@@ -87,16 +108,16 @@
         <item name="boxStrokeColor">@color/color_state_box_stroke</item>
         <item name="boxBackgroundColor">#FFFFFF</item>
         <item name="boxBackgroundMode">outline</item>
-        <item name="hintTextColor">#004D40</item>
+        <item name="hintTextColor">#0F766E</item>
     </style>
 
     <!-- Modern M3 Slider Style -->
     <style name="Widget.PrinterJTM.Slider" parent="Widget.Material3.Slider">
-        <item name="thumbColor">#004D40</item>
+        <item name="thumbColor">#0F766E</item>
         <item name="thumbElevation">4dp</item>
-        <item name="trackColorActive">#004D40</item>
-        <item name="trackColorInactive">#E0E0E0</item>
-        <item name="haloColor">#33004D40</item>
+        <item name="trackColorActive">#0F766E</item>
+        <item name="trackColorInactive">#E2E8F0</item>
+        <item name="haloColor">#330F766E</item>
         <item name="labelBehavior">floating</item>
     </style>
 </resources>

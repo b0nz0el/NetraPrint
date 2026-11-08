@@ -3,46 +3,54 @@
     ============================================================================
     PrinterJTM Type Scale — Material 3 canonical steps (values & roles verbatim)
     ============================================================================
-    LabelSmall   11sp  : chip labels, toolbar pill, dense meta info
+    LabelSmall   11sp  : chip labels, toolbar pill, dense meta info (medium)
     BodySmall    12sp  : secondary text, captions, field helper text
-    BodyMedium   14sp  : default body, input text, list content
+    BodyMedium   14sp  : section/input labels and list content (medium)
     TitleMedium  16sp  : card/file titles, emphasized sub-headings
     TitleLarge   22sp  : empty-state headlines, section headlines
 
-    Migration rules (2.0.2):
+    Typography rules:
       - Fractional sizes eliminated (10.5 -> 11, 11.5 -> 12, 13.5 -> 14).
       - Off-scale integers folded into nearest canonical step
         (13 -> 12, 15/16 -> 16, 18/20/21 -> 22, 24 -> 22).
-      - Styles intentionally carry ONLY android:textSize so that per-view
-        android:textColor / android:fontFamily / android:textStyle attributes
-        and widget-owned text appearances (MaterialButton, Chip,
-        TextInputEditText, CheckBox, ...) are never overridden.
+      - Text appearances share Plus Jakarta Sans. BodyMedium is 14sp / weight
+        500 / slate; title roles use semibold weight, while BodySmall remains
+        regular. Explicit per-view colors and widget-owned appearances remain
+        authoritative.
       - Explicit android:parent on every style: no implicit-parent lookup.
     ============================================================================
 -->
-<resources xmlns:android="http://schemas.android.com/apk/res/android">
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Anchor style for the PrinterJTM appearance family (no attributes). -->
-    <style name="TextAppearance.PrinterJTM" parent="@android:style/TextAppearance" />
+    <style name="TextAppearance.PrinterJTM" parent="@android:style/TextAppearance" tools:ignore="NewApi">
+        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="android:textFontWeight">400</item>
+    </style>
 
-    <style name="TextAppearance.PrinterJTM.LabelSmall" parent="@style/TextAppearance.PrinterJTM">
+    <style name="TextAppearance.PrinterJTM.LabelSmall" parent="@style/TextAppearance.PrinterJTM" tools:ignore="NewApi">
         <item name="android:textSize">11sp</item>
+        <item name="android:textFontWeight">500</item>
     </style>
 
     <style name="TextAppearance.PrinterJTM.BodySmall" parent="@style/TextAppearance.PrinterJTM">
         <item name="android:textSize">12sp</item>
     </style>
 
-    <style name="TextAppearance.PrinterJTM.BodyMedium" parent="@style/TextAppearance.PrinterJTM">
+    <style name="TextAppearance.PrinterJTM.BodyMedium" parent="@style/TextAppearance.PrinterJTM" tools:ignore="NewApi">
         <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#334155</item>
+        <item name="android:textFontWeight">500</item>
     </style>
 
-    <style name="TextAppearance.PrinterJTM.TitleMedium" parent="@style/TextAppearance.PrinterJTM">
+    <style name="TextAppearance.PrinterJTM.TitleMedium" parent="@style/TextAppearance.PrinterJTM" tools:ignore="NewApi">
         <item name="android:textSize">16sp</item>
+        <item name="android:textFontWeight">600</item>
     </style>
 
-    <style name="TextAppearance.PrinterJTM.TitleLarge" parent="@style/TextAppearance.PrinterJTM">
+    <style name="TextAppearance.PrinterJTM.TitleLarge" parent="@style/TextAppearance.PrinterJTM" tools:ignore="NewApi">
         <item name="android:textSize">22sp</item>
+        <item name="android:textFontWeight">600</item>
     </style>
 
 </resources>

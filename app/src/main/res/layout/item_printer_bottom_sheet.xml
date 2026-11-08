@@ -6,7 +6,7 @@
     android:layout_marginBottom="8dp"
     android:clickable="true"
     android:focusable="true"
-    app:cardBackgroundColor="#F8FAF9"
+    app:cardBackgroundColor="#F8FAFC"
     app:cardCornerRadius="12dp"
     app:cardElevation="0dp"
     app:strokeColor="#CFD8DC"
@@ -27,7 +27,7 @@
             android:background="@drawable/bg_scanner_reticle"
             android:padding="6dp"
             android:src="@drawable/ic_print"
-            app:tint="#004D40" 
+            app:tint="#0F766E"
             android:importantForAccessibility="no"/>
 
         <LinearLayout

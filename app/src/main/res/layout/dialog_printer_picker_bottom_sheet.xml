@@ -19,7 +19,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pilih_printer_bluetooth"
-        android:textColor="#004D40"
+        android:textColor="#0F766E"
         android:textAppearance="@style/TextAppearance.PrinterJTM.TitleLarge"
         android:textStyle="bold" />
 
@@ -45,7 +45,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:text="@string/batal"
-        android:textColor="#004D40"
+        android:textColor="#0F766E"
         app:cornerRadius="12dp" />
 
 </LinearLayout>

@@ -13,7 +13,7 @@
     <string name="ambil_foto_logo">Take Logo Photo</string>
     <string name="antrean_cetak_offline_1_dokumen_tertunda">Offline Print Queue (1 document pending)</string>
     <string name="api_key_secret_token_aes_256">API Key / Secret Token (AES-256)</string>
-    <string name="app_name">PrinterJTM</string>
+    <string name="app_name">NetraPrint</string>
     <string name="arahkan_barcode_resi_shopee_lazada_tokopedia_jne_j_t_dll_ke_dalam_kotak">Point the tracking barcode (Shopee, Lazada, Tokopedia, JNE, J&amp;T, etc.) into the frame.</string>
     <string name="auto">Auto</string>
     <string name="auto_cut_kertas">Auto Paper Cut</string>
@@ -106,7 +106,7 @@
     <string name="legalitas">Legal</string>
     <string name="lisensi_pro_aktif_siap_digunakan">Pro License Active • Ready to Use</string>
     <string name="lisensi_sumber_terbuka_open_source">Open Source License</string>
-    <string name="logo_printerjtm">PrinterJTM Logo</string>
+    <string name="logo_printerjtm">NetraPrint Logo</string>
     <string name="logo_toko_struk">Store Logo / Receipt</string>
     <string name="maju">Forward</string>
     <string name="masukkan_url_misal_google_com">Enter URL (e.g. google.com)</string>
@@ -117,7 +117,7 @@
     <string name="mode_integrasi">Integration Mode</string>
     <string name="monokrom_1_bit_esc_pos">Monochrome 1-Bit ESC/POS</string>
     <string name="muat_ulang">Reload</string>
-    <string name="mulai_gunakan_printerjtm">Start Using PrinterJTM</string>
+    <string name="mulai_gunakan_printerjtm">Start Using NetraPrint</string>
     <string name="nama_printer">Printer Name</string>
     <string name="nama_toko_usaha">Store / Business Name</string>
     <string name="no_resi">Tracking No.</string>
@@ -130,7 +130,7 @@
     <string name="pengaturan_printer_wi_fi">WI-FI PRINTER SETTINGS</string>
     <string name="pengirim_nama_alamat_no_hp">Sender (Name, Address, Phone No.)</string>
     <string name="penilaian_ulasan">Rating &amp; Review</string>
-    <string name="perangkat_anda_telah_teraktivasi_lisensi_resmi_printerjtm_pro_seumur_hidup_lifetime_seluruh_modul_enterprise_telah_terbuka_penuh_tanpa_batas_cetak">Your device has been activated with an official PrinterJTM Pro Lifetime license. All enterprise modules are fully unlocked with no print limits.</string>
+    <string name="perangkat_anda_telah_teraktivasi_lisensi_resmi_printerjtm_pro_seumur_hidup_lifetime_seluruh_modul_enterprise_telah_terbuka_penuh_tanpa_batas_cetak">Your device has been activated with an official NetraPrint Pro Lifetime license. All enterprise modules are fully unlocked with no print limits.</string>
     <string name="perbarui_qr_code">Update QR Code</string>
     <string name="pilih">Select</string>
     <string name="pilih_dari_galeri">Choose from Gallery</string>
@@ -157,7 +157,7 @@
     <string name="pratinjau_qr_code_2">QR Code Preview</string>
     <string name="pratinjau_roll_wysiwyg">WYSIWYG Roll Preview</string>
     <string name="preferensi_cetak">PRINT PREFERENCES</string>
-    <string name="printerjtm_enterprise_pro_aktif">PrinterJTM Enterprise Pro Active</string>
+    <string name="printerjtm_enterprise_pro_aktif">NetraPrint Enterprise Pro Active</string>
     <string name="privasi_keamanan_data_terjamin">Privacy &amp; Data Security Guaranteed</string>
     <string name="pulihkan_data">Restore Data</string>
     <string name="rentang_halaman_contoh_1_5_8_10_12">Page Range (e.g. 1-5, 8, 10-12)</string>
@@ -179,9 +179,9 @@ Thank you for your purchase!
     <string name="salin_isi_paket">Copy Package Contents</string>
     <string name="salin_penerima">Copy Recipient</string>
     <string name="salin_pengirim">Copy Sender</string>
-    <string name="saya_setuju_dengan_kebijakan_privasi_dan_syarat_ketentuan_penggunaan_printerjtm">I agree to the PrinterJTM Privacy Policy and Terms of Service.</string>
+    <string name="saya_setuju_dengan_kebijakan_privasi_dan_syarat_ketentuan_penggunaan_printerjtm">I agree to the NetraPrint Privacy Policy and Terms of Service.</string>
     <string name="sedang_menyiapkan_halaman_cetak">Preparing print pages...</string>
-    <string name="selamat_datang_di_printerjtm">Welcome to PrinterJTM</string>
+    <string name="selamat_datang_di_printerjtm">Welcome to NetraPrint</string>
     <string name="seluruh_data_formulir_dan_pemrosesan_gambar_diproses_secara_lokal_pada_perangkat_anda_tanpa_dikirim_ke_server_luar">All form data and image processing runs locally on your device without being sent to external servers.</string>
     <string name="semua_halaman">All Pages</string>
     <string name="semua_printer_dipilih_saat_cetak">All Printers (Selected at print time)</string>
@@ -220,7 +220,23 @@ Thank you for your purchase!
     <string name="ukuran_font">Font Size</string>
     <string name="ukuran_kertas_printer">Printer Paper Size</string>
     <string name="unggah_logo_toko">Upload store logo</string>
-    <string name="url_endpoint_api_https">API Endpoint URL (https://...)</string>
+    <string name="url_endpoint_api_https">API Endpoint URL (http://192.168.x.x or https://...)</string>
+    <string name="api_key_generate">Generate API Key</string>
+    <string name="api_key_copy">Copy</string>
+    <string name="api_key_revoke">Revoke / Delete</string>
+    <string name="api_key_generate_confirm_title">Generate a New API Key?</string>
+    <string name="api_key_generate_confirm_message">The old token will be replaced and re-encrypted with AES-256-GCM.</string>
+    <string name="api_key_generate_success_title">API Key Generated</string>
+    <string name="api_key_generate_success_message">A new API Key was generated and stored encrypted.</string>
+    <string name="api_key_copy_success_title">API Key Copied</string>
+    <string name="api_key_copy_success_message">The active API Key was copied to the clipboard.</string>
+    <string name="api_key_revoke_confirm_title">Revoke &amp; Delete API Key?</string>
+    <string name="api_key_revoke_confirm_message">All local POS/API integrations using this key will be rejected until a new key is created.</string>
+    <string name="api_key_revoke_confirm_action">Revoke Access</string>
+    <string name="api_key_revoke_success_title">Access Revoked</string>
+    <string name="api_key_revoke_success_message">The API Key was revoked successfully.</string>
+    <string name="api_key_operation_failed_title">API Key Operation Failed</string>
+    <string name="api_key_storage_failed">The API Key could not be stored securely. Please try again.</string>
     <string name="usb">USB</string>
     <string name="utilitas_cetak_thermal_nirkabel_profesional_untuk_toko_online_dan_logistik">Professional Wireless Thermal Printing Utility for Online Stores and Logistics</string>
     <string name="v1_1_7_pro">v1.1.7 PRO</string>
@@ -301,10 +317,10 @@ Document \'%2$s\' has been automatically added to Offline Print Queue.</string>
     <string name="kt_success_print_done_title">Printing Complete</string>
     <string name="kt_wifi_pdf_print_success_msg">%1$d PDF pages successfully sent to Wi-Fi printer (%2$s:%3$s).</string>
     <string name="kt_success_printed_title">Successfully Printed</string>
-    <string name="kt_wifi_print_success_msg">Data successfully sent to Wi-Fi printer (%1$s:%2$s).</string>
+    <string name="kt_wifi_print_success_msg">Data successfully sent to Wi-Fi printer (%1$s:%2$d).</string>
     <string name="kt_thermal_pdf_print_success_msg">%d PDF pages successfully sent to thermal printer.</string>
     <string name="kt_thermal_print_success_msg">Data successfully sent to thermal printer.</string>
-    <string name="kt_qr_wifi_print_success_msg">QR Code successfully sent to Wi-Fi printer (%1$s:%2$s).</string>
+    <string name="kt_qr_wifi_print_success_msg">QR Code successfully sent to Wi-Fi printer (%1$s:%2$d).</string>
     <string name="kt_qr_thermal_print_success_msg">QR Code successfully printed to thermal printer.</string>
     <string name="kt_dialog_spooler_fail_title">Failed to Print Queue</string>
     <string name="kt_spooler_connect_fail_msg">Failed to connect to printer. Remaining queue is still saved.</string>
@@ -328,7 +344,7 @@ Make sure the printer is on and connected, then tap \'Print Now\'.</string>
     <string name="kt_loading_wifi_pdf_title">Printing PDF Document via Wi-Fi</string>
     <string name="kt_loading_wifi_pdf_msg">Preparing %d document pages...</string>
     <string name="kt_loading_qr_wifi_title">Printing QR Code via Wi-Fi</string>
-    <string name="kt_loading_connect_msg">Connecting to %1$s:%2$s...</string>
+    <string name="kt_loading_connect_msg">Connecting to %1$s:%2$d...</string>
     <string name="kt_loading_qr_title">Printing QR Code</string>
     <string name="kt_loading_connect_device_msg">Connecting to %s...</string>
     <string name="kt_progress_pdf_page">Printing page %1$d of %2$d (PDF page: %3$d)...</string>
@@ -361,7 +377,7 @@ Make sure the printer is on and connected, then tap \'Print Now\'.</string>
     <string name="kt_dialog_upcoming_title">Connection Feature %s</string>
     <string name="kt_dialog_upcoming_msg">Printing support via %s thermal is being prepared and will arrive in a future update.
 
-Currently PrinterJTM focuses on fast, stable, and tested Bluetooth and Wi-Fi (TCP/IP 9100) ESC/POS connections.</string>
+Currently NetraPrint focuses on fast, stable, and tested Bluetooth and Wi-Fi (TCP/IP 9100) ESC/POS connections.</string>
     <string name="kt_dialog_width_title">Set Print Width</string>
     <string name="kt_dialog_width_msg">Enter thermal printer print width in dots (horizontal dots).
 Standard: 384 dots (58mm), 576 dots (80mm), 720 dots (100mm).</string>
@@ -391,7 +407,7 @@ Standard: 384 dots (58mm), 576 dots (80mm), 720 dots (100mm).</string>
     <string name="kt_dialog_load_printer_fail_title">Failed to Load Printer</string>
     <string name="kt_load_printer_error_msg">An error occurred while loading the printer list: %s</string>
     <string name="kt_sub_license_title">License Status Verified</string>
-    <string name="kt_sub_license_msg">Congratulations! PrinterJTM Pro license on this device is already ACTIVE for lifetime (Lifetime License).
+    <string name="kt_sub_license_msg">Congratulations! NetraPrint Pro license on this device is already ACTIVE for lifetime (Lifetime License).
 
 All advanced modules (Offline Print Queue Spooler, Android System PrintService, Dithering 3-Mode, Multi-page PDF, and Scan Barcode OCR) can be used without limitation.</string>
     <string name="kt_btn_sub_close">Close</string>
@@ -408,7 +424,7 @@ Do you allow this printing?</string>
     <string name="kt_legal_terms_title">Terms &amp; Conditions</string>
     <string name="kt_legal_oss_title">Open Source Licenses</string>
     <string name="kt_legal_default_title">Legality</string>
-    <string name="kt_onboarding_full_text">I agree to the Privacy Policy and Terms &amp; Conditions of using PrinterJTM.</string>
+    <string name="kt_onboarding_full_text">I agree to the Privacy Policy and Terms &amp; Conditions of using NetraPrint.</string>
     <string name="kt_onboarding_privacy_link">Privacy Policy</string>
     <string name="kt_onboarding_tos_link">Terms &amp; Conditions</string>
     <string name="kt_qr_empty_title">QR Code Empty</string>
@@ -476,7 +492,7 @@ Do you allow this printing?</string>
     <string name="kt_receipt_width">Print Width : %1$d dots</string>
     <string name="kt_receipt_printed_at">Printed At  : %1$s</string>
     <string name="kt_receipt_connection_ready">Printer connection is active and ready!</string>
-    <string name="kt_receipt_brand">PRINTER JTM</string>
+    <string name="kt_receipt_brand">NetraPrint</string>
     <string name="kt_receipt_shipping_label">SHIPPING LABEL</string>
     <string name="kt_receipt_courier">COURIER: %1$s</string>
     <string name="kt_receipt_tracking_number">TRACKING NO.: %1$s</string>
@@ -500,9 +516,9 @@ Do you allow this printing?</string>
     <string name="kt_media_thermal_58">58mm Thermal Roll</string>
     <string name="kt_media_thermal_80">80mm Thermal Roll</string>
     <string name="kt_media_thermal_custom">Custom Thermal Label</string>
-    <string name="kt_system_printer_named">PrinterJTM • %1$s</string>
-    <string name="kt_system_printer_name">PrinterJTM Thermal Print Service</string>
-    <string name="kt_system_printer_description">PrinterJTM ESC/POS Thermal Print Service (58mm / 80mm / A6 / 4x6)</string>
+    <string name="kt_system_printer_named">NetraPrint • %1$s</string>
+    <string name="kt_system_printer_name">NetraPrint Thermal Print Service</string>
+    <string name="kt_system_printer_description">NetraPrint ESC/POS Thermal Print Service (58mm / 80mm / A6 / 4x6)</string>
     <string name="kt_system_print_empty">Print document data is empty</string>
     <string name="kt_system_print_channel_name">System Print Service</string>
     <string name="kt_system_print_channel_description">Incoming print document notifications from Android</string>
@@ -512,8 +528,8 @@ Do you allow this printing?</string>
     <string name="kt_camera_permission_required">Camera permission is required to scan a document.</string>
     <string name="kt_bluetooth_permission_required">Bluetooth permission is required to connect to a printer.</string>
     <string name="kt_play_store_unavailable">Could not open Google Play Store on this device.</string>
-    <string name="kt_contact_subject">[PrinterJTM Support] User question or feedback</string>
-    <string name="kt_contact_chooser">Contact PrinterJTM Support</string>
+    <string name="kt_contact_subject">[NetraPrint Support] User question or feedback</string>
+    <string name="kt_contact_chooser">Contact NetraPrint Support</string>
     <string name="kt_contact_email_unavailable">No email app is available. Contact support@printerjtm.com.</string>
     <string name="kt_ocr_take_photo">Take Photo (Camera)</string>
     <string name="kt_ocr_choose_gallery">Choose from Gallery</string>
@@ -538,7 +554,7 @@ Do you allow this printing?</string>
     <string name="kt_pdf_print_success">%1$d PDF pages were sent to the printer.</string>
     <string name="kt_scan_network_failed">An error occurred while scanning the printer network.</string>
     <string name="kt_endpoint_connection_failed">Could not connect to the API endpoint. Check the network and endpoint configuration.</string>
-    <string name="kt_backup_invalid">The pasted text is not a valid PrinterJTM backup format.</string>
+    <string name="kt_backup_invalid">The pasted text is not a valid NetraPrint backup format.</string>
     <string name="kt_cache_cleanup_failed">An error occurred while clearing the cache.</string>
     <string name="kt_load_printer_failed">Could not load the printer list. Check Bluetooth permission and try again.</string>
     <string name="kt_test_print_sending">Sending test print...</string>
@@ -560,17 +576,17 @@ Do you allow this printing?</string>
     <string name="kt_wifi_ip_missing_message">Enter the Wi-Fi printer IP address first.</string>
     <string name="kt_printer_not_selected_title">Printer Not Selected</string>
     <string name="kt_printer_not_selected_message">Select a paired Bluetooth printer first.</string>
-    <string name="kt_https_required_title">HTTPS Required</string>
-    <string name="kt_https_required_message">The endpoint must start with https:// to protect the API key and data in transit.</string>
+    <string name="kt_https_required_title">Endpoint URL Not Allowed</string>
+    <string name="kt_https_required_message">Use HTTPS for public domains. HTTP is allowed only for valid private IPv4, localhost, or .local hosts.</string>
     <string name="kt_print_api_sending_title">Printing API Data...</string>
     <string name="kt_print_api_sending_message">Sending sample data to printer...</string>
     <string name="kt_api_print_failed_title">Print Failed</string>
     <string name="kt_resolution_thermal_203">Thermal 203 DPI</string>
     <string name="kt_resolution_default_150">Default 150 DPI</string>
     <string name="kt_resolution_thermal_300">Thermal 300 DPI</string>
-    <string name="kt_system_printer_bluetooth_name">PrinterJTM • Bluetooth (%1$s)</string>
+    <string name="kt_system_printer_bluetooth_name">NetraPrint • Bluetooth (%1$s)</string>
     <string name="kt_system_printer_bluetooth_description">Bluetooth thermal printer</string>
-    <string name="kt_system_printer_wifi_name">PrinterJTM • Wi-Fi (%1$s:%2$s)</string>
+    <string name="kt_system_printer_wifi_name">NetraPrint • Wi-Fi (%1$s:%2$s)</string>
     <string name="kt_system_printer_wifi_description">Wi-Fi thermal printer (%1$s:%2$s)</string>
     <string name="kt_notification_title">Notification</string>
     <string name="kt_btn_open_bluetooth_settings">Open Bluetooth Settings</string>

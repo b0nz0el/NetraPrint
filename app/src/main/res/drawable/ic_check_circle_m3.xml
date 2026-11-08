@@ -3,12 +3,12 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
-    <!-- Lingkaran lembut latar belakang #E0F2F1 -->
+    <!-- Lingkaran lembut latar belakang #CCFBF1 -->
     <path
-        android:fillColor="#E0F2F1"
+        android:fillColor="#CCFBF1"
         android:pathData="M12,2C6.48,2 2,6.48 2,12s4.48,10 10,10 10,-4.48 10,-10S17.52,2 12,2z" />
-    <!-- Tanda centang tegas #004D40 -->
+    <!-- Tanda centang tegas #0F766E -->
     <path
-        android:fillColor="#004D40"
+        android:fillColor="#0F766E"
         android:pathData="M10,15.17l-3.59,-3.58 -1.42,1.41L10,18l9,-9 -1.41,-1.41z" />
 </vector>
