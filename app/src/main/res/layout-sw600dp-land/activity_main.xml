@@ -352,7 +352,7 @@
                                     android:gravity="top|start"
                                     android:inputType="textMultiLine|textCapWords"
                                     android:minLines="3"
-                                    android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                                    android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="sans-serif"  android:textFontWeight="400" />
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <LinearLayout
@@ -489,7 +489,7 @@
                                     android:gravity="top|start"
                                     android:inputType="textMultiLine|textCapWords"
                                     android:minLines="3"
-                                    android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                                    android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="sans-serif"  android:textFontWeight="400" />
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <LinearLayout
@@ -613,7 +613,7 @@
                                         android:dropDownVerticalOffset="4dp"
                                         android:inputType="none"
                                         android:popupBackground="@android:color/white" android:textColor="#0F172A"
-                                        android:textColorHighlight="@android:color/transparent" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                                        android:textColorHighlight="@android:color/transparent" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="sans-serif"  android:textFontWeight="400" />
                                 </com.google.android.material.textfield.TextInputLayout>
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
@@ -652,7 +652,7 @@
                                         android:layout_width="match_parent"
                                         android:layout_height="wrap_content"
                                         android:inputType="textCapCharacters"
-                                        android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                                        android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="sans-serif"  android:textFontWeight="400" />
                                 </com.google.android.material.textfield.TextInputLayout>
 
                                 <LinearLayout
@@ -738,7 +738,7 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:inputType="textCapSentences"
-                                    android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                                    android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="sans-serif"  android:textFontWeight="400" />
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <LinearLayout
@@ -838,7 +838,7 @@
                                     android:gravity="top|start"
                                     android:inputType="textMultiLine|textCapSentences"
                                     android:minLines="2"
-                                    android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                                    android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="sans-serif"  android:textFontWeight="400" />
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <LinearLayout
@@ -942,7 +942,7 @@
                                     android:inputType="none"
                                     android:popupBackground="@android:color/white"
                                     android:text="@string/str_default" android:textColor="#0F172A"
-                                    android:textColorHighlight="@android:color/transparent" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                                    android:textColorHighlight="@android:color/transparent" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="sans-serif"  android:textFontWeight="400" />
                             </com.google.android.material.textfield.TextInputLayout>
 
                             <LinearLayout
@@ -1417,7 +1417,7 @@
                         android:layout_height="match_parent"
                         android:gravity="top|start"
                         android:lineSpacingExtra="4dp"
-                        android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                        android:padding="@dimen/text_input_padding" android:textColor="#0F172A" android:textColorHint="#64748B" android:textSize="14sp"  android:fontFamily="sans-serif"  android:textFontWeight="400" />
                 </com.google.android.material.textfield.TextInputLayout>
             </com.google.android.material.card.MaterialCardView>
         </androidx.constraintlayout.widget.ConstraintLayout>
@@ -1525,7 +1525,7 @@
                         android:layout_marginTop="2dp"
                         android:text="@string/label"
                         android:textColor="@color/nav_active" android:textSize="12sp"
-                        android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                        android:fontFamily="sans-serif"  android:textFontWeight="400" />
                 </LinearLayout>
 
                 <!-- 2. Text Tab (Free Text) -->
@@ -1557,7 +1557,7 @@
                         android:layout_marginTop="2dp"
                         android:text="@string/teks"
                         android:textColor="@color/nav_inactive" android:textSize="12sp"
-                        android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                        android:fontFamily="sans-serif"  android:textFontWeight="400" />
                 </LinearLayout>
 
                 <!-- Center Print FAB Cradle Space -->
@@ -1594,7 +1594,7 @@
                         android:layout_marginTop="2dp"
                         android:text="@string/gambar"
                         android:textColor="@color/nav_inactive" android:textSize="12sp"
-                        android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                        android:fontFamily="sans-serif"  android:textFontWeight="400" />
                 </LinearLayout>
 
                 <!-- 4. PDF Tab -->
@@ -1626,7 +1626,7 @@
                         android:layout_marginTop="2dp"
                         android:text="@string/pdf"
                         android:textColor="@color/nav_inactive" android:textSize="12sp"
-                        android:fontFamily="@font/custom_font"  android:textFontWeight="400" />
+                        android:fontFamily="sans-serif"  android:textFontWeight="400" />
                 </LinearLayout>
 
             </LinearLayout>
@@ -1672,7 +1672,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|center_horizontal"
                 android:layout_marginBottom="8dp"
-                android:fontFamily="@font/custom_font"
+                android:fontFamily="sans-serif"
                 android:letterSpacing="0.08"
                 android:text="@string/cetak"
                 android:textAllCaps="true"

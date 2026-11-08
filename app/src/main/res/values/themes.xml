@@ -1,8 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme using Material 3 -->
     <style name="Base.Theme.NetraPrint" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:fontFamily">@font/custom_font</item>
-        <item name="fontFamily">@font/custom_font</item>
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="fontFamily">sans-serif</item>
         <item name="android:windowBackground">@color/md_theme_light_background</item>
         <!-- Brand Colors -->
         <item name="colorPrimary">@color/md_theme_light_primary</item>
@@ -61,19 +61,19 @@
     </style>
 
     <style name="TextAppearance.NetraPrint.Navigation" parent="TextAppearance.Material3.LabelLarge" tools:ignore="NewApi">
-        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textFontWeight">500</item>
         <item name="android:textSize">14sp</item>
     </style>
 
     <style name="TextAppearance.NetraPrint.Toolbar" parent="TextAppearance.Material3.TitleLarge" tools:ignore="NewApi">
-        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textFontWeight">600</item>
         <item name="android:textSize">18sp</item>
     </style>
 
     <style name="TextAppearance.NetraPrint.NavigationTab" parent="TextAppearance.Material3.LabelMedium" tools:ignore="NewApi">
-        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="android:fontFamily">sans-serif-medium</item>
         <item name="android:textFontWeight">500</item>
         <item name="android:textSize">12sp</item>
     </style>

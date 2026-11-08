@@ -16,8 +16,8 @@ android {
         applicationId = "com.netraprint.app"
         minSdk = 26
         targetSdk = 36
-        versionCode = 24
-        versionName = "2.0.18"
+        versionCode = 25
+        versionName = "2.0.19"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

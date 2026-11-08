@@ -24,7 +24,7 @@
 
     <!-- Anchor style for the NetraPrint appearance family (no attributes). -->
     <style name="TextAppearance.NetraPrint" parent="@android:style/TextAppearance" tools:ignore="NewApi">
-        <item name="android:fontFamily">@font/custom_font</item>
+        <item name="android:fontFamily">sans-serif</item>
         <item name="android:textFontWeight">400</item>
     </style>
 

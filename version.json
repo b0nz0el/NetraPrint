@@ -1,8 +1,8 @@
 {
-  "latestVersionCode": 24,
-  "latestVersionName": "2.0.18",
+  "latestVersionCode": 25,
+  "latestVersionName": "2.0.19",
   "downloadUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
-  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/download/v2.0.18/NetraPrint.apk",
+  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/download/v2.0.19/NetraPrint.apk",
   "releasePageUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
-  "changelog": "Optimalisasi Animasi Splash Screen Berstandar Internasional: Penyesuaian durasi pencetakan struk (900ms), penahan layar elegan (1250ms), dan transisi keluar sinematik (350ms) dengan total durasi visual ~1.6 detik yang nyaman bagi mata."
+  "changelog": "Standarisasi Tipografi Internasional Resmi Android: Mengadopsi font sistem Roboto / sans-serif bawaan Google Material Design 3. Meningkatkan ketajaman keterbacaan teks, akselerasi rendering UI, dukungan Dynamic Type bebas terpotong, serta merampingkan ukuran berkas APK."
 }

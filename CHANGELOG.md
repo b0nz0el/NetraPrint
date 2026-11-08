@@ -1,5 +1,13 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.19] - Release
+
+- International Standard Typography: Beralih ke font sistem bawaan Android resmi (`sans-serif` / Roboto) sesuai pedoman Material Design 3 Google.
+- Enhanced Readability & Crisp Text: Optimalisasi rendering teks pada layar berdensitas tinggi dengan rendering native OS tanpa overhead TTF embedding.
+- Accessibility & Dynamic Type: Mendukung penskalaan ukuran font sistem (Android Display Size & Font Size) secara sempurna tanpa risiko teks terpotong (clipping).
+- App Size & Startup Optimization: Mengurangi ukuran berkas instalasi APK (~176 KB) dan memangkas waktu alokasi memori font saat startup aplikasi.
+- Monospace Receipt Isolation: Mempertahankan tipografi `monospace` khusus pada pratinjau thermal receipt untuk akurasi tata letak struk kasir yang presisi.
+
 ## [v2.0.18] - Release
 
 - International UX Motion Standards: Menyesuaikan durasi animasi splash screen ke standar emas Material Design & Nielsen Norman Group (~1.5–1.6 detik total).
