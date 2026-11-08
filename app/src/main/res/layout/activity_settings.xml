@@ -685,6 +685,41 @@
                             android:layout_marginVertical="12dp"
                             android:background="#F1F5F9" />
 
+                        <LinearLayout
+                            android:id="@+id/layoutCheckUpdate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingVertical="8dp">
+
+                            <TextView
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:text="@string/cek_pembaruan"
+                                android:textColor="#37474F"
+                                android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium" />
+
+                            <TextView
+                                android:id="@+id/tvUpdateStatus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="›"
+                                android:textColor="#78909C"
+                                android:textAppearance="@style/TextAppearance.NetraPrint.TitleLarge"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="12dp"
+                            android:background="#F1F5F9" />
+
                         <!-- Bahasa -->
                         <LinearLayout
                             android:layout_width="match_parent"

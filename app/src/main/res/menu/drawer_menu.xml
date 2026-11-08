@@ -59,10 +59,6 @@
             android:icon="@drawable/ic_nav_setting"
             android:title="@string/pengaturan" />
         <item
-            android:id="@+id/nav_subscription"
-            android:icon="@drawable/ic_nav_subscription"
-            android:title="@string/langganan" />
-        <item
             android:id="@+id/nav_rating"
             android:icon="@drawable/ic_nav_rating"
             android:title="@string/penilaian_ulasan" />

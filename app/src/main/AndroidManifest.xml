@@ -92,11 +92,6 @@
             android:label="QR Code Generator" />
 
         <activity
-            android:name=".SubscriptionActivity"
-            android:exported="false"
-            android:label="Langganan Pro" />
-
-        <activity
             android:name=".LegalActivity"
             android:exported="false"
             android:label="Legal &amp; Kebijakan" />

@@ -721,10 +721,6 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(this, SettingsActivity::class.java))
                     true
                 }
-                R.id.nav_subscription -> {
-                    startActivity(Intent(this, SubscriptionActivity::class.java))
-                    true
-                }
                 R.id.nav_rating -> {
                     requestAppRating()
                     true

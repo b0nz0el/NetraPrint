@@ -60,13 +60,4 @@
             tools:text="v2.0.5 PRO" />
     </LinearLayout>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:letterSpacing="0.02"
-        android:text="@string/enterprise_thermal_suite_lisensi_pro_aktif"
-        android:textColor="#99F6E4"
-        android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
-
 </LinearLayout>

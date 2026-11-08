@@ -18,6 +18,14 @@
     <string name="auto">Auto</string>
     <string name="auto_cut_kertas">Auto Cut Kertas</string>
     <string name="auto_print_antrean_api">Auto-Print Antrean API</string>
+    <string name="cek_pembaruan">Cek Pembaruan</string>
+    <string name="kt_update_checking">Memeriksa pembaruan…</string>
+    <string name="kt_update_latest">Anda sudah menggunakan versi terbaru!</string>
+    <string name="kt_update_available">Pembaruan Tersedia</string>
+    <string name="kt_update_available_msg">Versi baru %s tersedia. Unduh sekarang untuk mendapatkan fitur terbaru.</string>
+    <string name="kt_update_failed">Gagal memeriksa pembaruan. Pastikan koneksi internet aktif.</string>
+    <string name="kt_btn_download">Unduh Sekarang</string>
+    <string name="kt_btn_later">Nanti</string>
     <string name="bahasa">Bahasa</string>
     <string name="bahasa_indonesia">Bahasa Indonesia</string>
     <string name="bahasa_profil_struk">BAHASA &amp; PROFIL STRUK</string>
@@ -54,7 +62,6 @@
     <string name="str_default">Default</string>
     <string name="dokumen_pdf">Dokumen.pdf</string>
     <string name="dukungan_prioritas_pembaruan_seumur_hidup">Dukungan Prioritas &amp; Pembaruan Seumur Hidup</string>
-    <string name="enterprise_thermal_suite_lisensi_pro_aktif">Enterprise Thermal Suite • Lisensi Pro Aktif</string>
     <string name="fitur_dalam_pengembangan">Fitur dalam Pengembangan</string>
     <string name="fitur_keunggulan_eksklusif_pro">FITUR &amp; KEUNGGULAN EKSKLUSIF PRO</string>
     <string name="fitur_sedang_dalam_pengembangan">Fitur sedang dalam pengembangan.</string>
@@ -99,12 +106,10 @@
     <string name="kunci_pengaturan_dengan_pin_admin">Kunci Pengaturan dengan PIN Admin</string>
     <string name="kustomisasi_header_logo_footer_toko">Kustomisasi Header, Logo &amp; Footer Toko</string>
     <string name="label">Label</string>
-    <string name="langganan">Langganan</string>
     <string name="langsung_cetak">Langsung Cetak</string>
     <string name="lanjutkan_cetak">Lanjutkan Cetak</string>
     <string name="lebar_cetak_print_width">Lebar Cetak (Print Width)</string>
     <string name="legalitas">Legalitas</string>
-    <string name="lisensi_pro_aktif_siap_digunakan">Lisensi Pro Aktif • Siap Digunakan</string>
     <string name="lisensi_sumber_terbuka_open_source">Lisensi Sumber Terbuka (Open Source)</string>
     <string name="logo_netraprint">Logo NetraPrint</string>
     <string name="logo_toko_struk">Logo Toko / Struk</string>
@@ -121,7 +126,6 @@
     <string name="nama_printer">Nama Printer</string>
     <string name="nama_toko_usaha">Nama Toko / Usaha</string>
     <string name="no_resi">No. Resi</string>
-    <string name="paket_langganan_pro">Paket Langganan Pro</string>
     <string name="panduan_dokumentasi_api">Panduan &amp; Dokumentasi API</string>
     <string name="pdf">PDF</string>
     <string name="pencetakan_jaringan_wi_fi_lan">Pencetakan Jaringan Wi-Fi / LAN</string>
@@ -130,7 +134,6 @@
     <string name="pengaturan_printer_wi_fi">PENGATURAN PRINTER WI-FI</string>
     <string name="pengirim_nama_alamat_no_hp">Pengirim (Nama, Alamat, No. HP)</string>
     <string name="penilaian_ulasan">Penilaian &amp; Ulasan</string>
-    <string name="perangkat_anda_telah_teraktivasi_lisensi_resmi_netraprint_pro_seumur_hidup_lifetime_seluruh_modul_enterprise_telah_terbuka_penuh_tanpa_batas_cetak">Perangkat Anda telah teraktivasi lisensi resmi NetraPrint Pro Seumur Hidup (Lifetime). Seluruh modul enterprise telah terbuka penuh tanpa batas cetak.</string>
     <string name="perbarui_qr_code">Perbarui QR Code</string>
     <string name="pilih">Pilih</string>
     <string name="pilih_dari_galeri">Pilih dari Galeri</string>
@@ -157,7 +160,6 @@
     <string name="pratinjau_qr_code_2">Pratinjau QR Code</string>
     <string name="pratinjau_roll_wysiwyg">Pratinjau Roll WYSIWYG</string>
     <string name="preferensi_cetak">PREFERENSI CETAK</string>
-    <string name="netraprint_enterprise_pro_aktif">NetraPrint Enterprise Pro Aktif</string>
     <string name="privasi_keamanan_data_terjamin">Privasi &amp; Keamanan Data Terjamin</string>
     <string name="pulihkan_data">Pulihkan Data</string>
     <string name="rentang_halaman_contoh_1_5_8_10_12">Rentang Halaman (Contoh: 1-5, 8, 10-12)</string>
@@ -194,7 +196,6 @@ Terima kasih atas pesanan Anda!
     <string name="sinkronisasi_cloud_otomatis">Sinkronisasi Cloud Otomatis</string>
     <string name="sinkronisasi_pengaturan_dan_data_printer_antar_perangkat_hp_dan_tablet">Sinkronisasi pengaturan dan data printer antar-perangkat (HP dan Tablet)</string>
     <string name="status_belum_disinkronkan">Status: Belum disinkronkan</string>
-    <string name="status_lisensi_pro_aktif">STATUS: LISENSI PRO AKTIF</string>
     <string name="studio_qr_code">Studio QR Code</string>
     <string name="syarat_ketentuan_terms_of_service">Syarat &amp; Ketentuan (Terms of Service)</string>
     <string name="tampilkan_branding_identitas_bisnis_anda_di_setiap_cetakan_struk">Tampilkan branding identitas bisnis Anda di setiap cetakan struk</string>

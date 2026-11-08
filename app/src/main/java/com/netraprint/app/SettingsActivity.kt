@@ -10,6 +10,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -37,6 +38,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
+import java.net.URL
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
@@ -45,7 +47,7 @@ class SettingsActivity : AppCompatActivity() {
 
     companion object {
         const val PREFS_NAME = "netraprint_settings"
-        const val LEGACY_PREFS_NAME = "printer_az_settings"
+        const val LEGACY_PREFS_NAME = "netraprint_settings"
         const val KEY_CONNECTION_TYPE = "connection_type"
         const val KEY_DEFAULT_PRINTER_NAME = "default_printer_name"
         const val KEY_DEFAULT_PRINTER_ADDRESS = "default_printer_address"
@@ -349,6 +351,11 @@ class SettingsActivity : AppCompatActivity() {
         // Clear Cache
         layoutClearCache.setOnClickListener {
             clearAppCache()
+        }
+
+        // Cek Pembaruan
+        findViewById<View>(R.id.layoutCheckUpdate)?.setOnClickListener {
+            checkForUpdates()
         }
 
         // Legal Links
@@ -789,6 +796,58 @@ class SettingsActivity : AppCompatActivity() {
             else -> getString(R.string.kt_width_custom, currentPrintWidth)
         }
         tvPrintWidth.text = label
+    }
+
+    private fun checkForUpdates() {
+        val dialog = StatusBottomSheetDialog(this)
+        dialog.showLoading(
+            getString(R.string.cek_pembaruan),
+            getString(R.string.kt_update_checking)
+        )
+        lifecycleScope.launch {
+            try {
+                val currentVersionCode = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    packageManager.getPackageInfo(packageName, 0).longVersionCode.toInt()
+                } else {
+                    @Suppress("DEPRECATION")
+                    packageManager.getPackageInfo(packageName, 0).versionCode
+                }
+                val jsonText = withContext(Dispatchers.IO) {
+                    URL("https://raw.githubusercontent.com/b0nz0el/NetraPrint/main/version.json")
+                        .readText()
+                }
+                val json = JSONObject(jsonText)
+                val latestVersionCode = json.getInt("latestVersionCode")
+                val latestVersionName = json.getString("latestVersionName")
+                val downloadUrl = json.getString("downloadUrl")
+                if (isFinishing || isDestroyed) return@launch
+                dialog.dismiss()
+                if (latestVersionCode > currentVersionCode) {
+                    StatusBottomSheetDialog(this@SettingsActivity).showSuccess(
+                        title = getString(R.string.kt_update_available),
+                        message = getString(R.string.kt_update_available_msg, latestVersionName),
+                        actionText = getString(R.string.kt_btn_download)
+                    ) {
+                        try {
+                            startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(downloadUrl)))
+                        } catch (_: Exception) {}
+                    }
+                } else {
+                    StatusBottomSheetDialog(this@SettingsActivity).showSuccess(
+                        title = getString(R.string.cek_pembaruan),
+                        message = getString(R.string.kt_update_latest)
+                    )
+                }
+            } catch (_: Exception) {
+                if (isFinishing || isDestroyed) return@launch
+                dialog.dismiss()
+                StatusBottomSheetDialog(this@SettingsActivity).showError(
+                    title = getString(R.string.cek_pembaruan),
+                    message = getString(R.string.kt_update_failed),
+                    actionText = getString(R.string.kt_btn_understood)
+                )
+            }
+        }
     }
 
     private fun updatePrinterDisplay() {

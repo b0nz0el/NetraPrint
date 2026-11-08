@@ -3,6 +3,9 @@
 ## [v2.0.5 PRO] - Release
 
 - System: Fixed dynamic version badge synchronization using PackageManager.
+- System: Added in-app "Cek Pembaruan" (Check for Updates) in Settings with version comparison against GitHub Releases.
+- Branding: Overhauled application launcher icons across vector adaptive XML and all bitmap mipmap densities (.webp mdpi to xxxhdpi) to modern flat teal NetraPrint badge.
+- Modularization: Completely removed legacy Subscription module (Activity, layouts, strings, manifest entries, and navigation drawer item).
 - Typography: Upgraded app-wide font family to a modern, premium SaaS typography.
 - UI/UX: Overhauled MaterialCardView styles (20dp corner radius for a softer look).
 - UI/UX: Removed aggressive red tints from utility icons, replacing them with professional Slate Gray.

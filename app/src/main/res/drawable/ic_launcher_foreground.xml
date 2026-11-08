@@ -1,68 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
 <vector xmlns:android="http://schemas.android.com/apk/res/android"
     android:width="108dp"
     android:height="108dp"
     android:viewportWidth="108"
     android:viewportHeight="108">
 
-    <!-- Paper Receipt feeding out of printer (Top) -->
-    <!-- Receipt Paper Background -->
+    <!-- Background circle putih lembut -->
     <path
         android:fillColor="#FFFFFF"
-        android:pathData="M37,24 L71,24 A2,2 0,0,1 73,26 L73,50 L35,50 L35,26 A2,2 0,0,1 37,24 Z" />
+        android:pathData="M54,10 A44,44 0,1,1 54,98 A44,44 0,1,1 54,10 Z" />
 
-    <!-- Receipt Header Line -->
+    <!-- Printer body utama - boxy, modern -->
     <path
         android:fillColor="#0F766E"
-        android:pathData="M43,30 L65,30 A1.5,1.5 0,0,1 66.5,31.5 A1.5,1.5 0,0,1 65,33 L43,33 A1.5,1.5 0,0,1 41.5,31.5 A1.5,1.5 0,0,1 43,30 Z" />
+        android:pathData="M28,52 L80,52 A5,5 0,0,1 85,57 L85,78 A5,5 0,0,1 80,83 L28,83 A5,5 0,0,1 23,78 L23,57 A5,5 0,0,1 28,52 Z" />
 
-    <!-- Receipt Text Lines -->
+    <!-- Paper exit slot strip gelap -->
     <path
-        android:fillColor="#64748B"
-        android:pathData="M41,36 L67,36 A1,1 0,0,1 68,37 A1,1 0,0,1 67,38 L41,38 A1,1 0,0,1 40,37 A1,1 0,0,1 41,36 Z" />
+        android:fillColor="#064E3B"
+        android:pathData="M30,52 L78,52 L78,56 A2,2 0,0,1 76,58 L32,58 A2,2 0,0,1 30,56 Z" />
+
+    <!-- Kertas struk keluar - putih bersih -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M42,26 L66,26 A2,2 0,0,1 68,28 L68,54 L40,54 L40,28 A2,2 0,0,1 42,26 Z" />
+
+    <!-- Garis teks di struk -->
+    <path
+        android:fillColor="#A7F3D0"
+        android:pathData="M45,32 L63,32 A1.5,1.5 0,0,1 64.5,33.5 A1.5,1.5 0,0,1 63,35 L45,35 A1.5,1.5 0,0,1 43.5,33.5 A1.5,1.5 0,0,1 45,32 Z" />
 
     <path
-        android:fillColor="#64748B"
-        android:pathData="M41,41 L61,41 A1,1 0,0,1 62,42 A1,1 0,0,1 61,43 L41,43 A1,1 0,0,1 40,42 A1,1 0,0,1 41,41 Z" />
+        android:fillColor="#D1FAE5"
+        android:pathData="M45,38 L60,38 A1,1 0,0,1 61,39 A1,1 0,0,1 60,40 L45,40 A1,1 0,0,1 44,39 A1,1 0,0,1 45,38 Z" />
 
-    <!-- Barcode lines on receipt -->
     <path
-        android:fillColor="#0F766E"
-        android:pathData="M42,45h2v3h-2z M45,45h1v3h-1z M47,45h3v3h-3z M51,45h1v3h-1z M53,45h2v3h-2z M56,45h1v3h-1z M58,45h3v3h-3z M62,45h2v3h-2z M65,45h1v3h-1z" />
+        android:fillColor="#D1FAE5"
+        android:pathData="M45,43 L56,43 A1,1 0,0,1 57,44 A1,1 0,0,1 56,45 L45,45 A1,1 0,0,1 44,44 A1,1 0,0,1 45,43 Z" />
 
-    <!-- Printer Shadow / Base Trim -->
+    <!-- LED status - hijau muda bersinar -->
     <path
-        android:fillColor="#00251A"
-        android:pathData="M29,78 L79,78 A5,5 0,0,1 84,83 L84,85 A2,2 0,0,1 82,87 L26,87 A2,2 0,0,1 24,85 L24,83 A5,5 0,0,1 29,78 Z" />
+        android:fillColor="#34D399"
+        android:pathData="M33,65 A4,4 0,1,1 33,73 A4,4 0,1,1 33,65 Z" />
 
-    <!-- Main Thermal Printer Body (Crisp White with subtle depth) -->
+    <!-- Tombol feed - abu -->
     <path
-        android:fillColor="#F5F5F5"
-        android:pathData="M31,48 L77,48 A6,6 0,0,1 83,54 L83,78 A3,3 0,0,1 80,81 L28,81 A3,3 0,0,1 25,78 L25,54 A6,6 0,0,1 31,48 Z" />
+        android:fillColor="#99F6E4"
+        android:pathData="M75,65 A4,4 0,1,1 75,73 A4,4 0,1,1 75,65 Z" />
 
-    <!-- Printer Paper Exit Slot -->
+    <!-- Huruf N -->
     <path
-        android:fillColor="#263238"
-        android:pathData="M33,48 L75,48 A2,2 0,0,1 77,50 L77,52 A1,1 0,0,1 76,53 L32,53 A1,1 0,0,1 31,52 L31,50 A2,2 0,0,1 33,48 Z" />
+        android:fillColor="#FFFFFF"
+        android:pathData="M43,61 L45.5,61 L50.5,68 L50.5,61 L53,61 L53,76 L50.5,76 L45.5,69 L45.5,76 L43,76 Z" />
 
-    <!-- Power / Status LED (Teal Glow) -->
+    <!-- Huruf P -->
     <path
-        android:fillColor="#14B8A6"
-        android:pathData="M34,65 A3,3 0,1,1 34,71 A3,3 0,1,1 34,65 Z" />
-
-    <!-- Paper Feed Button (Round) -->
-    <path
-        android:fillColor="#CFD8DC"
-        android:pathData="M74,65 A3,3 0,1,1 74,71 A3,3 0,1,1 74,65 Z" />
-
-    <!-- Center Brand Badge: NETRAPRINT (NP) -->
-    <!-- N -->
-    <path
-        android:fillColor="#0F766E"
-        android:pathData="M46,62 L48,62 L52,68 L52,62 L54,62 L54,71 L52,71 L48,65 L48,71 L46,71 Z" />
-
-    <!-- P -->
-    <path
-        android:fillColor="#0F766E"
-        android:pathData="M57,62 L62,62 A3,3 0,0,1 62,68 L59,68 L59,71 L57,71 Z M59,63.5 L61.5,63.5 A1.5,1.5 0,0,1 61.5,66.5 L59,66.5 Z" />
+        android:fillColor="#FFFFFF"
+        android:pathData="M56,61 L62,61 A4,4 0,0,1 62,69 L58.5,69 L58.5,76 L56,76 Z M58.5,63.5 L61,63.5 A1.5,1.5 0,0,1 61,66.5 L58.5,66.5 Z" />
 
 </vector>
