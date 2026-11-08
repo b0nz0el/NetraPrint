@@ -1,6 +1,6 @@
 {
   "latestVersionCode": 12,
   "latestVersionName": "2.0.6",
-  "downloadUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
+  "downloadUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest/download/NetraPrint.apk",
   "changelog": "Direct background printing dari Android System Print Spooler, deduplikasi dan pembersihan daftar printer thermal, perbaikan pembatasan background activity."
 }
