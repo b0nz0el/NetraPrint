@@ -94,7 +94,8 @@ class NetraPrintService : PrintService() {
                 val printers = mutableListOf<PrinterInfo>()
                 val localized = AppLocaleContext.wrap(this@NetraPrintService)
                 val prefs = SecurePreferencesHelper.getPreferences(this@NetraPrintService)
-                val defaultName = prefs.getString(SettingsActivity.KEY_DEFAULT_PRINTER_NAME, "") ?: ""
+                val defaultName = prefs.getString(SettingsActivity.KEY_DEFAULT_PRINTER_NAME, "")?.trim() ?: ""
+                val defaultAddress = prefs.getString(SettingsActivity.KEY_DEFAULT_PRINTER_ADDRESS, "")?.trim() ?: ""
                 val printWidth = prefs.getInt(SettingsActivity.KEY_PRINT_WIDTH, 384)
                 val is80Default = (printWidth == 576)
 
@@ -142,42 +143,47 @@ class NetraPrintService : PrintService() {
                     }.build()
                 }
 
-                // 1. Primary Virtual Thermal Service Entry
-                val mainPrinterId = generatePrinterId("netraprint_thermal_main")
-                val mainCaps = buildCapabilities(mainPrinterId)
-
-                val mainDisplayName = if (defaultName.isNotBlank()) {
-                    localized.getString(R.string.kt_system_printer_named, defaultName)
-                } else {
-                    localized.getString(R.string.kt_system_printer_name)
-                }
-                val mainPrinter = PrinterInfo.Builder(mainPrinterId, mainDisplayName, PrinterInfo.STATUS_IDLE)
-                    .setDescription(localized.getString(R.string.kt_system_printer_description))
-                    .setCapabilities(mainCaps)
-                    .build()
-                printers.add(mainPrinter)
-
-                // 2. Discover Paired Bluetooth Printers
+                // 1. Discover Paired Bluetooth Printers (Clean, Deduplicated, Filtered)
+                val distinctDevices = mutableListOf<BluetoothDevice>()
                 try {
                     val bluetoothManager = getSystemService(Context.BLUETOOTH_SERVICE) as? BluetoothManager
                     val bluetoothAdapter = bluetoothManager?.adapter
                     if (bluetoothAdapter != null && bluetoothAdapter.isEnabled) {
                         val bonded = bluetoothAdapter.bondedDevices
-                        bonded?.forEach { device ->
-                            val localId = "bt_${device.address.replace(":", "_")}"
-                            val btPrinterId = generatePrinterId(localId)
-                            val btCaps = buildCapabilities(btPrinterId)
+                        if (!bonded.isNullOrEmpty()) {
+                            // Filter out non-printers (audio, phone, wearable)
+                            val candidates = bonded.filter { device ->
+                                val majorClass = try { device.bluetoothClass?.majorDeviceClass } catch (_: Exception) { null }
+                                majorClass != android.bluetooth.BluetoothClass.Device.Major.AUDIO_VIDEO &&
+                                majorClass != android.bluetooth.BluetoothClass.Device.Major.PHONE &&
+                                majorClass != android.bluetooth.BluetoothClass.Device.Major.WEARABLE
+                            }
 
-                            val dName = try { device.name ?: device.address } catch (_: Exception) { device.address }
-                            val btPrinter = PrinterInfo.Builder(
-                                btPrinterId,
-                                localized.getString(R.string.kt_system_printer_bluetooth_name, dName),
-                                PrinterInfo.STATUS_IDLE
-                            )
-                                .setDescription(localized.getString(R.string.kt_system_printer_bluetooth_description))
-                                .setCapabilities(btCaps)
-                                .build()
-                            printers.add(btPrinter)
+                            val seenNames = mutableSetOf<String>()
+
+                            // Priority 1: User's saved default printer
+                            val defaultDevice = candidates.find { device ->
+                                (defaultAddress.isNotBlank() && device.address.equals(defaultAddress, ignoreCase = true)) ||
+                                (defaultName.isNotBlank() && (device.name ?: "").equals(defaultName, ignoreCase = true))
+                            }
+                            if (defaultDevice != null) {
+                                distinctDevices.add(defaultDevice)
+                                val dName = try { defaultDevice.name ?: defaultDevice.address } catch (_: Exception) { defaultDevice.address }
+                                seenNames.add(dName.trim().lowercase())
+                            }
+
+                            // Priority 2: Other distinct printers
+                            for (device in candidates) {
+                                if (defaultDevice != null && device.address.equals(defaultDevice.address, ignoreCase = true)) {
+                                    continue
+                                }
+                                val dName = try { device.name ?: device.address } catch (_: Exception) { device.address }
+                                val nameKey = dName.trim().lowercase()
+                                if (!seenNames.contains(nameKey)) {
+                                    seenNames.add(nameKey)
+                                    distinctDevices.add(device)
+                                }
+                            }
                         }
                     }
                 } catch (e: SecurityException) {
@@ -186,10 +192,27 @@ class NetraPrintService : PrintService() {
                     Log.w(TAG, "Bluetooth printer discovery failed")
                 }
 
-                // 3. Saved Wi-Fi Printer (if configured)
-                val wifiIp = prefs.getString(SettingsActivity.KEY_WIFI_IP, "") ?: ""
+                for (device in distinctDevices) {
+                    val localId = "bt_${device.address.replace(":", "_")}"
+                    val btPrinterId = generatePrinterId(localId)
+                    val btCaps = buildCapabilities(btPrinterId)
+
+                    val dName = try { device.name ?: device.address } catch (_: Exception) { device.address }
+                    val btPrinter = PrinterInfo.Builder(
+                        btPrinterId,
+                        localized.getString(R.string.kt_system_printer_named, dName),
+                        PrinterInfo.STATUS_IDLE
+                    )
+                        .setDescription(localized.getString(R.string.kt_system_printer_description))
+                        .setCapabilities(btCaps)
+                        .build()
+                    printers.add(btPrinter)
+                }
+
+                // 2. Saved Wi-Fi Printer (if configured)
+                val wifiIp = prefs.getString(SettingsActivity.KEY_WIFI_IP, "")?.trim() ?: ""
                 if (wifiIp.isNotBlank()) {
-                    val wifiPort = prefs.getString(SettingsActivity.KEY_WIFI_PORT, "9100") ?: "9100"
+                    val wifiPort = prefs.getString(SettingsActivity.KEY_WIFI_PORT, "9100")?.trim() ?: "9100"
                     val wifiPrinterId = generatePrinterId("wifi_${wifiIp.replace(".", "_")}")
                     val wifiCaps = buildCapabilities(wifiPrinterId)
 
@@ -202,6 +225,22 @@ class NetraPrintService : PrintService() {
                         .setCapabilities(wifiCaps)
                         .build()
                     printers.add(wifiPrinter)
+                }
+
+                // 3. Fallback virtual entry ONLY if no Bluetooth or Wi-Fi printers are available
+                if (printers.isEmpty()) {
+                    val mainPrinterId = generatePrinterId("netraprint_thermal_main")
+                    val mainCaps = buildCapabilities(mainPrinterId)
+                    val mainDisplayName = if (defaultName.isNotBlank()) {
+                        localized.getString(R.string.kt_system_printer_named, defaultName)
+                    } else {
+                        localized.getString(R.string.kt_system_printer_name)
+                    }
+                    val mainPrinter = PrinterInfo.Builder(mainPrinterId, mainDisplayName, PrinterInfo.STATUS_IDLE)
+                        .setDescription(localized.getString(R.string.kt_system_printer_description))
+                        .setCapabilities(mainCaps)
+                        .build()
+                    printers.add(mainPrinter)
                 }
 
                 addPrinters(printers)
