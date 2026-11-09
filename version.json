@@ -1,8 +1,8 @@
 {
-  "latestVersionCode": 27,
-  "latestVersionName": "2.0.21",
+  "latestVersionCode": 28,
+  "latestVersionName": "2.0.22",
   "downloadUrl": "https://netraprint-updater.yt-hackrandom.workers.dev/download",
-  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/download/v2.0.21/NetraPrint.apk",
+  "apkUrl": "https://github.com/b0nz0el/NetraPrint/releases/download/v2.0.22/NetraPrint.apk",
   "releasePageUrl": "https://github.com/b0nz0el/NetraPrint/releases/latest",
-  "changelog": "Modernisasi Menu Foto/Gambar, Dokumen PDF & Dialog Konfirmasi Cetak: Menghadirkan Upload Hub interaktif dengan akses instan Kamera Scanner & Galeri, Paper Roll Canvas berbayang realistis, Floating Pill Toolbar (Rotasi 90° instan untuk label Shopee/Tokopedia, Fit to Paper, Simulasi Dithering Thermal real-time), Navigasi Halaman PDF chevron presisi, serta Sheet Konfirmasi Cetak modern dengan Stepper Salinan (1-10 copies), pemilih ukuran kertas cepat 58mm/80mm, dan status kesiapan printer."
+  "changelog": "Perbaikan Integrasi Cetak Eksternal & Share Sheet: Memperbaiki deteksi NetraPrint dari aplikasi pihak ketiga (Google Chrome, Shopee, Tokopedia, WhatsApp, WPS Office, File Manager, dll). Menambahkan panduan aktivasi Android System Print Service pada Pengaturan dan Drawer Menu, perbaikan SecurityException pada pengaturan print service sistem, penerbitan printer thermal default yang konsisten pada print spooler sistem, serta inspeksi magic-bytes cerdas untuk file stream dengan MIME octet-stream atau wildcard."
 }

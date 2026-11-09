@@ -365,6 +365,14 @@ class SettingsActivity : AppCompatActivity() {
             clearAppCache()
         }
 
+        // System Print Service
+        findViewById<View>(R.id.layoutSystemPrintService)?.setOnClickListener {
+            showSystemPrintSettingsDialog()
+        }
+        findViewById<View>(R.id.btnOpenPrintSettings)?.setOnClickListener {
+            showSystemPrintSettingsDialog()
+        }
+
         // Cek Pembaruan
         findViewById<View>(R.id.layoutCheckUpdate)?.setOnClickListener {
             checkForUpdates()
@@ -1323,5 +1331,25 @@ class SettingsActivity : AppCompatActivity() {
             .putString(KEY_STORE_FOOTER, etStoreFooter.text.toString().trim())
             .apply()
         return true
+    }
+
+    private fun showSystemPrintSettingsDialog() {
+        AlertDialog.Builder(this)
+            .setTitle(R.string.dialog_enable_print_service_title)
+            .setMessage(R.string.dialog_enable_print_service_msg)
+            .setPositiveButton(R.string.btn_open_print_settings) { _, _ ->
+                openSystemPrintSettings()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+    }
+
+    private fun openSystemPrintSettings() {
+        try {
+            val intent = Intent(Settings.ACTION_PRINT_SETTINGS)
+            startActivity(intent)
+        } catch (_: Exception) {
+            Toast.makeText(this, R.string.system_print_service_status_hint, Toast.LENGTH_LONG).show()
+        }
     }
 }

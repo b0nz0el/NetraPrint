@@ -663,4 +663,13 @@ Apakah Anda mengizinkan pencetakan ini?</string>
     <string name="print_dialog_btn_print_copies">Cetak (%1$d Salinan)</string>
     <string name="print_dialog_btn_cancel">Batal</string>
     <string name="print_dialog_doc_type_label">Jenis Dokumen: %1$s</string>
+
+    <!-- Integrasi Layanan Cetak Sistem Android (Print Service) -->
+    <string name="nav_system_print_service">Layanan Cetak Sistem</string>
+    <string name="dialog_enable_print_service_title">Aktifkan Layanan Cetak NetraPrint</string>
+    <string name="dialog_enable_print_service_msg">Agar dapat mencetak langsung dari Chrome, Shopee, Tokopedia, dan aplikasi lain, aktifkan NetraPrint di Pengaturan Cetak Android Anda:\n\n1. Tekan tombol \'Buka Pengaturan\' di bawah\n2. Cari dan pilih \'NetraPrint\'\n3. Geser sakelar ke posisi AKTIF (ON)</string>
+    <string name="btn_open_print_settings">Buka Pengaturan Cetak</string>
+    <string name="settings_system_print_service_title">Layanan Cetak Sistem (Print Service)</string>
+    <string name="settings_system_print_service_desc">Integrasi cetak langsung dari Chrome, Shopee, Tokopedia, dan aplikasi lain</string>
+    <string name="system_print_service_status_hint">Tekan untuk mengaktifkan di sistem Android</string>
 </resources>

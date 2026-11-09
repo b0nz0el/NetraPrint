@@ -518,6 +518,58 @@
                             android:text="@string/kirim_perintah_potong_kertas_cut_paper_otomatis_ke_printer"
                             android:textColor="#78909C"
                             android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginVertical="12dp"
+                            android:background="#F1F5F9" />
+
+                        <!-- Layanan Cetak Sistem Android (Print Service) -->
+                        <LinearLayout
+                            android:id="@+id/layoutSystemPrintService"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:paddingVertical="4dp">
+
+                            <LinearLayout
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="@string/settings_system_print_service_title"
+                                    android:textColor="#212121"
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodyMedium"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginTop="2dp"
+                                    android:text="@string/settings_system_print_service_desc"
+                                    android:textColor="#78909C"
+                                    android:textAppearance="@style/TextAppearance.NetraPrint.BodySmall" />
+                            </LinearLayout>
+
+                            <com.google.android.material.button.MaterialButton
+                                android:id="@+id/btnOpenPrintSettings"
+                                style="@style/Widget.Material3.Button.TonalButton"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:minHeight="36dp"
+                                android:text="@string/btn_open_print_settings"
+                                android:textSize="12sp"
+                                app:cornerRadius="10dp" />
+                        </LinearLayout>
                     </LinearLayout>
                 </com.google.android.material.card.MaterialCardView>
 

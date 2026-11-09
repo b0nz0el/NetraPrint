@@ -59,6 +59,10 @@
             android:icon="@drawable/ic_nav_history"
             android:title="@string/riwayat_cetak" />
         <item
+            android:id="@+id/nav_system_print_service"
+            android:icon="@drawable/ic_nav_print_service"
+            android:title="@string/nav_system_print_service" />
+        <item
             android:id="@+id/nav_setting"
             android:icon="@drawable/ic_nav_setting"
             android:title="@string/pengaturan" />

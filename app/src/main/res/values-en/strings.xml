@@ -663,4 +663,13 @@ Do you allow this printing?</string>
     <string name="print_dialog_btn_print_copies">Print (%1$d Copies)</string>
     <string name="print_dialog_btn_cancel">Cancel</string>
     <string name="print_dialog_doc_type_label">Document Type: %1$s</string>
+
+    <!-- Android System Print Service Integration -->
+    <string name="nav_system_print_service">System Print Service</string>
+    <string name="dialog_enable_print_service_title">Enable NetraPrint Print Service</string>
+    <string name="dialog_enable_print_service_msg">To print directly from Chrome, Shopee, Tokopedia, and other apps, enable NetraPrint in your Android Print Settings:\n\n1. Tap the \'Open Settings\' button below\n2. Find and select \'NetraPrint\'\n3. Toggle the switch to ON</string>
+    <string name="btn_open_print_settings">Open Print Settings</string>
+    <string name="settings_system_print_service_title">System Print Service</string>
+    <string name="settings_system_print_service_desc">Direct print integration from Chrome, Shopee, Tokopedia, and other apps</string>
+    <string name="system_print_service_status_hint">Tap to configure in Android system</string>
 </resources>

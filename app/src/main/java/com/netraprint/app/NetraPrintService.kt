@@ -227,8 +227,11 @@ class NetraPrintService : PrintService() {
                     printers.add(wifiPrinter)
                 }
 
-                // 3. Fallback virtual entry ONLY if no Bluetooth or Wi-Fi printers are available
-                if (printers.isEmpty()) {
+                // 3. Ensure primary NetraPrint thermal entry is ALWAYS available in Android Print Spooler
+                val hasMainOrSavedPrinter = printers.any { p ->
+                    defaultAddress.isNotBlank() && p.id.localId.contains(defaultAddress.replace(":", "_"))
+                }
+                if (!hasMainOrSavedPrinter || printers.isEmpty()) {
                     val mainPrinterId = generatePrinterId("netraprint_thermal_main")
                     val mainCaps = buildCapabilities(mainPrinterId)
                     val mainDisplayName = if (defaultName.isNotBlank()) {
@@ -240,7 +243,7 @@ class NetraPrintService : PrintService() {
                         .setDescription(localized.getString(R.string.kt_system_printer_description))
                         .setCapabilities(mainCaps)
                         .build()
-                    printers.add(mainPrinter)
+                    printers.add(0, mainPrinter)
                 }
 
                 addPrinters(printers)

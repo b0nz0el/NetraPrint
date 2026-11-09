@@ -1,5 +1,18 @@
 # Changelog — NetraPrint (Native Android ESC/POS Hub)
 
+## [v2.0.22] - Release
+
+- External Printing & Share Sheet Full Recognition: Memperbaiki kendala NetraPrint tidak terdeteksi saat mencetak atau membagikan dokumen dari aplikasi eksternal (Google Chrome, Shopee, Tokopedia, TikTok, WhatsApp, WPS Office, File Manager, Adobe Acrobat, dll).
+- Android System Print Service Activation Hub:
+  - Menyediakan kartu panduan cepat dan tombol akses langsung ke Pengaturan Layanan Cetak Android (`Settings.ACTION_PRINT_SETTINGS`) di layar Pengaturan dan Drawer Menu, memudahkan pengguna mengaktifkan NetraPrint Service (yang secara bawaan dinonaktifkan oleh OS Android).
+  - Mengatasi potensi `SecurityException` crash saat pengguna menyentuh opsi setelan printer pada Android Print Spooler dengan mengekspor `SettingsActivity` secara aman.
+  - Memastikan `NetraPrintService` selalu mempublikasikan printer thermal default (`netraprint_thermal_main`) ke Android System Print Spooler secara andal.
+- High-Reliability Intent & MIME Stream Handling:
+  - Mengembangkan sistem pencocokan tipe konten terpadu (`handleSharedUri`) yang mengenali `ACTION_VIEW`, `ACTION_SEND`, dan `ACTION_SEND_MULTIPLE`.
+  - Memperluas intent filter di `AndroidManifest.xml` untuk mendukung MIME `application/pdf`, `application/x-pdf`, `application/octet-stream`, `image/*`, `text/*`, dan wildcard `*/*`.
+  - Dilengkapi fitur inspeksi magic bytes (analisis signature byte file `%PDF`, PNG, JPEG, WebP) sehingga dokumen stream dari marketplace atau chat yang ber-MIME generik `application/octet-stream` atau `*/*` tetap dikenali dan dibuka secara instan di mode cetak yang sesuai.
+- Zero-Bug & Bilingual Localization: Menjaga stabilitas aplikasi 100% bebas crash dengan dukungan bahasa ganda lengkap (Indonesia dan Inggris).
+
 ## [v2.0.21] - Release
 
 - Interactive Upload Hub: Penggantian form kosong yang kaku pada Menu Foto/Gambar dan Menu PDF dengan Hub Unggah interaktif bergaris putus-putus modern (dashed border), kartu panduan, serta tombol aksi ganda (Kamera Scanner Dokumen & Galeri Berkas).

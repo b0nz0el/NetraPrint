@@ -31,6 +31,7 @@ import android.os.Bundle
 import android.os.ParcelFileDescriptor
 import android.provider.MediaStore
 import android.provider.OpenableColumns
+import android.provider.Settings
 import android.widget.Filter
 import androidx.core.content.FileProvider
 import android.speech.tts.TextToSpeech
@@ -819,6 +820,10 @@ class MainActivity : AppCompatActivity() {
                 }
                 R.id.nav_print_history -> {
                     startActivity(Intent(this, PrintHistoryActivity::class.java))
+                    true
+                }
+                R.id.nav_system_print_service -> {
+                    showSystemPrintSettingsDialog()
                     true
                 }
                 R.id.nav_setting -> {
@@ -2813,40 +2818,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         if (intent.action == Intent.ACTION_VIEW) {
-            val uri = intent.data ?: return
-            val mimeType = intent.type ?: contentResolver.getType(uri) ?: ""
-            val uriString = uri.toString().lowercase()
-            val isPdf = mimeType.equals("application/pdf", ignoreCase = true) || uriString.endsWith(".pdf")
-            val isImage = mimeType.startsWith("image/") || uriString.endsWith(".png") || uriString.endsWith(".jpg") || uriString.endsWith(".jpeg") || uriString.endsWith(".webp")
-            val isText = mimeType.startsWith("text/") || uriString.endsWith(".txt")
-
-            when {
-                isPdf -> {
-                    switchToMode(CurrentMode.PDF)
-                    loadPdfDocument(uri)
-                    Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
-                }
-                isImage -> {
-                    switchToMode(CurrentMode.IMAGE)
-                    loadImageDocument(uri)
-                    Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
-                }
-                isText -> {
-                    val text = try {
-                        contentResolver.openInputStream(uri)?.use { stream ->
-                            stream.bufferedReader(Charsets.UTF_8).readText()
-                        }
-                    } catch (_: Exception) {
-                        null
-                    }
-                    if (!text.isNullOrBlank()) {
-                        switchToMode(CurrentMode.FREE_TEXT)
-                        etFreeText.setText(text)
-                        updateThermalPreview()
-                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
-                    }
-                }
-            }
+            val uri = intent.data ?: intent.clipData?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.uri ?: return
+            handleSharedUri(uri, intent.type)
             return
         }
 
@@ -2857,66 +2830,147 @@ class MainActivity : AppCompatActivity() {
                 @Suppress("DEPRECATION")
                 intent.getParcelableArrayListExtra<Uri>(Intent.EXTRA_STREAM)
             }
-            val firstUri = uris?.firstOrNull()
+            val firstUri = uris?.firstOrNull() ?: intent.clipData?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.uri
             if (firstUri != null) {
-                val mimeType = intent.type ?: contentResolver.getType(firstUri) ?: ""
-                val uriString = firstUri.toString().lowercase()
-                when {
-                    mimeType.startsWith("image/") || uriString.endsWith(".png") || uriString.endsWith(".jpg") || uriString.endsWith(".jpeg") -> {
-                        switchToMode(CurrentMode.IMAGE)
-                        loadImageDocument(firstUri)
-                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
-                    }
-                    mimeType == "application/pdf" || uriString.endsWith(".pdf") -> {
-                        switchToMode(CurrentMode.PDF)
-                        loadPdfDocument(firstUri)
-                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
-                    }
-                }
+                handleSharedUri(firstUri, intent.type)
             }
             return
         }
 
         if (intent.action == Intent.ACTION_SEND) {
-            val type = intent.type ?: return
-            when {
-                type.startsWith("text/") -> {
-                    val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
-                    if (!sharedText.isNullOrBlank()) {
-                        switchToMode(CurrentMode.FREE_TEXT)
-                        etFreeText.setText(sharedText)
-                        updateThermalPreview()
-                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+            val streamUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
+            } ?: intent.clipData?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.uri ?: intent.data
+
+            if (streamUri != null) {
+                handleSharedUri(streamUri, intent.type)
+                return
+            }
+
+            // Jika tidak ada URI stream berkas, periksa apakah ada teks yang dibagikan
+            val sharedText = intent.getStringExtra(Intent.EXTRA_TEXT)
+                ?: intent.clipData?.takeIf { it.itemCount > 0 }?.getItemAt(0)?.coerceToText(this)?.toString()
+            if (!sharedText.isNullOrBlank()) {
+                switchToMode(CurrentMode.FREE_TEXT)
+                etFreeText.setText(sharedText)
+                updateThermalPreview()
+                Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                return
+            }
+        }
+    }
+
+    private fun handleSharedUri(uri: Uri, declaredType: String?) {
+        val kind = detectContentType(uri, declaredType)
+        when (kind) {
+            "pdf" -> {
+                switchToMode(CurrentMode.PDF)
+                loadPdfDocument(uri)
+                Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+            }
+            "image" -> {
+                switchToMode(CurrentMode.IMAGE)
+                loadImageDocument(uri)
+                Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+            }
+            "text" -> {
+                val text = try {
+                    contentResolver.openInputStream(uri)?.use { stream ->
+                        stream.bufferedReader(Charsets.UTF_8).readText()
                     }
+                } catch (_: Exception) {
+                    null
                 }
-                type.startsWith("image/") -> {
-                    val imageUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
-                    } else {
-                        @Suppress("DEPRECATION")
-                        intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
-                    }
-                    if (imageUri != null) {
-                        switchToMode(CurrentMode.IMAGE)
-                        loadImageDocument(imageUri)
-                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
-                    }
+                if (!text.isNullOrBlank()) {
+                    switchToMode(CurrentMode.FREE_TEXT)
+                    etFreeText.setText(text)
+                    updateThermalPreview()
+                    Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
                 }
-                type == "application/pdf" -> {
-                    val pdfUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-                        intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
-                    } else {
-                        @Suppress("DEPRECATION")
-                        intent.getParcelableExtra<Uri>(Intent.EXTRA_STREAM)
+            }
+            else -> {
+                // Fallback jika belum terdeteksi jelas: coba sebagai PDF, lalu IMAGE jika gagal
+                try {
+                    switchToMode(CurrentMode.PDF)
+                    loadPdfDocument(uri)
+                    Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                } catch (_: Exception) {
+                    switchToMode(CurrentMode.IMAGE)
+                    loadImageDocument(uri)
+                    Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+    }
+
+    private fun detectContentType(uri: Uri, declaredMime: String?): String {
+        val mime = (declaredMime ?: contentResolver.getType(uri) ?: "").lowercase(Locale.ROOT)
+        val name = (getFileNameFromUri(uri) ?: uri.toString()).lowercase(Locale.ROOT)
+
+        if (mime == "application/pdf" || mime == "application/x-pdf" || name.endsWith(".pdf")) {
+            return "pdf"
+        }
+        if (mime.startsWith("image/") || name.endsWith(".png") || name.endsWith(".jpg") ||
+            name.endsWith(".jpeg") || name.endsWith(".webp") || name.endsWith(".bmp")) {
+            return "image"
+        }
+        if (mime.startsWith("text/") || name.endsWith(".txt") || name.endsWith(".csv") || name.endsWith(".log")) {
+            return "text"
+        }
+
+        // Deteksi magic bytes jika MIME generik (application/octet-stream atau */*)
+        try {
+            contentResolver.openInputStream(uri)?.use { stream ->
+                val header = ByteArray(8)
+                val bytesRead = stream.read(header, 0, header.size)
+                if (bytesRead >= 4) {
+                    // PDF: %PDF (0x25 0x50 0x44 0x46)
+                    if (header[0] == 0x25.toByte() && header[1] == 0x50.toByte() && header[2] == 0x44.toByte() && header[3] == 0x46.toByte()) {
+                        return "pdf"
                     }
-                    if (pdfUri != null) {
-                        switchToMode(CurrentMode.PDF)
-                        loadPdfDocument(pdfUri)
-                        Toast.makeText(this, getString(R.string.shared_content_ready), Toast.LENGTH_SHORT).show()
+                    // PNG: 0x89 0x50 0x4E 0x47
+                    if (header[0] == 0x89.toByte() && header[1] == 0x50.toByte() && header[2] == 0x4E.toByte() && header[3] == 0x47.toByte()) {
+                        return "image"
+                    }
+                    // JPEG: 0xFF 0xD8 0xFF
+                    if (header[0] == 0xFF.toByte() && header[1] == 0xD8.toByte() && header[2] == 0xFF.toByte()) {
+                        return "image"
+                    }
+                    // WebP (RIFF....WEBP)
+                    if (header[0] == 0x52.toByte() && header[1] == 0x49.toByte() && header[2] == 0x46.toByte() && header[3] == 0x46.toByte()) {
+                        return "image"
                     }
                 }
             }
-            return
+        } catch (_: Exception) {
+            // Abaikan jika stream tidak dapat dibaca
+        }
+
+        return "unknown"
+    }
+
+    private fun showSystemPrintSettingsDialog() {
+        androidx.appcompat.app.AlertDialog.Builder(this)
+            .setTitle(R.string.dialog_enable_print_service_title)
+            .setMessage(R.string.dialog_enable_print_service_msg)
+            .setPositiveButton(R.string.btn_open_print_settings) { _, _ ->
+                openSystemPrintSettings()
+            }
+            .setNegativeButton(android.R.string.cancel, null)
+            .show()
+    }
+
+    private fun openSystemPrintSettings() {
+        try {
+            val intent = Intent(Settings.ACTION_PRINT_SETTINGS)
+            startActivity(intent)
+        } catch (_: Exception) {
+            Toast.makeText(this, R.string.system_print_service_status_hint, Toast.LENGTH_LONG).show()
         }
     }
 
